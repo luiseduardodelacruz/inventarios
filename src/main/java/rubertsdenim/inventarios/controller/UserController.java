@@ -51,5 +51,24 @@ public class UserController {
         userRepository.save(user);
         return "redirect:/usuarios"; // Redirigir a la página de lista de usuarios después de actualizar
     }
+
+
+    @GetMapping("/eliminar-usuario/{id}")
+    public String showDeleteConfirmation(@PathVariable String id, Model model) {
+        User user = userRepository.findById(id).orElse(null);
+        if (user != null) {
+            model.addAttribute("user", user);
+            return "delete-user"; // Vista para la confirmación de eliminación
+        } else {
+            // Manejar el caso cuando el usuario no existe
+            return "redirect:/usuarios";
+        }
+    }
+
+    @PostMapping("/eliminar-usuario/{id}")
+    public String deleteUser(@PathVariable String id) {
+        userRepository.deleteById(id);
+        return "redirect:/usuarios"; // Redirigir a la lista de usuarios después de eliminar
+    }
 }
 
