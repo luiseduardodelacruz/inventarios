@@ -1,35 +1,59 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Iniciar Sesión</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" href="/img/logo-navegador.png" type="Logo para el navegador">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <title>Rubert’s Denim - Login</title>
 </head>
-<body>
-    <div class="container">
-        <h1 class="my-4">Iniciar Sesión</h1>
-        <form th:action="@{/inicio-sesion}" method="post">
-            <div class="form-group">
-                <label for="email">Correo Electrónico:</label>
-                <input type="email" id="email" name="email" class="form-control">
+<body class="bg-[#ffe1d2]">
+    <div class="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-3 2xl:grid-cols-3 absolute inset-0 z-10 items-stretch">
+        <div class="col-span-1 hidden sm:hidden md:hidden lg:hidden xl:block 2xl:block">
+            <div class="flex justify-center">
+                <img class="object-cover xl:h-[70vh] 2xl:h-[80vh] absolute bottom-[10vh]" src="/img/login-imagen-1.png" alt="Imagen 1">
             </div>
-            <div class="form-group">
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" class="form-control">
+        </div>
+        <div class="col-span-1 self-center mx-[10vw] py-[16vw] lg:py-[10vw] xl:py-[2vw] sm:mx-[15vw] md:mx-[20vw] lg:mx-[25vw] xl:mx-[0vw] 2xl:mx-[2vw]">
+            <div class="bg-[#db4900] bg-opacity-40 rounded-[45px]">
+                <div class="relative flex justify-center">
+                        <div class="absolute flex bg-[#fe7355] -top-[14vw] h-[28vw] w-[32vw] sm:-top-[10vw] sm:h-[20vw] sm:w-[22vw] md:-top-[8vw] md:h-[16vw] md:w-[20vw] lg:-top-[7vw] lg:h-[14vw] lg:w-[15vw] xl:-top-[5.5vw] xl:h-[11vw] xl:w-[12vw] 2xl:-top-[4vw] 2xl:h-[8vw] 2xl:w-[9vw] rounded-3xl">
+                            <div class="flex justify-center w-full bg-[#faad86] m-3 rounded-3xl">
+                                <img class="object-cover" src="/img/login-usuario.png" alt="Usuario">
+                            </div>
+                        </div>
+                </div>
+                <form th:action="@{/inicio-sesion}" method="post">
+                    <div class="p-[10%] pt-[25%] sm:pt-[20%] h-full w-full">
+                        <div class="mb-6">
+                            <label for="email" class="fuente_1 block mb-2 ml-1 text-base sm:text-xl text-white dark:text-white">Correo Electrónico</label>
+                            <input type="email" id="email" name="email" class="fuente_3 bg-[#db4900] border border-[#db4900] text-white text-base sm:text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-2 sm:p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#db4900] dark:focus:border-[#db4900]" required />
+                        </div>
+                        <div class="mb-14">
+                            <label for="password" class="fuente_1 block mb-2 ml-1 text-base sm:text-xl text-white dark:text-white">Contraseña</label>
+                            <input type="password" id="password" name="password" class="fuente_3 bg-[#db4900] border border-[#db4900] text-white text-base sm:text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-2 sm:p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#db4900] dark:focus:border-[#db4900]" required />
+                        </div>
+                        <button type="submit" class="fuente_1 flex items-center justify-center text-white bg-[#db4900] hover:bg-[#ff5500] focus:ring-4 focus:outline-none focus:ring-[#e8763d] rounded-3xl text-base sm:text-xl w-full py-2 sm:py-3 text-center dark:bg-[#ff5500] dark:hover:bg-[#ff5500] dark:focus:ring-[#ff5500]">Inicia Sesión en tu Cuenta <svg xmlns="http://www.w3.org/2000/svg" class="ml-[0.65vw] xl:ml-[0.35vw] h-[18px] w-[18px] sm:h-[20px] sm:w-[20px] md:h-[22px] md:w-[22px] lg:h-[24px] lg:w-[24px]" viewBox="0 0 512 512"><path fill="white" d="M352 96l64 0c17.7 0 32 14.3 32 32l0 256c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l64 0c53 0 96-43 96-96l0-256c0-53-43-96-96-96l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32zm-9.4 182.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L242.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg></button>
+                    </div>
+                </form>
             </div>
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-                <a href="/resetPassword" class="btn btn-info">Olvide mi Contraseña</a>
+        </div>
+        <div class="col-span-1 hidden sm:hidden md:hidden lg:hidden xl:block 2xl:block">
+            <div class="flex justify-center">
+                <img class="object-cover xl:h-[25vh] 2xl:h-[35vh] absolute bottom-[10vh]" src="/img/login-imagen-2.png" alt="Imagen 2">
             </div>
-
-        </form>
-        <div th:if="${message != null}" class="alert alert-danger mt-3" th:text="${message}"></div>
+        </div>
     </div>
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <footer class="fixed bottom-0 w-full h-[45vh] -z-10">
+        <div class="absolute inset-0">
+            <img class="object-cover w-full h-full" src="/img/login-fondo.png" alt="Fondo">
+        </div>
+    </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+
 </body>
 </html>
