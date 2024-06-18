@@ -2,7 +2,6 @@ package rubertsdenim.inventarios.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import java.time.LocalDateTime;
 
 @Document(collection = "users")
 public class User {
@@ -12,8 +11,6 @@ public class User {
     private String email;
     private String password;
     private String role;
-    private String resetToken;
-    private LocalDateTime tokenExpiryDate;
 
     // Getters and setters
     public String getId() {
@@ -56,19 +53,4 @@ public class User {
         this.role = role;
     }
 
-    public String getResetToken() {
-        return resetToken;
-    }
-
-    public void setResetToken(String resetToken) {
-        this.resetToken = resetToken;
-    }
-
-    public LocalDateTime getTokenExpiryDate() {
-        return tokenExpiryDate;
-    }
-
-    public void setTokenExpiryDate(LocalDateTime tokenExpiryDate) {
-        this.tokenExpiryDate = tokenExpiryDate;
-    }
 }
