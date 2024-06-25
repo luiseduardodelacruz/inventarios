@@ -7,7 +7,12 @@
   
 }
 
-.img{
+.fuente_2{
   font-family: 'Poppins', sans-serif;
-  font-weight: normal;
+  font-weight: 600;
+}
+
+.fuente_3{
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
 }

@@ -3,84 +3,210 @@
   <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../static/productos.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/productos.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <title>Rubert’s Denim - Productos</title>
-    <link rel="icon" href="./img/logo-pestaña.png" type="Logo Pestaña">
+    <link rel="icon" href="../static/img/logo-navegador.png" type="Logo Pestaña">
   </head>
-  <body class="bg-[#ffe1d2]">
+  <body class="bg-[#ffe1d2] hidden xl:block">
     <nav>
-      <div class="grid grid-cols-2 bg-[#E2AA80] bg-opacity-45 w-full start-0 px-[10%] md:px-[5%] flex items-stretch h-[10vh] sm:h-[10vw] md:h-[9vw] lg:h-[8vw] xl:h-[7vw] 2xl:h-[6vw] rounded-b-full">
+      <div class="grid grid-cols-2 bg-[#e2aa80] bg-opacity-45 w-full start-0 px-[10%] md:px-[5%] flex items-stretch h-[10vh] sm:h-[10vw] md:h-[9vw] lg:h-[8vw] xl:h-[7vw] 2xl:h-[6vw] rounded-b-full">
         <div class="grid-span-1 self-center justify-self-start">
-          <button type="submit" class="flex items-center justify-center px-[4vw] sm:px-[3.5vw] md:px-[3vw] lg:px-[2.5vw] xl:px-[2vw] text-white bg-[#ff8a00] fuente_1 hover:bg-[#ff9b00] focus:ring-4 focus:outline-none focus:ring-[#ffac00] rounded-3xl text-xs sm:text-sm md:text-md lg:text-xl mr-[20%] sm:mr-[0%] py-2 sm:py-3 text-center dark:bg-[#ff9b00] dark:hover:bg-[#ff9b00] dark:focus:ring-[#ff9b00]">GESTIONAR USUARIOS <svg xmlns="http://www.w3.org/2000/svg" class="ml-[1.15vw] sm:ml-[0.85vw] xl:ml-[0.45vw] h-[14px] w-[14px] md:h-[18px] md:w-[18px] lg:h-[20px] lg:w-[20px]" viewBox="0 0 512 512"><path fill="white" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg></button>
+          <button type="submit" class="flex items-center justify-center px-[4vw] sm:px-[3.5vw] md:px-[3vw] lg:px-[2.5vw] xl:px-[2vw] text-white bg-[#ff8a00] fuente_1 hover:bg-[#ff9b00] focus:ring-4 focus:outline-none focus:ring-[#ffac00] rounded-3xl text-xs sm:text-sm md:text-base lg:text-xl mr-[20%] sm:mr-[0%] py-2 sm:py-3 text-center">GESTIONAR USUARIOS <svg xmlns="http://www.w3.org/2000/svg" class="ml-[1.15vw] sm:ml-[0.85vw] xl:ml-[0.45vw] h-[14px] w-[14px] md:h-[18px] md:w-[18px] lg:h-[20px] lg:w-[20px]" viewBox="0 0 512 512"><path fill="white" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg></button>
         </div>
         <div class="grid-span-1 self-center justify-self-end">
-          <button type="submit" class="flex items-center justify-center px-[4vw] sm:px-[3.5vw] md:px-[3vw] lg:px-[2.5vw] xl:px-[2vw] text-white bg-[#db4900] fuente_1 hover:bg-[#ff5500] focus:ring-4 focus:outline-none focus:ring-[#e8763d] rounded-3xl text-xs sm:text-sm md:text-md lg:text-xl ml-[15%] sm:ml-[0%] py-2 sm:py-3 text-center dark:bg-[#ff5500] dark:hover:bg-[#ff5500] dark:focus:ring-[#ff5500]">CERRAR SESIÓN <svg xmlns="http://www.w3.org/2000/svg" class="ml-[1.15vw] sm:ml-[0.85vw] xl:ml-[0.45vw] h-[14px] w-[14px] md:h-[18px] md:w-[18px] lg:h-[20px] lg:w-[20px]" viewBox="0 0 512 512"><path fill="white" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z"/></svg></button>
+          <button type="submit" class="flex items-center justify-center px-[4vw] sm:px-[3.5vw] md:px-[3vw] lg:px-[2.5vw] xl:px-[2vw] text-white bg-[#db4900] fuente_1 hover:bg-[#ff5500] focus:ring-4 focus:outline-none focus:ring-[#e8763d] rounded-3xl text-xs sm:text-sm md:text-base lg:text-xl ml-[15%] sm:ml-[0%] py-2 sm:py-3 text-center">CERRAR SESIÓN <svg xmlns="http://www.w3.org/2000/svg" class="ml-[1.15vw] sm:ml-[0.85vw] xl:ml-[0.45vw] h-[14px] w-[14px] md:h-[18px] md:w-[18px] lg:h-[20px] lg:w-[20px]" viewBox="0 0 512 512"><path fill="white" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z"/></svg></button>
         </div>
       </div>
     </nav>
-    <div class="grid grid-cols-1 h-screen items-stretch">
-      <div class="col-span-1 self-center m-[0vw]">
-        <div class="">
-          <div class="bg-[#e8763d]">
+    <div class="grid grid-cols-1">
+      <div class="col-span-1">
+        <div class="absolute inset-0 flex items-center justify-center">
 
-            <!-- drawer init and toggle -->
-            <div class="text-center">
-              <button id="Boton_1" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" data-drawer-target="drawer-disabled-backdrop" data-drawer-show="drawer-disabled-backdrop" data-drawer-backdrop="false" aria-controls="drawer-disabled-backdrop">Menu</button>
-            
-              <button id="Boton_2" type="button" class="hidden text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" data-drawer-hide="drawer-disabled-backdrop" aria-controls="drawer-disabled-backdrop">Menu</button>
-            </div>
+          <div id="drawer" class="fixed left-0 z-40 px-6 py-9 bg-[#ef986d] rounded-3xl transition-transform duration-300 ease-in-out -translate-x-[0%] w-[60%] sm:-translate-x-[0%] sm:w-[50%] md:-translate-x-[0%] md:w-[40%] lg:-translate-x-[0%] lg:w-[15%] xl:-translate-x-[0%]">
+              
+            <button id="btn_mostrar" type="button" class="hidden lg:hidden bg-transparent hover:bg-[#ffab74] hover:text-gray-900 rounded-lg text-sm w-9 h-9 absolute top-2.5 end-2.5 inline-flex items-center justify-center w-9 h-9 mt-8 mr-1"><svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 448 512"><path fill="white" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg><span class="sr-only">Abrir Menu</span></button>
 
-            <!-- drawer component -->
-            <div id="drawer-disabled-backdrop" class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-64 dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-disabled-backdrop-label">
-              <button type="button" data-drawer-hide="drawer-disabled-backdrop" aria-controls="drawer-disabled-backdrop" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white" >
-                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                </svg>
-                <span class="sr-only">Cerra Menu</span>
-             </button>
-             <div class="py-4 overflow-y-auto">
-                 <ul class="space-y-2 font-medium">
-                    <li>
-                       <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                          <p class="ms-3">Dashboard</p>
-                       </a>
-                    </li>
-                    <li>
-                       <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                          <p class="flex-1 ms-3 whitespace-nowrap">Users</p>
-                       </a>
-                    </li>
-                 </ul>
+            <button id="btn_ocultar" type="button" class="block lg:hidden text-gray-400 bg-transparent hover:bg-[#ffab74] hover:text-gray-900 rounded-lg text-sm absolute top-2.5 end-2.5 inline-flex items-center justify-center w-9 h-9 mt-8 mr-1"><svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 448 512"><path fill="white" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg><span class="sr-only">Cerra Menu</span></button>
+
+            <div class="">
+              <div class="mb-0">
+                <div class="flex">
+                  <button class="inline-flex items-center pl-3 md:pl-3 lg:pl-3 text-white bg-[#ff5500] border border-e-0 border-[#ff5500] rounded-s-3xl focus:ring-transparent focus:border-transparent hover:bg-[#FF6619]">
+                    <svg class="w-6 h-6 md:w-8 md:h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512">
+                      <path d="M256 64C150.13 64 64 150.13 64 256s86.13 192 192 192s192-86.13 192-192S361.87 64 256 64m80 294.63l-54.15-54.15a88.08 88.08 0 1 1 22.63-22.63L358.63 336Z"/><circle cx="232" cy="232" r="56" fill="white"/>
+                    </svg>
+                  </button>
+                  <input type="text" class="fuente_2 rounded-none rounded-e-3xl bg-[#ff5500] border border-[#ff5500] text-white focus:ring-transparent focus:border-transparent hover:bg-[#FF6619] block text-sm md:text-base w-[65%] p-3 md:w-[65%] md:p-3 lg:w-full lg:p-3 placeholder-white focus:border-transparent" placeholder="Buscar">
+                </div>
               </div>
+              <ul class="">
+                <li>
+                  <button id="btn_elasticos" type="submit" class="flex items-center justify-center text-white bg-[#ff8a00] fuente_3 hover:bg-[#ff7152] border-2 border-black rounded-3xl text-base md:text-lg lg:text-xl text-center py-1.5 lg:py-1.5 px-[4vw] w-[70%] ml-[7%] mt-[16%]">Elásticos</button>
+                </li>
+                <li>
+                  <button id="btn_hilos" type="submit" class="flex items-center justify-center text-white bg-[#ff8a00] fuente_3 hover:bg-[#ff7152] border-2 border-black rounded-3xl text-base md:text-lg lg:text-xl text-center py-1.5 lg:py-1.5 px-[4vw] w-[70%] ml-[7%] mt-[6%] md:py-1.5 md:px-[4vw]">Hilos</button>
+                </li>
+                <li>
+                  <button id="btn_cordones" type="submit" class="flex items-center justify-center text-white bg-[#ff8a00] fuente_3 hover:bg-[#ff7152] border-2 border-black rounded-3xl text-base md:text-lg lg:text-xl text-center py-1.5 lg:py-1.5 px-[4vw] w-[70%] ml-[7%] mt-[6%]">Cordones</button>
+                </li>
+                <li>
+                  <button id="btn_botones" type="submit" class="flex items-center justify-center text-white bg-[#ff8a00] fuente_3 hover:bg-[#ff7152] border-2 border-black rounded-3xl text-base md:text-lg lg:text-xl text-center py-1.5 lg:py-1.5 px-[4vw] w-[70%] ml-[7%] mt-[6%]">Botones</button>
+                </li>
+                <li>
+                  <button id="btn_sujetador" type="submit" class="flex items-center justify-center text-white bg-[#ff8a00] fuente_3 hover:bg-[#ff7152] border-2 border-black rounded-3xl text-base md:text-lg lg:text-xl text-center py-1.5 lg:py-1.5 px-[4vw] w-[70%] ml-[7%] mt-[6%]">Sujetador</button>
+                </li>
+                <li>
+                  <button id="btn_ajustador" type="submit" class="flex items-center justify-center text-white bg-[#ff8a00] fuente_3 hover:bg-[#ff7152] border-2 border-black rounded-3xl text-base md:text-lg lg:text-xl text-center py-1.5 lg:py-1.5 px-[4vw] w-[70%] ml-[7%] mt-[6%]">Ajustador</button>
+                </li>
+                <li>
+                  <button id="btn_etiquetas" type="submit" class="flex items-center justify-center text-white bg-[#ff8a00] fuente_3 hover:bg-[#ff7152] border-2 border-black rounded-3xl text-base md:text-lg lg:text-xl text-center py-1.5 lg:py-1.5 px-[4vw] w-[70%] ml-[7%] mt-[6%]">Etiquetas</button>
+                </li>
+              </ul>
             </div>
+          </div>
+
+          <div class="">
 
           </div>
+
         </div>
       </div>
     </div>
     <script>
-      const Boton_1 = document.getElementById('Boton_1');
-      const Boton_2 = document.getElementById('Boton_2');
+      const btn_mostrar = document.getElementById('btn_mostrar');
+      const btn_ocultar = document.getElementById('btn_ocultar');
+      const drawer = document.getElementById('drawer');
   
-      // Función para agregar una clase al elemento
       function mostrar() {
-        Boton_1.classList.add('hidden');
-        Boton_2.classList.remove('hidden');
+        btn_mostrar.classList.add('hidden');
+        btn_ocultar.classList.remove('hidden');
+        drawer.classList.remove('-translate-x-[79%]');
       }
   
-      // Función para quitar una clase del elemento
       function ocultar() {
-        Boton_2.classList.add('hidden');
-        Boton_1.classList.remove('hidden');
+        btn_ocultar.classList.add('hidden');
+        btn_mostrar.classList.remove('hidden');
+        drawer.classList.add('-translate-x-[79%]');
       }
   
-      // Event listener para el botón de agregar clase
-      Boton_1.addEventListener('click', mostrar);
-  
-      // Event listener para el botón de quitar clase
-      Boton_2.addEventListener('click', ocultar);
+      btn_mostrar.addEventListener('click', mostrar);
+      btn_ocultar.addEventListener('click', ocultar);
+
+      const btn_elasticos = document.getElementById('btn_elasticos');
+      const btn_hilos = document.getElementById('btn_hilos');
+      const btn_cordones = document.getElementById('btn_cordones');
+      const btn_botones = document.getElementById('btn_botones');
+      const btn_sujetador = document.getElementById('btn_sujetador');
+      const btn_ajustador = document.getElementById('btn_ajustador');
+      const btn_etiquetas = document.getElementById('btn_etiquetas');
+
+      function elasticos() {
+        if(!btn_elasticos.classList.contains('bg-[#ff5e3b]')){
+          btn_hilos.classList.remove('bg-[#ff5e3b]');
+          btn_cordones.classList.remove('bg-[#ff5e3b]');
+          btn_botones.classList.remove('bg-[#ff5e3b]');
+          btn_sujetador.classList.remove('bg-[#ff5e3b]');
+          btn_ajustador.classList.remove('bg-[#ff5e3b]');
+          btn_etiquetas.classList.remove('bg-[#ff5e3b]');
+          btn_elasticos.classList.add('bg-[#ff5e3b]');
+        } else{
+          btn_elasticos.classList.remove('bg-[#ff5e3b]');
+        }
+      }
+
+      function hilos() {
+        if(!btn_hilos.classList.contains('bg-[#ff5e3b]')){
+          btn_elasticos.classList.remove('bg-[#ff5e3b]');
+          btn_cordones.classList.remove('bg-[#ff5e3b]');
+          btn_botones.classList.remove('bg-[#ff5e3b]');
+          btn_sujetador.classList.remove('bg-[#ff5e3b]');
+          btn_ajustador.classList.remove('bg-[#ff5e3b]');
+          btn_etiquetas.classList.remove('bg-[#ff5e3b]');
+          btn_hilos.classList.add('bg-[#ff5e3b]');
+        } else{
+          btn_hilos.classList.remove('bg-[#ff5e3b]');
+        }
+      }
+
+      function cordones() {
+        if(!btn_cordones.classList.contains('bg-[#ff5e3b]')){
+          btn_elasticos.classList.remove('bg-[#ff5e3b]');
+          btn_hilos.classList.remove('bg-[#ff5e3b]');
+          btn_botones.classList.remove('bg-[#ff5e3b]');
+          btn_sujetador.classList.remove('bg-[#ff5e3b]');
+          btn_ajustador.classList.remove('bg-[#ff5e3b]');
+          btn_etiquetas.classList.remove('bg-[#ff5e3b]');
+          btn_cordones.classList.add('bg-[#ff5e3b]');
+        } else{
+          btn_cordones.classList.remove('bg-[#ff5e3b]');
+        }
+      }
+
+      function botones() {
+        if(!btn_botones.classList.contains('bg-[#ff5e3b]')){
+          btn_elasticos.classList.remove('bg-[#ff5e3b]');
+          btn_hilos.classList.remove('bg-[#ff5e3b]');
+          btn_cordones.classList.remove('bg-[#ff5e3b]');
+          btn_sujetador.classList.remove('bg-[#ff5e3b]');
+          btn_ajustador.classList.remove('bg-[#ff5e3b]');
+          btn_etiquetas.classList.remove('bg-[#ff5e3b]');
+          btn_botones.classList.add('bg-[#ff5e3b]');
+        } else{
+          btn_botones.classList.remove('bg-[#ff5e3b]');
+        }
+      }
+
+      function sujetador() {
+        if(!btn_sujetador.classList.contains('bg-[#ff5e3b]')){
+          btn_elasticos.classList.remove('bg-[#ff5e3b]');
+          btn_hilos.classList.remove('bg-[#ff5e3b]');
+          btn_cordones.classList.remove('bg-[#ff5e3b]');
+          btn_botones.classList.remove('bg-[#ff5e3b]');
+          btn_ajustador.classList.remove('bg-[#ff5e3b]');
+          btn_etiquetas.classList.remove('bg-[#ff5e3b]');
+          btn_sujetador.classList.add('bg-[#ff5e3b]');
+        } else{
+          btn_sujetador.classList.remove('bg-[#ff5e3b]');
+        }
+      }
+
+      function ajustador() {
+        if(!btn_ajustador.classList.contains('bg-[#ff5e3b]')){
+          btn_elasticos.classList.remove('bg-[#ff5e3b]');
+          btn_hilos.classList.remove('bg-[#ff5e3b]');
+          btn_cordones.classList.remove('bg-[#ff5e3b]');
+          btn_botones.classList.remove('bg-[#ff5e3b]');
+          btn_sujetador.classList.remove('bg-[#ff5e3b]');
+          btn_etiquetas.classList.remove('bg-[#ff5e3b]');
+          btn_ajustador.classList.add('bg-[#ff5e3b]');
+        } else{
+          btn_ajustador.classList.remove('bg-[#ff5e3b]');
+        }
+      }
+
+      function etiquetas() {
+        if(!btn_etiquetas.classList.contains('bg-[#ff5e3b]')){
+          btn_elasticos.classList.remove('bg-[#ff5e3b]');
+          btn_hilos.classList.remove('bg-[#ff5e3b]');
+          btn_cordones.classList.remove('bg-[#ff5e3b]');
+          btn_botones.classList.remove('bg-[#ff5e3b]');
+          btn_sujetador.classList.remove('bg-[#ff5e3b]');
+          btn_ajustador.classList.remove('bg-[#ff5e3b]');
+          btn_etiquetas.classList.add('bg-[#ff5e3b]');
+        } else{
+          btn_etiquetas.classList.remove('bg-[#ff5e3b]');
+        }
+      }
+
+      btn_elasticos.addEventListener('click', elasticos);
+      btn_hilos.addEventListener('click', hilos);
+      btn_cordones.addEventListener('click', cordones);
+      btn_botones.addEventListener('click', botones);
+      btn_sujetador.addEventListener('click', sujetador);
+      btn_ajustador.addEventListener('click', ajustador);
+      btn_etiquetas.addEventListener('click', etiquetas);
     </script>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
