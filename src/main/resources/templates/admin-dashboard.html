@@ -2,21 +2,449 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Admin Dashboard</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="icon" href="/img/logo-navegador.png" type="Logo para el navegador">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/css/productos.css">
+    <title>Rubert’s Denim - Productos</title>
 </head>
-<body>
-    <div class="container">
-        <h1 class="my-4">Admin Dashboard</h1>
-        <a th:href="@{/cerrar-sesion}" class="btn btn-danger">Cerrar Sesión</a>
-        <a th:href="@{/usuarios}" class="btn btn-info">Ver Usuarios Registrados</a>
-        <!-- Contenido del dashboard de administrador -->
+<body class="bg-[#ffe1d2] hidden xl:block">
+    
+    <!-- Elemento Nav Bar -->
+    <nav>
+        <div class="grid grid-cols-2 bg-[#e2aa80] bg-opacity-45 w-full start-0 px-[10%] md:px-[5%] flex items-stretch h-[10vh] sm:h-[10vw] md:h-[9vw] lg:h-[8vw] xl:h-[7vw] 2xl:h-[6vw] rounded-b-full">
+            <div class="grid-span-1 self-center justify-self-start">
+                <a th:href="@{/usuarios}">
+                    <button type="button" class="flex items-center justify-center px-[4vw] sm:px-[3.5vw] md:px-[3vw] lg:px-[2.5vw] xl:px-[2vw] text-white bg-[#ff8a00] fuente_1 hover:bg-[#ff9b00] focus:ring-4 focus:outline-none focus:ring-[#ffac00] rounded-3xl text-xs sm:text-sm md:text-base lg:text-xl mr-[20%] sm:mr-[0%] py-2 sm:py-3 text-center">GESTIONAR USUARIOS 
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-[1.15vw] sm:ml-[0.85vw] xl:ml-[0.45vw] h-[14px] w-[14px] md:h-[18px] md:w-[18px] lg:h-[20px] lg:w-[20px]" viewBox="0 0 512 512">
+                            <path fill="white" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/>
+                        </svg>
+                    </button>
+                </a>
+            </div>
+            <div class="grid-span-1 self-center justify-self-end">
+                <a th:href="@{/cerrar-sesion}">
+                    <button type="button" class="flex items-center justify-center px-[4vw] sm:px-[3.5vw] md:px-[3vw] lg:px-[2.5vw] xl:px-[2vw] text-white bg-[#db4900] fuente_1 hover:bg-[#ff5500] focus:ring-4 focus:outline-none focus:ring-[#e8763d] rounded-3xl text-xs sm:text-sm md:text-base lg:text-xl ml-[15%] sm:ml-[0%] py-2 sm:py-3 text-center">CERRAR SESIÓN 
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-[1.15vw] sm:ml-[0.85vw] xl:ml-[0.45vw] h-[14px] w-[14px] md:h-[18px] md:w-[18px] lg:h-[20px] lg:w-[20px]" viewBox="0 0 512 512">
+                            <path fill="white" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z"/>
+                        </svg>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="grid grid-cols-1">
+        <div class="col-span-1">
+
+            <!-- Elemento Drawer -->
+            <div class="absolute inset-0 flex items-center justify-center xl:w-[18%] 2xl:w-[15%]">
+                <div id="drawer" class="fixed left-0 z-40 px-6 py-9 bg-[#ef986d] rounded-3xl transition-transform duration-300 ease-in-out -translate-x-[0%] w-[60%] sm:-translate-x-[0%] sm:w-[50%] md:-translate-x-[0%] md:w-[40%] lg:-translate-x-[0%] lg:w-[15%] xl:-translate-x-[0%] xl:w-[18%] 2xl:-translate-x-[0%] 2xl:w-[15%]">             
+                    <button id="btn_mostrar" type="button" class="hidden lg:hidden bg-transparent hover:bg-[#ffab74] hover:text-gray-900 rounded-lg text-sm w-9 h-9 absolute top-2.5 end-2.5 inline-flex items-center justify-center w-9 h-9 mt-8 mr-1">
+                        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 448 512">
+                            <path fill="white" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
+                        </svg>
+                        <span class="sr-only">Abrir Menu</span>
+                    </button>
+                    <button id="btn_ocultar" type="button" class="block lg:hidden text-gray-400 bg-transparent hover:bg-[#ffab74] hover:text-gray-900 rounded-lg text-sm absolute top-2.5 end-2.5 inline-flex items-center justify-center w-9 h-9 mt-8 mr-1">
+                        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 448 512">
+                            <path fill="white" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+                        </svg>
+                        <span class="sr-only">Cerra Menu</span>
+                    </button>
+                    <div class="">
+                        <div class="mb-0">
+                            <div class="flex">
+                                <button class="inline-flex items-center pl-3 md:pl-3 lg:pl-3 text-white bg-[#ff5500] border border-e-0 border-[#ff5500] rounded-s-3xl focus:ring-transparent focus:border-transparent hover:bg-[#FF6619]">
+                                    <svg class="w-6 h-6 md:w-8 md:h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512">
+                                        <path d="M256 64C150.13 64 64 150.13 64 256s86.13 192 192 192s192-86.13 192-192S361.87 64 256 64m80 294.63l-54.15-54.15a88.08 88.08 0 1 1 22.63-22.63L358.63 336Z"/>
+                                        <circle cx="232" cy="232" r="56" fill="white"/>
+                                    </svg>
+                                </button>
+                                <input type="text" class="fuente_2 rounded-none rounded-e-3xl bg-[#ff5500] border border-[#ff5500] text-white focus:ring-transparent focus:border-transparent hover:bg-[#FF6619] block text-sm md:text-base w-[65%] p-3 md:w-[65%] md:p-3 lg:w-full lg:p-3 placeholder-white focus:border-transparent" placeholder="Buscar">
+                            </div>
+                        </div>
+                        <ul>
+                            <li class="flex justify-center">
+                                <button id="btn_elasticos" type="button" class="flex items-center justify-center text-white bg-[#ff8a00] fuente_3 hover:bg-[#ff7152] border-2 border-black rounded-3xl text-base md:text-lg 2xl:text-xl text-center py-1.5 xl:py-1.5 w-[80%] mt-[16%]">Elásticos</button>
+                            </li>
+                            <li class="flex justify-center">
+                                <button id="btn_hilos" type="button" class="flex items-center justify-center text-white bg-[#ff8a00] fuente_3 hover:bg-[#ff7152] border-2 border-black rounded-3xl text-base md:text-lg 2xl:text-xl text-center py-1.5 xl:py-1.5 w-[80%] mt-[6%]">Hilos</button>
+                            </li>
+                            <li class="flex justify-center">
+                                <button id="btn_cordones" type="button" class="flex items-center justify-center text-white bg-[#ff8a00] fuente_3 hover:bg-[#ff7152] border-2 border-black rounded-3xl text-base md:text-lg 2xl:text-xl text-center py-1.5 xl:py-1.5 w-[80%] mt-[6%]">Cordones</button>
+                            </li>
+                            <li class="flex justify-center">
+                                <button id="btn_botones" type="button" class="flex items-center justify-center text-white bg-[#ff8a00] fuente_3 hover:bg-[#ff7152] border-2 border-black rounded-3xl text-base md:text-lg 2xl:text-xl text-center py-1.5 xl:py-1.5 w-[80%] mt-[6%]">Botones</button>
+                            </li>
+                            <li class="flex justify-center">
+                                <button id="btn_sujetador" type="button" class="flex items-center justify-center text-white bg-[#ff8a00] fuente_3 hover:bg-[#ff7152] border-2 border-black rounded-3xl text-base md:text-lg 2xl:text-xl text-center py-1.5 xl:py-1.5 w-[80%] mt-[6%]">Sujetador</button>
+                            </li>
+                            <li class="flex justify-center">
+                                <button id="btn_ajustador" type="button" class="flex items-center justify-center text-white bg-[#ff8a00] fuente_3 hover:bg-[#ff7152] border-2 border-black rounded-3xl text-base md:text-lg 2xl:text-xl text-center py-1.5 xl:py-1.5 w-[80%] mt-[6%]">Ajustador</button>
+                            </li>
+                            <li class="flex justify-center">
+                                <button id="btn_etiquetas" type="button" class="flex items-center justify-center text-white bg-[#ff8a00] fuente_3 hover:bg-[#ff7152] border-2 border-black rounded-3xl text-base md:text-lg 2xl:text-xl text-center py-1.5 xl:py-1.5 w-[80%] mt-[6%]">Etiquetas</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>       
+            </div>
+            
+            <!-- Elemento Principal Productos -->
+            <div class="flex flex-wrap justify-evenly xl:ml-[18%] 2xl:ml-[15%]">
+                <div class="pt-[5vw] xl:w-[19vw] 2xl:w-[16vw] mx-[2vw] my-[1vw]">
+                    <div class="bg-[#e8763d] rounded-t-[45px]">
+                        <div class="relative flex justify-center">
+                            <div class="absolute flex justify-center w-full -top-[5vw] h-[8vw] rounded-3xl">
+                                <img class="object-cover rounded-t-[35px]" src="/img/productos-subir-imagen.png" alt="Subir Producto">
+                            </div>
+                        </div>
+                        <div class="p-[6%] pt-[4vw]">
+                            <div class="mb-1">
+                                <p class="flex justify-center text-center fuente_4 text-2xl mb-0.5 text-white">Nuevo Producto</p>
+                                <p class="flex justify-center text-center fuente_2 text-base text-white">Color</p>
+                                <p class="flex justify-center text-center fuente_2 text-base text-white">Longitud</p>
+                                <p class="flex justify-center text-center fuente_2 text-base text-white">Tamaño</p>
+                            </div>
+                            <div class="flex justify-center">
+                                <button id="abrir_agregar_producto" type="button" class="mt-2 px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#ff5500] focus:ring-4 focus:outline-none focus:ring-[#da6930] rounded-3xl text-xl py-1 text-center">AGREGAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-[5vw] xl:w-[19vw] 2xl:w-[16vw] mx-[2vw] my-[1vw]">
+                    <div class="bg-[#e8763d] rounded-t-[45px]">
+                        <div class="relative flex justify-center">
+                            <div class="absolute flex justify-center w-full -top-[5vw] h-[8vw] rounded-3xl">
+                                <img class="object-cover rounded-t-[35px]" src="https://i.ibb.co/SP7ZTgT/Elastico-Negro.png" alt="Producto">
+                            </div>
+                        </div>
+                        <div class="p-[6%] pt-[4vw]">
+                            <div class="mb-1">
+                                <p class="flex justify-center text-center fuente_4 text-2xl mb-0.5 text-white">Elástico Chato</p>   
+                                <p class="text-center fuente_2 text-base text-white">Color: <span class="ml-3 text-justify fuente_5 text-base text-white">Negro</span></p>                          
+                                <p class="text-center fuente_2 text-base text-white">Longitud: <samp class="ml-3 text-justify fuente_5 text-base text-white">15 mts</samp></p>
+                                <p class="text-center fuente_2 text-base text-white">Tamaño: <samp class="ml-3 text-justify fuente_5 text-base text-white">10 mm</samp></p>             
+                            </div>
+                            <div class="flex justify-evenly mt-2">
+                                <button id="abrir_editar_producto" type="button" class="px-[1vw] text-white bg-[#ff8a00] fuente_1 hover:bg-[#ff9b00] focus:ring-4 focus:outline-none focus:ring-[#ffac00] rounded-3xl text-xl py-1 text-center">EDITAR</button>
+                                <button id="abrir_eliminar_producto" type="button" class="px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#ff5500] focus:ring-4 focus:outline-none focus:ring-[#da6930] rounded-3xl text-xl py-1 text-center">ELIMINAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-[5vw] xl:w-[19vw] 2xl:w-[16vw] mx-[2vw] my-[1vw]">
+                    <div class="bg-[#e8763d] rounded-t-[45px]">
+                        <div class="relative flex justify-center">
+                            <div class="absolute flex justify-center w-full -top-[5vw] h-[8vw] rounded-3xl">
+                                <img class="object-cover rounded-t-[35px]" src="https://i.ibb.co/fpf07hy/Elastico-Blanco.png" alt="Producto">
+                            </div>
+                        </div>
+                        <div class="p-[6%] pt-[4vw]">
+                            <div class="mb-1">
+                                <p class="flex justify-center text-center fuente_4 text-2xl mb-0.5 text-white">Elástico Chato</p>                 
+                                <p class="text-center fuente_2 text-base text-white">Color: <span class="ml-3 text-justify fuente_5 text-base text-white">Blanco</span></p>                          
+                                <p class="text-center fuente_2 text-base text-white">Longitud: <samp class="ml-3 text-justify fuente_5 text-base text-white">15 mts</samp></p>
+                                <p class="text-center fuente_2 text-base text-white">Tamaño: <samp class="ml-3 text-justify fuente_5 text-base text-white">10 mm</samp></p>             
+                            </div>
+                            <div class="flex justify-evenly mt-2">
+                                <button type="button" class="px-[1vw] text-white bg-[#ff8a00] fuente_1 hover:bg-[#ff9b00] focus:ring-4 focus:outline-none focus:ring-[#ffac00] rounded-3xl text-xl py-1 text-center">EDITAR</button>
+                                <button type="button" class="px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#ff5500] focus:ring-4 focus:outline-none focus:ring-[#da6930] rounded-3xl text-xl py-1 text-center">ELIMINAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-[5vw] xl:w-[19vw] 2xl:w-[16vw] mx-[2vw] my-[1vw]">
+                    <div class="bg-[#e8763d] rounded-t-[45px]">
+                        <div class="relative flex justify-center">
+                            <div class="absolute flex justify-center w-full -top-[5vw] h-[8vw] rounded-3xl">
+                                <img class="object-cover rounded-t-[35px]" src="https://i.ibb.co/Y0R76Bx/HiloBlanco.png" alt="Producto">
+                            </div>
+                        </div>
+                        <div class="p-[6%] pt-[4vw]">
+                            <div class="mb-1">
+                                <p class="flex justify-center text-center fuente_4 text-2xl mb-0.5 text-white">Hilo de Costura</p>                 
+                                <p class="text-center fuente_2 text-base text-white">Color: <span class="ml-3 text-justify fuente_5 text-base text-white">Rojo</span></p>                          
+                                <p class="text-center fuente_2 text-base text-white">Longitud: <samp class="ml-3 text-justify fuente_5 text-base text-white">5,000 mts</samp></p>
+                                <p class="text-center fuente_2 text-base text-white">Calibre: <samp class="ml-3 text-justify fuente_5 text-base text-white">10</samp></p>            
+                            </div>
+                            <div class="flex justify-evenly mt-2">
+                                <button type="button" class="px-[1vw] text-white bg-[#ff8a00] fuente_1 hover:bg-[#ff9b00] focus:ring-4 focus:outline-none focus:ring-[#ffac00] rounded-3xl text-xl py-1 text-center">EDITAR</button>
+                                <button type="button" class="px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#ff5500] focus:ring-4 focus:outline-none focus:ring-[#da6930] rounded-3xl text-xl py-1 text-center">ELIMINAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-[5vw] xl:w-[19vw] 2xl:w-[16vw] mx-[2vw] my-[1vw]">
+                    <div class="bg-[#e8763d] rounded-t-[45px]">
+                        <div class="relative flex justify-center">
+                            <div class="absolute flex justify-center w-full -top-[5vw] h-[8vw] rounded-3xl">
+                                <img class="object-cover rounded-t-[35px]" src="https://i.ibb.co/gSHWyNZ/Hilo-Amarillo.png" alt="Producto">
+                            </div>
+                        </div>
+                        <div class="p-[6%] pt-[4vw]">
+                            <div class="mb-1">
+                                <p class="flex justify-center text-center fuente_4 text-2xl mb-0.5 text-white">Hilo de Costura</p>                 
+                                <p class="text-center fuente_2 text-base text-white">Color: <span class="ml-3 text-justify fuente_5 text-base text-white">Amarillo</span></p>
+                                <p class="text-center fuente_2 text-base text-white">Longitud: <samp class="ml-3 text-justify fuente_5 text-base text-white">3,500 mts</samp></p>
+                                <p class="text-center fuente_2 text-base text-white">Calibre: <samp class="ml-3 text-justify fuente_5 text-base text-white">20</samp></p> 
+                            </div>
+                            <div class="flex justify-evenly mt-2">
+                                <button type="button" class="px-[1vw] text-white bg-[#ff8a00] fuente_1 hover:bg-[#ff9b00] focus:ring-4 focus:outline-none focus:ring-[#ffac00] rounded-3xl text-xl py-1 text-center">EDITAR</button>
+                                <button type="button" class="px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#ff5500] focus:ring-4 focus:outline-none focus:ring-[#da6930] rounded-3xl text-xl py-1 text-center">ELIMINAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>          
+            </div>
+
+            <!-- Elemento Modal Agregar Productos -->
+            <div>
+                <div id="agregar_producto" class="fixed inset-0 z-50 hidden transition-transform duration-1000 ease-in-out flex items-center justify-center bg-gray-800 bg-opacity-50">
+                    <div class="w-full max-w-xl p-6 bg-[#faad86] rounded-[45px] shadow-lg">
+                        <div class="grid grid-cols-12 start-0 flex items-stretch">
+                            <p class="text-3xl fuente_4 text-white col-span-11 text-center place-self-center justify-self-center">! Nuevo Producto ¡</p>
+                            <button id="cerrar_agregar_producto" type="button" class="inline-flex col-span-1 place-self-center justify-self-end text-white p-0.5 hover:bg-gray-600 hover:bg-opacity-10 rounded-xl">
+                                <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m14 10l-4 4m0-4l4 4"/></g></svg>
+                            </button>
+                        </div>
+                        <form>
+                            <div class="px-12 flex justify-center">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                    <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Nombre:</p>
+                                    <input type="text" id="" class="col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-2 px-3" required />
+                                </div>
+                            </div>
+
+                            <div class="px-12 flex justify-center">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                    <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Categoria:</p>
+                                    <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
+                                        <div id="opcion_seleccionada_categoria_agregar_producto" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-lg fuente_2 w-full p-2 text-left cursor-pointer flex justify-between items-center">
+                                            <span class="px-1">Seleccionar</span>
+                                            <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
+                                        </div>
+                                        <div id="opciones_categoria_agregar_producto" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="elasticos">Elásticos</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="hilos">Hilos</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="cordones">Cordones</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="botones">Botones</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="sujetador">Sujetador</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="ajustador">Ajustador</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="etiquetas">Etiquetas</div>
+                                        </div>
+                                        <select id="valores_categoria_agregar_producto" class="hidden" required>
+                                            <option value="" selected>Seleccionar</option>
+                                            <option value="elasticos">Elásticos</option>
+                                            <option value="hilos">Hilos</option>
+                                            <option value="cordones">Cordones</option>
+                                            <option value="botones">Botones</option>
+                                            <option value="sujetador">Sujetador</option>
+                                            <option value="ajustador">Ajustador</option>
+                                            <option value="etiquetas">Etiquetas</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="px-12 flex justify-center">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                    <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Imagen:</p>
+                                    <div class="relative py-2 col-span-7 place-self-center justify-self-start fuente_3 w-full bg-[#db4900] border border-[#da6930] rounded-3xl focus:ring-transparent focus:border-transparent flex px-3">
+                                        <svg class="w-7 h-7 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><g fill="none">
+                                            <path fill="white" d="M44 24C44 22.8954 43.1046 22 42 22C40.8954 22 40 22.8954 40 24H44ZM24 8C25.1046 8 26 7.10457 26 6C26 4.89543 25.1046 4 24 4V8ZM39 40H9V44H39V40ZM8 39V9H4V39H8ZM40 24V39H44V24H40ZM9 8H24V4H9V8ZM9 40C8.44772 40 8 39.5523 8 39H4C4 41.7614 6.23857 44 9 44V40ZM39 44C41.7614 44 44 41.7614 44 39H40C40 39.5523 39.5523 40 39 40V44ZM8 9C8 8.44772 8.44771 8 9 8V4C6.23858 4 4 6.23857 4 9H8Z"/><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M6 35L16.6931 25.198C17.4389 24.5143 18.5779 24.4953 19.3461 25.1538L32 36"/><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M28 31L32.7735 26.2265C33.4772 25.5228 34.5914 25.4436 35.3877 26.0408L42 31"/>
+                                            <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M37 18L37 6"/><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M32 11L37 6L42 11"/></g>
+                                        </svg>
+                                        <p id="nombre_archivo" class="block text-sm fuente_2 text-white pl-1 overflow-hidden place-self-center">Seleccione un Archivo</p>
+                                        <input id="archivo" type="file" class="absolute inset-0 opacity-0 cursor-pointer">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="px-12 flex justify-center">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                    <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Cantidad:</p>
+                                    <input type="number" id="" class="col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-2 px-3" required />
+                                </div>
+                            </div>
+
+                            <div class="px-12 flex justify-center">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                    <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Color:</p>
+                                    <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
+                                        <div id="opcion_seleccionada_color_agregar_producto" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-lg fuente_2 w-full p-2 text-left cursor-pointer flex justify-between items-center">
+                                            <span class="px-1">Seleccionar</span>
+                                            <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
+                                        </div>
+                                        <div id="opciones_color_agregar_producto" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="blanco">Blanco</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="negro">Negro</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="verde">Verde</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="azul_marino">Azul Marino</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="rosa">Rosa</div>
+                                        </div>
+                                        <select id="valores_color_agregar_producto" class="hidden" required>
+                                            <option value="" selected>Seleccionar</option>
+                                            <option value="blanco">Blanco</option>
+                                            <option value="negro">Negro</option>
+                                            <option value="verde">Verde</option>
+                                            <option value="azul_marino">Azul Marino</option>
+                                            <option value="rosa">Rosa</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-evenly mt-6 mb-3">
+                                <button id="" type="button" class="place-self-center col-span-6 px-[1vw] text-white bg-[#fe7355] fuente_1 hover:bg-[#ff8268] focus:ring-4 focus:outline-none focus:ring-[#dc6750] rounded-3xl text-xl py-2 w-[30%] text-center">ACEPTAR</button>
+                                <button id="" type="button" class="place-self-center col-span-6 px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#d96328] focus:ring-4 focus:outline-none focus:ring-[#bd5F30] rounded-3xl text-xl py-2 w-[30%] text-center">CANCELAR</button>
+                            </div>
+                        </form>                            
+                    </div>
+                </div>
+            </div>
+
+            <!-- Elemento Modal Editar Productos -->
+            <div>
+                <div id="editar_producto" class="fixed inset-0 z-50 hidden transition-transform duration-1000 ease-in-out flex items-center justify-center bg-gray-800 bg-opacity-50">
+                    <div class="w-full max-w-xl p-6 bg-[#faad86] rounded-[45px] shadow-lg">
+                        <div class="grid grid-cols-12 start-0 flex items-stretch">
+                            <p class="text-3xl fuente_4 text-white col-span-11 text-center place-self-center justify-self-center">Elástico Chato</p>
+                            <button id="cerrar_editar_producto" type="button" class="inline-flex col-span-1 place-self-center justify-self-end text-white p-0.5 hover:bg-gray-600 hover:bg-opacity-10 rounded-xl"><svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m14 10l-4 4m0-4l4 4"/></g></svg></button>
+                        </div>
+                        <form>
+                            <div class="px-12 flex justify-center">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                    <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Nombre:</p>
+                                    <input type="text" id="" value="Elástico Chato" class="col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-2 px-3" required />
+                                </div>
+                            </div>
+
+                            <div class="px-12 flex justify-center">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                    <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Categoria:</p>
+                                    <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
+                                        <div id="opcion_seleccionada_categoria_editar_producto" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-lg fuente_2 w-full p-2 text-left cursor-pointer flex justify-between items-center">
+                                            <span class="px-1">Elásticos</span>
+                                            <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
+                                        </div>
+                                        <div id="opciones_categoria_editar_producto" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="elasticos">Elásticos</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="hilos">Hilos</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="cordones">Cordones</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="botones">Botones</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="sujetador">Sujetador</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="ajustador">Ajustador</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="etiquetas">Etiquetas</div>
+                                        </div>
+                                        <select id="valores_categoria_editar_producto" class="hidden" required>
+                                            <option value="elasticos" selected>Elásticos</option>
+                                            <option value="elasticos">Elásticos</option>
+                                            <option value="hilos">Hilos</option>
+                                            <option value="cordones">Cordones</option>
+                                            <option value="botones">Botones</option>
+                                            <option value="sujetador">Sujetador</option>
+                                            <option value="ajustador">Ajustador</option>
+                                            <option value="etiquetas">Etiquetas</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="px-12 flex justify-center">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                    <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Imagen:</p>
+                                    <div class="relative py-2 col-span-7 place-self-center justify-self-start fuente_3 w-full bg-[#db4900] border border-[#da6930] rounded-3xl focus:ring-transparent focus:border-transparent flex px-3">
+                                        <svg class="w-7 h-7 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><g fill="none">
+                                            <path fill="white" d="M44 24C44 22.8954 43.1046 22 42 22C40.8954 22 40 22.8954 40 24H44ZM24 8C25.1046 8 26 7.10457 26 6C26 4.89543 25.1046 4 24 4V8ZM39 40H9V44H39V40ZM8 39V9H4V39H8ZM40 24V39H44V24H40ZM9 8H24V4H9V8ZM9 40C8.44772 40 8 39.5523 8 39H4C4 41.7614 6.23857 44 9 44V40ZM39 44C41.7614 44 44 41.7614 44 39H40C40 39.5523 39.5523 40 39 40V44ZM8 9C8 8.44772 8.44771 8 9 8V4C6.23858 4 4 6.23857 4 9H8Z"/><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M6 35L16.6931 25.198C17.4389 24.5143 18.5779 24.4953 19.3461 25.1538L32 36"/><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M28 31L32.7735 26.2265C33.4772 25.5228 34.5914 25.4436 35.3877 26.0408L42 31"/>
+                                            <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M37 18L37 6"/><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M32 11L37 6L42 11"/></g>
+                                        </svg>
+                                        <p id="nombre_archivo" class="block text-sm fuente_2 text-white pl-1 overflow-hidden place-self-center">Seleccione un Archivo</p>
+                                        <input id="archivo" type="file" class="absolute inset-0 opacity-0 cursor-pointer">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="px-12 flex justify-center">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                    <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Cantidad:</p>
+                                    <input type="number" id="" value="2500" class="col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-2 px-3" required />
+                                </div>
+                            </div>
+
+                            <div class="px-12 flex justify-center">
+                            <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Color:</p>
+                                <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
+                                <div id="opcion_seleccionada_color_editar_producto" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-lg fuente_2 w-full p-2 text-left cursor-pointer flex justify-between items-center">
+                                    <span class="px-1">Negro</span>
+                                    <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
+                                </div>
+                                <div id="opciones_color_editar_producto" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
+                                    <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="blanco">Blanco</div>
+                                    <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="negro">Negro</div>
+                                    <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="verde">Verde</div>
+                                    <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="azul_marino">Azul Marino</div>
+                                    <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="rosa">Rosa</div>
+                                </div>
+                                <select id="valores_color_editar_producto" class="hidden" required>
+                                    <option value="negro" selected>Negro</option>
+                                    <option value="blanco">Blanco</option>
+                                    <option value="negro">Negro</option>
+                                    <option value="verde">Verde</option>
+                                    <option value="azul_marino">Azul Marino</option>
+                                    <option value="rosa">Rosa</option>
+                                </select>
+                                </div>
+                            </div>
+                            </div>
+
+                            <div class="flex justify-evenly mt-6 mb-3">
+                            <button id="" type="button" class="place-self-center col-span-6 px-[1vw] text-white bg-[#fe7355] fuente_1 hover:bg-[#ff8268] focus:ring-4 focus:outline-none focus:ring-[#dc6750] rounded-3xl text-xl py-2 w-[30%] text-center">ACEPTAR</button>
+                            <button id="" type="button" class="place-self-center col-span-6 px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#d96328] focus:ring-4 focus:outline-none focus:ring-[#bd5F30] rounded-3xl text-xl py-2 w-[30%] text-center">CANCELAR</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Elemento Modal Eliminar Productos -->
+            <div>
+                <div id="eliminar_producto" class="fixed inset-0 z-50 hidden transition-transform duration-1000 ease-in-out flex items-center justify-center bg-gray-800 bg-opacity-50">
+                    <div class="w-full max-w-xl p-6 bg-[#faad86] rounded-[45px] shadow-lg">
+                        <div class="grid grid-cols-12 start-0 flex items-stretch">
+                            <p class="text-3xl fuente_4 text-white col-span-11 text-center place-self-center justify-self-center">¿Está Seguro de Eliminar el Elástico Chato?</p>
+                            <button id="cerrar_eliminar_producto" type="button" class="inline-flex col-span-1 place-self-center justify-self-end text-white p-0.5 hover:bg-gray-600 hover:bg-opacity-10 rounded-xl">
+                                <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m14 10l-4 4m0-4l4 4"/></g>
+                                </svg>
+                            </button>
+                        </div>
+                        <form>
+                            <div class="relative flex justify-center mt-5">
+                                <div class=" flex justify-center w-full h-[8vw] rounded-3xl">
+                                    <img class="object-cover rounded-t-[35px]" src="https://i.ibb.co/SP7ZTgT/Elastico-Negro.png" alt="Producto">
+                                </div>
+                            </div>
+
+                            <div class="flex justify-evenly mt-4 mb-2">
+                                <button id="" type="button" class="place-self-center col-span-6 px-[1vw] text-white bg-[#fe7355] fuente_1 hover:bg-[#ff8268] focus:ring-4 focus:outline-none focus:ring-[#dc6750] rounded-3xl text-xl py-2 w-[20%] text-center">SI</button>
+                                <button id="" type="button" class="place-self-center col-span-6 px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#d96328] focus:ring-4 focus:outline-none focus:ring-[#bd5F30] rounded-3xl text-xl py-2 w-[20%] text-center">NO</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script src="/js/productos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+
 </body>
 </html>
