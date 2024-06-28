@@ -4,7 +4,6 @@
 .fuente_1{
   font-family: "Roboto", sans-serif;
   font-weight: 900;
-  
 }
 
 .fuente_2{
@@ -15,4 +14,14 @@
 .fuente_3{
   font-family: "Roboto", sans-serif;
   font-weight: 500;
+}
+
+.fuente_4{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+.fuente_5{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
 }
