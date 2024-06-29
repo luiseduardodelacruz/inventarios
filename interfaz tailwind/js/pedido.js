@@ -41,3 +41,78 @@ numImagesSelect.addEventListener('change', function(event) {
     }
 });
 
+
+/* mostrar imag */ 
+
+document.addEventListener('DOMContentLoaded', function() {
+    const dropzoneInput = document.getElementById('dropzone-file');
+    const previewContainer = document.getElementById('preview');
+
+    dropzoneInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const imageUrl = event.target.result;
+                const imgElement = document.createElement('img');
+                imgElement.src = imageUrl;
+                imgElement.classList.add('max-h-full', 'max-w-full');
+                previewContainer.innerHTML = ''; // Limpiar cualquier contenido previo
+                previewContainer.appendChild(imgElement);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const dropzoneInput = document.getElementById('dropzone-imagenE');
+    const previewContainer = document.getElementById('vistaEmpresa');
+
+    dropzoneInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const imageUrl = event.target.result;
+                const imgElement = document.createElement('img');
+                imgElement.src = imageUrl;
+                imgElement.classList.add('max-h-full', 'max-w-full', 'object-contain');
+                previewContainer.innerHTML = ''; 
+                previewContainer.appendChild(imgElement);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+});
+
+/* js select imagen izquierda */
+
+/* document.addEventListener('DOMContentLoaded', function() {
+    const opcion_seleccionada_categoria_agregar_producto = document.getElementById('opcion_seleccionada_categoria_agregar_producto');
+    const opciones_categoria_agregar_producto = document.getElementById('opciones_categoria_agregar_producto');
+    const valores_categoria_agregar_producto= document.getElementById('valores_categoria_agregar_producto');
+    const selector_categoria_agregar_producto = document.querySelectorAll('#opciones_categoria_agregar_producto div');
+        
+    opcion_seleccionada_categoria_agregar_producto.addEventListener('click', function() {
+      opciones_categoria_agregar_producto.classList.toggle('hidden');
+    });
+        
+    selector_categoria_agregar_producto.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = option.getAttribute('data-value');
+        valores_categoria_agregar_producto.value = value;
+        opcion_seleccionada_categoria_agregar_producto.querySelector('span').textContent = option.textContent;
+        opciones_categoria_agregar_producto.classList.add('hidden');
+      });
+    });
+        
+    document.addEventListener('click', function(event) {
+      if (!opcion_seleccionada_categoria_agregar_producto.contains(event.target) && !opciones_categoria_agregar_producto.contains(event.target)) {
+        opciones_categoria_agregar_producto.classList.add('hidden');
+      }
+    });
+  }); */
+
+

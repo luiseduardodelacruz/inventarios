@@ -6,68 +6,85 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"  rel="stylesheet" />
     <link rel="stylesheet" href="../css/ficha-hibilitacion.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/pedido.css">
     <title>Document</title>
 </head>
-<body class="bg-[#db4900] border border-orange-200  bg-opacity-40">
+<body >
     
-<!-- navar -->
-<nav class="bg-[#db4900]  bg-opacity-5 mb-10 w-full z-20 top-0 start-0 ">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="index.html" class="flex items-center justify-center w-full md:w-auto">
-            <img src="../img/logo.png" class="h-12 mb-5 md:h-8 lg:h-12" alt="Empresa Logo">
-        </a>
-        <div class="grid grid-rows-4 md:grid-rows-2 grid-flow-col gap-4 w-full md:w-auto md:ml-auto">
-            <div class="flex flex-col md:flex-row items-center">
-                <label for="maquilero" class="mb-1 md:mb-0 mr-3 lg:mr-5 w-20 px-2 text-sm font-medium text-gray-900 dark:text-white">Maquilero:</label>
-                <input type="text" name="maquilero" id="maquilero" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-60 md:w-50 sm:w-40 lg:w-77 p-2.5 dark:bg-orange-600 dark:border-orange-500 dark:placeholder-white-400 dark:text-white placeholder-white h-10 bg-[#db4900]" placeholder="Ingrese la cantidad" required />
+<!-- div contenedor -->
+ <div class="bg-[#ffe1d2] border border-orange-200 bg-opacity-40 sm:h-screen flex flex-col preview ">
+    <!-- navar -->
+    <nav class="bg-[#ffe1d2] bg-opacity-5 mb-10 mt-5  w-full z-20 top-0 start md:px-8 2xl:px-44 xl:px-24 lg:px-12">
+        <div class="max-w-screen flex flex-wrap items-center justify-stretch md:justify-between mx-auto mt-5 mb-5 p-4 ">
+            <div class="flex items-center justify-center w-full md:w-auto mr-10 sm:mr-[1vh] md:mr-[1vh] 2xl:mr-[70vh] mb-5 mt-5 md:mb-0 md:mt-0 md:h-8 lg:h-12">
+                <label for="dropzone-imagenE" class="flex flex-col items-center justify-center w-80 md:w-48 h-30 2xl:h-50 md:h-50 border-2 border-orange-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 relative">
+                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                        <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                        </svg>
+                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center font-normal"><span class="font-semibold text-[#db4900]">Click para subir</span></p>
+                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center font-normal">o arrastra la imagen</p>
+                        <p class="mb-2 text-[12px] text-gray-500 dark:text-gray-200 text-center font-normal">PNG, JPG menor a 10MB</p>
+                    </div>
+                    <input id="dropzone-imagenE" type="file" class="hidden" />
+                    <div id="vistaEmpresa" class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none rounded-lg"></div>
+                </label>
             </div>
-            <div class="flex flex-col md:flex-row items-center">
-                <label for="bultos" class="mb-1 md:mb-0 mr-3 lg:mr-5 w-20 px-2 text-sm font-medium text-gray-900 dark:text-white">Bultos:</label>
-                <input type="text" name="bultos" id="bultos" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-60 md:w-50 sm:w-40 lg:w-77 p-2.5 dark:bg-orange-600 dark:border-orange-500 dark:placeholder-white-400 dark:text-white placeholder-white h-10 bg-[#db4900]" placeholder="Ingrese la cantidad" required />
-            </div>
-            <div class="flex flex-col md:flex-row items-center">
-                <label for="dobleces" class="mb-1 md:mb-0 mr-3 lg:mr-5 w-20 px-2 text-sm font-medium text-gray-900 dark:text-white">Dobleces:</label>
-                <input type="text" name="dobleces" id="dobleces" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-60 md:w-50 sm:w-40 lg:w-77 p-2.5 dark:bg-orange-600 dark:border-orange-500 dark:placeholder-white-400 dark:text-white placeholder-white h-10 bg-[#db4900]" placeholder="Ingrese la cantidad" required />
-            </div>
-            <div class="flex flex-col md:flex-row items-center">
-                <label for="total-cortes" class="mb-1 md:mb-0 mr-3 lg:mr-5 w-20 px-2 text-sm font-medium text-gray-900 dark:text-white">Total de cortes:</label>
-                <input type="text" name="total-cortes" id="total-cortes" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-60 md:w-50 sm:w-40 lg:w-77 p-2.5 dark:bg-orange-600 dark:border-orange-500 dark:placeholder-white-400 dark:text-white placeholder-white h-10 bg-[#db4900]" placeholder="Ingrese la cantidad" required />
+
+            
+    
+            <div class="grid grid-rows-4 md:grid-rows-2 grid-flow-col gap-4 w-full md:w-auto ">
+                <div class="flex flex-col md:flex-row items-center mb-3 md:mb-0 lg:ml-auto">
+                    <label for="maquilero" class="mb-1 md:mb-0 mr-10 lg:mr-5 w-20 text-sm font-medium text-gray-900 dark:text-white lg:ml-auto">Departamento:</label>
+                    <input type="text" name="maquilero" id="maquilero" class="lg:ml-[4vh] border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-60 sm:w-72 md:w-28 sm:w-40 lg:w-[20vh] p-2.5 dark:bg-orange-600 dark:border-orange-500 dark:placeholder-white-400 dark:text-white placeholder-white h-10 bg-[#db4900]" placeholder="Ingrese la cantidad" required />
+                </div>
+                <div class="flex flex-col md:flex-row items-center mb-3 md:mb-0">
+                    <label for="bultos" class="lg:ml-auto mb-1 md:mb-0 mr-10 lg:mr-16 w-20 px-2 text-sm font-medium text-gray-900 dark:text-white">Bultos:</label>
+                    <input type="text" name="bultos" id="bultos" class="  border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-60 sm:w-72 md:w-28 sm:w-40 lg:w-[20vh] p-2.5 dark:bg-orange-600 dark:border-orange-500 dark:placeholder-white-400 dark:text-white placeholder-white h-10 bg-[#db4900]" placeholder="Ingrese la cantidad" required />
+                </div>
+                <div class="flex flex-col md:flex-row items-center mb-3 md:mb-0">
+                    <label for="dobleces" class="mb-1 md:mb-0 mr-3 lg:mr-5 w-20 px-2 text-sm font-medium text-gray-900 dark:text-white">Dobleces:</label>
+                    <input type="text" name="dobleces" id="dobleces" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-60 sm:w-72 md:w-28 sm:w-40 lg:w-[20vh] p-2.5 dark:bg-orange-600 dark:border-orange-500 dark:placeholder-white-400 dark:text-white placeholder-white h-10 bg-[#db4900]" placeholder="Ingrese la cantidad" required />
+                </div>
+                <div class="flex flex-col md:flex-row items-center">
+                    <label for="total-cortes" class="mb-1 md:mb-0 mr-3 lg:mr-5 w-20 px-2 text-sm font-medium text-gray-900 dark:text-white">Total de cortes:</label>
+                    <input type="text" name="total-cortes" id="total-cortes" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-60 sm:w-72 md:w-28 sm:w-40 lg:w-[20vh] p-2.5 dark:bg-orange-600 dark:border-orange-500 dark:placeholder-white-400 dark:text-white placeholder-white h-10 bg-[#db4900]" placeholder="Ingrese la cantidad" required />
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
+    
 
 
+    <!-- div contenido -->
+    <div class="  container max-w-full  flex-grow  border border-orange-200 rounded-t-3xl shadow-lg sm:p-6 md:p-8 bg-opacity-80 bg-[#f2c8ad] ">
 
-
-  <div class="container mx-auto w-auto border border-orange-200 rounded-3xl shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900]">
-
-    <!-- División en 3 columnas con flexbox -->
-    <div class="flex justify-center">
+    <!-- División en 3 columnas -->
+    <div class="flex justify-center ">
 
         <!-- Columna izquierda -->
-        <div class="w-[70vh] h-full flex justify-center p-4">
-            <div class="w-full max-w-md p-6 border border-orange-200 rounded-3xl shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900] mt-10">
+        <div class="w-[70vh] md:w-[30vh] lg:w-[40vh] 2xl:w-[70vh] h-full flex justify-center p-4">
+            <div class="w-full max-w-md  p-6 border border-orange-200 rounded-[45px] shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900]  mt-10">
                 <form class="space-y-4">
                     <div>
-                        <label for="descripcion" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white mt-5">Descripción</label>
-                        <input type="text" name="descripcion" id="descripcion" class="border border-orange-300 text-white-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 placeholder-white-400 text-white placeholder-white bg-[#db4900]" placeholder="" required />
+                        <label for="descripcion" class="block mb-1 text-sm font-medium text-white-900 text-white mt-5">Descripción</label>
+                        <input type="text" name="descripcion" id="descripcion" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block  w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900]" placeholder="" required />
                     </div>
                     <div>
-                        <label for="tela" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Tela</label>
-                        <input type="password" name="tela" id="tela" placeholder="" class="border border-orange-300 text-white-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 placeholder-white-400 text-white placeholder-white bg-[#db4900]" required />
+                        <label for="tela" class="block mb-1 text-sm font-medium text-white-900 text-white">Tela</label>
+                        <input type="text" name="tela" id="tela" placeholder="" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block  w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900]" required />
                     </div>
                     <div>
-                        <label for="lavado-procesado" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Lavado y Procesado</label>
-                        <input type="text" name="lavado-procesado" id="lavado-procesado" placeholder="" class="border border-orange-300 text-white-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 placeholder-white-400 text-white placeholder-white bg-[#db4900]" required />
+                        <label for="lavado-procesado" class="block mb-1 text-sm font-medium text-white-900 text-white">Lavado y Procesado</label>
+                        <input type="text" name="lavado-procesado" id="lavado-procesado" placeholder="" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block  w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900]" required />
                     </div>
                     <div>
-                        <label for="boton-hebillas" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Botón/Hebillas</label>
-                        <input type="text" name="boton-hebillas" id="boton-hebillas" placeholder="" class="border border-orange-300 text-white-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 placeholder-white-400 text-white placeholder-white bg-[#db4900]" required />
+                        <label for="boton-hebillas" class="block mb-1 text-sm font-medium text-white-900 text-white">Botón/Hebillas</label>
+                        <input type="text" name="boton-hebillas" id="boton-hebillas" placeholder="" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block  w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900]" required />
                     </div>
                     <div>
-                        <label for="hilo" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Hilo</label>
-                        <input type="text" name="hilo" id="hilo" placeholder="" class="border border-orange-300 text-white-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 placeholder-white-400 text-white placeholder-white bg-[#db4900] mb-5" required />
+                        <label for="hilo" class="block mb-1 text-sm font-medium text-white-900 text-white">Hilo</label>
+                        <input type="text" name="hilo" id="hilo" placeholder="" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block  w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900]" required />
                     </div>
                 </form>
             </div>
@@ -77,28 +94,42 @@
         
 
         <!-- Columna central (imagen) -->
-        <div class="w-1/3 p-4 flex flex-col items-center">
-            <div>
-                <img src="https://via.placeholder.com/300" alt="Imagen de ejemplo" class="rounded-lg shadow-lg mb-10">
+        <div class="w-1/3 p-4 flex flex-col items-center md:w-[30vh] lg:w-[45vh] xl:w-[50vh] 2xl:w-[70vh] ml-6">
+                        
+            <div class="flex items-center justify-center w-full">
+                <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-orange-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 relative">
+                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                        <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                        </svg>
+                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center font-normal"><span class="font-semibold text-[#db4900]">Click para subir</span> o arrastra la imagen</p>
+                        <p class="mb-2 text-[12px] text-gray-500 dark:text-gray-200 text-center font-normal">PNG, JPG menor a 10MB</p>
+                    </div>
+                    <input id="dropzone-file" type="file" class="hidden" />
+                    <div id="preview" class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none rounded-lg">
+                        
+                    </div>
+                </label>
             </div>
+
         
-            <div class="w-full max-w-lg p-6 border border-orange-200 rounded-3xl shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900] mt-5">
+            <div class="w-full max-w-lg p-6 border border-orange-200 rounded-[45px] shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900] mt-5">
                 <form class="space-y-4">
                     <div class="flex flex-col md:flex-row md:items-center mb-4">
-                        <label for="estilo" class="w-full md:w-1/3 text-sm font-medium text-gray-900 dark:text-white mb-2 md:mb-0 md:mr-8">Estilo</label>
-                        <input type="text" name="estilo" id="estilo" class="border border-orange-300 text-white-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 placeholder-white-400 text-white placeholder-white bg-[#db4900]" placeholder="" required />
+                        <label for="estilo" class="w-full md:w-1/3 text-sm font-medium text-white-900 text-white mb-2 md:mb-0 md:mr-10 2xl:mr-8">Estilo</label>
+                        <input type="text" name="estilo" id="estilo" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block  w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900]" placeholder="" required />
                     </div>
                     <div class="flex flex-col md:flex-row md:items-center mb-4">
-                        <label for="categoria" class="w-full md:w-1/3 text-sm font-medium text-gray-900 dark:text-white mb-2 md:mb-0 md:mr-5">Categoría</label>
-                        <input type="text" name="categoria" id="categoria" class="border border-orange-300 text-white-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 placeholder-white-400 text-white placeholder-white bg-[#db4900]" placeholder="" required />
+                        <label for="categoria" class="w-full md:w-1/3 text-sm font-medium text-white-900 text-white mb-2 md:mb-0 md:mr-5 2xl:mr-8">Categoría</label>
+                        <input type="text" name="categoria" id="categoria" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block  w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900]" placeholder="" required />
                     </div>
                     <div class="flex flex-col md:flex-row md:items-center mb-4">
-                        <label for="proveedor" class="w-full md:w-1/3 text-sm font-medium text-gray-900 dark:text-white mb-2 md:mb-0 md:mr-5">Proveedor</label>
-                        <input type="text" name="proveedor" id="proveedor" class="border border-orange-300 text-white-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 placeholder-white-400 text-white placeholder-white bg-[#db4900]" placeholder="" required />
+                        <label for="proveedor" class="w-full md:w-1/3 text-sm font-medium text-gray-900 text-white mb-2 md:mb-0 md:mr-5 2xl:mr-8">Proveedor</label>
+                        <input type="text" name="proveedor" id="proveedor" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block  w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900]" placeholder="" required />
                     </div>
                     <div class="flex flex-col md:flex-row md:items-center mb-4">
-                        <label for="talla" class="w-full md:w-1/3 text-sm font-medium text-gray-900 dark:text-white mb-2 md:mb-0 md:mr-8">Talla</label>
-                        <input type="text" name="talla" id="talla" class="border border-orange-300 text-white-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 placeholder-white-400 text-white placeholder-white bg-[#db4900]" placeholder="" required />
+                        <label for="talla" class="w-full md:w-1/3 text-sm font-medium text-gray-900 text-white mb-2 md:mb-0 md:mr-10 2xl:mr-8">Talla</label>
+                        <input type="text" name="talla" id="talla" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block  w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900]" placeholder="" required />
                     </div>
                 </form>
             </div>
@@ -106,48 +137,83 @@
         
 
         <!-- Columna derecha -->
-        <div class="w-1/3 p-4 flex justify-center ">
-            <div class="w-full max-w-lg p-6 border border-orange-200 rounded-3xl shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900] overflow-auto h-96" id="imageContainer">
-                    <label for="numImagesSelect" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white ">Etiquetado</label>
-                    <select id="numImagesSelect">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </form>
+        
+
+         <div class="w-1/3 p-4 flex justify-center flex-col items-center">
+    
+         
+            <div class="lg:w-[20vh] md:w-[20vh] xl:w-[30vh] lg:w-[30vh] 2xl:w-[30vh] w-[13vh] max-w-lg p-6 border border-orange-200 rounded-[45px] shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900] overflow-auto h-96" id="imageContainer">
+                <label for="numImagesSelect" class="block mb-1 text-sm font-medium text-center text-gray-900 text-white">Etiquetado</label>
+                <select id="numImagesSelect" class="w-full py-2 border-gray-300 rounded-3xl shadow-sm focus:ring-[#db4900] focus:border-[#db4900] sm:text-sm bg-white text-gray-900">
+                    <option selected disabled hidden>Selecciona el número de etiquetas</option>
+                    <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="1">1</option>
+                    <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="2">2</option>
+                    <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="3">3</option>
+                    <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="4">4</option>
+                    <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="5">5</option>
+                </select>
+
+                
+
+
             </div>
-        </div>
+
+            <!-- este div va arriba -->
+
+            <!-- <div class="px-12 flex justify-center">
+                    <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                      <p class="col-span-5 text-center fuente_2 text-sm text-white pr-6 place-self-center justify-self-end">Categoria:</p>
+                      <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-20">
+                        <div id="opcion_seleccionada_categoria_agregar_producto" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm fuente_2 w-20 p-2 text-left cursor-pointer flex justify-between items-center">
+                          <span class="px-1">Seleccionar</span>
+                          <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
+                        </div>
+                        <div id="opciones_categoria_agregar_producto" class="absolute hidden bg-[#db4900] border border-[#da6930] w-20 text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
+                          <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="elasticos">Elásticos</div>
+                          <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="hilos">Hilos</div>
+                          <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="cordones">Cordones</div>
+                          <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="botones">Botones</div>
+                          <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="sujetador">Sujetador</div>
+                          <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="ajustador">Ajustador</div>
+                          <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="etiquetas">Etiquetas</div>
+                        </div>
+                        <select id="valores_categoria_agregar_producto" class="hidden" required>
+                          <option value="" selected>Seleccionar</option>
+                          <option value="elasticos">Elásticos</option>
+                          <option value="hilos">Hilos</option>
+                          <option value="cordones">Cordones</option>
+                          <option value="botones">Botones</option>
+                          <option value="sujetador">Sujetador</option>
+                          <option value="ajustador">Ajustador</option>
+                          <option value="etiquetas">Etiquetas</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div> -->              
+        
+   
+            <div class="flex justify-center mt-4">
+              
+              <button type="submit" class="w-28 lg:w-[20vh]  xl:w-35 2xl:w-40 py-4 text-white bg-[#db4900] hover:bg-[#ff5500] focus:ring-4 focus:ring-[#e8763d] focus:outline-none font-medium rounded-3xl text-sm dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">
+                Guardar
+              </button>
+            </div>
+        
+            <div class="flex justify-center mt-4">
+              
+              <button type="button" class="w-28 lg:w-[20vh] 2xl:w-40 py-4 text-white bg-[#db4900] hover:bg-[#ff5500] focus:ring-4 focus:ring-[#e8763d] focus:outline-none font-medium rounded-3xl text-sm dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">
+                Borrar
+              </button>
+            </div>
+            
+        </div> 
         
 
     </div>
 
-    <!-- División en 3 columnas con flexbox -->
-    <div class="flex justify-center">
-
-        <!-- Columna izquierda -->
-        <div class="w-1/3 p-4 flex justify-center">
-            
-        </div>
-
-        <!-- Columna central (imagen) -->
-        <div class="w-1/3 p-4 flex justify-center items-center">
-            
-            
-            
-            
-        </div>
-
-        <!-- Columna derecha -->
-        <div class="w-1/3 p-4 flex justify-center">
-            
-        </div>
 
 
-
-    </div>
-
+   
     
 
 </div>
@@ -158,7 +224,7 @@
 
 
 
-
+</div>
   
   
 </body>
