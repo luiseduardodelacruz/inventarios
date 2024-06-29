@@ -37,7 +37,7 @@ public class UserController {
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword())); // Encripta la contraseña
         userRepository.save(user);
         // Redirige a la página de usuarios después de un registro exitoso
-        return "users";
+        return "redirect:/usuarios";
     }
        @GetMapping("/editar-usuario/{id}")
     public String showUpdateForm(@PathVariable String id, Model model) {
@@ -48,7 +48,12 @@ public class UserController {
 
     @PostMapping("/editar-usuario/{id}")
     public String updateUser(@PathVariable String id, User user) {
-        userRepository.save(user);
+        if (user != null) {
+            user.setEmail(user.getEmail());
+            user.setName(user.getName());
+            user.setRole("USER");
+            userRepository.save(user);
+        }
         return "redirect:/usuarios"; // Redirigir a la página de lista de usuarios después de actualizar
     }
 

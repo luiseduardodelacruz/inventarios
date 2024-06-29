@@ -35,9 +35,9 @@ public class UserLoginController {
                 // La contraseña coincide
                 session.setAttribute("user", existingUser); // Guardar usuario en sesión
                 if ("ADMIN".equals(existingUser.getRole())) {
-                    return "admin-dashboard";
+                    return "redirect:/inventario";
                 } else {
-                    return "user-dashboard";
+                    return "redirect:/user-dashboard";
                 }
             } else {
                 // La contraseña no coincide

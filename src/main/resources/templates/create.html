@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Añadir Productos</title>
+</head>
+<body>
+
+    <div class="container mx-auto px-4">
+        <h1 class="text-2xl font-bold mb-4">Registrar Nuevo Producto</h1>
+        <form th:action="@{/inventario/create}" th:object="${producto}" method="post" enctype="multipart/form-data" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="nombre">
+                Nombre:
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nombre" type="text" th:field="*{nombre}" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="categoria">
+                Categoría:
+                </label>
+                <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="categoria" th:field="*{categoria}" required>
+                    <option value="">Selecciona una Categoría</option>
+                    <option value="Elasticos">Elasticos</option>
+                    <option value="Botones">Botones</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="cantidad">
+                Cantidad:
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="cantidad" type="number" th:field="*{cantidad}" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="color">
+                Color:
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="color" type="text" th:field="*{color}" required>
+            </div>
+            <div>
+                <label for="imagenArchivo">Imagen:</label>
+                <input type="file" id="imagenArchivo" name="imagenArchivo" required>
+            </div>
+            <!--
+            
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="imagen">
+                  Imagen
+                </label>
+                <div class="flex items-center justify-center w-full">
+                    <label for="imagen" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                        <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                        </svg>
+                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click para subir</span> or drag and drop</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                        </div>
+                        <input type="file" id="imagenArchivo" name="imagenArchivo" required class="hidden" accept="image/jpeg, image/png, image/jpg">
+                    </label>
+                </div>
+            </div>
+            -->
+            <div class="flex items-center justify-between">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline" type="submit">
+                Registrar Producto</button>
+                <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline" type="reset">
+                Cancelar</button>
+                <a href="/inventario">
+                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline" type="button">VOLVER</button>
+                </a>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
