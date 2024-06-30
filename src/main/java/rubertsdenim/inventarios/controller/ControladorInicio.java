@@ -51,25 +51,28 @@ public class ControladorInicio {
     @PostMapping("/inventario/create")
     public String agregarProducto(@ModelAttribute Producto producto, @RequestParam("imagenArchivo") MultipartFile imagenArchivo) throws IOException {
         if (!imagenArchivo.isEmpty()) {
-            String imageUrl = subirImagenImgbb(imagenArchivo);
+            String imageUrl = subirImagenImgbb(imagenArchivo, producto.getNombre());
             producto.setImagen(imageUrl);
         }
         productoServicio.guardarProducto(producto);
         return "redirect:/inventario";
     }
 
-    private String subirImagenImgbb(MultipartFile image) throws IOException {
+    private String subirImagenImgbb(MultipartFile image, String nombreProducto) throws IOException {
         CloseableHttpClient client = HttpClients.createDefault();
         HttpPost post = new HttpPost("https://api.imgbb.com/1/upload?key=" + imgbbApiKey);
-
+    
         MultipartEntityBuilder builder = MultipartEntityBuilder.create();
         builder.addBinaryBody("image", image.getBytes(), ContentType.MULTIPART_FORM_DATA, image.getOriginalFilename());
+        builder.addTextBody("name", nombreProducto);
+        builder.addTextBody("album", "Productos");
+    
         HttpEntity entity = builder.build();
-
         post.setEntity(entity);
+    
         HttpResponse response = client.execute(post);
         String json = EntityUtils.toString(response.getEntity());
-
+    
         JSONObject jsonObject = new JSONObject(json);
         return jsonObject.getJSONObject("data").getString("url");
     }
@@ -94,7 +97,7 @@ public class ControladorInicio {
             productoExistente.setCantidad(producto.getCantidad());
             productoExistente.setColor(producto.getColor());
             if (!imagenArchivo.isEmpty()) {
-                String imageUrl = subirImagenImgbb(imagenArchivo);
+                String imageUrl = subirImagenImgbb(imagenArchivo, producto.getNombre());
                 productoExistente.setImagen(imageUrl);
             }
             productoServicio.guardarProducto(productoExistente);
