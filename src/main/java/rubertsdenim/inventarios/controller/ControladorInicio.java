@@ -39,13 +39,14 @@ public class ControladorInicio {
     public String verInventario(Model model){
         List<Producto> productos = productoServicio.listarProductos();
         model.addAttribute("productos", productos);
+        model.addAttribute("producto", new Producto());
         return "inventario";
     }
 
     @GetMapping("/inventario/create")
     public String agregarInventario(Model model) {
         model.addAttribute("producto", new Producto());
-        return "create";
+        return "inventario";
     }
     
     @PostMapping("/inventario/create")

@@ -7,10 +7,6 @@ function confirmDelete(productId, nombre, imagen) {
     document.getElementById('imagen_producto').src = imagen;
 }
 
-function closeModal() {
-    document.getElementById('eliminar_producto').classList.add('hidden');
-}
-
 document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
     window.location.href = '/inventario/delete/' + productIdToDelete;
 });
