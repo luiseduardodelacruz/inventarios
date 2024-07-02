@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @PostMapping("/registro")
-    public String registerUser(@ModelAttribute("user") User user) {
+    public String registerUser(@ModelAttribute User user) {
         user.setRole("USER"); // Establece el rol de usuario
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword())); // Encripta la contraseña
         userRepository.save(user);

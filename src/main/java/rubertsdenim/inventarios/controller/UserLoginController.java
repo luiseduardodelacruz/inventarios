@@ -26,7 +26,7 @@ public class UserLoginController {
     }
 
     @PostMapping("/inicio-sesion")
-    public String loginUser(@ModelAttribute("user") User user, Model model, jakarta.servlet.http.HttpSession session) {
+    public String loginUser(@ModelAttribute User user, Model model, jakarta.servlet.http.HttpSession session) {
         User existingUser = userRepository.findByEmail(user.getEmail());
 
         if (existingUser != null) {

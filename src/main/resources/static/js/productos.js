@@ -146,19 +146,6 @@ cerrar_agregar_producto.addEventListener('click', () => {
   agregar_producto.classList.add('hidden');
 });
 
-// Funcionalidad Modal Editar Productos
-const abrir_editar_producto = document.getElementById('abrir_editar_producto');
-const cerrar_editar_producto = document.getElementById('cerrar_editar_producto');
-const editar_producto = document.getElementById('editar_producto');
-
-abrir_editar_producto.addEventListener('click', () => {
-  editar_producto.classList.remove('hidden');
-});
-
-cerrar_editar_producto.addEventListener('click', () => {
-  editar_producto.classList.add('hidden');
-});
-
 // Funcionalidad Modal Eliminar Productos
 const abrir_eliminar_producto = document.getElementById('abrir_eliminar_producto');
 const cerrar_eliminar_producto = document.getElementById('cerrar_eliminar_producto');

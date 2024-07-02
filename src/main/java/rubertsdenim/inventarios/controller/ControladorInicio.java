@@ -50,7 +50,7 @@ public class ControladorInicio {
     }
     
     @PostMapping("/inventario/create")
-    public String agregarProducto(@ModelAttribute Producto producto, @RequestParam("imagenArchivo") MultipartFile imagenArchivo) throws IOException {
+    public String agregarProducto(@ModelAttribute Producto producto, @RequestParam MultipartFile imagenArchivo) throws IOException {
         if (!imagenArchivo.isEmpty()) {
             String imageUrl = subirImagenImgbb(imagenArchivo, producto.getNombre());
             producto.setImagen(imageUrl);
@@ -90,7 +90,7 @@ public class ControladorInicio {
     }
 
     @PostMapping("/inventario/update")
-    public String actualizarProducto(@ModelAttribute("producto") Producto producto, @RequestParam("imagenArchivo") MultipartFile imagenArchivo) throws IOException {
+    public String actualizarProducto(@ModelAttribute Producto producto, @RequestParam MultipartFile imagenArchivo) throws IOException {
         Producto productoExistente = productoServicio.buscarProductoPorId(producto.getIdProducto());
         if (productoExistente != null) {
             productoExistente.setNombre(producto.getNombre());
