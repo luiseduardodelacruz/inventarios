@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Corte</title>
+</head>
+<body>
+    <h2>Detalles del Corte</h2>
+    <form th:action="@{/guardar-detalles-corte}" th:object="${fichaHabilitacion}" method="post">
+        <!-- Aquí puedes agregar más campos para los detalles del corte -->
+        <div>
+            <label for="detalleAdicional">Detalle Adicional:</label>
+            <input type="text" id="detalleAdicional" th:field="*{detalleAdicional}" required>
+        </div>
+        <div>
+            <button type="submit">Guardar</button>
+            <button type="reset">Limpiar</button>
+        </div>
+    </form>
+</body>
+</html>
