@@ -6,7 +6,7 @@
     <link rel="icon" href="/img/logo-navegador.png" type="Logo para el navegador">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/8a7c80030f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/css/productos.css">
     <title>Rubert’s Denim - Productos</title>
 </head>
@@ -126,9 +126,9 @@
                         <div class="p-[6%] pt-[4vw]">
                             <div class="mb-1">
                                 <p th:text="${producto.nombre}" class="flex justify-center text-center fuente_4 text-2xl mb-0.5 text-white"></p>                 
-                                <p class="text-center fuente_2 text-base text-white">Color: <span th:text="${producto.color}" class="ml-3 text-justify fuente_5 text-base text-white"></span></p>
+                                <p class="text-center fuente_2 text-base text-white">Color: <span th:text="${producto.color} ? (${producto.color == 'azul_marino' ? 'Azul Marino' : producto.color}) : ''" class="capitalize ml-3 text-justify fuente_5 text-base text-white"></span></p>
                                 <p class="text-center fuente_2 text-base text-white">Cantidad: <span th:text="${producto.cantidad}" class="ml-3 text-justify fuente_5 text-base text-white"></span></p>
-                                <p class="text-center fuente_2 text-base text-white">Categoría: <span th:text="${producto.categoria}" class="ml-3 text-justify fuente_5 text-base text-white"></span></p> 
+                                <p class="text-center fuente_2 text-base text-white">Categoría: <span th:text="${producto.categoria}" class="capitalize ml-3 text-justify fuente_5 text-base text-white"></span></p> 
                             </div>
                             <div class="flex justify-evenly mt-2">
                                 <a th:href="@{/inventario/update/{id}(id=${producto.idProducto})}" >

@@ -2,8 +2,6 @@ function validarTamanioImagen(input) {
     const archivo = input.files[0];
     const limiteMB = 1;
     const limiteBytes = (limiteMB * 1024) * 1024;
-    console.log(archivo.size);
-    console.log(limiteBytes);
 
     if (archivo.size > limiteBytes) {
         document.getElementById('mensaje-error').textContent = `El archivo seleccionado supera el límite de ${limiteMB} MB`;

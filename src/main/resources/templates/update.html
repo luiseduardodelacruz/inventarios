@@ -2,47 +2,167 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="icon" href="/img/logo-navegador.png" type="Logo para el navegador">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Editar Productos</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/productos.css">
+    <title>Rubert’s Denim - Editar Productos</title>
 </head>
-<body>
+<body class="bg-[#ffe1d2] hidden xl:block">
+    <div class="grid grid-cols-1">
+        <div class="col-span-1">
+            <!-- Elemento Modal Editar Productos -->
+            <div>
+                <div id="editar_producto"
+                    class="fixed inset-0 z-50 transition-transform duration-1000 ease-in-out flex items-center justify-center bg-gray-800 bg-opacity-50">
+                    <div class="w-full max-w-xl p-6 bg-[#faad86] rounded-[45px] shadow-lg">
+                        <div class="grid grid-cols-12 start-0 flex items-stretch">
+                            <p class="text-3xl fuente_4 text-white col-span-11 text-center place-self-center justify-self-center" th:text="${producto.nombre}">
+                                Name Product</p>
+                            <a href="/inventario">
+                                <button type="button" class="inline-flex col-span-1 place-self-center justify-self-end text-white p-0.5 hover:bg-gray-600 hover:bg-opacity-10 rounded-xl">
+                                    <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="9" /><path d="m14 10l-4 4m0-4l4 4" /></g>
+                                    </svg>
+                                </button>
+                            </a>
+                        </div>
+                        <form th:action="@{/inventario/update}" th:object="${producto}" method="post" enctype="multipart/form-data">
+                            <div class="px-12 flex justify-center">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                    <input type="hidden" th:field="*{idProducto}" />
+                                    <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Nombre:</p>
+                                    <input type="text" id="nombre" th:field="*{nombre}"
+                                        class="col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-2 px-3"
+                                        required />
+                                </div>
+                            </div>
 
-    <div class="container mx-auto p-[wv-10]">
-        <h1 class="text-2xl font-bold mb-4">Editar Producto</h1>
-        <form th:action="@{/inventario/update}" th:object="${producto}" method="post" enctype="multipart/form-data" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <input type="hidden" th:field="*{idProducto}" />
-            <div class="mb-4">
-                <label class="block text-gray-700 font-bold mb-2" for="nombre">Nombre:</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nombre" type="text" th:field="*{nombre}">
+                            <div class="px-12 flex justify-center">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                    <p
+                                        class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">
+                                        Categoria:</p>
+                                    <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
+                                        <div id="opcion_seleccionada_categoria_editar_producto"
+                                            class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-lg fuente_2 w-full p-2 text-left cursor-pointer flex justify-between items-center">
+                                            <span class="capitalize px-1" th:text="${producto.categoria}">Categ Selectd</span>
+                                            <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="2" d="m7 10l5 5l5-5" />
+                                            </svg>
+                                        </div>
+                                        <div id="opciones_categoria_editar_producto"
+                                            class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer"
+                                                data-value="elasticos">Elásticos</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="hilos">
+                                                Hilos</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer"
+                                                data-value="cordones">Cordones</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer"
+                                                data-value="botones">Botones</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer"
+                                                data-value="sujetador">Sujetador</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer"
+                                                data-value="ajustador">Ajustador</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer"
+                                                data-value="etiquetas">Etiquetas</div>
+                                        </div>
+                                        <select id="valores_categoria_editar_producto" class="hidden" th:field="*{categoria}" required>
+                                            <option value="elasticos">Elásticos</option>
+                                            <option value="hilos">Hilos</option>
+                                            <option value="cordones">Cordones</option>
+                                            <option value="botones">Botones</option>
+                                            <option value="sujetador">Sujetador</option>
+                                            <option value="ajustador">Ajustador</option>
+                                            <option value="etiquetas">Etiquetas</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="px-12 flex justify-center">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                    <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Imagen:</p>
+                                    <div class="relative py-2 col-span-7 place-self-center justify-self-start fuente_3 w-full bg-[#db4900] border border-[#da6930] rounded-3xl focus:ring-transparent focus:border-transparent flex px-3">
+                                        <div id="imagen-previa" class="w-7 h-7 flex-shrink-0 overflow-hidden rounded-md">
+                                            <img th:src="${producto.imagen}" alt="Imagen del Producto" class="w-7 h-7 flex-shrink-0 rounded-lg">
+                                        </div>
+                                        <p id="nombre_archivo"
+                                            class="block text-sm fuente_2 text-white pl-1 overflow-hidden place-self-center">
+                                            Seleccione otro Archivo</p>
+                                        <input id="imagenArchivo" type="file" name="imagenArchivo" onchange="validarTamanioImagen(this)" class="absolute inset-0 opacity-0 cursor-pointer">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span id="mensaje-error" class="text-red-500"></span>
+
+                            <div class="px-12 flex justify-center">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                    <p
+                                        class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">
+                                        Cantidad:</p>
+                                    <input type="number" id="cantidad" th:field="*{cantidad}"
+                                        class="col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-2 px-3"
+                                        required />
+                                </div>
+                            </div>
+
+                            <div class="px-12 flex justify-center">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                    <p
+                                        class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">
+                                        Color:</p>
+                                    <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
+                                        <div id="opcion_seleccionada_color_editar_producto"
+                                            class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-lg fuente_2 w-full p-2 text-left cursor-pointer flex justify-between items-center">
+                                            <span class="capitalize px-1" th:text="${producto.color} ? (${producto.color == 'azul_marino' ? 'Azul Marino' : producto.color}) : ''">Color Selectd</span>
+                                            <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="2" d="m7 10l5 5l5-5" />
+                                            </svg>
+                                        </div>
+                                        <div id="opciones_color_editar_producto"
+                                            class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="blanco">
+                                                Blanco</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="negro">
+                                                Negro</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="verde">
+                                                Verde</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer"
+                                                data-value="azul_marino">Azul Marino</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="rosa">
+                                                Rosa</div>
+                                        </div>
+                                        <select id="valores_color_editar_producto" class="hidden" th:field="*{color}" required>
+                                            <option value="blanco">Blanco</option>
+                                            <option value="negro">Negro</option>
+                                            <option value="verde">Verde</option>
+                                            <option value="azul_marino">Azul Marino</option>
+                                            <option value="rosa">Rosa</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-evenly mt-6 mb-3">
+                                <button class="place-self-center col-span-6 px-[1vw] text-white bg-[#fe7355] fuente_1 hover:bg-[#ff8268] focus:ring-4 focus:outline-none focus:ring-[#dc6750] rounded-3xl text-xl py-2 w-[30%] text-center" type="submit">GUARDAR</button>
+                                <a href="/inventario" class="w-[31%]">
+                                    <button type="button" class="place-self-center col-span-6 px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#d96328] focus:ring-4 focus:outline-none focus:ring-[#bd5F30] rounded-3xl text-xl py-2 w-[100%] text-center">CANCELAR</button>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 font-bold mb-2" for="categoria">Categoría:</label>
-                <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="categoria" th:field="*{categoria}">
-                    <option value="Hilos">Hilos</option>
-                    <option value="Elasticos">Elasticos</option>
-                    <option value="Etiquetas">Etiquetas</option>
-                    <option value="Botones">Botones</option>
-                </select>
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 font-bold mb-2" for="cantidad">Cantidad:</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="cantidad" type="number" th:field="*{cantidad}">
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 font-bold mb-2" for="color">Color:</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="color" type="text" th:field="*{color}">
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 font-bold mb-2" for="imagenArchivo">Imagen:</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="imagenArchivo" type="file" name="imagenArchivo">
-                <img th:src="${producto.imagen}" alt="Imagen del Producto" width="100" class="mt-2">
-            </div>
-            <div class="flex items-center justify-between">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Guardar Cambios</button>
-            </div>
-        </form>
+        </div>
     </div>
 
+    <script src="/js/imagenPrevia.js"></script>
+    <script src="/js/updateProductos.js"></script>
 </body>
 </html>
