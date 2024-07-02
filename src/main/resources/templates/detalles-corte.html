@@ -1,22 +1,149 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles del Corte</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../static/css/ficha-habilitacion.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Fichas habilitación - Parte 2</title>
 </head>
-<body>
-    <h2>Detalles del Corte</h2>
-    <form th:action="@{/guardar-detalles-corte}" th:object="${fichaHabilitacion}" method="post">
-        <!-- Aquí puedes agregar más campos para los detalles del corte -->
-        <div>
-            <label for="detalleAdicional">Detalle Adicional:</label>
-            <input type="text" id="detalleAdicional" th:field="*{detalleAdicional}" required>
-        </div>
-        <div>
-            <button type="submit">Guardar</button>
-            <button type="reset">Limpiar</button>
-        </div>
-    </form>
+<body class="bg-cover bg-no-repeat bg-center" style="background-image: url('../img/BackgorundMockup_Rubert\'sDenim.png');">
+<a href="index.html">Regresar</a>
+
+<div style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
+    <div class="w-full max-w-2xl p-6 border-[#db4900] border-opacity-40 rounded-3xl shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900]">
+        <form id="formulario2" class="space-y-6" th:action="@{/guardar-ficha-parte2}" th:object="${fichaHabilitacion}" method="post">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div class="flex items-center mb-3">
+                    <label for="Dobleces" class="text-sm font-medium text-white-900 text-white mr-2">Dobleces:</label>
+                    <input type="Number" name="Dobleces" id="Dobleces" class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white placeholder-white" th:field="*{estilo}" required>
+                </div>
+                <div class="flex items-center mb-3">
+                    <label for="Dobleces_Din" class="text-sm font-medium text-gray-900 text-white mr-2">Dob:</label>
+                    <input type="Number" name="Dobleces_Din" id="Dobleces_Din" class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white placeholder-white" th:field="*{corte}" required>
+                </div>
+                <div class="flex items-center mb-3">
+                    <label for="Bultos" class="text-sm font-medium text-white-900 text-white mr-2">Bultos:</label>
+                    <input type="number" name="Bultos" id="Bultos" class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white placeholder-white" th:field="*{total}" required>
+                </div>
+
+                <div class="flex items-center mb-3">
+                    <label for="cantidadTallas" class="text-sm font-medium text-gray-900 text-white mr-2">Cantidad de Tallas:</label>
+                    <select name="cantidadTallas" id="cantidadTallas" class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white" onchange="mostrarModal()">
+                        <option value="" selected disabled>Seleccionar Cantidad</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <!-- Puedes añadir más opciones según tus necesidades -->
+                    </select>
+                </div>
+                
+                <!-- Modal de Listas Desplegables -->
+                <div id="modalListas" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black bg-opacity-50 flex justify-center items-center">
+                    <div class="bg-white rounded-lg p-6 max-w-md">
+                        <h2 class="text-lg font-medium mb-4">Listas Desplegables</h2>
+                        <div id="contenedorListas" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <!-- Aquí se generarán dinámicamente las listas desplegables -->
+                        </div>
+                        <div class="mt-4 flex justify-end">
+                            <button type="button" onclick="cerrarModal()" class="py-2 px-4 bg-[#db4900] hover:bg-[#ff5500] focus:ring-4 focus:ring-[#e8763d] focus:outline-none font-medium rounded-3xl text-sm text-white">
+                                Cerrar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Botones -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 place-items-center">
+                    <!-- Botón de Borrar -->
+                    <button type="button" id="boton-borrar" onclick="document.getElementById('formulario2').reset();"
+                            class="py-2 px-4 bg-[#db4900] hover:bg-[#ff5500] focus:ring-4 focus:ring-[#e8763d] focus:outline-none font-medium rounded-3xl text-sm text-white">
+                        Borrar
+                    </button>
+                    <!-- Botón de Guardar -->
+                    <button type="submit" id="boton-guardar" class="py-2 px-4 bg-[#db4900] hover:bg-[#ff5500] focus:ring-4 focus:ring-[#e8763d] focus:outline-none font-medium rounded-3xl text-sm text-white">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // dinamicList.js
+
+// Función para generar dinámicamente las listas desplegables
+function generarListas() {
+    // Obtener el valor seleccionado en el select de cantidadTallas
+    var cantidad = document.getElementById('cantidadTallas').value;
+    
+    // Obtener el contenedor donde se insertarán las listas desplegables
+    var contenedorListas = document.getElementById('contenedorListas');
+    
+    // Limpiar el contenedor por si tiene contenido previo
+    contenedorListas.innerHTML = '';
+
+    // Generar las listas desplegables según la cantidad seleccionada
+    for (var i = 0; i < cantidad; i++) {
+        // Crear un nuevo elemento div para cada lista desplegable
+        var divLista = document.createElement('div');
+        divLista.className = 'flex items-center mb-3'; // Ajustar las clases según tu diseño
+        
+        // Crear el elemento label
+        var label = document.createElement('label');
+        label.htmlFor = 'talla_' + (i + 1);
+        label.className = 'text-sm font-medium text-gray-900 text-white mr-2';
+        label.innerText = 'Talla ' + (i + 1) + ':';
+        
+        // Crear el elemento select
+        var select = document.createElement('select');
+        select.name = 'talla_' + (i + 1);
+        select.className = 'bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white';
+        
+        // Crear opción por defecto
+        var optionDefault = document.createElement('option');
+        optionDefault.value = '';
+        optionDefault.text = 'Seleccionar Talla';
+        optionDefault.disabled = true;
+        optionDefault.selected = true;
+        select.appendChild(optionDefault);
+        
+        // Agregar más opciones según necesites
+        // Ejemplo:
+        // var option1 = document.createElement('option');
+        // option1.value = 'S';
+        // option1.text = 'S';
+        // select.appendChild(option1);
+        
+        // Agregar label y select al div
+        divLista.appendChild(label);
+        divLista.appendChild(select);
+        
+        // Agregar el div al contenedor de listas
+        contenedorListas.appendChild(divLista);
+    }
+}
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+<script>
+    function mostrarModal() {
+        const cantidad = document.getElementById('cantidadTallas').value;
+        const modal = document.getElementById('modalListas');
+
+        if (cantidad > 0) {
+            modal.classList.remove('hidden');
+            generarListas(); // Llamar a la función para generar las listas desplegables
+        } else {
+            modal.classList.add('hidden');
+        }
+    }
+
+    function cerrarModal() {
+        const modal = document.getElementById('modalListas');
+        modal.classList.add('hidden');
+    }
+</script>
 </body>
 </html>
