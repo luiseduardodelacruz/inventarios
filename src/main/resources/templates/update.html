@@ -30,7 +30,7 @@
                         </div>
                         <form th:action="@{/inventario/update}" th:object="${producto}" method="post" enctype="multipart/form-data">
                             <div class="px-12 flex justify-center">
-                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5 px-4">
                                     <input type="hidden" th:field="*{idProducto}" />
                                     <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Nombre:</p>
                                     <input type="text" id="nombre" th:field="*{nombre}"
@@ -40,7 +40,7 @@
                             </div>
 
                             <div class="px-12 flex justify-center">
-                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5 px-4 w-full">
                                     <p
                                         class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">
                                         Categoria:</p>
@@ -84,7 +84,7 @@
                             </div>
 
                             <div class="px-12 flex justify-center">
-                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5 px-4 w-full">
                                     <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Imagen:</p>
                                     <div class="relative py-2 col-span-7 place-self-center justify-self-start fuente_3 w-full bg-[#db4900] border border-[#da6930] rounded-3xl focus:ring-transparent focus:border-transparent flex px-3">
                                         <div id="imagen-previa" class="w-7 h-7 flex-shrink-0 overflow-hidden rounded-md">
@@ -101,7 +101,7 @@
                             <span id="mensaje-error" class="text-red-500"></span>
 
                             <div class="px-12 flex justify-center">
-                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5 px-4">
                                     <p
                                         class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">
                                         Cantidad:</p>
@@ -112,7 +112,7 @@
                             </div>
 
                             <div class="px-12 flex justify-center">
-                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5 px-4 w-full">
                                     <p
                                         class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">
                                         Color:</p>
@@ -149,10 +149,10 @@
                                 </div>
                             </div>
 
-                            <div class="flex justify-evenly mt-6 mb-3">
+                            <div class="flex justify-evenly mt-6 mb-4">
                                 <button class="place-self-center col-span-6 px-[1vw] text-white bg-[#fe7355] fuente_1 hover:bg-[#ff8268] focus:ring-4 focus:outline-none focus:ring-[#dc6750] rounded-3xl text-xl py-2 w-[30%] text-center" type="submit">GUARDAR</button>
-                                <a href="/inventario" class="w-[31%]">
-                                    <button type="button" class="place-self-center col-span-6 px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#d96328] focus:ring-4 focus:outline-none focus:ring-[#bd5F30] rounded-3xl text-xl py-2 w-[100%] text-center">CANCELAR</button>
+                                <a href="/inventario" class="w-[32%]">
+                                    <button type="button" class="place-self-center col-span-6 px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#d96328] focus:ring-4 focus:outline-none focus:ring-[#bd5F30] rounded-3xl text-xl py-2 w-full text-center">CANCELAR</button>
                                 </a>
                             </div>
                         </form>

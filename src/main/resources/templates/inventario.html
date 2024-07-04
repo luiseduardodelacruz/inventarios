@@ -14,7 +14,7 @@
     
     <!-- Elemento Nav Bar -->
     <nav>
-        <div class="grid grid-cols-2 bg-[#e2aa80] bg-opacity-45 w-full start-0 px-[10%] md:px-[5%] flex items-stretch h-[10vh] sm:h-[10vw] md:h-[9vw] lg:h-[8vw] xl:h-[7vw] 2xl:h-[6vw] rounded-b-full">
+        <div class="grid grid-cols-2 bg-[#e2aa80] bg-opacity-45 w-full start-0 px-[10%] md:px-[5%] items-stretch h-[10vh] sm:h-[10vw] md:h-[9vw] lg:h-[8vw] xl:h-[7vw] 2xl:h-[6vw] rounded-b-full">
             <div class="grid-span-1 self-center justify-self-start">
                 <a th:href="@{/usuarios}">
                     <button type="button" class="flex items-center justify-center px-[4vw] sm:px-[3.5vw] md:px-[3vw] lg:px-[2.5vw] xl:px-[2vw] text-white bg-[#ff8a00] fuente_1 hover:bg-[#ff9b00] focus:ring-4 focus:outline-none focus:ring-[#ffac00] rounded-3xl text-xs sm:text-sm md:text-base lg:text-xl mr-[20%] sm:mr-[0%] py-2 sm:py-3 text-center">GESTIONAR USUARIOS 
@@ -40,7 +40,7 @@
         <div class="col-span-1">
 
             <!-- Elemento Drawer -->
-            <div class="absolute inset-0 flex items-center justify-center xl:w-[18%] 2xl:w-[15%]">
+            <div class="absolute inset-0 flex items-center justify-center xl:mt-[7vw] xl:mb-[7vw] 2xl:mt-[6vw] 2xl:mb-[6vw] xl:w-[18%] 2xl:w-[15%]">
                 <div id="drawer" class="fixed left-0 z-40 px-6 py-9 bg-[#ef986d] rounded-3xl transition-transform duration-300 ease-in-out -translate-x-[0%] w-[60%] sm:-translate-x-[0%] sm:w-[50%] md:-translate-x-[0%] md:w-[40%] lg:-translate-x-[0%] lg:w-[15%] xl:-translate-x-[0%] xl:w-[18%] 2xl:-translate-x-[0%] 2xl:w-[15%]">             
                     <button id="btn_mostrar" type="button" class="hidden lg:hidden bg-transparent hover:bg-[#ffab74] hover:text-gray-900 rounded-lg text-sm w-9 h-9 absolute top-2.5 end-2.5 inline-flex items-center justify-center w-9 h-9 mt-8 mr-1">
                         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 448 512">
@@ -95,11 +95,11 @@
             
             <!-- Elemento Principal Productos -->
             <div class="flex flex-wrap justify-evenly xl:ml-[18%] 2xl:ml-[15%]">
-                <div class="pt-[5vw] xl:w-[19vw] 2xl:w-[16vw] mx-[2vw] my-[1vw]">
+                <div class="pt-[5vw] xl:w-[22vw] 2xl:w-[18vw] mx-[1vw] my-[1vw]">
                     <div class="bg-[#e8763d] rounded-t-[45px]">
                         <div class="relative flex justify-center">
                             <div class="absolute flex justify-center w-full -top-[5vw] h-[8vw] rounded-3xl">
-                                <img class="object-cover rounded-t-[35px]" src="/img/productos-subir-imagen.png" alt="Subir Producto">
+                                <img class="object-cover" src="/img/productos-subir-imagen.png" alt="Subir Producto">
                             </div>
                         </div>
                         <div class="p-[6%] pt-[4vw]">
@@ -116,11 +116,11 @@
                     </div>
                 </div>
 
-                <div th:each="producto : ${productos}" class="pt-[5vw] xl:w-[19vw] 2xl:w-[16vw] mx-[2vw] my-[1vw]">
+                <div th:each="producto : ${productos}" class="pt-[5vw] xl:w-[22vw] 2xl:w-[18vw] mx-[1vw] my-[1vw]">
                     <div class="bg-[#e8763d] rounded-t-[45px]">
                         <div class="relative flex justify-center">
                             <div class="absolute flex justify-center w-full -top-[5vw] h-[8vw] rounded-3xl">
-                                <img class="object-cover rounded-t-[35px]" th:src="${producto.imagen}" alt="Imagen del Producto" width="100" height="100">
+                                <img class="object-cover rounded-t-[35px]" th:src="${producto.imagen}" alt="Imagen del Producto">
                             </div>
                         </div>
                         <div class="p-[6%] pt-[4vw]">
@@ -146,7 +146,7 @@
                 <div id="agregar_producto" class="fixed inset-0 z-50 hidden transition-transform duration-1000 ease-in-out flex items-center justify-center bg-gray-800 bg-opacity-50">
                     <div class="w-full max-w-xl p-6 bg-[#faad86] rounded-[45px] shadow-lg">
                         <div class="grid grid-cols-12 start-0 flex items-stretch">
-                            <p class="text-3xl fuente_4 text-white col-span-11 text-center place-self-center justify-self-center">¡ Nuevo Producto !</p>
+                            <p class="text-3xl fuente_4 text-white col-span-11 text-center place-self-center justify-self-center">! Nuevo Producto !</p>
                             <button id="cerrar_agregar_producto" type="button" class="inline-flex col-span-1 place-self-center justify-self-end text-white p-0.5 hover:bg-gray-600 hover:bg-opacity-10 rounded-xl">
                                 <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m14 10l-4 4m0-4l4 4"/></g></svg>
                             </button>
@@ -160,7 +160,7 @@
                             </div>
 
                             <div class="px-12 flex justify-center">
-                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5 px-4 w-full">
                                     <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Categoria:</p>
                                     <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                         <div id="opcion_seleccionada_categoria_agregar_producto" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-lg fuente_2 w-full p-2 text-left cursor-pointer flex justify-between items-center">
@@ -191,7 +191,7 @@
                             </div>
 
                             <div class="px-12 flex justify-center">
-                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5 px-4 w-full">
                                     <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Imagen:</p>
                                     <div class="relative py-2 col-span-7 place-self-center justify-self-start fuente_3 w-full bg-[#db4900] border border-[#da6930] rounded-3xl focus:ring-transparent focus:border-transparent flex px-3">
                                         <div id="imagen-previa" class="w-7 h-7 flex-shrink-0 overflow-hidden rounded-md">
@@ -208,14 +208,14 @@
                             </div>
                             <span id="mensaje-error" class="text-red-500"></span>
                             <div class="px-12 flex justify-center">
-                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5 px-4">
                                     <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Cantidad:</p>
                                     <input type="number" id="cantidad" th:field="*{cantidad}" class="col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-2 px-3" required />
                                 </div>
                             </div>
 
                             <div class="px-12 flex justify-center">
-                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5 px-4 w-full">
                                     <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Color:</p>
                                     <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                         <div id="opcion_seleccionada_color_agregar_producto" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-lg fuente_2 w-full p-2 text-left cursor-pointer flex justify-between items-center">
@@ -264,12 +264,12 @@
                         <form>
                             <div class="relative flex justify-center mt-5">
                                 <div class=" flex justify-center w-full h-[8vw] rounded-3xl">
-                                    <img class="object-cover rounded-t-[35px]" id="imagen_producto" alt="Producto">
+                                    <img class="object-cover rounded-[35px]" id="imagen_producto" alt="Producto">
                                 </div>
                             </div>
                             <div class="flex justify-evenly mt-4 mb-2">
-                                <button type="button" id="confirmDeleteBtn" class="place-self-center col-span-6 px-[1vw] text-white bg-[#fe7355] fuente_1 hover:bg-[#ff8268] focus:ring-4 focus:outline-none focus:ring-[#dc6750] rounded-3xl text-xl py-2 w-[20%] text-center">Eliminar</button>
-                                <button type="button" onclick="closeModalDelete()" class="place-self-center col-span-6 px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#d96328] focus:ring-4 focus:outline-none focus:ring-[#bd5F30] rounded-3xl text-xl py-2 w-[20%] text-center">Cancelar</button>
+                                <button type="button" id="confirmDeleteBtn" class="place-self-center col-span-6 px-[1vw] text-white bg-[#fe7355] fuente_1 hover:bg-[#ff8268] focus:ring-4 focus:outline-none focus:ring-[#dc6750] rounded-3xl text-xl py-2 w-[20%] text-center w-auto">Eliminar</button>
+                                <button type="button" onclick="closeModalDelete()" class="place-self-center col-span-6 px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#d96328] focus:ring-4 focus:outline-none focus:ring-[#bd5F30] rounded-3xl text-xl py-2 w-[20%] text-center w-auto">Cancelar</button>
                             </div>
                         </form>
                     </div>
