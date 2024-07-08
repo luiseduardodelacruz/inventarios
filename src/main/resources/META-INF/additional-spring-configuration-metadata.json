@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "imgbb.ApiKey",
+  "type": "java.lang.String",
+  "description": "Esta propiedad especifica la clave API utilizada para autenticar solicitudes al servicio de alojamiento de imágenes imgBB."
+}]}

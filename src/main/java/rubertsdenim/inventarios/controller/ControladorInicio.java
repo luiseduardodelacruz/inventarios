@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +34,8 @@ public class ControladorInicio {
     @Autowired
     private ProductoServicio productoServicio;
 
-    private String imgbbApiKey = "fc57a95cf32ae73b628e1a60ad733786";
+    @Value("${imgbb.ApiKey}")
+    private String imgbbApiKey;
 
     @GetMapping("/inventario")
     public String verInventario(Model model){
