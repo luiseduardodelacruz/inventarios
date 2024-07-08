@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -86,12 +87,18 @@ public class UserController {
         return "update-user"; // Vista para el formulario de actualización
     }
 
-    @PostMapping("/editar-usuario/{id}")
-    public String updateUser(@PathVariable String id, User user) {
-        if (user != null) {
-            user.setEmail(user.getEmail());
-            user.setName(user.getName());
+    @PostMapping("/editar-usuario/{id}") 
+    public String updateUser(@PathVariable String id, @ModelAttribute User updatedUser, @RequestParam("imageFile") MultipartFile imageFile) throws IOException  {
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser != null) {
+            User user = optionalUser.get();
+            user.setEmail(updatedUser.getEmail());
+            user.setName(updatedUser.getName());
             user.setRole("USER");
+            if (!imageFile.isEmpty()) {
+                String imageUrl = uploadImage(imageFile, updatedUser.getName());
+                user.setImage(imageUrl);
+            }
             userRepository.save(user);
         }
         return "redirect:/usuarios"; // Redirigir a la página de lista de usuarios después de actualizar
