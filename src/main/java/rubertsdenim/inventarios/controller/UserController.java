@@ -2,7 +2,18 @@ package rubertsdenim.inventarios.controller;
 
 import rubertsdenim.inventarios.model.User;
 import rubertsdenim.inventarios.repository.UserRepository;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +21,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -18,6 +32,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Value("${imgbb.ApiKey}")
+    private String imgbbApiKey;
 
     @GetMapping("/usuarios")
     public String viewUsers(Model model) {
@@ -32,14 +49,37 @@ public class UserController {
     }
 
     @PostMapping("/registro")
-    public String registerUser(@ModelAttribute User user) {
+    public String registerUser(@ModelAttribute User user, @RequestParam MultipartFile imageFile) throws IOException {
+        if (!imageFile.isEmpty()) {
+            String imageUrl = uploadImage(imageFile, user.getName());
+            user.setImage(imageUrl);
+        }
         user.setRole("USER"); // Establece el rol de usuario
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword())); // Encripta la contraseña
         userRepository.save(user);
-        // Redirige a la página de usuarios después de un registro exitoso
-        return "redirect:/usuarios";
+        return "redirect:/usuarios"; // Redirige a la página de usuarios después de un registro exitoso
     }
-       @GetMapping("/editar-usuario/{id}")
+
+    private String uploadImage(MultipartFile image, String nameUser) throws IOException {
+        CloseableHttpClient client = HttpClients.createDefault();
+        HttpPost post = new HttpPost("https://api.imgbb.com/1/upload?key=" + imgbbApiKey);
+    
+        MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+        builder.addBinaryBody("image", image.getBytes(), ContentType.MULTIPART_FORM_DATA, image.getOriginalFilename());
+        builder.addTextBody("name", nameUser);
+        builder.addTextBody("album", "Usuarios");
+    
+        HttpEntity entity = builder.build();
+        post.setEntity(entity);
+    
+        HttpResponse response = client.execute(post);
+        String json = EntityUtils.toString(response.getEntity());
+    
+        JSONObject jsonObject = new JSONObject(json);
+        return jsonObject.getJSONObject("data").getString("url");
+    }
+
+    @GetMapping("/editar-usuario/{id}")
     public String showUpdateForm(@PathVariable String id, Model model) {
         User user = userRepository.findById(id).orElse(null);
         model.addAttribute("user", user);

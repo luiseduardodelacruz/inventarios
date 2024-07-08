@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <h1 class="my-4">Registrar Usuario</h1>
-        <form th:action="@{/registro}" th:object="${user}" method="post">
+        <form th:action="@{/registro}" th:object="${user}" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Nombre:</label>
                 <input type="text" id="name" th:field="*{name}" class="form-control">
@@ -23,6 +23,10 @@
                 <label for="password">Contraseña:</label>
                 <input type="password" id="password" th:field="*{password}" class="form-control">
             </div>
+            <div class="mb-3">
+                <label for="imageFile" class="form-label">Seleciona una Imagen</label>
+                <input class="form-control" type="file" accept="image/*" id="imageFile" name="imageFile">
+              </div>
             <div>
                 <button type="submit" class="btn btn-primary">Registrar</button>
             <a th:href="@{/usuarios}" class="btn btn-primary mb-3">Volver</a>
