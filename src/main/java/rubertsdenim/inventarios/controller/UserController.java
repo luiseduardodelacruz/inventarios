@@ -90,7 +90,7 @@ public class UserController {
     @PostMapping("/editar-usuario/{id}") 
     public String updateUser(@PathVariable String id, @ModelAttribute User updatedUser, @RequestParam("imageFile") MultipartFile imageFile) throws IOException  {
         Optional<User> optionalUser = userRepository.findById(id);
-        if (optionalUser != null) {
+        if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             user.setEmail(updatedUser.getEmail());
             user.setName(updatedUser.getName());
