@@ -43,6 +43,7 @@ public class UserController {
         model.addAttribute("users", users);
         return "users";
     }
+    
     @GetMapping("/nuevo-usuario")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
@@ -103,7 +104,6 @@ public class UserController {
         }
         return "redirect:/usuarios"; // Redirigir a la página de lista de usuarios después de actualizar
     }
-
 
     @GetMapping("/eliminar-usuario/{id}")
     public String showDeleteConfirmation(@PathVariable String id, Model model) {
