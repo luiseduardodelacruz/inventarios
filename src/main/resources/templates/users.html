@@ -63,7 +63,7 @@
                     <div class="bg-[#e8763d] rounded-t-[45px]">
                         <div class="relative flex justify-center">
                             <div class="absolute flex justify-center w-full -top-[5vw] h-[8vw] rounded-3xl">
-                                <img class="object-cover rounded-t-[35px]" th:src="${user.image}" alt="Imagen del Usuario">
+                                <img class="object-cover rounded-t-[35px]" th:src="${user.image != null} ? ${user.image} : '/img/producto-sin-imagen.png'" alt="Imagen del Usuario">
                             </div>
                         </div>
                         <div class="p-[6%] pt-[4vw]">

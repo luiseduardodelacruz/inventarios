@@ -120,7 +120,7 @@
                     <div class="bg-[#e8763d] rounded-t-[45px]">
                         <div class="relative flex justify-center">
                             <div class="absolute flex justify-center w-full -top-[5vw] h-[8vw] rounded-3xl">
-                                <img class="object-cover rounded-t-[35px]" th:src="${producto.imagen}" alt="Imagen del Producto">
+                                <img class="object-cover rounded-t-[35px]" th:src="${producto.imagen != null} ? ${producto.imagen} : '/img/producto-sin-imagen.png'" alt="Imagen del Producto">
                             </div>
                         </div>
                         <div class="p-[6%] pt-[4vw]">
@@ -201,8 +201,7 @@
                                             </svg>
                                         </div>
                                         <p id="nombre_archivo" class="block text-sm fuente_2 text-white pl-1 overflow-hidden place-self-center">Seleccione un Archivo</p>
-                                        <input id="archivo" name="imagenArchivo" type="file" onchange="validarTamanioImagen(this)" class="absolute inset-0 opacity-0 cursor-pointer" required>
-                                        
+                                        <input id="archivo" name="imagenArchivo" type="file" onchange="validarTamanioImagen(this)" accept="image/jpeg, image/png" class="absolute inset-0 opacity-0 cursor-pointer" required> 
                                     </div>
                                 </div>
                             </div>

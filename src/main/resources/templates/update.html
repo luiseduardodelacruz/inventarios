@@ -88,12 +88,12 @@
                                     <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Imagen:</p>
                                     <div class="relative py-2 col-span-7 place-self-center justify-self-start fuente_3 w-full bg-[#db4900] border border-[#da6930] rounded-3xl focus:ring-transparent focus:border-transparent flex px-3">
                                         <div id="imagen-previa" class="w-7 h-7 flex-shrink-0 overflow-hidden rounded-md">
-                                            <img th:src="${producto.imagen}" alt="Imagen del Producto" class="w-7 h-7 flex-shrink-0 rounded-lg">
+                                            <img th:src="${producto.imagen != null} ? ${producto.imagen} : '/img/producto-sin-imagen.png'" alt="Imagen del Producto" class="w-7 h-7 flex-shrink-0 rounded-lg">
                                         </div>
                                         <p id="nombre_archivo"
                                             class="block text-sm fuente_2 text-white pl-1 overflow-hidden place-self-center">
                                             Seleccione otro Archivo</p>
-                                        <input id="imagenArchivo" type="file" name="imagenArchivo" onchange="validarTamanioImagen(this)" class="absolute inset-0 opacity-0 cursor-pointer">
+                                        <input id="imagenArchivo" type="file" name="imagenArchivo" onchange="validarTamanioImagen(this)" accept="image/jpeg, image/png" class="absolute inset-0 opacity-0 cursor-pointer">
                                     </div>
                                 </div>
                             </div>

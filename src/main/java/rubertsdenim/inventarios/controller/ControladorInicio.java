@@ -53,7 +53,7 @@ public class ControladorInicio {
     
     @PostMapping("/inventario/create")
     public String agregarProducto(@ModelAttribute Producto producto, @RequestParam MultipartFile imagenArchivo) throws IOException {
-        if (!imagenArchivo.isEmpty()) {
+        if (!imagenArchivo.isEmpty() && formatoImagen(imagenArchivo)) {
             String imageUrl = subirImagenImgbb(imagenArchivo, producto.getNombre());
             producto.setImagen(imageUrl);
         }
@@ -80,6 +80,11 @@ public class ControladorInicio {
         return jsonObject.getJSONObject("data").getString("url");
     }
 
+    private boolean formatoImagen(MultipartFile archivo) {
+        String contentType = archivo.getContentType();
+        return contentType != null && (contentType.equals("image/jpeg") || contentType.equals("image/png"));
+    }
+
     @GetMapping("/inventario/update/{id}")
     public String editarProducto(@PathVariable ObjectId id, Model model) {
         Producto producto = productoServicio.buscarProductoPorId(id);
@@ -99,7 +104,7 @@ public class ControladorInicio {
             productoExistente.setCategoria(producto.getCategoria());
             productoExistente.setCantidad(producto.getCantidad());
             productoExistente.setColor(producto.getColor());
-            if (!imagenArchivo.isEmpty()) {
+            if (!imagenArchivo.isEmpty() && formatoImagen(imagenArchivo)) {
                 String imageUrl = subirImagenImgbb(imagenArchivo, producto.getNombre());
                 productoExistente.setImagen(imageUrl);
             }

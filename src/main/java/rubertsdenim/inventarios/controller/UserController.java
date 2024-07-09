@@ -52,7 +52,7 @@ public class UserController {
 
     @PostMapping("/registro")
     public String registerUser(@ModelAttribute User user, @RequestParam MultipartFile imageFile) throws IOException {
-        if (!imageFile.isEmpty()) {
+        if (!imageFile.isEmpty() && isImageFile(imageFile)) {
             String imageUrl = uploadImage(imageFile, user.getName());
             user.setImage(imageUrl);
         }
@@ -81,6 +81,11 @@ public class UserController {
         return jsonObject.getJSONObject("data").getString("url");
     }
 
+    private boolean isImageFile(MultipartFile file) {
+        String contentType = file.getContentType();
+        return contentType != null && (contentType.equals("image/jpeg") || contentType.equals("image/png"));
+    }
+
     @GetMapping("/editar-usuario/{id}")
     public String showUpdateForm(@PathVariable String id, Model model) {
         User user = userRepository.findById(id).orElse(null);
@@ -96,7 +101,7 @@ public class UserController {
             user.setEmail(updatedUser.getEmail());
             user.setName(updatedUser.getName());
             user.setRole("USER");
-            if (!imageFile.isEmpty()) {
+            if (!imageFile.isEmpty() && isImageFile(imageFile)) {
                 String imageUrl = uploadImage(imageFile, updatedUser.getName());
                 user.setImage(imageUrl);
             }
