@@ -41,16 +41,17 @@ public class UserController {
     public String viewUsers(Model model) {
         List<User> users = userRepository.findByRoleNot("ADMIN");
         model.addAttribute("users", users);
+        model.addAttribute("user", new User());
         return "users";
     }
     
-    @GetMapping("/nuevo-usuario")
+    @GetMapping("/usuarios/create")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
-        return "register"; // Nombre de la vista del formulario de registro
+        return "users"; // Nombre de la vista del formulario de registro
     }
 
-    @PostMapping("/registro")
+    @PostMapping("/usuarios/create")
     public String registerUser(@ModelAttribute User user, @RequestParam MultipartFile imageFile) throws IOException {
         if (!imageFile.isEmpty() && isImageFile(imageFile)) {
             String imageUrl = uploadImage(imageFile, user.getName());

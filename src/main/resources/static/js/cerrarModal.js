@@ -1,8 +1,8 @@
-function closeModalDelete() {
+function closeModalInventarioDelete() {
     document.getElementById('eliminar_producto').classList.add('hidden');
 }
 
-function closeModalAdd(){
+function closeModalInventarioAdd(){
     document.getElementById('agregar_producto').classList.add('hidden');
     const previewContainer = document.getElementById('imagen-previa');
 

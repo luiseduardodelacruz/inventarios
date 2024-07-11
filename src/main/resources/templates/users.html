@@ -35,7 +35,7 @@
     <div class="grid grid-cols-1">
         <div class="col-span-1">
 
-            <!-- Elemento Principal Productos -->
+            <!-- Elemento Principal Usuarios -->
             <div class="flex flex-wrap justify-evenly">
                 <div class="pt-[5vw] xl:w-[19vw] 2xl:w-[16vw] mx-[2vw] my-[1vw]">
                     <div class="bg-[#e8763d] rounded-t-[45px]">
@@ -51,9 +51,9 @@
                                 <p class="flex justify-center text-center fuente_2 text-base text-white">Rol</p>
                             </div>
                             <div class="flex justify-center">
-                                <a th:href="@{/nuevo-usuario}">
+                                <!--<a th:href="@{/nuevo-usuario}"></a>-->
                                     <button id="abrir_agregar_usuario" type="button" class="mt-2 px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#ff5500] focus:ring-4 focus:outline-none focus:ring-[#da6930] rounded-3xl text-xl py-1 text-center">AGREGAR</button>
-                                </a>
+                                
                             </div>
                         </div>
                     </div>
@@ -85,9 +85,60 @@
                 </div>
             </div>
 
+            <!-- Elemento Modal Agregar Usuarios -->
+            <div>
+                <div id="agregar_usuario" class="fixed inset-0 z-50 hidden transition-transform duration-1000 ease-in-out flex items-center justify-center bg-gray-800 bg-opacity-50">
+                    <div class="w-full max-w-xl p-6 bg-[#faad86] rounded-[45px] shadow-lg">
+                        <div class="grid grid-cols-12 start-0 flex items-stretch">
+                        <p class="text-3xl fuente_4 text-white col-span-11 text-center place-self-center justify-self-center">¡ Nuevo Usuario !</p>
+                        <button id="cerrar_agregar_usuario" type="button" class="inline-flex col-span-1 place-self-center justify-self-end text-white p-0.5 hover:bg-gray-600 hover:bg-opacity-10 rounded-xl"><svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m14 10l-4 4m0-4l4 4"/></g></svg></button>
+                        </div>
+                        <form th:action="@{/usuarios/create}" th:object="${user}" method="post" enctype="multipart/form-data">
+                            <div class="px-12 flex justify-center">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                    <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Nombre:</p>
+                                    <input type="text" id="name" th:field="*{name}" class="col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-2 px-3" required />
+                                </div>
+                            </div>
+            
+                            <div class="px-12 flex justify-center">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                    <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Email:</p>
+                                    <input type="email" id="email" th:field="*{email}" class="col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-2 px-3" required />
+                                </div>
+                            </div>
+            
+                            <div class="px-12 flex justify-center">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                    <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Contraseña:</p>
+                                    <input type="password" id="password" th:field="*{password}" class="col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-2 px-3" required />
+                                </div>
+                            </div>
+            
+                            <div class="px-12 flex justify-center">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-5">
+                                    <p class="col-span-5 text-center fuente_2 text-2xl text-white pr-6 place-self-center justify-self-end">Imagen:</p>
+                                    <div class="relative py-2 col-span-7 place-self-center justify-self-start fuente_3 w-full bg-[#db4900] border border-[#da6930] rounded-3xl focus:ring-transparent focus:border-transparent flex px-3">
+                                        <svg class="w-7 h-7 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><g fill="none"><path fill="white" d="M44 24C44 22.8954 43.1046 22 42 22C40.8954 22 40 22.8954 40 24H44ZM24 8C25.1046 8 26 7.10457 26 6C26 4.89543 25.1046 4 24 4V8ZM39 40H9V44H39V40ZM8 39V9H4V39H8ZM40 24V39H44V24H40ZM9 8H24V4H9V8ZM9 40C8.44772 40 8 39.5523 8 39H4C4 41.7614 6.23857 44 9 44V40ZM39 44C41.7614 44 44 41.7614 44 39H40C40 39.5523 39.5523 40 39 40V44ZM8 9C8 8.44772 8.44771 8 9 8V4C6.23858 4 4 6.23857 4 9H8Z"/><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M6 35L16.6931 25.198C17.4389 24.5143 18.5779 24.4953 19.3461 25.1538L32 36"/><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M28 31L32.7735 26.2265C33.4772 25.5228 34.5914 25.4436 35.3877 26.0408L42 31"/><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M37 18L37 6"/><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M32 11L37 6L42 11"/></g></svg>
+                                        <p id="nombre_archivo" class="block text-sm fuente_2 text-white pl-1 overflow-hidden place-self-center">Seleccione un Archivo</p>
+                                        <input id="archivo" type="file" accept="image/jpeg, image/png" name="imageFile" class="absolute inset-0 opacity-0 cursor-pointer">
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <div class="flex justify-evenly mt-6 mb-3">
+                                <button type="submit" class="place-self-center col-span-6 px-[1vw] text-white bg-[#fe7355] fuente_1 hover:bg-[#ff8268] focus:ring-4 focus:outline-none focus:ring-[#dc6750] rounded-3xl text-xl py-2 w-[30%] text-center">ACEPTAR</button>
+                                <button type="reset" onclick="closeModalUsuarioAdd()" class="place-self-center col-span-6 px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#d96328] focus:ring-4 focus:outline-none focus:ring-[#bd5F30] rounded-3xl text-xl py-2 w-[30%] text-center">CANCELAR</button>
+                            </div>
+                        </form>                            
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
+    <script src="/js/usuarios.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
 </body>
