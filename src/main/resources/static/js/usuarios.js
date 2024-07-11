@@ -11,7 +11,6 @@ btnCerrarAgregar.addEventListener('click', function() {
     modalAgregar.classList.add('hidden');
 });
 
-// Opcional: cerrar el modal si se hace clic fuera de él (en el fondo oscuro)
 window.addEventListener('click', function(event) {
     if (event.target == modalAgregar) {
         modalAgregar.classList.add('hidden');
@@ -21,3 +20,40 @@ window.addEventListener('click', function(event) {
 function closeModalUsuarioAdd(){
     document.getElementById('agregar_usuario').classList.add('hidden');
 }
+
+/*Modal para Editar Usuarios
+var btnEditar = document.querySelector('.abrir_editar_usuario');
+var modalEditar = document.querySelector('#editar_usuario');
+var btnCerrarEditar = modalEditar.querySelector('#cerrar_editar_usuario');
+
+btnEditar.addEventListener('click', function() {
+    modalEditar.classList.remove('hidden');
+});
+
+btnCerrarEditar.addEventListener('click', function() {
+    modalEditar.classList.add('hidden');
+});
+
+window.addEventListener('click', function(event) {
+    if (event.target == modalEditar) {
+        modalEditar.classList.add('hidden');
+    }
+});
+
+function closeModalUsuarioEdit(){
+    document.getElementById('editar_usuario').classList.add('hidden');
+}
+*/
+
+/*Funcionalidad Subir Archivos
+const archivo = document.getElementById('imageFile');
+const nombre_archivo = document.getElementById('nombre_archivo');
+                
+archivo.addEventListener('change', function() {
+  if (archivo.files.length > 0) {
+    nombre_archivo.textContent = archivo.files[0].name;
+  } else {
+    nombre_archivo.textContent = 'Seleccione un Archivo';
+  }
+});
+*/

@@ -87,14 +87,14 @@ public class UserController {
         return contentType != null && (contentType.equals("image/jpeg") || contentType.equals("image/png"));
     }
 
-    @GetMapping("/editar-usuario/{id}")
+    @GetMapping("/usuarios/editar-usuario/{id}")
     public String showUpdateForm(@PathVariable String id, Model model) {
         User user = userRepository.findById(id).orElse(null);
         model.addAttribute("user", user);
         return "update-user"; // Vista para el formulario de actualización
     }
 
-    @PostMapping("/editar-usuario/{id}") 
+    @PostMapping("/usuarios/editar-usuario/{id}") 
     public String updateUser(@PathVariable String id, @ModelAttribute User updatedUser, @RequestParam("imageFile") MultipartFile imageFile) throws IOException  {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {

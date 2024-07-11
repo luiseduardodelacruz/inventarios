@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <h1 class="my-4">Actualizar Usuario</h1>
-        <form th:action="@{'/editar-usuario/' + ${user.id}}" th:object="${user}" method="post" enctype="multipart/form-data">
+        <form th:action="@{'/usuarios/editar-usuario/' + ${user.id}}" th:object="${user}" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Nombre:</label>
                 <input type="text" id="name" th:field="*{name}" class="form-control">
