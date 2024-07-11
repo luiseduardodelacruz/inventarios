@@ -1,8 +1,6 @@
 let productIdToDelete;
 
 function confirmDelete(productId, nombre, imagen) {
-    console.log('Valor de imagen:', imagen); // Verificar qué valor tiene imagen
-
     productIdToDelete = productId;
     document.getElementById('eliminar_producto').classList.remove('hidden');
     document.getElementById('nombre_producto').textContent = nombre;
