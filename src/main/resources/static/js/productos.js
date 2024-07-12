@@ -6,13 +6,17 @@ const drawer = document.getElementById('drawer');
 function mostrar() {
   btn_mostrar.classList.add('hidden');
   btn_ocultar.classList.remove('hidden');
-  drawer.classList.remove('-translate-x-[79%]');
+  drawer.classList.remove('lg:-translate-x-[82.5%]');
+  drawer.classList.remove('md:-translate-x-[82.5%]');
+  drawer.classList.remove('-translate-x-[82.5%]');
 }
 
 function ocultar() {
   btn_ocultar.classList.add('hidden');
   btn_mostrar.classList.remove('hidden');
-  drawer.classList.add('-translate-x-[79%]');
+  drawer.classList.add('lg:-translate-x-[82.5%]');
+  drawer.classList.add('md:-translate-x-[82.5%]');
+  drawer.classList.add('-translate-x-[82.5%]');
 }
 
 btn_mostrar.addEventListener('click', mostrar);
