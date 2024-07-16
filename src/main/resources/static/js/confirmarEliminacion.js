@@ -12,6 +12,6 @@ function confirmDelete(productId, nombre, imagen) {
     }
 }
 
-document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
+document.getElementById('confirmDeleteProductBtn').addEventListener('click', function() {
     window.location.href = '/inventario/delete/' + productIdToDelete;
 });
