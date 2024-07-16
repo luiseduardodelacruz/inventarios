@@ -1,7 +1,7 @@
 //Modal para Agregar Usuarios
-var btnAgregar = document.querySelector('#abrir_agregar_usuario');
-var modalAgregar = document.querySelector('#agregar_usuario');
-var btnCerrarAgregar = modalAgregar.querySelector('#cerrar_agregar_usuario');
+const btnAgregar = document.querySelector('#abrir_agregar_usuario');
+const modalAgregar = document.querySelector('#agregar_usuario');
+const btnCerrarAgregar = modalAgregar.querySelector('#cerrar_agregar_usuario');
 
 btnAgregar.addEventListener('click', function() {
     modalAgregar.classList.remove('hidden');
@@ -36,8 +36,8 @@ function closeModalUsuarioAdd(){
 
 
 //Modal para Eliminar Usuarios
-var modalEliminar = document.querySelector('#eliminar_usuario');
-var btnCerrarEliminar = modalEliminar.querySelector('#cerrar_eliminar_usuario');
+const modalEliminar = document.querySelector('#eliminar_usuario');
+const btnCerrarEliminar = modalEliminar.querySelector('#cerrar_eliminar_usuario');
 
 let userIdToDelete;
 

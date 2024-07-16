@@ -150,6 +150,12 @@ cerrar_agregar_producto.addEventListener('click', () => {
   agregar_producto.classList.add('hidden');
 });
 
+window.addEventListener('click', function(event) {
+  if (event.target == agregar_producto) {
+      agregar_producto.classList.add('hidden');
+  }
+});
+
 // Funcionalidad Modal Eliminar Productos
 const abrir_eliminar_producto = document.getElementById('abrir_eliminar_producto');
 const cerrar_eliminar_producto = document.getElementById('cerrar_eliminar_producto');
@@ -161,6 +167,12 @@ abrir_eliminar_producto.addEventListener('click', () => {
 
 cerrar_eliminar_producto.addEventListener('click', () => {
   eliminar_producto.classList.add('hidden');
+});
+
+window.addEventListener('click', function(event) {
+  if (event.target == eliminar_producto) {
+    eliminar_producto.classList.add('hidden');
+  }
 });
 
 //Funcionalidad Select Categoria Agregar Productos
