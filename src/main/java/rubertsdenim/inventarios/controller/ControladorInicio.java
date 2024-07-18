@@ -38,8 +38,13 @@ public class ControladorInicio {
     private String imgbbApiKey;
 
     @GetMapping("/inventario")
-    public String verInventario(Model model){
-        List<Producto> productos = productoServicio.listarProductos();
+    public String verInventario(Model model, @RequestParam(name = "palabraClave", required = false) String palabraClave){
+        List<Producto> productos;
+        if (palabraClave != null && !palabraClave.isEmpty()) {
+            productos = productoServicio.listarProductos(palabraClave);
+        } else {
+            productos = productoServicio.listarProductos(); // Lista todos si no hay palabra clave
+        }
         model.addAttribute("productos", productos);
         model.addAttribute("producto", new Producto());
         return "inventario";

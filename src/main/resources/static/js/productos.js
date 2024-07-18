@@ -157,12 +157,42 @@ window.addEventListener('click', function(event) {
 });
 
 // Funcionalidad Modal Eliminar Productos
-const abrir_eliminar_producto = document.getElementById('abrir_eliminar_producto');
 const cerrar_eliminar_producto = document.getElementById('cerrar_eliminar_producto');
 const eliminar_producto = document.getElementById('eliminar_producto');
 
-abrir_eliminar_producto.addEventListener('click', () => {
-  eliminar_producto.classList.remove('hidden');
+let productIdToDelete;
+
+function openModalProductDelete(productId, nombre, imagen) {
+    productIdToDelete = productId;
+    eliminar_producto.classList.remove('hidden');
+    
+    document.getElementById('nombre_producto').textContent = nombre;
+    // Verificar si la imagen está definida y no es null
+    if (imagen && imagen.trim() !== '' && imagen !== 'null') {
+        document.getElementById('imagen_producto').src = imagen;
+    } else {
+        document.getElementById('imagen_producto').src = '/img/producto-sin-imagen.png';
+    }
+}
+
+document.getElementById('confirmDeleteProductBtn').addEventListener('click', function() {
+  fetch('/inventario/productos/' + productIdToDelete, {
+    method: 'DELETE'
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Error al eliminar el producto');
+      }
+      return response.json();
+  })
+  .then(data => {
+      console.log('Producto eliminado:', data);
+      window.location.href = '/inventario'; // Redirigir a la página de inventario después de eliminar
+  })
+  .catch(error => {
+      console.error('Error:', error);
+      // Manejar el error, mostrar un mensaje al usuario
+  });
 });
 
 cerrar_eliminar_producto.addEventListener('click', () => {

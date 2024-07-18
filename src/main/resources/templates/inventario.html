@@ -44,15 +44,17 @@
                 <div id="drawer" class="grid grid-cols-12 fixed left-0 z-40 pt-6 pr-2 pb-6 pl-6 md:pt-6 md:pr-2 md:pb-6 md:pl-6 lg:pt-6 lg:pr-2 lg:pb-6 lg:pl-6 xl:px-6 py-9 bg-[#ef986d] rounded-3xl transition-transform duration-300 ease-in-out sm:-translate-x-[0%] sm:w-[50%] -translate-x-[82.5%] w-[60%] md:-translate-x-[82.5%] md:w-[35%] lg:-translate-x-[82.5%] lg:w-[25%] xl:-translate-x-[0%] xl:w-[18%] 2xl:-translate-x-[0%] 2xl:w-[15%]">             
                     <div class="col-span-10 md:col-span-10 lg:col-span-10 xl:col-span-12">
                         <div class="">
-                            <div class="flex">
-                                <button class="inline-flex items-center pl-3 pl-3 md:pl-3 lg:pl-3 text-white bg-[#ff5500] border border-e-0 border-[#ff5500] rounded-s-3xl focus:ring-transparent focus:border-transparent hover:bg-[#FF6619]">
-                                    <svg class="w-6 h-6 md:w-7 md:h-7 lg:w-7 lg:h-7 xl:w-8 xl:h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512">
-                                        <path d="M256 64C150.13 64 64 150.13 64 256s86.13 192 192 192s192-86.13 192-192S361.87 64 256 64m80 294.63l-54.15-54.15a88.08 88.08 0 1 1 22.63-22.63L358.63 336Z"/>
-                                        <circle cx="232" cy="232" r="56" fill="white"/>
-                                    </svg>
-                                </button>
-                                <input type="text" class="fuente_2 rounded-none rounded-e-3xl bg-[#ff5500] border border-[#ff5500] text-white focus:ring-transparent focus:border-transparent hover:bg-[#FF6619] block text-xs md:text-sm lg:text-sm xl:text-base w-[65%] w-full p-3 md:w-full md:p-3 lg:w-full lg:p-3 placeholder-white focus:border-transparent" placeholder="Buscar">
-                            </div>
+                            <form th:action="@{/inventario}">
+                                <div class="flex">
+                                    <button type="submit" class="inline-flex items-center pl-3 pl-3 md:pl-3 lg:pl-3 text-white bg-[#ff5500] border border-e-0 border-[#ff5500] rounded-s-3xl focus:ring-transparent focus:border-transparent hover:bg-[#FF6619]">
+                                        <svg class="w-6 h-6 md:w-7 md:h-7 lg:w-7 lg:h-7 xl:w-8 xl:h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512">
+                                            <path d="M256 64C150.13 64 64 150.13 64 256s86.13 192 192 192s192-86.13 192-192S361.87 64 256 64m80 294.63l-54.15-54.15a88.08 88.08 0 1 1 22.63-22.63L358.63 336Z"/>
+                                            <circle cx="232" cy="232" r="56" fill="white"/>
+                                        </svg>
+                                    </button>
+                                    <input type="text" name="palabraClave" id="palabraClave" th:value="${palabraClave}" class="fuente_2 rounded-none rounded-e-3xl bg-[#ff5500] border border-[#ff5500] text-white focus:ring-transparent focus:border-transparent hover:bg-[#FF6619] block text-xs md:text-sm lg:text-sm xl:text-base w-[65%] w-full p-3 md:w-full md:p-3 lg:w-full lg:p-3 placeholder-white focus:border-transparent" placeholder="Buscar" required>
+                                </div>
+                            </form>
                         </div>
                         <ul>
                             <li class="flex justify-center">
@@ -136,7 +138,7 @@
                                 <a th:href="@{/inventario/update/{id}(id=${producto.idProducto})}" >
                                     <button type="button" class="px-[1.5vw] md:px-[1vw] text-white bg-[#ff8a00] fuente_1 hover:bg-[#ff9b00] focus:ring-4 focus:outline-none focus:ring-[#ffac00] rounded-3xl text-xs md:text-base lg:text-base xl:text-xl py-1 text-center">EDITAR</button>
                                 </a>
-                                <button id="abrir_eliminar_producto" th:attr="onclick=|confirmDelete('${producto.idProducto}', '${producto.nombre}', '${producto.imagen}')|" type="button" class="px-[1.5vw] md:px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#ff5500] focus:ring-4 focus:outline-none focus:ring-[#da6930] rounded-3xl text-xs md:text-base lg:text-base xl:text-xl py-1 text-center">ELIMINAR</button>
+                                <button th:attr="onclick=|openModalProductDelete('${producto.idProducto}', '${producto.nombre}', '${producto.imagen}')|" type="button" class="px-[1.5vw] md:px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#ff5500] focus:ring-4 focus:outline-none focus:ring-[#da6930] rounded-3xl text-xs md:text-base lg:text-base xl:text-xl py-1 text-center">ELIMINAR</button>
                             </div>
                         </div>
                     </div>
@@ -279,7 +281,6 @@
         </div>
     </div>
     
-    <script src="/js/confirmarEliminacion.js"></script>
     <script src="/js/productos.js"></script>
     <script src="/js/imagenPrevia.js"></script>
     <script src="/js/cerrarModal.js"></script>

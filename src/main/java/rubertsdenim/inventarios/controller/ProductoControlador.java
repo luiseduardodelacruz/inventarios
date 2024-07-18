@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import rubertsdenim.inventarios.exception.RecursoNoEncontrado;
@@ -32,8 +33,8 @@ public class ProductoControlador {
     private ProductoServicio productoServicio;
 
     @GetMapping("/productos")
-    public List<Producto> obteneProductos(){
-        List<Producto> productos = this.productoServicio.listarProductos();
+    public List<Producto> obteneProductos(@RequestParam(required = false) String palabraClave){
+        List<Producto> productos = this.productoServicio.listarProductos(palabraClave);
         logger.info("Productos Obtenidos: ");
         productos.forEach((producto -> logger.info(producto.toString())));
         return productos;
@@ -72,8 +73,8 @@ public class ProductoControlador {
     public ResponseEntity<Map<String, Boolean>> eliminarProducto(@PathVariable ObjectId id){
         Producto producto = productoServicio.buscarProductoPorId(id);
         if (producto == null)
-            throw new RecursoNoEncontrado("No se encontro el Id" + id);
-        this.productoServicio.eliminarProductoPorId(producto.getIdProducto());
+            throw new RecursoNoEncontrado("No se encontró el producto con Id: " + id);
+        productoServicio.eliminarProductoPorId(id);
         Map<String, Boolean> respuesta = new HashMap<>();
         respuesta.put("Eliminado", Boolean.TRUE);
         return ResponseEntity.ok(respuesta);

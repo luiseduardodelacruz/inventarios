@@ -7,6 +7,8 @@ import rubertsdenim.inventarios.model.Producto;
 public interface IProductoServicio {
 
     public List<Producto> listarProductos();
+    
+    public List<Producto> listarProductos(String palabraClave);
 
     public Producto buscarProductoPorId(ObjectId idProducto);
 

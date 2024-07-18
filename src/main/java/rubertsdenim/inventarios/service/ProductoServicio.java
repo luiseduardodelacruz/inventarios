@@ -19,6 +19,18 @@ public class ProductoServicio implements IProductoServicio{
     }
 
     @Override
+    public List<Producto> listarProductos(String palabraClave) {
+        if (palabraClave != null && !palabraClave.isEmpty()) {
+            String regexPattern = ".*" + palabraClave + ".*";
+            return productoRepositorio.findByNombreRegexOrCategoriaRegexOrColorRegexOrCantidadRegex(
+                regexPattern, regexPattern, regexPattern, regexPattern
+            );
+        } else {
+            return listarProductos();
+        }
+    }
+
+    @Override
     public Producto buscarProductoPorId(ObjectId idProducto) {
         Producto producto = this.productoRepositorio.findById(idProducto).orElse(null);
         return producto;
