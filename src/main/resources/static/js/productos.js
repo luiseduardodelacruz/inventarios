@@ -27,7 +27,6 @@ const btn_elasticos = document.getElementById('btn_elasticos');
 const btn_hilos = document.getElementById('btn_hilos');
 const btn_cordones = document.getElementById('btn_cordones');
 const btn_botones = document.getElementById('btn_botones');
-const btn_sujetador = document.getElementById('btn_sujetador');
 const btn_ajustador = document.getElementById('btn_ajustador');
 const btn_etiquetas = document.getElementById('btn_etiquetas');
 
@@ -36,7 +35,6 @@ function elasticos() {
     btn_hilos.classList.remove('bg-[#ff5e3b]');
     btn_cordones.classList.remove('bg-[#ff5e3b]');
     btn_botones.classList.remove('bg-[#ff5e3b]');
-    btn_sujetador.classList.remove('bg-[#ff5e3b]');
     btn_ajustador.classList.remove('bg-[#ff5e3b]');
     btn_etiquetas.classList.remove('bg-[#ff5e3b]');
     btn_elasticos.classList.add('bg-[#ff5e3b]');
@@ -50,7 +48,6 @@ function hilos() {
     btn_elasticos.classList.remove('bg-[#ff5e3b]');
     btn_cordones.classList.remove('bg-[#ff5e3b]');
     btn_botones.classList.remove('bg-[#ff5e3b]');
-    btn_sujetador.classList.remove('bg-[#ff5e3b]');
     btn_ajustador.classList.remove('bg-[#ff5e3b]');
     btn_etiquetas.classList.remove('bg-[#ff5e3b]');
     btn_hilos.classList.add('bg-[#ff5e3b]');
@@ -64,7 +61,6 @@ function cordones() {
     btn_elasticos.classList.remove('bg-[#ff5e3b]');
     btn_hilos.classList.remove('bg-[#ff5e3b]');
     btn_botones.classList.remove('bg-[#ff5e3b]');
-    btn_sujetador.classList.remove('bg-[#ff5e3b]');
     btn_ajustador.classList.remove('bg-[#ff5e3b]');
     btn_etiquetas.classList.remove('bg-[#ff5e3b]');
     btn_cordones.classList.add('bg-[#ff5e3b]');
@@ -78,26 +74,11 @@ function botones() {
     btn_elasticos.classList.remove('bg-[#ff5e3b]');
     btn_hilos.classList.remove('bg-[#ff5e3b]');
     btn_cordones.classList.remove('bg-[#ff5e3b]');
-    btn_sujetador.classList.remove('bg-[#ff5e3b]');
     btn_ajustador.classList.remove('bg-[#ff5e3b]');
     btn_etiquetas.classList.remove('bg-[#ff5e3b]');
     btn_botones.classList.add('bg-[#ff5e3b]');
   } else{
     btn_botones.classList.remove('bg-[#ff5e3b]');
-  }
-}
-
-function sujetador() {
-  if(!btn_sujetador.classList.contains('bg-[#ff5e3b]')){
-    btn_elasticos.classList.remove('bg-[#ff5e3b]');
-    btn_hilos.classList.remove('bg-[#ff5e3b]');
-    btn_cordones.classList.remove('bg-[#ff5e3b]');
-    btn_botones.classList.remove('bg-[#ff5e3b]');
-    btn_ajustador.classList.remove('bg-[#ff5e3b]');
-    btn_etiquetas.classList.remove('bg-[#ff5e3b]');
-    btn_sujetador.classList.add('bg-[#ff5e3b]');
-  } else{
-    btn_sujetador.classList.remove('bg-[#ff5e3b]');
   }
 }
 
@@ -107,7 +88,7 @@ function ajustador() {
     btn_hilos.classList.remove('bg-[#ff5e3b]');
     btn_cordones.classList.remove('bg-[#ff5e3b]');
     btn_botones.classList.remove('bg-[#ff5e3b]');
-    btn_sujetador.classList.remove('bg-[#ff5e3b]');
+    .classList.remove('bg-[#ff5e3b]');
     btn_etiquetas.classList.remove('bg-[#ff5e3b]');
     btn_ajustador.classList.add('bg-[#ff5e3b]');
   } else{
@@ -121,7 +102,6 @@ function etiquetas() {
     btn_hilos.classList.remove('bg-[#ff5e3b]');
     btn_cordones.classList.remove('bg-[#ff5e3b]');
     btn_botones.classList.remove('bg-[#ff5e3b]');
-    btn_sujetador.classList.remove('bg-[#ff5e3b]');
     btn_ajustador.classList.remove('bg-[#ff5e3b]');
     btn_etiquetas.classList.add('bg-[#ff5e3b]');
   } else{
@@ -133,7 +113,6 @@ btn_elasticos.addEventListener('click', elasticos);
 btn_hilos.addEventListener('click', hilos);
 btn_cordones.addEventListener('click', cordones);
 btn_botones.addEventListener('click', botones);
-btn_sujetador.addEventListener('click', sujetador);
 btn_ajustador.addEventListener('click', ajustador);
 btn_etiquetas.addEventListener('click', etiquetas);
 

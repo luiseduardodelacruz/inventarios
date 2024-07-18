@@ -7,5 +7,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import rubertsdenim.inventarios.model.Producto;
 
 public interface ProductoRepositorio extends MongoRepository<Producto, ObjectId>{
-    List<Producto> findByNombreRegexOrCategoriaRegexOrColorRegexOrCantidadRegex(String nombre, String categoria, String color, String cantidad);
+    List<Producto> findByNombreRegexOrCategoriaRegexOrColorRegex(String nombre, String categoria, String color);
+    List<Producto> findByCantidad(int cantidad);
+    List<Producto> findByCategoria(String categoria);
 }
