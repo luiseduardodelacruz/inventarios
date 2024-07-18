@@ -187,7 +187,14 @@ document.getElementById('confirmDeleteProductBtn').addEventListener('click', fun
   })
   .then(data => {
       console.log('Producto eliminado:', data);
-      window.location.href = '/inventario'; // Redirigir a la página de inventario después de eliminar
+      
+      // Eliminar el producto de la lista en el frontend
+      const productos = document.querySelectorAll('.producto');
+      productos.forEach(producto => {
+          if (producto.dataset.productId === productIdToDelete) {
+              producto.remove();
+          }
+      });
   })
   .catch(error => {
       console.error('Error:', error);
