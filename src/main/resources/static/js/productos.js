@@ -23,97 +23,53 @@ btn_mostrar.addEventListener('click', mostrar);
 btn_ocultar.addEventListener('click', ocultar);
 
 //Funcionalidad Botones Drawer
-const btn_elasticos = document.getElementById('btn_elasticos');
-const btn_hilos = document.getElementById('btn_hilos');
-const btn_cordones = document.getElementById('btn_cordones');
-const btn_botones = document.getElementById('btn_botones');
-const btn_ajustador = document.getElementById('btn_ajustador');
-const btn_etiquetas = document.getElementById('btn_etiquetas');
+const categorias = [
+  { id: 'btn_all_productos', categoria: '' },
+  { id: 'btn_elasticos', categoria: 'elasticos' },
+  { id: 'btn_hilos', categoria: 'hilos' },
+  { id: 'btn_cordones', categoria: 'cordones' },
+  { id: 'btn_botones', categoria: 'botones' },
+  { id: 'btn_remaches', categoria: 'remaches' },
+  { id: 'btn_ajustador', categoria: 'ajustador' },
+  { id: 'btn_etiquetas', categoria: 'etiquetas' },
+  { id: 'btn_serilleras', categoria: 'serilleras' },
+  { id: 'btn_cierres', categoria: 'cierres' }
+];
 
-function elasticos() {
-  if(!btn_elasticos.classList.contains('bg-[#ff5e3b]')){
-    btn_hilos.classList.remove('bg-[#ff5e3b]');
-    btn_cordones.classList.remove('bg-[#ff5e3b]');
-    btn_botones.classList.remove('bg-[#ff5e3b]');
-    btn_ajustador.classList.remove('bg-[#ff5e3b]');
-    btn_etiquetas.classList.remove('bg-[#ff5e3b]');
-    btn_elasticos.classList.add('bg-[#ff5e3b]');
-  } else{
-    btn_elasticos.classList.remove('bg-[#ff5e3b]');
+function removerClasesBackground() {
+  categorias.forEach(item => {
+    const btn = document.getElementById(item.id);
+    btn.classList.remove('bg-[#ff5e3b]');
+  });
+}
+
+function alternarFondo(btn) {
+  if (!btn.classList.contains('bg-[#ff5e3b]')) {
+    removerClasesBackground();
+    btn.classList.add('bg-[#ff5e3b]');
+  } else {
+    btn.classList.remove('bg-[#ff5e3b]');
   }
 }
 
-function hilos() {
-  if(!btn_hilos.classList.contains('bg-[#ff5e3b]')){
-    btn_elasticos.classList.remove('bg-[#ff5e3b]');
-    btn_cordones.classList.remove('bg-[#ff5e3b]');
-    btn_botones.classList.remove('bg-[#ff5e3b]');
-    btn_ajustador.classList.remove('bg-[#ff5e3b]');
-    btn_etiquetas.classList.remove('bg-[#ff5e3b]');
-    btn_hilos.classList.add('bg-[#ff5e3b]');
-  } else{
-    btn_hilos.classList.remove('bg-[#ff5e3b]');
-  }
+function clickBotonFiltrar(categoria) {
+  return function() {
+    buscarPorCategoria(categoria);
+    alternarFondo(this);
+  };
 }
 
-function cordones() {
-  if(!btn_cordones.classList.contains('bg-[#ff5e3b]')){
-    btn_elasticos.classList.remove('bg-[#ff5e3b]');
-    btn_hilos.classList.remove('bg-[#ff5e3b]');
-    btn_botones.classList.remove('bg-[#ff5e3b]');
-    btn_ajustador.classList.remove('bg-[#ff5e3b]');
-    btn_etiquetas.classList.remove('bg-[#ff5e3b]');
-    btn_cordones.classList.add('bg-[#ff5e3b]');
-  } else{
-    btn_cordones.classList.remove('bg-[#ff5e3b]');
-  }
+function buscarPorCategoria(categoria) {
+  const url = new URL(window.location.href);
+  url.searchParams.set('palabraClave', categoria);
+
+  window.location.href = url.toString();
 }
 
-function botones() {
-  if(!btn_botones.classList.contains('bg-[#ff5e3b]')){
-    btn_elasticos.classList.remove('bg-[#ff5e3b]');
-    btn_hilos.classList.remove('bg-[#ff5e3b]');
-    btn_cordones.classList.remove('bg-[#ff5e3b]');
-    btn_ajustador.classList.remove('bg-[#ff5e3b]');
-    btn_etiquetas.classList.remove('bg-[#ff5e3b]');
-    btn_botones.classList.add('bg-[#ff5e3b]');
-  } else{
-    btn_botones.classList.remove('bg-[#ff5e3b]');
-  }
-}
-
-function ajustador() {
-  if(!btn_ajustador.classList.contains('bg-[#ff5e3b]')){
-    btn_elasticos.classList.remove('bg-[#ff5e3b]');
-    btn_hilos.classList.remove('bg-[#ff5e3b]');
-    btn_cordones.classList.remove('bg-[#ff5e3b]');
-    btn_botones.classList.remove('bg-[#ff5e3b]');
-    btn_etiquetas.classList.remove('bg-[#ff5e3b]');
-    btn_ajustador.classList.add('bg-[#ff5e3b]');
-  } else{
-    btn_ajustador.classList.remove('bg-[#ff5e3b]');
-  }
-}
-
-function etiquetas() {
-  if(!btn_etiquetas.classList.contains('bg-[#ff5e3b]')){
-    btn_elasticos.classList.remove('bg-[#ff5e3b]');
-    btn_hilos.classList.remove('bg-[#ff5e3b]');
-    btn_cordones.classList.remove('bg-[#ff5e3b]');
-    btn_botones.classList.remove('bg-[#ff5e3b]');
-    btn_ajustador.classList.remove('bg-[#ff5e3b]');
-    btn_etiquetas.classList.add('bg-[#ff5e3b]');
-  } else{
-    btn_etiquetas.classList.remove('bg-[#ff5e3b]');
-  }
-}
-
-btn_elasticos.addEventListener('click', elasticos);
-btn_hilos.addEventListener('click', hilos);
-btn_cordones.addEventListener('click', cordones);
-btn_botones.addEventListener('click', botones);
-btn_ajustador.addEventListener('click', ajustador);
-btn_etiquetas.addEventListener('click', etiquetas);
+categorias.forEach(item => {
+  const btn = document.getElementById(item.id);
+  btn.addEventListener('click', clickBotonFiltrar(item.categoria));
+});
 
 // Funcionalidad Modal Agregar Productos
 const abrir_agregar_producto = document.getElementById('abrir_agregar_producto');
