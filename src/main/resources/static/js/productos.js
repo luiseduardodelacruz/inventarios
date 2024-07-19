@@ -88,7 +88,6 @@ function ajustador() {
     btn_hilos.classList.remove('bg-[#ff5e3b]');
     btn_cordones.classList.remove('bg-[#ff5e3b]');
     btn_botones.classList.remove('bg-[#ff5e3b]');
-    .classList.remove('bg-[#ff5e3b]');
     btn_etiquetas.classList.remove('bg-[#ff5e3b]');
     btn_ajustador.classList.add('bg-[#ff5e3b]');
   } else{
