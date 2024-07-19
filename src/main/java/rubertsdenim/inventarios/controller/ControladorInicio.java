@@ -25,7 +25,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import rubertsdenim.inventarios.model.Categoria;
 import rubertsdenim.inventarios.model.Producto;
+import rubertsdenim.inventarios.repository.CategoriaRepositorio;
 import rubertsdenim.inventarios.service.ProductoServicio;
 
 @Controller
@@ -34,17 +36,24 @@ public class ControladorInicio {
     @Autowired
     private ProductoServicio productoServicio;
 
+    @Autowired
+    private CategoriaRepositorio categoriaRepositorio;
+
     @Value("${imgbb.ApiKey}")
     private String imgbbApiKey;
 
     @GetMapping("/inventario")
     public String verInventario(Model model, @RequestParam(name = "palabraClave", required = false) String palabraClave){
         List<Producto> productos;
+        List<Categoria> categorias = categoriaRepositorio.findAll();
+
         if (palabraClave != null && !palabraClave.isEmpty()) {
             productos = productoServicio.listarProductos(palabraClave);
         } else {
             productos = productoServicio.listarProductos(); // Lista todos si no hay palabra clave
         }
+
+        model.addAttribute("categorias", categorias);
         model.addAttribute("productos", productos);
         model.addAttribute("producto", new Producto());
         return "inventario";
