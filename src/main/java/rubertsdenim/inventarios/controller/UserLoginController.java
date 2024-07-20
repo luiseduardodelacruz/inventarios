@@ -41,12 +41,12 @@ public class UserLoginController {
                 }
             } else {
                 // La contraseña no coincide
-                model.addAttribute("error", "Contraseña incorrecta.");
+                model.addAttribute("error", "Usuario o contraseña incorrectos.");
                 return "login";
             }
         } else {
             // El usuario no existe
-            model.addAttribute("error", "El usuario no existe.");
+            model.addAttribute("error", "Usuario o contraseña incorrectos.");
             return "login";
         }
     }
