@@ -47,8 +47,10 @@ function alternarFondo(btn) {
   if (!btn.classList.contains('bg-[#ff5e3b]')) {
     removerClasesBackground();
     btn.classList.add('bg-[#ff5e3b]');
+    localStorage.setItem('categoriaSeleccionada', btn.id);
   } else {
     btn.classList.remove('bg-[#ff5e3b]');
+    localStorage.removeItem('categoriaSeleccionada');
   }
 }
 
@@ -65,6 +67,16 @@ function buscarPorCategoria(categoria) {
 
   window.location.href = url.toString();
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  const categoriaGuardada = localStorage.getItem('categoriaSeleccionada');
+  if (categoriaGuardada) {
+    const btnGuardado = document.getElementById(categoriaGuardada);
+    if (btnGuardado) {
+      btnGuardado.classList.add('bg-[#ff5e3b]');
+    }
+  }
+});
 
 categorias.forEach(item => {
   const btn = document.getElementById(item.id);
