@@ -163,10 +163,27 @@
 
                             <div class="px-4 md:px-12 flex justify-center">
                                 <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
+                                    <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Imagen:</p>
+                                    <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full bg-[#db4900] border border-[#da6930] rounded-3xl focus:ring-transparent focus:border-transparent flex py-1 md:py-1.5 lg:py-1.5 xl:py-2 px-2 md:px-2 lg:px-2 xl:px-3">
+                                        <div id="imagen-previa" class="mt-1 md:mt-0 w-6 h-6 md:w-7 md:h-7 flex-shrink-0 overflow-hidden rounded-md">
+                                            <svg class="w-6 h-6 md:w-7 md:h-7 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><g fill="none">
+                                                <path fill="white" d="M44 24C44 22.8954 43.1046 22 42 22C40.8954 22 40 22.8954 40 24H44ZM24 8C25.1046 8 26 7.10457 26 6C26 4.89543 25.1046 4 24 4V8ZM39 40H9V44H39V40ZM8 39V9H4V39H8ZM40 24V39H44V24H40ZM9 8H24V4H9V8ZM9 40C8.44772 40 8 39.5523 8 39H4C4 41.7614 6.23857 44 9 44V40ZM39 44C41.7614 44 44 41.7614 44 39H40C40 39.5523 39.5523 40 39 40V44ZM8 9C8 8.44772 8.44771 8 9 8V4C6.23858 4 4 6.23857 4 9H8Z"/><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M6 35L16.6931 25.198C17.4389 24.5143 18.5779 24.4953 19.3461 25.1538L32 36"/><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M28 31L32.7735 26.2265C33.4772 25.5228 34.5914 25.4436 35.3877 26.0408L42 31"/>
+                                                <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M37 18L37 6"/><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M32 11L37 6L42 11"/></g>
+                                            </svg>
+                                        </div>
+                                        <p id="nombre_archivo" class="block text-xs md:text-xs lg:text-xs xl:text-sm fuente_2 text-white pl-1 overflow-hidden place-self-center">Seleccione un Archivo</p>
+                                        <input id="archivo" name="imagenArchivo" type="file" onchange="validarTamanioImagen(this)" accept="image/jpeg, image/png" class="absolute inset-0 opacity-0 cursor-pointer" required> 
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="justify-center text-center fuente_5"><span id="mensaje-error" class="text-red-500"></span></p>
+                            
+                            <div class="px-4 md:px-12 flex justify-center">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
                                     <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Categoria:</p>
                                     <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                         <div id="opcion_seleccionada_categoria_agregar_producto" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                            <span class="px-1">Seleccionar</span>
+                                            <span id="span_categoria" class="px-1">Seleccionar</span>
                                             <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
                                         </div>
                                         <div id="opciones_categoria_agregar_producto" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
@@ -192,54 +209,8 @@
                                 </div>
                             </div>
 
-                            <div class="px-4 md:px-12 flex justify-center">
-                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
-                                    <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Imagen:</p>
-                                    <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full bg-[#db4900] border border-[#da6930] rounded-3xl focus:ring-transparent focus:border-transparent flex py-1 md:py-1.5 lg:py-1.5 xl:py-2 px-2 md:px-2 lg:px-2 xl:px-3">
-                                        <div id="imagen-previa" class="mt-1 md:mt-0 w-6 h-6 md:w-7 md:h-7 flex-shrink-0 overflow-hidden rounded-md">
-                                            <svg class="w-6 h-6 md:w-7 md:h-7 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><g fill="none">
-                                                <path fill="white" d="M44 24C44 22.8954 43.1046 22 42 22C40.8954 22 40 22.8954 40 24H44ZM24 8C25.1046 8 26 7.10457 26 6C26 4.89543 25.1046 4 24 4V8ZM39 40H9V44H39V40ZM8 39V9H4V39H8ZM40 24V39H44V24H40ZM9 8H24V4H9V8ZM9 40C8.44772 40 8 39.5523 8 39H4C4 41.7614 6.23857 44 9 44V40ZM39 44C41.7614 44 44 41.7614 44 39H40C40 39.5523 39.5523 40 39 40V44ZM8 9C8 8.44772 8.44771 8 9 8V4C6.23858 4 4 6.23857 4 9H8Z"/><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M6 35L16.6931 25.198C17.4389 24.5143 18.5779 24.4953 19.3461 25.1538L32 36"/><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M28 31L32.7735 26.2265C33.4772 25.5228 34.5914 25.4436 35.3877 26.0408L42 31"/>
-                                                <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M37 18L37 6"/><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M32 11L37 6L42 11"/></g>
-                                            </svg>
-                                        </div>
-                                        <p id="nombre_archivo" class="block text-xs md:text-xs lg:text-xs xl:text-sm fuente_2 text-white pl-1 overflow-hidden place-self-center">Seleccione un Archivo</p>
-                                        <input id="archivo" name="imagenArchivo" type="file" onchange="validarTamanioImagen(this)" accept="image/jpeg, image/png" class="absolute inset-0 opacity-0 cursor-pointer" required> 
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="justify-center text-center fuente_5"><span id="mensaje-error" class="text-red-500"></span></p>
-                            <div class="px-4 md:px-12 flex justify-center">
-                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
-                                    <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Cantidad:</p>
-                                    <input type="number" id="cantidad" th:field="*{cantidad}" class="col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-base md:text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-1.5 px-3 md:p-1.5 md:px-3 lg:p-1.5 lg:px-3 xl:p-2 xl:px-3" required />
-                                </div>
-                            </div>
-
-                            <div class="px-4 md:px-12 flex justify-center">
-                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
-                                    <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Color:</p>
-                                    <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
-                                        <div id="opcion_seleccionada_color_agregar_producto" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                            <span class="px-1">Seleccionar</span>
-                                            <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
-                                        </div>
-                                        <div id="opciones_color_agregar_producto" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
-                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="blanco">Blanco</div>
-                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="negro">Negro</div>
-                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="verde">Verde</div>
-                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="azul_marino">Azul Marino</div>
-                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="rosa">Rosa</div>
-                                        </div>
-                                        <select id="valores_color_agregar_producto" th:field="*{color}" class="hidden" required>
-                                            <option value="" selected>Seleccionar</option>
-                                            <option value="blanco">Blanco</option>
-                                            <option value="negro">Negro</option>
-                                            <option value="verde">Verde</option>
-                                            <option value="azul_marino">Azul Marino</option>
-                                            <option value="rosa">Rosa</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <div id="campos_dinamicos_agregar_productos">
+                                
                             </div>
 
                             <div class="flex justify-evenly mt-6 mb-3 lg:mb-4">
@@ -256,7 +227,7 @@
                 <div id="eliminar_producto" class="fixed inset-0 z-50 hidden transition-transform duration-1000 ease-in-out flex items-center justify-center bg-gray-800 bg-opacity-50">
                     <div class="w-full max-w-[90vw] md:max-w-lg lg:max-w-lg xl:max-w-xl p-4 md:p-5 lg:p-5 xl:p-6 bg-[#faad86] rounded-[45px] shadow-lg">
                         <div class="grid grid-cols-12 start-0 flex items-stretch">
-                            <p class="text-base md:text-2xl lg:text-2xl xl:text-3xl px-5 fuente_4 text-white col-span-11 text-center place-self-center justify-self-center">¿Está Seguro de Eliminar <span id="nombre_producto"></span> del Inventario?</p>
+                            <p class="text-base md:text-2xl lg:text-2xl xl:text-3xl px-5 fuente_4 text-white col-span-11 text-center place-self-center justify-self-center">¿Está Seguro de Eliminar <span id="nombre_producto" class="capitalize"></span> del Inventario?</p>
                             <button id="cerrar_eliminar_producto" type="button" class="inline-flex col-span-1 place-self-center justify-self-end text-white p-0.5 hover:bg-gray-600 hover:bg-opacity-10 rounded-xl">
                                 <svg class="w-9 h-9 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-12 xl:h-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m14 10l-4 4m0-4l4 4"/></g>
                                 </svg>
@@ -281,6 +252,7 @@
     
     <script src="/js/confirmarEliminacion.js"></script>
     <script src="/js/productos.js"></script>
+    <script src="/js/agregarProductos.js"></script>
     <script src="/js/imagenPrevia.js"></script>
     <script src="/js/cerrarModal.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
