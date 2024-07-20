@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -38,8 +40,17 @@ public class UserController {
     private String imgbbApiKey;
 
     @GetMapping("/usuarios")
-    public String viewUsers(Model model) {
+    public String viewUsers(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/inicio-sesion";
+        }
+        if (!"ADMIN".equals(user.getRole())){
+            return "redirect:/inventario";
+        }
+
         List<User> users = userRepository.findByRoleNot("ADMIN");
+        
         model.addAttribute("users", users);
         model.addAttribute("user", new User());
         return "users";

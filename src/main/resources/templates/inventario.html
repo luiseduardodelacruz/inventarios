@@ -15,7 +15,7 @@
     <!-- Elemento Nav Bar -->
     <nav>
         <div class="grid grid-cols-2 bg-[#e2aa80] bg-opacity-45 w-full start-0 px-[10%] md:px-[5%] items-stretch h-[10vh] sm:h-[10vw] md:h-[9vw] lg:h-[8vw] xl:h-[7vw] 2xl:h-[6vw] rounded-b-full">
-            <div class="grid-span-1 self-center justify-self-start">
+            <div th:if="${usuario.role == 'ADMIN'}" class="grid-span-1 self-center justify-self-start">
                 <a th:href="@{/usuarios}">
                     <button type="button" class="flex items-center justify-center px-[4vw] sm:px-[3.5vw] md:px-[3vw] lg:px-[2.5vw] xl:px-[2vw] text-white bg-[#ff8a00] fuente_1 hover:bg-[#ff9b00] focus:ring-4 focus:outline-none focus:ring-[#ffac00] rounded-3xl text-xs sm:text-sm md:text-base lg:text-base xl:text-xl mr-[20%] sm:mr-[0%] py-2 sm:py-3 text-center">VER USUARIOS 
                         <svg xmlns="http://www.w3.org/2000/svg" class="ml-[1.15vw] sm:ml-[0.85vw] xl:ml-[0.45vw] h-[19px] w-[19px] md:h-[18px] md:w-[18px] lg:h-[22px] lg:w-[22px]" viewBox="0 0 512 512">
@@ -86,7 +86,7 @@
             
             <!-- Elemento Principal Productos -->
             <div class="flex flex-wrap justify-evenly ml-[10%] md:ml-[6%] lg:ml-[4.5%] xl:ml-[18%] 2xl:ml-[15%]">
-                <div class="mb-2 mt-3 xl:mb-4 xl:mt-5 pt-[9vw] md:pt-[6vw] lg:pt-[5vw] w-[39vw] md:w-[26vw] lg:w-[21vw] xl:w-[22vw] 2xl:w-[18vw] mx-[1vw] my-[1vw]">
+                <div th:if="${usuario.role == 'ADMIN'}" class="mb-2 mt-3 xl:mb-4 xl:mt-5 pt-[9vw] md:pt-[6vw] lg:pt-[5vw] w-[39vw] md:w-[26vw] lg:w-[21vw] xl:w-[22vw] 2xl:w-[18vw] mx-[1vw] my-[1vw]">
                     <div class="bg-[#e8763d] rounded-t-[45px]">
                         <div class="relative flex justify-center">
                             <div class="absolute flex justify-center w-full -top-[9vw] md:-top-[6vw] lg:-top-[5vw] h-[16vw] md:h-[10vw] lg:h-[8vw] rounded-3xl">
@@ -101,7 +101,7 @@
                                 <p class="flex justify-center text-center fuente_2 text-xs md:text-sm lg:text-sm xl:text-base text-white">Tamaño</p>
                             </div>
                             <div class="flex justify-center">
-                                <button id="abrir_agregar_producto" type="button" class="mt-2 px-[1.5vw] md:px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#ff5500] focus:ring-4 focus:outline-none focus:ring-[#da6930] rounded-3xl text-xs md:text-base lg:text-base xl:text-xl py-1 text-center">AGREGAR</button>
+                                <button onclick="openModalProductAdd()" type="button" class="mt-2 px-[1.5vw] md:px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#ff5500] focus:ring-4 focus:outline-none focus:ring-[#da6930] rounded-3xl text-xs md:text-base lg:text-base xl:text-xl py-1 text-center">AGREGAR</button>
                             </div>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                                 <p class="text-center fuente_2 text-xs md:text-sm lg:text-sm xl:text-base text-white">Cantidad: <span th:text="${producto.cantidad}" class="ml-1 md:ml-3 text-justify fuente_5 text-white"></span></p>
                                 <p class="text-center fuente_2 text-xs md:text-sm lg:text-sm xl:text-base text-white">Categoría: <span th:text="${producto.categoria}" class="capitalize ml-1 md:ml-3 text-justify fuente_5 text-white"></span></p> 
                             </div>
-                            <div class="flex justify-evenly mt-2">
+                            <div th:if="${usuario.role == 'ADMIN'}"class="flex justify-evenly mt-2">
                                 <a th:href="@{/inventario/update/{id}(id=${producto.idProducto})}" >
                                     <button type="button" class="px-[1.5vw] md:px-[1vw] text-white bg-[#ff8a00] fuente_1 hover:bg-[#ff9b00] focus:ring-4 focus:outline-none focus:ring-[#ffac00] rounded-3xl text-xs md:text-base lg:text-base xl:text-xl py-1 text-center">EDITAR</button>
                                 </a>

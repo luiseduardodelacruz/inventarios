@@ -37,7 +37,7 @@ public class UserLoginController {
                 if ("ADMIN".equals(existingUser.getRole())) {
                     return "redirect:/inventario";
                 } else {
-                    return "user-dashboard";
+                    return "redirect:/inventario";
                 }
             } else {
                 // La contraseña no coincide

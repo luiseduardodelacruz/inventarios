@@ -84,13 +84,12 @@ categorias.forEach(item => {
 });
 
 // Funcionalidad Modal Agregar Productos
-const abrir_agregar_producto = document.getElementById('abrir_agregar_producto');
 const cerrar_agregar_producto = document.getElementById('cerrar_agregar_producto');
 const agregar_producto = document.getElementById('agregar_producto');
 
-abrir_agregar_producto.addEventListener('click', () => {
+function openModalProductAdd(){
   agregar_producto.classList.remove('hidden');
-});
+}
 
 cerrar_agregar_producto.addEventListener('click', () => {
   agregar_producto.classList.add('hidden');

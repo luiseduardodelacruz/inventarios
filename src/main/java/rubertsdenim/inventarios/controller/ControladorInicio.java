@@ -11,6 +11,8 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.json.JSONObject;
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -27,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import rubertsdenim.inventarios.model.Categoria;
 import rubertsdenim.inventarios.model.Producto;
+import rubertsdenim.inventarios.model.User;
 import rubertsdenim.inventarios.repository.CategoriaRepositorio;
 import rubertsdenim.inventarios.service.ProductoServicio;
 
@@ -43,7 +46,12 @@ public class ControladorInicio {
     private String imgbbApiKey;
 
     @GetMapping("/inventario")
-    public String verInventario(Model model, @RequestParam(name = "palabraClave", required = false) String palabraClave){
+    public String verInventario(Model model, HttpSession session, @RequestParam(name = "palabraClave", required = false) String palabraClave){
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/inicio-sesion";
+        }
+
         List<Producto> productos;
         List<Categoria> categorias = categoriaRepositorio.findAll();
 
@@ -56,6 +64,7 @@ public class ControladorInicio {
         model.addAttribute("categorias", categorias);
         model.addAttribute("productos", productos);
         model.addAttribute("producto", new Producto());
+        model.addAttribute("usuario", user);
         return "inventario";
     }
 
