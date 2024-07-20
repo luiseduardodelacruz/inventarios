@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Search Example</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-800">
+
+    <div class="  container max-w-full  flex-grow  border border-orange-200 rounded-t-3xl shadow-lg sm:p-6 md:p-8 bg-opacity-80 bg-[#f2c8ad] ">
+
+        <!-- División en 3 columnas -->
+        <div class="flex justify-center ">
+    
+            <!-- Columna izquierda -->
+            <div class="w-[70vh] md:w-[30vh] lg:w-[40vh] 2xl:w-[70vh] h-full flex justify-center p-4">
+                <div class="w-full max-w-md  p-6 border border-orange-200 rounded-[45px] shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900]  mt-10">
+                    <form class="space-y-4">
+                        <div>
+                            <label for="descripcion" class="block mb-1 text-sm font-medium text-white-900 text-white mt-5">Descripción</label>
+                            <input type="text" name="descripcion" id="descripcion" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block  w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900] mb-2" placeholder="" required />
+                        </div>
+                        <div>
+                            <label for="Estilos" class="block mb-1 text-sm font-medium text-white-900 text-white">Estilos</label>
+                            <input type="text" name="Estilos" id="Estilos" placeholder="" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block  w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900] mb-2" required />
+                        </div>
+                        <div>
+                            <form class="block mb-1 text-sm font-medium text-white-900">
+                                <label for="Categoria" class="block mb-1 text-sm font-medium text-white-900 text-white">Categoría</label>
+                                <select id="Categoria" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900] mb-2">
+                                    <option selected disabled></option>
+                                    <option value="moda">Moda</option>
+                                    <option value="pantalon">Pantalón</option>
+                                </select>
+                            </form>
+                        </div>
+                        <div>
+                            <div id="fitSelect" class="hidden">
+                                <form class="block mb-1 text-sm font-medium text-white-900">
+                                    <label for="Fit" class="block mb-1 text-sm font-medium text-white-900 text-white">Fit</label>
+                                    <select id="Fit" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900] mb-2">
+                                        <option selected disabled>Selecciona un ajuste</option>
+                                    </select>
+                                </form>
+                            </div>
+                        </div>
+                        <div>
+                            <form class="block mb-1 text-sm font-medium text-white-900">
+                                <label for="Provedor" class="block mb-1 text-sm font-medium text-white-900 text-white">Provedor</label>
+                                <select id="Provedor" class=" border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block  w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900] mb-2" placeholder="">
+                                <option selected disabled></option>
+                                <option value="Provedor1">Provedor</option>
+                            
+                                </select>
+                            </form>
+                        </div>
+                        <div>
+                            <label for="Tallas" class="block mb-1 text-sm font-medium text-white-900 text-white">Tallas</label>
+                            <input type="text" name="Tallas" id="Tallas" placeholder="" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block  w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900] mb-2" required />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            
+            
+    
+            <!-- Columna central (imagen) -->
+            <div class="w-1/3 p-4 flex flex-col items-center md:w-[30vh] lg:w-[45vh] xl:w-[50vh] 2xl:w-[70vh] ml-6">
+                            
+                <div class="flex items-center justify-center w-full">
+                    <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-orange-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 relative">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                            </svg>
+                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center font-normal"><span class="font-semibold text-[#db4900]">Click para subir</span> o arrastra la imagen</p>
+                            <p class="mb-2 text-[12px] text-gray-500 dark:text-gray-200 text-center font-normal">PNG, JPG menor a 10MB</p>
+                        </div>
+                        <input id="dropzone-file" type="file" class="hidden" />
+                        <div id="preview" class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none rounded-lg">
+                            
+                        </div>
+                    </label>
+                </div>
+    
+            
+                <div class="w-full max-w-md  p-6 border border-orange-200 rounded-[45px] shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900]  mt-10">
+                    <form class="space-y-4">
+                        
+                        <div>
+                            <label for="tela" class="block mb-1 text-sm font-medium text-white-900 text-white">Tela</label>
+                            <input type="text" name="tela" id="tela" placeholder="" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block  w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900] mb-2" required />
+                        </div>
+                        <div>
+                            <form class="block mb-1 text-sm font-medium text-white-900">
+                                <label for="lavado_procesado" class="block mb-1 text-sm font-medium text-white-900 text-white">Lavado y Procesado:</label>
+                                <select id="countries" class=" border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block  w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900] mb-2" placeholder="">
+                                <option selected disabled></option>
+                                <option value="linch">Blinch</option>
+                                <option value="stone_medio">Stone medio</option>
+                                <option value="stone_alto">Stone alto</option>
+                                <option value="suavisado">Suavisado</option>
+                                <option value="bebas">Bebas</option>
+                                </select>
+                            </form>
+                        </div>
+                        <div id="botonSelect">
+                            <form class="block mb-1 text-sm font-medium text-white-900">
+                                <label id="botonLabel" for="Boton" class="block mb-1 text-sm font-medium text-white-900 text-white ">Botón</label>
+                                <select id="Boton" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900] mb-2">
+                                    <option selected disabled></option>
+                                    <option value="boton">Botón</option>
+                                </select>
+                            </form>
+                        </div>
+                        <div>
+                            <label for="hilo" class="block mb-1 text-sm font-medium text-white-900 text-white">Hilo</label>
+                            <input type="text" name="hilo" id="hilo" placeholder="" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block  w-full p-2.5 dark:bg-orange-600 dark:border-orange-500 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900] mb-2" required />
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+            
+    
+            <!-- Columna derecha -->
+            
+    
+             <div class="w-1/3 p-4 flex justify-center flex-col items-center ">
+        
+             
+                <div class="lg:w-[20vh] md:w-[20vh] xl:w-[30vh] lg:w-[30vh] 2xl:w-[30vh] w-[13vh] max-w-lg p-6 border border-orange-200 rounded-[45px] shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900] overflow-auto h-96" id="imageContainer">
+                    <label for="numImagesSelect" class="block mb-1 text-sm font-medium text-center text-gray-900 text-white">Etiquetado</label>
+                    <select id="numImagesSelect" class="w-full py-2 border-gray-300 rounded-3xl shadow-sm focus:ring-[#db4900] focus:border-[#db4900] sm:text-sm bg-white text-gray-900">
+                        <option selected disabled hidden>Selecciona el número de etiquetas</option>
+                        <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="1">1</option>
+                        <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="2">2</option>
+                        <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="3">3</option>
+                        <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="4">4</option>
+                        <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="5">5</option>
+                    </select>
+    
+                    
+    
+    
+                </div> 
+            
+       
+                <div class="flex justify-center mt-4">
+                  
+                  <button type="submit" class="w-28 lg:w-[20vh]  xl:w-35 2xl:w-40 py-4 text-white bg-[#db4900] hover:bg-[#ff5500] focus:ring-4 focus:ring-[#e8763d] focus:outline-none font-medium rounded-3xl text-sm dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">
+                    Guardar
+                  </button>
+                </div>
+            
+                <div class="flex justify-center mt-4">
+                  
+                  <button type="button" class="w-28 lg:w-[20vh] 2xl:w-40 py-4 text-white bg-[#db4900] hover:bg-[#ff5500] focus:ring-4 focus:ring-[#e8763d] focus:outline-none font-medium rounded-3xl text-sm dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">
+                    Borrar
+                  </button>
+                </div>
+                
+            </div> 
+            
+    
+        </div>
+    
+    </div>
+
+</body>
+
+
+</html>
