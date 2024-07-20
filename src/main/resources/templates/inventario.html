@@ -41,7 +41,7 @@
 
             <!-- Elemento Drawer -->
             <div class="absolute inset-0 flex items-center justify-center xl:mt-[7vw] xl:md-[7vw] 2xl:mt-[6vw] 2xl:md-[6vw] w-[0%] md:w-[0%] lg:w-[0%] xl:w-[18%] 2xl:w-[15%]">
-                <div id="drawer" class="grid grid-cols-12 fixed left-0 z-40 pt-6 pr-2 pb-6 pl-6 md:pt-6 md:pr-2 md:pb-6 md:pl-6 lg:pt-6 lg:pr-2 lg:pb-6 lg:pl-6 xl:px-6 py-9 bg-[#ef986d] rounded-3xl transition-transform duration-300 ease-in-out sm:-translate-x-[0%] sm:w-[50%] -translate-x-[82.5%] w-[60%] md:-translate-x-[82.5%] md:w-[35%] lg:-translate-x-[82.5%] lg:w-[25%] xl:-translate-x-[0%] xl:w-[18%] 2xl:-translate-x-[0%] 2xl:w-[15%]">             
+                <div id="drawer" class="grid grid-cols-12 fixed left-0 z-40 pt-6 pr-2 pb-6 pl-6 md:pt-6 md:pr-2 md:pb-6 md:pl-6 lg:pt-6 lg:pr-2 lg:pb-6 lg:pl-6 xl:px-6 py-9 bg-[#ef986d] rounded-3xl transition-transform duration-300 ease-in-out -translate-x-[82.5%] w-[60%] md:-translate-x-[82.5%] md:w-[35%] lg:-translate-x-[82.5%] lg:w-[25%] xl:-translate-x-[0%] xl:w-[18%] 2xl:-translate-x-[0%] 2xl:w-[15%]">             
                     <div class="col-span-10 md:col-span-10 lg:col-span-10 xl:col-span-12">
                         <div class="">
                             <div class="flex">
@@ -191,9 +191,11 @@
                                             <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="hilos">Hilos</div>
                                             <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="cordones">Cordones</div>
                                             <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="botones">Botones</div>
-                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="sujetador">Sujetador</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="remaches">Remaches</div>
                                             <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="ajustador">Ajustador</div>
                                             <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="etiquetas">Etiquetas</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="cerilleras">Cerilleras</div>
+                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="cierres">Cierres</div>
                                         </div>
                                         <select id="valores_categoria_agregar_producto" th:field="*{categoria}" class="hidden" required>
                                             <option value="" selected>Seleccionar</option>
@@ -201,9 +203,11 @@
                                             <option value="hilos">Hilos</option>
                                             <option value="cordones">Cordones</option>
                                             <option value="botones">Botones</option>
-                                            <option value="sujetador">Sujetador</option>
+                                            <option value="remaches">Remaches</option>
                                             <option value="ajustador">Ajustador</option>
                                             <option value="etiquetas">Etiquetas</option>
+                                            <option value="cerilleras">Cerilleras</option>
+                                            <option value="cierres">Cierres</option>
                                         </select>
                                     </div>
                                 </div>

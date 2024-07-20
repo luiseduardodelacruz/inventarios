@@ -219,7 +219,8 @@ document.addEventListener('DOMContentLoaded', function() {
       selectColorAgregarProductosCordones();
     } else if (categoria === 'botones') {
       selectTipoAgregarProductosBotones();
-      selectColorAgregarProductosBotones();
+      selectColorOpcion1AgregarProductosBotones()
+      selectColorOpcion2AgregarProductosBotones()
       selectTamanoAgregarProductosBotones();
     }
   });
@@ -413,29 +414,56 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Funcionalidad Select Color Agregar Productos Botones
-  function selectColorAgregarProductosBotones() {
-    const opcion_seleccionada_color_agregar_producto_botones = document.getElementById('opcion_seleccionada_color_agregar_producto_botones');
-    const opciones_color_agregar_producto_botones = document.getElementById('opciones_color_agregar_producto_botones');
-    const valores_color_agregar_producto_botones = document.getElementById('valores_color_agregar_producto_botones');
-    const selector_color_agregar_producto_botones = document.querySelectorAll('#opciones_color_agregar_producto_botones div');
+  // Funcionalidad Select Color Opcion 1 Agregar Productos Botones
+  function selectColorOpcion1AgregarProductosBotones() {
+    const opcion_seleccionada_color_opcion_1_agregar_producto_botones = document.getElementById('opcion_seleccionada_color_opcion_1_agregar_producto_botones');
+    const opciones_color_opcion_1_agregar_producto_botones = document.getElementById('opciones_color_opcion_1_agregar_producto_botones');
+    const valores_color_opcion_1_agregar_producto_botones = document.getElementById('valores_color_opcion_1_agregar_producto_botones');
+    const selector_color_opcion_1_agregar_producto_botones = document.querySelectorAll('#opciones_color_opcion_1_agregar_producto_botones div');
         
-    opcion_seleccionada_color_agregar_producto_botones.addEventListener('click', function() {
-      opciones_color_agregar_producto_botones.classList.toggle('hidden');
+    opcion_seleccionada_color_opcion_1_agregar_producto_botones.addEventListener('click', function() {
+      opciones_color_opcion_1_agregar_producto_botones.classList.toggle('hidden');
     });
         
-    selector_color_agregar_producto_botones.forEach(option => {
+    selector_color_opcion_1_agregar_producto_botones.forEach(option => {
       option.addEventListener('click', function() {
         const value = option.getAttribute('data-value');
-        valores_color_agregar_producto_botones.value = value;
-        opcion_seleccionada_color_agregar_producto_botones.querySelector('span').textContent = option.textContent;
-        opciones_color_agregar_producto_botones.classList.add('hidden');
+        valores_color_opcion_1_agregar_producto_botones.value = value;
+        opcion_seleccionada_color_opcion_1_agregar_producto_botones.querySelector('span').textContent = option.textContent;
+        opciones_color_opcion_1_agregar_producto_botones.classList.add('hidden');
       });
     });
         
     document.addEventListener('click', function(event) {
-      if (!opcion_seleccionada_color_agregar_producto_botones.contains(event.target) && !opciones_color_agregar_producto_botones.contains(event.target)) {
-        opciones_color_agregar_producto_botones.classList.add('hidden');
+      if (!opcion_seleccionada_color_opcion_1_agregar_producto_botones.contains(event.target) && !opciones_color_opcion_1_agregar_producto_botones.contains(event.target)) {
+        opciones_color_opcion_1_agregar_producto_botones.classList.add('hidden');
+      }
+    });
+  }
+
+  // Funcionalidad Select Color Opcion 2 Agregar Productos Botones
+  function selectColorOpcion2AgregarProductosBotones() {
+    const opcion_seleccionada_color_opcion_2_agregar_producto_botones = document.getElementById('opcion_seleccionada_color_opcion_2_agregar_producto_botones');
+    const opciones_color_opcion_2_agregar_producto_botones = document.getElementById('opciones_color_opcion_2_agregar_producto_botones');
+    const valores_color_opcion_2_agregar_producto_botones = document.getElementById('valores_color_opcion_2_agregar_producto_botones');
+    const selector_color_opcion_2_agregar_producto_botones = document.querySelectorAll('#opciones_color_opcion_2_agregar_producto_botones div');
+        
+    opcion_seleccionada_color_opcion_2_agregar_producto_botones.addEventListener('click', function() {
+      opciones_color_opcion_2_agregar_producto_botones.classList.toggle('hidden');
+    });
+        
+    selector_color_opcion_2_agregar_producto_botones.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = option.getAttribute('data-value');
+        valores_color_opcion_2_agregar_producto_botones.value = value;
+        opcion_seleccionada_color_opcion_2_agregar_producto_botones.querySelector('span').textContent = option.textContent;
+        opciones_color_opcion_2_agregar_producto_botones.classList.add('hidden');
+      });
+    });
+        
+    document.addEventListener('click', function(event) {
+      if (!opcion_seleccionada_color_opcion_2_agregar_producto_botones.contains(event.target) && !opciones_color_opcion_2_agregar_producto_botones.contains(event.target)) {
+        opciones_color_opcion_2_agregar_producto_botones.classList.add('hidden');
       }
     });
   }
