@@ -29,7 +29,7 @@ import rubertsdenim.inventarios.model.Producto;
 import rubertsdenim.inventarios.service.ProductoServicio;
 
 @Controller
-public class ControladorInicio {
+public class InventarioControlador {
 
     @Autowired
     private ProductoServicio productoServicio;

@@ -176,8 +176,16 @@
                                     </div>
                                 </div>
                             </div>
+
                             <p class="justify-center text-center fuente_5"><span id="mensaje-error" class="text-red-500"></span></p>
                             
+                            <div class="px-4 md:px-12 flex justify-center">
+                                <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
+                                    <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Cantidad:</p>
+                                    <input type="number" id="cantidad" th:field="*{cantidad}" class="col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-base md:text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-1.5 px-3 md:p-1.5 md:px-3 lg:p-1.5 lg:px-3 xl:p-2 xl:px-3" required />
+                                </div>
+                            </div>
+
                             <div class="px-4 md:px-12 flex justify-center">
                                 <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
                                     <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Categoria:</p>
@@ -191,11 +199,6 @@
                                             <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="hilos">Hilos</div>
                                             <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="cordones">Cordones</div>
                                             <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="botones">Botones</div>
-                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="remaches">Remaches</div>
-                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="ajustador">Ajustador</div>
-                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="etiquetas">Etiquetas</div>
-                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="cerilleras">Cerilleras</div>
-                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="cierres">Cierres</div>
                                         </div>
                                         <select id="valores_categoria_agregar_producto" th:field="*{categoria}" class="hidden" required>
                                             <option value="" selected>Seleccionar</option>
@@ -203,19 +206,12 @@
                                             <option value="hilos">Hilos</option>
                                             <option value="cordones">Cordones</option>
                                             <option value="botones">Botones</option>
-                                            <option value="remaches">Remaches</option>
-                                            <option value="ajustador">Ajustador</option>
-                                            <option value="etiquetas">Etiquetas</option>
-                                            <option value="cerilleras">Cerilleras</option>
-                                            <option value="cierres">Cierres</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
 
-                            <div id="campos_dinamicos_agregar_productos">
-                                
-                            </div>
+                            <div id="campos_dinamicos_agregar_productos"></div>
 
                             <div class="flex justify-evenly mt-6 mb-3 lg:mb-4">
                                 <button type="submit" class="place-self-center col-span-6 px-[1vw] text-white bg-[#fe7355] fuente_1 hover:bg-[#ff8268] focus:ring-4 focus:outline-none focus:ring-[#dc6750] rounded-3xl text-base md:text-lg lg:text-lg xl:text-xl py-1.5 md:py-1.5 lg:py-1.5 xl:py-2 w-[30%] text-center">Registrar</button>
