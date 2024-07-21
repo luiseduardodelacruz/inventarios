@@ -197,7 +197,7 @@
                                             <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="cerilleras">Cerilleras</div>
                                             <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="cierres">Cierres</div>
                                         </div>
-                                        <select id="valores_categoria_agregar_producto" th:field="*{categoria}" class="hidden" required>
+                                        <select id="valores_categoria_agregar_producto" onchange="categoriaDinamica()" th:field="*{categoria}" class="hidden" required>
                                             <option value="" selected>Seleccionar</option>
                                             <option value="elasticos">Elásticos</option>
                                             <option value="hilos">Hilos</option>
