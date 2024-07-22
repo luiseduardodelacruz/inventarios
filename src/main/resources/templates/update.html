@@ -48,22 +48,10 @@
                                         </div>
                                         <div id="opciones_categoria_editar_producto"
                                             class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
-                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="elasticos">Elásticos</div>
-                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="hilos">Hilos</div>
-                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="cordones">Cordones</div>
-                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="botones">Botones</div>
-                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="sujetador">Sujetador</div>
-                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="ajustador">Ajustador</div>
-                                            <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="etiquetas">Etiquetas</div>
+                                            <div th:each="categoria : ${categorias}" class="capitalize px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" th:data-value="${categoria.nombre}" th:text="${categoria.nombre}"></div>
                                         </div>
                                         <select id="valores_categoria_editar_producto" class="hidden" th:field="*{categoria}" required>
-                                            <option value="elasticos">Elásticos</option>
-                                            <option value="hilos">Hilos</option>
-                                            <option value="cordones">Cordones</option>
-                                            <option value="botones">Botones</option>
-                                            <option value="sujetador">Sujetador</option>
-                                            <option value="ajustador">Ajustador</option>
-                                            <option value="etiquetas">Etiquetas</option>
+                                            <option th:each="categoria : ${categorias}" th:text="${categoria.nombre}" th:value="${categoria.nombre}"></option>
                                         </select>
                                     </div>
                                 </div>

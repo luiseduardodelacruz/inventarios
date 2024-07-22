@@ -8,6 +8,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -97,10 +98,27 @@ public class ControladorInicio {
         post.setEntity(entity);
     
         HttpResponse response = client.execute(post);
+        
+        int statusCode = response.getStatusLine().getStatusCode();
+        if (statusCode != 200) {
+            throw new RuntimeException("Failed with HTTP error code : " + statusCode);
+        }
+
         String json = EntityUtils.toString(response.getEntity());
     
+        // Imprime o loguea la respuesta para debug
+        System.out.println("Respuesta de ImgBB: " + json);
+
+        try {
         JSONObject jsonObject = new JSONObject(json);
-        return jsonObject.getJSONObject("data").getString("url");
+        JSONObject dataObject = jsonObject.getJSONObject("data");
+            if (dataObject == null) {
+                throw new RuntimeException("No se encontró el objeto 'data' en la respuesta JSON");
+            }
+            return dataObject.getString("url");
+        } catch (JSONException e) {
+            throw new RuntimeException("Error al parsear JSON: " + e.getMessage(), e);
+        }
     }
 
     private boolean formatoImagen(MultipartFile archivo) {
@@ -110,9 +128,11 @@ public class ControladorInicio {
 
     @GetMapping("/inventario/update/{id}")
     public String editarProducto(@PathVariable ObjectId id, Model model) {
+        List<Categoria> categorias = categoriaRepositorio.findAll();
         Producto producto = productoServicio.buscarProductoPorId(id);
         if (producto != null) {
             model.addAttribute("producto", producto);
+            model.addAttribute("categorias", categorias);
             return "update";
         } else {
             return "redirect:/inventario";
