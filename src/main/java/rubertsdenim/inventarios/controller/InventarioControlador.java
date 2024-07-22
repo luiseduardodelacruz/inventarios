@@ -8,6 +8,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -74,10 +75,28 @@ public class InventarioControlador {
         post.setEntity(entity);
     
         HttpResponse response = client.execute(post);
+
+        // Verifica el código de estado de la respuesta
+        int statusCode = response.getStatusLine().getStatusCode();
+        if (statusCode != 200) {
+            throw new RuntimeException("Failed with HTTP error code : " + statusCode);
+        }
+
         String json = EntityUtils.toString(response.getEntity());
     
+        // Imprime o loguea la respuesta para debug
+        //System.out.println("Respuesta de ImgBB: " + json);
+
+        try {
         JSONObject jsonObject = new JSONObject(json);
-        return jsonObject.getJSONObject("data").getString("url");
+        JSONObject dataObject = jsonObject.getJSONObject("data");
+            if (dataObject == null) {
+                throw new RuntimeException("No se encontró el objeto 'data' en la respuesta JSON");
+            }
+            return dataObject.getString("url");
+        } catch (JSONException e) {
+            throw new RuntimeException("Error al parsear JSON: " + e.getMessage(), e);
+        }
     }
 
     private boolean formatoImagen(MultipartFile archivo) {
