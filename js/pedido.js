@@ -13,6 +13,7 @@ numImagesSelect.addEventListener('change', function(event) {
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
         fileInput.accept = 'image/*';
+        fileInput.name = 'numImagesSelect';
         fileInput.classList.add('my-2');
         fileInput.addEventListener('change', function(event) {
             const file = event.target.files[0];
@@ -165,10 +166,10 @@ const iconClosed = document.getElementById('dropdownIconClosed');
 
 
 // Dom de los campos categoria, fit y botones/hebilla
-const categoriaSelect = document.getElementById('Categoria');
-const fitSelect = document.getElementById('Fit');
+const categoriaSelect = document.getElementById('categoria');
+const fitSelect = document.getElementById('fit');
 const fitSelectContainer = document.getElementById('fitSelect');
-const botonSelect = document.getElementById('Boton');
+const botonSelect = document.getElementById('botonHebilla');
 const botonLabel = document.getElementById('botonLabel');
 const botonSelectContainer = document.getElementById('botonSelect');
 
@@ -187,8 +188,8 @@ const selectedCategoria = categoriaSelect.value;
         // Mostrar el select de Fit para Pantalón y llenar opciones
         fitSelect.innerHTML = `
             <option value="slim">Slim</option>
-                <option value="jogger">Jogger</option>
-                <option value="skinny">Skinny</option>
+            <option value="jogger">Jogger</option>
+            <option value="skinny">Skinny</option>
         `;
         fitSelectContainer.classList.remove('hidden');
     } else {
@@ -202,7 +203,7 @@ const selectedCategoria = categoriaSelect.value;
     
     if (selectedCategoria === 'moda') {
         // Cambiar el título y opciones del select de Botón para Moda
-        botonLabel.textContent = 'Botón/Hebilla';
+        botonLabel.textContent = 'Botón / Hebilla';
         botonSelect.innerHTML = `
             <option value="boton">Botón</option>
             <option value="hebilla">Hebilla</option>
