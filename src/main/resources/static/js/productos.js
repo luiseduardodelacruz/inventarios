@@ -224,6 +224,28 @@ document.addEventListener('DOMContentLoaded', function() {
       selectTamanoAgregarProductosBotones();
     } else if (categoria == 'botonesColorDinamicoOpcion2'){
       selectTamanoAgregarProductosBotones();
+    } else if (categoria == 'remaches'){
+      selectTipoAgregarProductosRemaches();
+      selectColorAgregarProductosRemaches();
+      selectTamanoAgregarProductosRemaches();
+    } else if (categoria == 'ajustador'){
+      selectColorAgregarProductosAjustador();
+    } else if (categoria == 'etiquetas'){
+      selectMarcaAgregarProductosEtiquetas();
+      selectTipoAgregarProductosEtiquetas();
+    } else if (categoria == 'etiquetasTallaDinamicoOpcion1'){
+      selectTallaAgregarProductosEtiquetas();
+    } else if (categoria == 'etiquetasTallaDinamicoOpcion2'){
+      selectDepartamentoAgregarProductosEtiquetas();
+      selectProcesoAgregarProductosEtiquetas();
+    } else if (categoria == 'cerilleras'){
+      selectDepartamentoAgregarProductosCerilleras();
+      selectTallaAgregarProductosCerilleras();
+      selectColorAgregarProductosCerilleras();
+    } else if (categoria == 'cierres'){
+      selectLongitudAgregarProductosCierres();
+      selectColorAgregarProductosCierres();
+      selectProcesoAgregarProductosCierres();
     }
   });
 
@@ -466,6 +488,411 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(event) {
       if (!opcion_seleccionada_tamano_agregar_producto_botones.contains(event.target) && !opciones_tamano_agregar_producto_botones.contains(event.target)) {
         opciones_tamano_agregar_producto_botones.classList.add('hidden');
+      }
+    });
+  }
+
+  // Funcionalidad Select Tipo Agregar Productos Remaches
+  function selectTipoAgregarProductosRemaches() {
+    const opcion_seleccionada_tipo_agregar_producto_remaches = document.getElementById('opcion_seleccionada_tipo_agregar_producto_remaches');
+    const opciones_tipo_agregar_producto_remaches = document.getElementById('opciones_tipo_agregar_producto_remaches');
+    const valores_tipo_agregar_producto_remaches = document.getElementById('valores_tipo_agregar_producto_remaches');
+    const selector_tipo_agregar_producto_remaches = document.querySelectorAll('#opciones_tipo_agregar_producto_remaches div');
+        
+    opcion_seleccionada_tipo_agregar_producto_remaches.addEventListener('click', function() {
+      opciones_tipo_agregar_producto_remaches.classList.toggle('hidden');
+    });
+        
+    selector_tipo_agregar_producto_remaches.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = option.getAttribute('data-value');
+        valores_tipo_agregar_producto_remaches.value = value;
+        opcion_seleccionada_tipo_agregar_producto_remaches.querySelector('span').textContent = option.textContent;
+        opciones_tipo_agregar_producto_remaches.classList.add('hidden');
+      });
+    });
+        
+    document.addEventListener('click', function(event) {
+      if (!opcion_seleccionada_tipo_agregar_producto_remaches.contains(event.target) && !opciones_tipo_agregar_producto_remaches.contains(event.target)) {
+        opciones_tipo_agregar_producto_remaches.classList.add('hidden');
+      }
+    });
+  }
+
+  // Funcionalidad Select Color Agregar Productos Remaches
+  function selectColorAgregarProductosRemaches() {
+    const opcion_seleccionada_color_agregar_producto_remaches = document.getElementById('opcion_seleccionada_color_agregar_producto_remaches');
+    const opciones_color_agregar_producto_remaches = document.getElementById('opciones_color_agregar_producto_remaches');
+    const valores_color_agregar_producto_remaches = document.getElementById('valores_color_agregar_producto_remaches');
+    const selector_color_agregar_producto_remaches = document.querySelectorAll('#opciones_color_agregar_producto_remaches div');
+        
+    opcion_seleccionada_color_agregar_producto_remaches.addEventListener('click', function() {
+      opciones_color_agregar_producto_remaches.classList.toggle('hidden');
+    });
+        
+    selector_color_agregar_producto_remaches.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = option.getAttribute('data-value');
+        valores_color_agregar_producto_remaches.value = value;
+        opcion_seleccionada_color_agregar_producto_remaches.querySelector('span').textContent = option.textContent;
+        opciones_color_agregar_producto_remaches.classList.add('hidden');
+      });
+    });
+        
+    document.addEventListener('click', function(event) {
+      if (!opcion_seleccionada_color_agregar_producto_remaches.contains(event.target) && !opciones_color_agregar_producto_remaches.contains(event.target)) {
+        opciones_color_agregar_producto_remaches.classList.add('hidden');
+      }
+    });
+  }
+
+  // Funcionalidad Select Tamaño Agregar Productos Remaches
+  function selectTamanoAgregarProductosRemaches() {
+    const opcion_seleccionada_tamano_agregar_producto_remaches = document.getElementById('opcion_seleccionada_tamano_agregar_producto_remaches');
+    const opciones_tamano_agregar_producto_remaches = document.getElementById('opciones_tamano_agregar_producto_remaches');
+    const valores_tamano_agregar_producto_remaches = document.getElementById('valores_tamano_agregar_producto_remaches');
+    const selector_tamano_agregar_producto_remaches = document.querySelectorAll('#opciones_tamano_agregar_producto_remaches div');
+        
+    opcion_seleccionada_tamano_agregar_producto_remaches.addEventListener('click', function() {
+      opciones_tamano_agregar_producto_remaches.classList.toggle('hidden');
+    });
+        
+    selector_tamano_agregar_producto_remaches.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = option.getAttribute('data-value');
+        valores_tamano_agregar_producto_remaches.value = value;
+        opcion_seleccionada_tamano_agregar_producto_remaches.querySelector('span').textContent = option.textContent;
+        opciones_tamano_agregar_producto_remaches.classList.add('hidden');
+      });
+    });
+        
+    document.addEventListener('click', function(event) {
+      if (!opcion_seleccionada_tamano_agregar_producto_remaches.contains(event.target) && !opciones_tamano_agregar_producto_remaches.contains(event.target)) {
+        opciones_tamano_agregar_producto_remaches.classList.add('hidden');
+      }
+    });
+  }
+
+  // Funcionalidad Select Color Agregar Productos Ajustador
+  function selectColorAgregarProductosAjustador() {
+    const opcion_seleccionada_color_agregar_producto_ajustador = document.getElementById('opcion_seleccionada_color_agregar_producto_ajustador');
+    const opciones_color_agregar_producto_ajustador = document.getElementById('opciones_color_agregar_producto_ajustador');
+    const valores_color_agregar_producto_ajustador = document.getElementById('valores_color_agregar_producto_ajustador');
+    const selector_color_agregar_producto_ajustador = document.querySelectorAll('#opciones_color_agregar_producto_ajustador div');
+        
+    opcion_seleccionada_color_agregar_producto_ajustador.addEventListener('click', function() {
+      opciones_color_agregar_producto_ajustador.classList.toggle('hidden');
+    });
+        
+    selector_color_agregar_producto_ajustador.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = option.getAttribute('data-value');
+        valores_color_agregar_producto_ajustador.value = value;
+        opcion_seleccionada_color_agregar_producto_ajustador.querySelector('span').textContent = option.textContent;
+        opciones_color_agregar_producto_ajustador.classList.add('hidden');
+      });
+    });
+        
+    document.addEventListener('click', function(event) {
+      if (!opcion_seleccionada_color_agregar_producto_ajustador.contains(event.target) && !opciones_color_agregar_producto_ajustador.contains(event.target)) {
+        opciones_color_agregar_producto_ajustador.classList.add('hidden');
+      }
+    });
+  }
+
+  // Funcionalidad Select Marca Agregar Productos Etiquetas
+  function selectMarcaAgregarProductosEtiquetas() {
+    const opcion_seleccionada_marca_agregar_producto_etiquetas = document.getElementById('opcion_seleccionada_marca_agregar_producto_etiquetas');
+    const opciones_marca_agregar_producto_etiquetas = document.getElementById('opciones_marca_agregar_producto_etiquetas');
+    const valores_marca_agregar_producto_etiquetas = document.getElementById('valores_marca_agregar_producto_etiquetas');
+    const selector_marca_agregar_producto_etiquetas = document.querySelectorAll('#opciones_marca_agregar_producto_etiquetas div');
+        
+    opcion_seleccionada_marca_agregar_producto_etiquetas.addEventListener('click', function() {
+      opciones_marca_agregar_producto_etiquetas.classList.toggle('hidden');
+    });
+        
+    selector_marca_agregar_producto_etiquetas.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = option.getAttribute('data-value');
+        valores_marca_agregar_producto_etiquetas.value = value;
+        opcion_seleccionada_marca_agregar_producto_etiquetas.querySelector('span').textContent = option.textContent;
+        opciones_marca_agregar_producto_etiquetas.classList.add('hidden');
+      });
+    });
+        
+    document.addEventListener('click', function(event) {
+      if (!opcion_seleccionada_marca_agregar_producto_etiquetas.contains(event.target) && !opciones_marca_agregar_producto_etiquetas.contains(event.target)) {
+        opciones_marca_agregar_producto_etiquetas.classList.add('hidden');
+      }
+    });
+  }
+
+  // Funcionalidad Select Tipo Agregar Productos Etiquetas
+  function selectTipoAgregarProductosEtiquetas() {
+    const opcion_seleccionada_tipo_agregar_producto_etiquetas = document.getElementById('opcion_seleccionada_tipo_agregar_producto_etiquetas');
+    const opciones_tipo_agregar_producto_etiquetas = document.getElementById('opciones_tipo_agregar_producto_etiquetas');
+    const valores_tipo_agregar_producto_etiquetas = document.getElementById('valores_tipo_agregar_producto_etiquetas');
+    const selector_tipo_agregar_producto_etiquetas = document.querySelectorAll('#opciones_tipo_agregar_producto_etiquetas div');
+        
+    opcion_seleccionada_tipo_agregar_producto_etiquetas.addEventListener('click', function() {
+      opciones_tipo_agregar_producto_etiquetas.classList.toggle('hidden');
+    });
+        
+    selector_tipo_agregar_producto_etiquetas.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = option.getAttribute('data-value');
+        valores_tipo_agregar_producto_etiquetas.value = value;
+        opcion_seleccionada_tipo_agregar_producto_etiquetas.querySelector('span').textContent = option.textContent;
+        opciones_tipo_agregar_producto_etiquetas.classList.add('hidden');
+      });
+    });
+        
+    document.addEventListener('click', function(event) {
+      if (!opcion_seleccionada_tipo_agregar_producto_etiquetas.contains(event.target) && !opciones_tipo_agregar_producto_etiquetas.contains(event.target)) {
+        opciones_tipo_agregar_producto_etiquetas.classList.add('hidden');
+      }
+    });
+  }
+
+  // Funcionalidad Select Talla Agregar Productos Etiquetas
+  function selectTallaAgregarProductosEtiquetas() {
+    const opcion_seleccionada_talla_agregar_producto_etiquetas = document.getElementById('opcion_seleccionada_talla_agregar_producto_etiquetas');
+    const opciones_talla_agregar_producto_etiquetas = document.getElementById('opciones_talla_agregar_producto_etiquetas');
+    const valores_talla_agregar_producto_etiquetas = document.getElementById('valores_talla_agregar_producto_etiquetas');
+    const selector_talla_agregar_producto_etiquetas = document.querySelectorAll('#opciones_talla_agregar_producto_etiquetas div');
+        
+    opcion_seleccionada_talla_agregar_producto_etiquetas.addEventListener('click', function() {
+      opciones_talla_agregar_producto_etiquetas.classList.toggle('hidden');
+    });
+        
+    selector_talla_agregar_producto_etiquetas.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = option.getAttribute('data-value');
+        valores_talla_agregar_producto_etiquetas.value = value;
+        opcion_seleccionada_talla_agregar_producto_etiquetas.querySelector('span').textContent = option.textContent;
+        opciones_talla_agregar_producto_etiquetas.classList.add('hidden');
+      });
+    });
+        
+    document.addEventListener('click', function(event) {
+      if (!opcion_seleccionada_talla_agregar_producto_etiquetas.contains(event.target) && !opciones_talla_agregar_producto_etiquetas.contains(event.target)) {
+        opciones_talla_agregar_producto_etiquetas.classList.add('hidden');
+      }
+    });
+  }
+
+  // Funcionalidad Select Departamento Agregar Productos Etiquetas
+  function selectDepartamentoAgregarProductosEtiquetas() {
+    const opcion_seleccionada_departamento_agregar_producto_etiquetas = document.getElementById('opcion_seleccionada_departamento_agregar_producto_etiquetas');
+    const opciones_departamento_agregar_producto_etiquetas = document.getElementById('opciones_departamento_agregar_producto_etiquetas');
+    const valores_departamento_agregar_producto_etiquetas = document.getElementById('valores_departamento_agregar_producto_etiquetas');
+    const selector_departamento_agregar_producto_etiquetas = document.querySelectorAll('#opciones_departamento_agregar_producto_etiquetas div');
+        
+    opcion_seleccionada_departamento_agregar_producto_etiquetas.addEventListener('click', function() {
+      opciones_departamento_agregar_producto_etiquetas.classList.toggle('hidden');
+    });
+        
+    selector_departamento_agregar_producto_etiquetas.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = option.getAttribute('data-value');
+        valores_departamento_agregar_producto_etiquetas.value = value;
+        opcion_seleccionada_departamento_agregar_producto_etiquetas.querySelector('span').textContent = option.textContent;
+        opciones_departamento_agregar_producto_etiquetas.classList.add('hidden');
+      });
+    });
+        
+    document.addEventListener('click', function(event) {
+      if (!opcion_seleccionada_departamento_agregar_producto_etiquetas.contains(event.target) && !opciones_departamento_agregar_producto_etiquetas.contains(event.target)) {
+        opciones_departamento_agregar_producto_etiquetas.classList.add('hidden');
+      }
+    });
+  }
+
+  // Funcionalidad Select Proceso Agregar Productos Etiquetas
+  function selectProcesoAgregarProductosEtiquetas() {
+    const opcion_seleccionada_proceso_agregar_producto_etiquetas = document.getElementById('opcion_seleccionada_proceso_agregar_producto_etiquetas');
+    const opciones_proceso_agregar_producto_etiquetas = document.getElementById('opciones_proceso_agregar_producto_etiquetas');
+    const valores_proceso_agregar_producto_etiquetas = document.getElementById('valores_proceso_agregar_producto_etiquetas');
+    const selector_proceso_agregar_producto_etiquetas = document.querySelectorAll('#opciones_proceso_agregar_producto_etiquetas div');
+        
+    opcion_seleccionada_proceso_agregar_producto_etiquetas.addEventListener('click', function() {
+      opciones_proceso_agregar_producto_etiquetas.classList.toggle('hidden');
+    });
+        
+    selector_proceso_agregar_producto_etiquetas.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = option.getAttribute('data-value');
+        valores_proceso_agregar_producto_etiquetas.value = value;
+        opcion_seleccionada_proceso_agregar_producto_etiquetas.querySelector('span').textContent = option.textContent;
+        opciones_proceso_agregar_producto_etiquetas.classList.add('hidden');
+      });
+    });
+        
+    document.addEventListener('click', function(event) {
+      if (!opcion_seleccionada_proceso_agregar_producto_etiquetas.contains(event.target) && !opciones_proceso_agregar_producto_etiquetas.contains(event.target)) {
+        opciones_proceso_agregar_producto_etiquetas.classList.add('hidden');
+      }
+    });
+  }
+
+  // Funcionalidad Select Departamento Agregar Productos Cerilleras
+  function selectDepartamentoAgregarProductosCerilleras() {
+    const opcion_seleccionada_departamento_agregar_producto_cerilleras = document.getElementById('opcion_seleccionada_departamento_agregar_producto_cerilleras');
+    const opciones_departamento_agregar_producto_cerilleras = document.getElementById('opciones_departamento_agregar_producto_cerilleras');
+    const valores_departamento_agregar_producto_cerilleras = document.getElementById('valores_departamento_agregar_producto_cerilleras');
+    const selector_departamento_agregar_producto_cerilleras = document.querySelectorAll('#opciones_departamento_agregar_producto_cerilleras div');
+        
+    opcion_seleccionada_departamento_agregar_producto_cerilleras.addEventListener('click', function() {
+      opciones_departamento_agregar_producto_cerilleras.classList.toggle('hidden');
+    });
+        
+    selector_departamento_agregar_producto_cerilleras.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = option.getAttribute('data-value');
+        valores_departamento_agregar_producto_cerilleras.value = value;
+        opcion_seleccionada_departamento_agregar_producto_cerilleras.querySelector('span').textContent = option.textContent;
+        opciones_departamento_agregar_producto_cerilleras.classList.add('hidden');
+      });
+    });
+        
+    document.addEventListener('click', function(event) {
+      if (!opcion_seleccionada_departamento_agregar_producto_cerilleras.contains(event.target) && !opciones_departamento_agregar_producto_cerilleras.contains(event.target)) {
+        opciones_departamento_agregar_producto_cerilleras.classList.add('hidden');
+      }
+    });
+  }
+
+  // Funcionalidad Select Talla Agregar Productos Cerilleras
+  function selectTallaAgregarProductosCerilleras() {
+    const opcion_seleccionada_talla_agregar_producto_cerilleras = document.getElementById('opcion_seleccionada_talla_agregar_producto_cerilleras');
+    const opciones_talla_agregar_producto_cerilleras = document.getElementById('opciones_talla_agregar_producto_cerilleras');
+    const valores_talla_agregar_producto_cerilleras = document.getElementById('valores_talla_agregar_producto_cerilleras');
+    const selector_talla_agregar_producto_cerilleras = document.querySelectorAll('#opciones_talla_agregar_producto_cerilleras div');
+        
+    opcion_seleccionada_talla_agregar_producto_cerilleras.addEventListener('click', function() {
+      opciones_talla_agregar_producto_cerilleras.classList.toggle('hidden');
+    });
+        
+    selector_talla_agregar_producto_cerilleras.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = option.getAttribute('data-value');
+        valores_talla_agregar_producto_cerilleras.value = value;
+        opcion_seleccionada_talla_agregar_producto_cerilleras.querySelector('span').textContent = option.textContent;
+        opciones_talla_agregar_producto_cerilleras.classList.add('hidden');
+      });
+    });
+        
+    document.addEventListener('click', function(event) {
+      if (!opcion_seleccionada_talla_agregar_producto_cerilleras.contains(event.target) && !opciones_talla_agregar_producto_cerilleras.contains(event.target)) {
+        opciones_talla_agregar_producto_cerilleras.classList.add('hidden');
+      }
+    });
+  }
+
+  // Funcionalidad Select Color Agregar Productos Cerilleras
+  function selectColorAgregarProductosCerilleras() {
+    const opcion_seleccionada_color_agregar_producto_cerilleras = document.getElementById('opcion_seleccionada_color_agregar_producto_cerilleras');
+    const opciones_color_agregar_producto_cerilleras = document.getElementById('opciones_color_agregar_producto_cerilleras');
+    const valores_color_agregar_producto_cerilleras = document.getElementById('valores_color_agregar_producto_cerilleras');
+    const selector_color_agregar_producto_cerilleras = document.querySelectorAll('#opciones_color_agregar_producto_cerilleras div');
+        
+    opcion_seleccionada_color_agregar_producto_cerilleras.addEventListener('click', function() {
+      opciones_color_agregar_producto_cerilleras.classList.toggle('hidden');
+    });
+        
+    selector_color_agregar_producto_cerilleras.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = option.getAttribute('data-value');
+        valores_color_agregar_producto_cerilleras.value = value;
+        opcion_seleccionada_color_agregar_producto_cerilleras.querySelector('span').textContent = option.textContent;
+        opciones_color_agregar_producto_cerilleras.classList.add('hidden');
+      });
+    });
+        
+    document.addEventListener('click', function(event) {
+      if (!opcion_seleccionada_color_agregar_producto_cerilleras.contains(event.target) && !opciones_color_agregar_producto_cerilleras.contains(event.target)) {
+        opciones_color_agregar_producto_cerilleras.classList.add('hidden');
+      }
+    });
+  }
+
+  // Funcionalidad Select Longitud Agregar Productos Cierres
+  function selectLongitudAgregarProductosCierres() {
+    const opcion_seleccionada_longitud_agregar_producto_cierres = document.getElementById('opcion_seleccionada_longitud_agregar_producto_cierres');
+    const opciones_longitud_agregar_producto_cierres = document.getElementById('opciones_longitud_agregar_producto_cierres');
+    const valores_longitud_agregar_producto_cierres = document.getElementById('valores_longitud_agregar_producto_cierres');
+    const selector_longitud_agregar_producto_cierres = document.querySelectorAll('#opciones_longitud_agregar_producto_cierres div');
+        
+    opcion_seleccionada_longitud_agregar_producto_cierres.addEventListener('click', function() {
+      opciones_longitud_agregar_producto_cierres.classList.toggle('hidden');
+    });
+        
+    selector_longitud_agregar_producto_cierres.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = option.getAttribute('data-value');
+        valores_longitud_agregar_producto_cierres.value = value;
+        opcion_seleccionada_longitud_agregar_producto_cierres.querySelector('span').textContent = option.textContent;
+        opciones_longitud_agregar_producto_cierres.classList.add('hidden');
+      });
+    });
+        
+    document.addEventListener('click', function(event) {
+      if (!opcion_seleccionada_longitud_agregar_producto_cierres.contains(event.target) && !opciones_longitud_agregar_producto_cierres.contains(event.target)) {
+        opciones_longitud_agregar_producto_cierres.classList.add('hidden');
+      }
+    });
+  }
+
+  // Funcionalidad Select Color Agregar Productos Cierres
+  function selectColorAgregarProductosCierres() {
+    const opcion_seleccionada_color_agregar_producto_cierres = document.getElementById('opcion_seleccionada_color_agregar_producto_cierres');
+    const opciones_color_agregar_producto_cierres = document.getElementById('opciones_color_agregar_producto_cierres');
+    const valores_color_agregar_producto_cierres = document.getElementById('valores_color_agregar_producto_cierres');
+    const selector_color_agregar_producto_cierres = document.querySelectorAll('#opciones_color_agregar_producto_cierres div');
+        
+    opcion_seleccionada_color_agregar_producto_cierres.addEventListener('click', function() {
+      opciones_color_agregar_producto_cierres.classList.toggle('hidden');
+    });
+        
+    selector_color_agregar_producto_cierres.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = option.getAttribute('data-value');
+        valores_color_agregar_producto_cierres.value = value;
+        opcion_seleccionada_color_agregar_producto_cierres.querySelector('span').textContent = option.textContent;
+        opciones_color_agregar_producto_cierres.classList.add('hidden');
+      });
+    });
+        
+    document.addEventListener('click', function(event) {
+      if (!opcion_seleccionada_color_agregar_producto_cierres.contains(event.target) && !opciones_color_agregar_producto_cierres.contains(event.target)) {
+        opciones_color_agregar_producto_cierres.classList.add('hidden');
+      }
+    });
+  }
+
+  // Funcionalidad Select Proceso Agregar Productos Cierres
+  function selectProcesoAgregarProductosCierres() {
+    const opcion_seleccionada_proceso_agregar_producto_cierres = document.getElementById('opcion_seleccionada_proceso_agregar_producto_cierres');
+    const opciones_proceso_agregar_producto_cierres = document.getElementById('opciones_proceso_agregar_producto_cierres');
+    const valores_proceso_agregar_producto_cierres = document.getElementById('valores_proceso_agregar_producto_cierres');
+    const selector_proceso_agregar_producto_cierres = document.querySelectorAll('#opciones_proceso_agregar_producto_cierres div');
+        
+    opcion_seleccionada_proceso_agregar_producto_cierres.addEventListener('click', function() {
+      opciones_proceso_agregar_producto_cierres.classList.toggle('hidden');
+    });
+        
+    selector_proceso_agregar_producto_cierres.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = option.getAttribute('data-value');
+        valores_proceso_agregar_producto_cierres.value = value;
+        opcion_seleccionada_proceso_agregar_producto_cierres.querySelector('span').textContent = option.textContent;
+        opciones_proceso_agregar_producto_cierres.classList.add('hidden');
+      });
+    });
+        
+    document.addEventListener('click', function(event) {
+      if (!opcion_seleccionada_proceso_agregar_producto_cierres.contains(event.target) && !opciones_proceso_agregar_producto_cierres.contains(event.target)) {
+        opciones_proceso_agregar_producto_cierres.classList.add('hidden');
       }
     });
   }
