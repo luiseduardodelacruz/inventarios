@@ -123,6 +123,16 @@ public class InventarioControlador {
             productoExistente.setCategoria(producto.getCategoria());
             productoExistente.setCantidad(producto.getCantidad());
             productoExistente.setColor(producto.getColor());
+            productoExistente.setAnchor(producto.getAnchor());
+            productoExistente.setLongitud(producto.getLongitud());
+            productoExistente.setCalibre(producto.getCalibre());
+            productoExistente.setTipo(producto.getTipo());
+            productoExistente.setTapa(producto.getTapa());
+            productoExistente.setTamanio(producto.getTamanio());
+            productoExistente.setMarca(producto.getMarca());
+            productoExistente.setTalla(producto.getTalla());
+            productoExistente.setDepartamento(producto.getDepartamento());
+            productoExistente.setProceso(producto.getProceso());
             if (!imagenArchivo.isEmpty() && formatoImagen(imagenArchivo)) {
                 String imageUrl = subirImagenImgbb(imagenArchivo, producto.getNombre());
                 productoExistente.setImagen(imageUrl);
