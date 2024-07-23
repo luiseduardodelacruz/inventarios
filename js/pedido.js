@@ -1,5 +1,5 @@
 //carrusel de imagenes del select 
- const container = document.getElementById('imageContainer');
+const container = document.getElementById('imageContainer');
 const numImagesSelect = document.getElementById('numImagesSelect');
 
 numImagesSelect.addEventListener('change', function(event) {
@@ -32,6 +32,26 @@ numImagesSelect.addEventListener('change', function(event) {
         container.appendChild(fileInput);
     }
 }); 
+
+//funcion para obtener url de img carrusel
+function mostrarDatos() {
+    // Buscar el contenedor de imágenes
+    const container = document.getElementById('imageContainer');
+    // Obtener la imagen dentro del contenedor
+    const img = container.querySelector('img');
+    
+    if (img) {
+        // Obtener la URL de la imagen
+        const imageUrl = img.src;
+        
+        // Mostrar la URL de la imagen en la consola
+        console.log('URL de la imagen:', imageUrl);
+    } else {
+        // Si no hay imagen seleccionada, mostrar un mensaje en la consola
+        console.log('No hay imagen seleccionada');
+    }
+}
+
 
 /* const container = document.getElementById('imageContainer');
 const numImagesSelect = document.getElementById('numImagesSelect');
@@ -283,6 +303,8 @@ function resetearRemoverCampos(){
     }
 }
 
+
+//mostrar img en cosola
 document.addEventListener("DOMContentLoaded", function() {
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     
