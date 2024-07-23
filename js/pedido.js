@@ -1,5 +1,5 @@
 //carrusel de imagenes del select 
-const container = document.getElementById('imageContainer');
+ const container = document.getElementById('imageContainer');
 const numImagesSelect = document.getElementById('numImagesSelect');
 
 numImagesSelect.addEventListener('change', function(event) {
@@ -31,7 +31,59 @@ numImagesSelect.addEventListener('change', function(event) {
         });
         container.appendChild(fileInput);
     }
+}); 
+
+/* const container = document.getElementById('imageContainer');
+const numImagesSelect = document.getElementById('numImagesSelect');
+
+numImagesSelect.addEventListener('change', function(event) {
+    event.preventDefault();
+    const numImages = parseInt(event.target.value);
+   
+    container.innerHTML = '';
+    
+    for (let i = 0; i < numImages; i++) {
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'image/*';
+        fileInput.name = 'numImagesSelect';
+        fileInput.classList.add('my-2');
+        fileInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            
+            if (!file.type.startsWith('image/')) {
+                return;
+            }
+          
+            const img = document.createElement('img');
+            img.src = URL.createObjectURL(file);
+            img.classList.add('w-full', 'max-w-xs', 'p-2', 'border', 'border-orange-300', 'rounded-lg', 'shadow-md', 'my-2');
+            
+            container.replaceChild(img, fileInput);
+            container.scrollTop = container.scrollHeight;
+        });
+        container.appendChild(fileInput);
+    }
+
+    // Agregar botón de guardar al final del contenedor
+    const guardarButton = document.createElement('button');
+    guardarButton.textContent = 'Guardar';
+    guardarButton.classList.add('my-4', 'py-2', 'px-4', 'bg-blue-500', 'text-white', 'rounded', 'shadow');
+    guardarButton.addEventListener('click', guardarImagenes);
+    container.appendChild(guardarButton);
 });
+
+function guardarImagenes() {
+    // Obtener todas las imágenes dentro del contenedor
+    const imagenes = container.querySelectorAll('img');
+    
+    // Aquí podrías hacer algo con las imágenes, por ejemplo:
+    imagenes.forEach(img => {
+        // Puedes acceder a img.src para obtener la URL de cada imagen
+        // Por ejemplo, enviarlas a un servidor con fetch o almacenarlas localmente
+        console.log(img.src);
+    });
+} */
 
 
 /* mostrar imagenes tanto cental como superio derecha */ 
@@ -179,17 +231,18 @@ const selectedCategoria = categoriaSelect.value;
     if (selectedCategoria === 'moda') {
         // Mostrar el select de Fit para Moda y llenar opciones
         fitSelect.innerHTML = `
-            <option value="overol">Overol</option>
-            <option value="pesquero">Pesquero</option>
-            <option value="skinny">Skinny</option>
+                <option value="overol">Overol</option>
+                <option value="pesquero">Pesquero</option>
+                <option value="skinny">Skinny</option>
         `;
         fitSelectContainer.classList.remove('hidden');
     } else if (selectedCategoria === 'pantalon') {
         // Mostrar el select de Fit para Pantalón y llenar opciones
         fitSelect.innerHTML = `
-            <option value="slim">Slim</option>
-            <option value="jogger">Jogger</option>
-            <option value="skinny">Skinny</option>
+        
+                <option value="slim">Slim</option>
+                <option value="jogger">Jogger</option>
+                <option value="skinny">Skinny</option>
         `;
         fitSelectContainer.classList.remove('hidden');
     } else {
@@ -215,7 +268,7 @@ const selectedCategoria = categoriaSelect.value;
         botonSelect.innerHTML = `
             <option value="boton">Botón</option>
         `;
-        botonSelectContainer.classList.remove('hidden');
+        botonSelectContainer.classList.remove('hdden');
     } else {
         // Ocultar el select de Botón si no hay selección válida
         botonSelectContainer.classList.add('hidden');
@@ -226,6 +279,37 @@ const selectedCategoria = categoriaSelect.value;
 function resetearRemoverCampos(){
     const campoFit = document.getElementById('fitSelect');
     if(campoFit !== null){
-        campoFit.remove();
+        campoFit.classList.add('hidden')
     }
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            const isChecked = this.checked;
+            const inputValue = this.value; // Obtener el valor del checkbox
+            
+            if (isChecked) {
+                // Generar un nombre único para el grupo de checkboxes marcados
+                const name = 'checkbox-active-' + inputValue;
+                
+                // Obtener todos los checkboxes con el mismo valor y asignarles el mismo nombre
+                const sameValueCheckboxes = document.querySelectorAll('input[type="checkbox"][value="' + inputValue + '"]');
+                
+                sameValueCheckboxes.forEach(function(checkbox) {
+                    checkbox.setAttribute('name', name); // Agregar el atributo 'name' al checkbox
+                });
+            } else {
+                // Quitar el atributo 'name' de todos los checkboxes con el mismo valor
+                const sameValueCheckboxes = document.querySelectorAll('input[type="checkbox"][value="' + inputValue + '"]');
+                
+                sameValueCheckboxes.forEach(function(checkbox) {
+                    checkbox.removeAttribute('name'); // Quitar el atributo 'name' del checkbox
+                });
+            }
+        });
+    });
+});
+

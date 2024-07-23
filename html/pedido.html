@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/ficha-hibilitacion.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="https://cdn-icons-png.freepik.com/256/903/903482.png?semt=ais_hybrid" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/pedido.css">
     <title>Pedido</title>
 </head>
@@ -52,8 +53,8 @@
                             </div>
                         </div>
                         <div class="flex flex-col md:flex-row items-center mb-3 md:mb-0 ">
-                            <label for="dropdownSearchButton" class="lg:ml-auto mb-1 md:mb-0 mr-10 lg:mr-16 w-20 px-2 text-sm font-medium text-gray-900 ">Tallas:</label>
-                            <button id="dropdownSearchButton" class="flex items-center justify-between border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-60 sm:w-72 md:w-32 sm:w-40 lg:w-[20vh] p-2.5 text-white placeholder-white h-10 bg-[#db4900]" type="button" aria-haspopup="true" aria-expanded="false" required>
+                            <label for="dropdownSearchButton" name="dropdownSearchButton" class="lg:ml-auto mb-1 md:mb-0 mr-10 lg:mr-16 w-20 px-2 text-sm font-medium text-gray-900 ">Tallas:</label>
+                            <button id="dropdownSearchButton" name="dropdownSearchButton" class="flex items-center justify-between border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-60 sm:w-72 md:w-32 sm:w-40 lg:w-[20vh] p-2.5 text-white placeholder-white h-10 bg-[#db4900]" type="button" aria-haspopup="true" aria-expanded="false" required>
                                 <span>Tallas</span>
                                 <svg id="dropdownIconClosed" class="w-2.5 h-1.5 ml-2" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -68,17 +69,17 @@
                             </button>
 
                             <!-- Dropdown Menu -->
-                            <div id="dropdownSearch" class="absolute z-10 hidden bg-opacity-80 bg-[#f2c8ad] border-orange-300 rounded-lg shadow-lg w-40  top-[49%] md:top-[18%] md:ml-[12%] lg:ml-[15%] xl:ml-[12%] 2xl:ml-[8%]">
+                            <div id="dropdownSearch"  class="absolute z-10 hidden bg-opacity-80 bg-[#f2c8ad] border-orange-300 rounded-lg shadow-lg w-40  top-[49%] md:top-[18%] md:ml-[12%] lg:ml-[15%] xl:ml-[12%] 2xl:ml-[8%]">
 
                                 <ul id="dropdownMenu" class="max-h-36 px-3 pb-3 overflow-y-auto text-sm text-gray-700 mt-[5%]" aria-labelledby="dropdownSearchButton">
                                     <!-- Dropdown items -->
-                                    <li>
+                                    <li name="listasTallas">
                                         <div class="flex items-center p-2 rounded hover:bg-orange-100">
-                                            <input id="checkbox-item-1" type="checkbox" value="9-12" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
+                                            <input id="checkbox-item-1"  type="checkbox" value="9-12" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
                                             <label for="checkbox-item-1"class="w-full ms-2 text-sm font-medium text-gray-900 rounded">9-12</label>
                                         </div>
                                         <div class="flex items-center p-2 rounded hover:bg-orange-100">
-                                            <input id="checkbox-item-2" type="checkbox" value="18M" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
+                                            <input id="checkbox-item-2"  type="checkbox" value="18M" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
                                             <label for="checkbox-item-2" class="w-full ms-2 text-sm font-medium text-gray-900 rounded">18M</label>
                                         </div>
                                         <div class="flex items-center p-2 rounded hover:bg-orange-100">
@@ -246,14 +247,14 @@
                     <!-- Columna derecha -->
                     <div class="w-full md:w-1/3 p-4 flex flex-col justify-center items-center">
                         <div class="lg:w-[30vh] 2xl:w-[30vh] max-w-lg p-6 border border-orange-200 rounded-[45px] shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900] overflow-auto h-96" id="imageContainer">
-                            <label for="numImagesSelect" class="block mb-1 text-sm font-medium text-center text-gray-900">Etiquetado</label>
-                            <select id="numImagesSelect" class="w-full py-2 border-gray-300 rounded-3xl shadow-sm focus:ring-[#db4900] focus:border-[#db4900] sm:text-sm bg-white text-gray-900">
+                            <label for="numImagesSelect" name="numImagesSelect" class="block mb-1 text-sm font-medium text-center text-gray-900">Etiquetado</label>
+                            <select id="numImagesSelect" name="numImagesSelect" class="w-full py-2 border-gray-300 rounded-3xl shadow-sm focus:ring-[#db4900] focus:border-[#db4900] sm:text-sm bg-white text-gray-900">
                                 <option selected disabled hidden>Selecciona el Número de Etiquetas</option>
-                                <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="1">1</option>
-                                <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="2">2</option>
-                                <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="3">3</option>
-                                <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="4">4</option>
-                                <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="5">5</option>
+                                <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white"  value="1">1</option>
+                                <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white"  value="2">2</option>
+                                <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white"  value="3">3</option>
+                                <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white"  value="4">4</option>
+                                <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white"  value="5">5</option>
                             </select>
                         </div>
                         <div class="flex justify-center mt-4">
@@ -271,6 +272,7 @@
 
     <script src="../js/pedido.js"></script>
     <script src="../js/prueba.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
 
 </body>
 </html>
