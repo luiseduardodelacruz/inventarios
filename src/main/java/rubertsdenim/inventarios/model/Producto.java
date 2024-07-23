@@ -31,7 +31,6 @@ public class Producto {
     private String departamento;
     private String proceso;
 
-
     public Producto() {
     }
 }
