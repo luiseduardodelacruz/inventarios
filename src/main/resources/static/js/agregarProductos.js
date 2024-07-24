@@ -266,13 +266,14 @@ function categoriaDinamica() {
             <div id="opciones_tipo_agregar_producto_remaches" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="niquelado">Niquelado</div>
             </div>
-            <select id="valores_tipo_agregar_producto_remaches" th:field="*{color}" class="hidden" required>
+            <select id="valores_tipo_agregar_producto_remaches" th:field="*{tipo}" name="tipo" class="hidden" required>
               <option value="" selected>Seleccionar:</option>
               <option value="niquelado">Niquelado</option>
             </select>
           </div>
         </div>
       </div>
+
       <div class="px-4 md:px-12 flex justify-center">
         <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
           <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Color:</p>
@@ -286,7 +287,7 @@ function categoriaDinamica() {
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="niquel">Niquel</div>
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="zinc">Zinc</div>
             </div>
-            <select id="valores_color_agregar_producto_remaches" th:field="*{color}" class="hidden" required>
+            <select id="valores_color_agregar_producto_remaches" th:field="*{color}" name="color" class="hidden" required>
               <option value="" selected>Seleccionar:</option>
               <option value="cobre">Cobre</option>
               <option value="niquel">Niquel</option>
@@ -295,6 +296,7 @@ function categoriaDinamica() {
           </div>
         </div>
       </div>
+
       <div class="px-4 md:px-12 flex justify-center">
         <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
           <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Tamaño:</p>
@@ -307,7 +309,7 @@ function categoriaDinamica() {
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="27_l">27 L</div>
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="30_l">30 L</div>
             </div>
-            <select id="valores_tamano_agregar_producto_remaches" th:field="*{color}" class="hidden" required>
+            <select id="valores_tamano_agregar_producto_remaches" th:field="*{tamanio}" name="tamanio" class="hidden" required>
               <option value="" selected>Seleccionar:</option>
               <option value="27_l">27 L</option>
               <option value="30_l">30 L</option>
@@ -325,12 +327,6 @@ function categoriaDinamica() {
     contenedor.innerHTML = `
       <div class="px-4 md:px-12 flex justify-center">
         <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
-          <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Longitud:</p>
-          <input type="number" id="longitud_ajustador" th:field="*{cantidad}" class="col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-base md:text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-1.5 px-3 md:p-1.5 md:px-3 lg:p-1.5 lg:px-3 xl:p-2 xl:px-3" required />
-        </div>
-      </div>
-      <div class="px-4 md:px-12 flex justify-center">
-        <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
           <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Color:</p>
           <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
             <div id="opcion_seleccionada_color_agregar_producto_ajustador" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
@@ -342,13 +338,20 @@ function categoriaDinamica() {
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="azul_marino">Azul Marino</div>
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="blanco">Blanco</div>
             </div>
-            <select id="valores_color_agregar_producto_ajustador" th:field="*{color}" class="hidden" required>
+            <select id="valores_color_agregar_producto_ajustador" th:field="*{color}" name="color" class="hidden" required>
               <option value="" selected>Seleccionar:</option>
               <option value="negro">Negro</option>
               <option value="azul_marino">Azul Marino</option>
               <option value="blanco">Blanco</option>
             </select>
           </div>
+        </div>
+      </div>
+
+      <div class="px-4 md:px-12 flex justify-center">
+        <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
+          <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Longitud:</p>
+          <input type="number" id="longitud_ajustador" th:field="*{longitud}" name="longitud" class="col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-base md:text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-1.5 px-3 md:p-1.5 md:px-3 lg:p-1.5 lg:px-3 xl:p-2 xl:px-3" required />
         </div>
       </div>
     `;
@@ -371,7 +374,7 @@ function categoriaDinamica() {
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="cuidado_con_el_perro">Cuidado con el Perro</div>
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="optima">Optima</div>
             </div>
-            <select id="valores_marca_agregar_producto_etiquetas" th:field="*{color}" class="hidden" required>
+            <select id="valores_marca_agregar_producto_etiquetas" th:field="*{marca}" name="marca" class="hidden" required>
               <option value="" selected>Seleccionar:</option>
               <option value="cuidado_con_el_perro">Cuidado con el Perro</option>
               <option value="optima">Optima</option>
@@ -394,7 +397,7 @@ function categoriaDinamica() {
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="colgante">Colgante</div>
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="pegatina">Pegatina</div>
             </div>
-            <select id="valores_tipo_agregar_producto_etiquetas" onchange="tallaDinamica()" th:field="*{color}" class="hidden" required>
+            <select id="valores_tipo_agregar_producto_etiquetas" onchange="tallaDinamica()" th:field="*{tipo}" name="tipo" class="hidden" required>
               <option value="" selected>Seleccionar:</option>
               <option value="bordada">Bordada</option>
               <option value="vinil">Vinil</option>
@@ -404,9 +407,8 @@ function categoriaDinamica() {
           </div>
         </div>
       </div>
-      <div id="campos_dinamicos_talla_etiquetas">
-                                
-      </div>
+
+      <div id="campos_dinamicos_talla_etiquetas"></div>
     `;
 
     const opcionesCategoriaTipoEtiquetas = document.getElementById('opciones_tipo_agregar_producto_etiquetas');
@@ -429,26 +431,26 @@ function categoriaDinamica() {
     const eventoCamposGenerados = new CustomEvent('elementosGenerados', { detail: { categoria: 'etiquetas' } });
     document.dispatchEvent(eventoCamposGenerados);
 
-  } else if (valor === 'serilleras') {
+  } else if (valor === 'cerilleras') {
     contenedor.innerHTML = `
       <div class="px-4 md:px-12 flex justify-center">
         <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
-          <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Departamento:</p>
+          <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Color:</p>
           <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
-            <div id="opcion_seleccionada_departamento_agregar_producto_cerilleras" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
+            <div id="opcion_seleccionada_color_agregar_producto_cerilleras" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
               <span class="px-1">Seleccionar:</span>
               <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
             </div>
-            <div id="opciones_departamento_agregar_producto_cerilleras" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
-              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="skinny">Skinny</div>
-              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="slim">Slim</div>
-              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="jogger">Jogger</div>
+            <div id="opciones_color_agregar_producto_cerilleras" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
+              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="negro">Negro</div>
+              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="azul_marino">Azul Marino</div>
+              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="blanco">Blanco</div>
             </div>
-            <select id="valores_departamento_agregar_producto_cerilleras" th:field="*{color}" class="hidden" required>
+            <select id="valores_color_agregar_producto_cerilleras" th:field="*{color}" name="color" class="hidden" required>
               <option value="" selected>Seleccionar:</option>
-              <option value="skinny">Skinny</option>
-              <option value="slim">Slim</option>
-              <option value="jogger">Jogger</option>
+              <option value="negro">Negro</option>
+              <option value="azul_marino">Azul Marino</option>
+              <option value="blanco">Blanco</option>
             </select>
           </div>
         </div>
@@ -477,7 +479,7 @@ function categoriaDinamica() {
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="16">16</div>
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="18">18</div>
             </div>
-            <select id="valores_talla_agregar_producto_cerilleras" th:field="*{color}" class="hidden" required>
+            <select id="valores_talla_agregar_producto_cerilleras" th:field="*{talla}" name="talla" class="hidden" required>
               <option value="" selected>Seleccionar:</option>
               <option value="9_12">9-12</option>
               <option value="18_M">18 M</option>
@@ -499,22 +501,22 @@ function categoriaDinamica() {
 
       <div class="px-4 md:px-12 flex justify-center">
         <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
-          <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Color:</p>
+          <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Departamento:</p>
           <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
-            <div id="opcion_seleccionada_color_agregar_producto_cerilleras" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
+            <div id="opcion_seleccionada_departamento_agregar_producto_cerilleras" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
               <span class="px-1">Seleccionar:</span>
               <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
             </div>
-            <div id="opciones_color_agregar_producto_cerilleras" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
-              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="negro">Negro</div>
-              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="azul_marino">Azul Marino</div>
-              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="blanco">Blanco</div>
+            <div id="opciones_departamento_agregar_producto_cerilleras" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
+              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="skinny">Skinny</div>
+              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="slim">Slim</div>
+              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="jogger">Jogger</div>
             </div>
-            <select id="valores_color_agregar_producto_cerilleras" th:field="*{color}" class="hidden" required>
+            <select id="valores_departamento_agregar_producto_cerilleras" th:field="*{departamento}" name="departamento" class="hidden" required>
               <option value="" selected>Seleccionar:</option>
-              <option value="negro">Negro</option>
-              <option value="azul_marino">Azul Marino</option>
-              <option value="blanco">Blanco</option>
+              <option value="skinny">Skinny</option>
+              <option value="slim">Slim</option>
+              <option value="jogger">Jogger</option>
             </select>
           </div>
         </div>
@@ -522,34 +524,11 @@ function categoriaDinamica() {
     `;
 
     // Lanza un evento global para indicar que se han generado elementos
-    const eventoCamposGenerados = new CustomEvent('elementosGenerados', { detail: { categoria: 'serilleras' } });
+    const eventoCamposGenerados = new CustomEvent('elementosGenerados', { detail: { categoria: 'cerilleras' } });
     document.dispatchEvent(eventoCamposGenerados);
 
   } else if (valor === 'cierres') {
     contenedor.innerHTML = `
-      <div class="px-4 md:px-12 flex justify-center">
-        <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
-          <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Longitud:</p>
-          <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
-            <div id="opcion_seleccionada_longitud_agregar_producto_cierres" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-              <span class="px-1">Seleccionar:</span>
-              <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
-            </div>
-            <div id="opciones_longitud_agregar_producto_cierres" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
-              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="6_cm">6 cm</div>
-              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="8_cm">8 cm</div>
-              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="10_cm">10 cm</div>
-            </div>
-            <select id="valores_longitud_agregar_producto_cierres" th:field="*{color}" class="hidden" required>
-              <option value="" selected>Seleccionar:</option>
-              <option value="6_cm">6 cm</option>
-              <option value="8_cm">8 cm</option>
-              <option value="10_cm">10 cm</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
       <div class="px-4 md:px-12 flex justify-center">
         <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
           <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Color:</p>
@@ -567,7 +546,7 @@ function categoriaDinamica() {
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="crudo">Crudo</div>
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="blanco">Blanco</div>
             </div>
-            <select id="valores_color_agregar_producto_cierres" th:field="*{color}" class="hidden" required>
+            <select id="valores_color_agregar_producto_cierres" th:field="*{color}" name="color" class="hidden" required>
               <option value="" selected>Seleccionar:</option>
               <option value="gris_perla">Gris Perla</option>
               <option value="marino">Marino</option>
@@ -576,6 +555,29 @@ function categoriaDinamica() {
               <option value="rosa_dulce">Rosa Dulce</option>
               <option value="crudo">Crudo</option>
               <option value="blanco">Blanco</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="px-4 md:px-12 flex justify-center">
+        <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
+          <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Longitud:</p>
+          <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
+            <div id="opcion_seleccionada_longitud_agregar_producto_cierres" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
+              <span class="px-1">Seleccionar:</span>
+              <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
+            </div>
+            <div id="opciones_longitud_agregar_producto_cierres" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
+              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="6_cm">6 cm</div>
+              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="8_cm">8 cm</div>
+              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="10_cm">10 cm</div>
+            </div>
+            <select id="valores_longitud_agregar_producto_cierres" th:field="*{longitud}" name="longitud" class="hidden" required>
+              <option value="" selected>Seleccionar:</option>
+              <option value="6_cm">6 cm</option>
+              <option value="8_cm">8 cm</option>
+              <option value="10_cm">10 cm</option>
             </select>
           </div>
         </div>
@@ -595,7 +597,7 @@ function categoriaDinamica() {
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="stone_alto">Stone Alto</div>
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="suavizado">Suavizado</div>
             </div>
-            <select id="valores_proceso_agregar_producto_cierres" th:field="*{color}" class="hidden" required>
+            <select id="valores_proceso_agregar_producto_cierres" th:field="*{proceso}" name="proceso" class="hidden" required>
               <option value="" selected>Seleccionar:</option>
               <option value="blich">Blich</option>
               <option value="stone_medio">Stone Medio</option>
@@ -736,7 +738,7 @@ function tallaDinamica() {
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="16">16</div>
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="18">18</div>
             </div>
-            <select id="valores_talla_agregar_producto_etiquetas" th:field="*{color}" class="hidden" required>
+            <select id="valores_talla_agregar_producto_etiquetas" th:field="*{talla}" name="talla" class="hidden" required>
               <option value="" selected>Seleccionar:</option>
               <option value="9_12">9-12</option>
               <option value="18_M">18 M</option>
@@ -778,7 +780,7 @@ function tallaDinamica() {
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="bebos">Bebos</div>
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="bebas">Bebas</div>
             </div>
-            <select id="valores_departamento_agregar_producto_etiquetas" th:field="*{color}" class="hidden" required>
+            <select id="valores_departamento_agregar_producto_etiquetas" th:field="*{departamento}" name="departamento" class="hidden" required>
               <option value="" selected>Seleccionar:</option>
               <option value="nino">Niño</option>
               <option value="nina">Niña</option>
@@ -803,7 +805,7 @@ function tallaDinamica() {
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="stone_medio">Stone Medio</div>
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="stone_alto">Stone Alto</div>
             </div>
-            <select id="valores_proceso_agregar_producto_etiquetas" th:field="*{color}" class="hidden" required>
+            <select id="valores_proceso_agregar_producto_etiquetas" th:field="*{proceso}" name="proceso" class="hidden" required>
               <option value="" selected>Seleccionar:</option>
               <option value="blich">Blich</option>
               <option value="stone_medio">Stone Medio</option>

@@ -85,7 +85,7 @@ public class InventarioControlador {
         String json = EntityUtils.toString(response.getEntity());
     
         // Imprime o loguea la respuesta para debug
-        //System.out.println("Respuesta de ImgBB: " + json);
+        System.out.println("Respuesta de ImgBB: " + json);
 
         try {
         JSONObject jsonObject = new JSONObject(json);

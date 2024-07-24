@@ -36,6 +36,56 @@ document.addEventListener('DOMContentLoaded', function () {
             idSeleccionado: 'opcion_seleccionada_tamano_editar_producto_botones',
             idOpciones: 'opciones_tamano_editar_producto_botones',
             idValores: 'valores_tamano_editar_producto_botones'
+        },
+        {
+            idSeleccionado: 'opcion_seleccionada_tamano_editar_producto_remaches',
+            idOpciones: 'opciones_tamano_editar_producto_remaches',
+            idValores: 'valores_tamano_editar_producto_remaches'
+        },
+        {
+            idSeleccionado: 'opcion_seleccionada_marca_editar_producto_etiquetas',
+            idOpciones: 'opciones_marca_editar_producto_etiquetas',
+            idValores: 'valores_marca_editar_producto_etiquetas'
+        },
+        {
+            idSeleccionado: 'opcion_seleccionada_tipo_editar_producto_etiquetas',
+            idOpciones: 'opciones_tipo_editar_producto_etiquetas',
+            idValores: 'valores_tipo_editar_producto_etiquetas'
+        },
+        {
+            idSeleccionado: 'opcion_seleccionada_talla_editar_producto_etiquetas',
+            idOpciones: 'opciones_talla_editar_producto_etiquetas',
+            idValores: 'valores_talla_editar_producto_etiquetas'
+        },
+        {
+            idSeleccionado: 'opcion_seleccionada_departamento_editar_producto_etiquetas',
+            idOpciones: 'opciones_departamento_editar_producto_etiquetas',
+            idValores: 'valores_departamento_editar_producto_etiquetas'
+        },
+        {
+            idSeleccionado: 'opcion_seleccionada_proceso_editar_producto_etiquetas',
+            idOpciones: 'opciones_proceso_editar_producto_etiquetas',
+            idValores: 'valores_proceso_editar_producto_etiquetas'
+        },
+        {
+            idSeleccionado: 'opcion_seleccionada_talla_editar_producto_cerilleras',
+            idOpciones: 'opciones_talla_editar_producto_cerilleras',
+            idValores: 'valores_talla_editar_producto_cerilleras'
+        },
+        {
+            idSeleccionado: 'opcion_seleccionada_departamento_editar_producto_cerilleras',
+            idOpciones: 'opciones_departamento_editar_producto_cerilleras',
+            idValores: 'valores_departamento_editar_producto_cerilleras'
+        },
+        {
+            idSeleccionado: 'opcion_seleccionada_longitud_editar_producto_cierres',
+            idOpciones: 'opciones_longitud_editar_producto_cierres',
+            idValores: 'valores_longitud_editar_producto_cierres'
+        },
+        {
+            idSeleccionado: 'opcion_seleccionada_proceso_editar_producto_cierres',
+            idOpciones: 'opciones_proceso_editar_producto_cierres',
+            idValores: 'valores_proceso_editar_producto_cierres'
         }
     ];
 

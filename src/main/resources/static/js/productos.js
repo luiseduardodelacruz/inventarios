@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } else if (categoria == 'etiquetasTallaDinamicoOpcion2'){
       selectDepartamentoAgregarProductosEtiquetas();
       selectProcesoAgregarProductosEtiquetas();
-    } else if (categoria == 'serilleras'){
+    } else if (categoria == 'cerilleras'){
       selectDepartamentoAgregarProductosCerilleras();
       selectTallaAgregarProductosCerilleras();
       selectColorAgregarProductosCerilleras();
