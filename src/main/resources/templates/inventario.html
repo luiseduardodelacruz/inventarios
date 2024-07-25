@@ -116,14 +116,14 @@
                         </div>
                         <div class="p-[6%] pt-[9vw] md:pt-[5vw] lg:pt-[4vw]">
                             <div class="">
-                                <!--<div class="flex justify-between">
-                                    <button class="text-left bg-red-600 rounded-xl py-1 px-2 text-white">Stock Bajo</button>
+                                <div class="flex justify-between">
+                                    <button th:if="${producto.cantidad < 200}"  class="text-left bg-red-600 rounded-xl py-1 px-2 text-white">Stock Bajo</button>
                                     <button class="text-right text-red-700 text-xl"><i class="fa-solid fa-circle-info"></i></button>
-                                </div>-->
+                                </div>
                                 <p th:text="${producto.nombre}" class="flex justify-center text-center fuente_4 text-base md:text-xl lg:text-xl xl:text-2xl text-white"></p>
                                 <p th:if="${producto.categoria} != 'etiquetas'" class="text-center fuente_2 text-xs md:text-sm lg:text-sm xl:text-base text-white">Color: <span th:text="${producto.color} ? (${producto.color == 'azul_marino' ? 'Azul Marino' : producto.color}) : ''" class="capitalize ml-1 md:ml-3 text-justify fuente_5 text-white"></span></p>
                                 <!--<p th:if="${producto.categoria} == 'etiquetas'" class="text-center fuente_2 text-xs md:text-sm lg:text-sm xl:text-base text-white">Tipo: <span th:text="${producto.tipo}" class="capitalize ml-1 md:ml-3 text-justify fuente_5 text-white"></span></p>-->
-                                <p th:classappend="${producto.cantidad < 200} ? ' text-red-700' : ' text-white'" class="text-center fuente_2 text-xs md:text-sm lg:text-sm xl:text-base">Cantidad: <span th:text="${producto.cantidad}" th:classappend="${producto.cantidad < 200} ? ' text-red-700' : ' text-white'" class="ml-1 md:ml-3 text-justify fuente_5"></span></p>
+                                <p class="text-center fuente_2 text-xs md:text-sm lg:text-sm xl:text-base text-white">Cantidad: <span th:text="${producto.cantidad}" class="ml-1 md:ml-3 text-justify fuente_5 text-white"></span></p>
                                 <p class="text-center fuente_2 text-xs md:text-sm lg:text-sm xl:text-base text-white">Categoría: <span th:text="${producto.categoria}" class="capitalize ml-1 md:ml-3 text-justify fuente_5 text-white"></span></p> 
                             </div>
                             <div th:if="${usuario.role == 'ADMIN'}"class="flex justify-evenly mt-2">
