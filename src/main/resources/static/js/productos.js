@@ -353,33 +353,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Funcionalidad Select Tipo Agregar Productos Remaches
-  function selectTipoAgregarProductosRemaches() {
-    const opcion_seleccionada_tipo_agregar_producto_remaches = document.getElementById('opcion_seleccionada_tipo_agregar_producto_remaches');
-    const opciones_tipo_agregar_producto_remaches = document.getElementById('opciones_tipo_agregar_producto_remaches');
-    const valores_tipo_agregar_producto_remaches = document.getElementById('valores_tipo_agregar_producto_remaches');
-    const selector_tipo_agregar_producto_remaches = document.querySelectorAll('#opciones_tipo_agregar_producto_remaches div');
-
-    opcion_seleccionada_tipo_agregar_producto_remaches.addEventListener('click', function() {
-      opciones_tipo_agregar_producto_remaches.classList.toggle('hidden');
-    });
-
-    selector_tipo_agregar_producto_remaches.forEach(option => {
-      option.addEventListener('click', function() {
-        const value = option.getAttribute('data-value');
-        valores_tipo_agregar_producto_remaches.value = value;
-        opcion_seleccionada_tipo_agregar_producto_remaches.querySelector('span').textContent = option.textContent;
-        opciones_tipo_agregar_producto_remaches.classList.add('hidden');
-      });
-    });
-
-    document.addEventListener('click', function(event) {
-      if (!opcion_seleccionada_tipo_agregar_producto_remaches.contains(event.target) && !opciones_tipo_agregar_producto_remaches.contains(event.target)) {
-        opciones_tipo_agregar_producto_remaches.classList.add('hidden');
-      }
-    });
-  }
-
   // Funcionalidad Select Color Agregar Productos Remaches
   function selectColorAgregarProductosRemaches() {
     const opcion_seleccionada_color_agregar_producto_remaches = document.getElementById('opcion_seleccionada_color_agregar_producto_remaches');
