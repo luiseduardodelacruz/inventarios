@@ -141,22 +141,22 @@
             <!-- Elemento Modal Eliminar Usuarios -->
             <div>
                 <div id="eliminar_usuario" class="fixed inset-0 z-50 hidden transition-transform duration-1000 ease-in-out flex items-center justify-center bg-gray-800 bg-opacity-50">
-                    <div class="w-full max-w-xl p-6 bg-[#faad86] rounded-[45px] shadow-lg">
+                    <div class="w-full max-w-[90vw] md:max-w-lg lg:max-w-lg xl:max-w-xl p-4 md:p-5 lg:p-5 xl:p-6 bg-[#faad86] rounded-[45px] shadow-lg">
                         <div class="grid grid-cols-12 start-0 flex items-stretch">
-                            <p class="capitalize text-3xl fuente_4 text-white col-span-11 text-center place-self-center justify-self-center">¿Está Seguro de Retirarle a <span id="name_user">NAME</span> el Acceso?</p>
+                            <p class="text-base md:text-2xl lg:text-2xl xl:text-3xl px-5 fuente_4 text-white col-span-11 text-center place-self-center justify-self-center">¿Está Seguro de Retirarle a <span id="name_user" class="capitalize">NAME</span> el Acceso?</p>
                             <button id="cerrar_eliminar_usuario" type="button" class="inline-flex col-span-1 place-self-center justify-self-end text-white p-0.5 hover:bg-gray-600 hover:bg-opacity-10 rounded-xl">
-                                <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m14 10l-4 4m0-4l4 4"/></g></svg>
+                                <svg class="w-9 h-9 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-12 xl:h-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m14 10l-4 4m0-4l4 4"/></g></svg>
                             </button>
                         </div>
                         <form>
-                            <div class="relative flex justify-center mt-5">
-                                <div class=" flex justify-center w-full h-[8vw] rounded-3xl">
-                                    <img class="object-cover rounded-[35px]" id="image_user" alt="Usuario">
+                            <div class="relative flex justify-center mt-4 md:mt-4 lg:mt-4 xl:mt-5">
+                                <div class="flex justify-center w-full h-[24vw] md:h-[14vw] lg:h-[10vw] xl:h-[8vw] rounded-3xl">
+                                    <img class="object-cover rounded-[20px] md:rounded-[25px] lg:rounded-[35px]" id="image_user" alt="Usuario">
                                 </div>
                             </div>
-                            <div class="flex justify-evenly mt-4 mb-2">
-                                <button type="button" id="confirmDeleteUserBtn" class="place-self-center col-span-6 px-[1vw] text-white bg-[#fe7355] fuente_1 hover:bg-[#ff8268] focus:ring-4 focus:outline-none focus:ring-[#dc6750] rounded-3xl text-xl py-2 w-[20%] text-center w-auto">Eliminar</button>
-                                <button type="button" onclick="closeModalUsuarioDelete()" class="place-self-center col-span-6 px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#d96328] focus:ring-4 focus:outline-none focus:ring-[#bd5F30] rounded-3xl text-xl py-2 w-[20%] text-center w-auto">Cancelar</button>
+                            <div class="flex justify-evenly mt-6 mb-3 lg:mb-4">
+                                <button type="button" id="confirmDeleteUserBtn" class="place-self-center col-span-6 px-[1vw] text-white bg-[#fe7355] fuente_1 hover:bg-[#ff8268] focus:ring-4 focus:outline-none focus:ring-[#dc6750] rounded-3xl text-base md:text-lg lg:text-lg xl:text-xl py-1.5 md:py-1.5 lg:py-1.5 xl:py-2 w-[30%] text-center">Eliminar</button>
+                                <button type="button" onclick="closeModalUsuarioDelete()" class="place-self-center col-span-6 px-[1vw] text-white bg-[#db4900] fuente_1 hover:bg-[#d96328] focus:ring-4 focus:outline-none focus:ring-[#bd5F30] rounded-3xl text-base md:text-lg lg:text-lg xl:text-xl py-1.5 md:py-1.5 lg:py-1.5 xl:py-2 w-[30%] text-center">Cancelar</button>
                             </div>
                         </form>
                     </div>
