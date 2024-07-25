@@ -86,7 +86,6 @@ document.addEventListener('DOMContentLoaded', function() {
     } else if (categoria == 'botonesColorDinamicoOpcion2'){
       selectTamanoAgregarProductosBotones();
     } else if (categoria == 'remaches'){
-      selectTipoAgregarProductosRemaches();
       selectColorAgregarProductosRemaches();
       selectTamanoAgregarProductosRemaches();
     } else if (categoria == 'ajustador'){
