@@ -3,11 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Array con los detalles de cada conjunto de elementos
     const elementos = [
         {
-            idSeleccionado: 'opcion_seleccionada_categoria_editar_producto',
-            idOpciones: 'opciones_categoria_editar_producto',
-            idValores: 'valores_categoria_editar_producto'
-        },
-        {
             idSeleccionado: 'opcion_seleccionada_color_editar_producto',
             idOpciones: 'opciones_color_editar_producto',
             idValores: 'valores_color_editar_producto'
@@ -28,11 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
             idValores: 'valores_tapa_editar_producto_hilos'
         },
         {
-            idSeleccionado: 'opcion_seleccionada_tipo_editar_producto_botones',
-            idOpciones: 'opciones_tipo_editar_producto_botones',
-            idValores: 'valores_tipo_editar_producto_botones'
-        },
-        {
             idSeleccionado: 'opcion_seleccionada_tamano_editar_producto_botones',
             idOpciones: 'opciones_tamano_editar_producto_botones',
             idValores: 'valores_tamano_editar_producto_botones'
@@ -46,11 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
             idSeleccionado: 'opcion_seleccionada_marca_editar_producto_etiquetas',
             idOpciones: 'opciones_marca_editar_producto_etiquetas',
             idValores: 'valores_marca_editar_producto_etiquetas'
-        },
-        {
-            idSeleccionado: 'opcion_seleccionada_tipo_editar_producto_etiquetas',
-            idOpciones: 'opciones_tipo_editar_producto_etiquetas',
-            idValores: 'valores_tipo_editar_producto_etiquetas'
         },
         {
             idSeleccionado: 'opcion_seleccionada_talla_editar_producto_etiquetas',
