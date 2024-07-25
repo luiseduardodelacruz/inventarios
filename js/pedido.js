@@ -108,47 +108,52 @@ function guardarImagenes() {
 
 /* mostrar imagenes tanto cental como superio derecha */ 
 document.addEventListener('DOMContentLoaded', function() {
-const dropzoneInput = document.getElementById('dropzone-file');
-const previewContainer = document.getElementById('preview');
-
-    dropzoneInput.addEventListener('change', function() {
-        const file = this.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const imageUrl = event.target.result;
-                const imgElement = document.createElement('img');
-                imgElement.src = imageUrl;
-                imgElement.classList.add('max-h-full', 'max-w-full');
-                previewContainer.innerHTML = ''; 
-                previewContainer.appendChild(imgElement);
-            };
-            reader.readAsDataURL(file);
-        }
+    const dropzoneInputs = document.querySelectorAll('#dropzone-file, #dropzone-imagenE');
+    
+    dropzoneInputs.forEach(dropzoneInput => {
+        const previewContainer = dropzoneInput.id === 'dropzone-file' ? document.getElementById('preview') : document.getElementById('vistaEmpresa');
+        
+        dropzoneInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const imageUrl = event.target.result;
+                    const imgElement = document.createElement('img');
+                    imgElement.src = imageUrl;
+                    imgElement.style.width = '100%';
+                    imgElement.style.height = '100%';
+                    imgElement.style.objectFit = 'cover';
+                    imgElement.classList.add(dropzoneInput.id); // Asignar clase con el id del input
+                    previewContainer.innerHTML = ''; 
+                    previewContainer.appendChild(imgElement);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
     });
 });
- 
 
-document.addEventListener('DOMContentLoaded', function() {
-const dropzoneInput = document.getElementById('dropzone-imagenE');
-const previewContainer = document.getElementById('vistaEmpresa');
-
-    dropzoneInput.addEventListener('change', function() {
-        const file = this.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const imageUrl = event.target.result;
-                const imgElement = document.createElement('img');
-                imgElement.src = imageUrl;
-                imgElement.classList.add('max-h-full', 'max-w-full');
-                previewContainer.innerHTML = ''; 
-                previewContainer.appendChild(imgElement);
+function mostrarDatos() {
+    const datos = {};
+    const dropzoneInputs = document.querySelectorAll('#dropzone-file, #dropzone-imagenE');
+    
+    dropzoneInputs.forEach(dropzoneInput => {
+        const previewContainer = dropzoneInput.id === 'dropzone-file' ? document.getElementById('preview') : document.getElementById('vistaEmpresa');
+        const imgElement = previewContainer.querySelector('img');
+        if (imgElement) {
+            const imageUrl = imgElement.src;
+            const imageClass = imgElement.className;
+            datos[dropzoneInput.id] = {
+                class: imageClass,
+                url: imageUrl
             };
-            reader.readAsDataURL(file);
         }
     });
-}); 
+    console.log(datos);
+}
+
+
 
 /* document.addEventListener('DOMContentLoaded', function() {
     const dropzoneInput = document.getElementById('dropzone-imagenE');
@@ -304,29 +309,41 @@ function resetearRemoverCampos(){
 }
 
 
-//mostrar img en cosola
+//mostrar las tallas en cosola
 document.addEventListener("DOMContentLoaded", function() {
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    
+    const checkedCheckboxes = []; // Arreglo para almacenar los checkboxes marcados
+
     checkboxes.forEach(function(checkbox) {
         checkbox.addEventListener('change', function() {
             const isChecked = this.checked;
             const inputValue = this.value; // Obtener el valor del checkbox
-            
+
             if (isChecked) {
+                // Verificar si el checkbox ya está en el arreglo de checkboxes marcados
+                if (!checkedCheckboxes.includes(inputValue)) {
+                    checkedCheckboxes.push(inputValue); // Agregar el valor al arreglo
+                }
+
                 // Generar un nombre único para el grupo de checkboxes marcados
                 const name = 'checkbox-active-' + inputValue;
-                
+
                 // Obtener todos los checkboxes con el mismo valor y asignarles el mismo nombre
                 const sameValueCheckboxes = document.querySelectorAll('input[type="checkbox"][value="' + inputValue + '"]');
-                
+
                 sameValueCheckboxes.forEach(function(checkbox) {
                     checkbox.setAttribute('name', name); // Agregar el atributo 'name' al checkbox
                 });
             } else {
+                // Remover el valor del arreglo de checkboxes marcados
+                const index = checkedCheckboxes.indexOf(inputValue);
+                if (index !== -1) {
+                    checkedCheckboxes.splice(index, 1);
+                }
+
                 // Quitar el atributo 'name' de todos los checkboxes con el mismo valor
                 const sameValueCheckboxes = document.querySelectorAll('input[type="checkbox"][value="' + inputValue + '"]');
-                
+
                 sameValueCheckboxes.forEach(function(checkbox) {
                     checkbox.removeAttribute('name'); // Quitar el atributo 'name' del checkbox
                 });
@@ -334,4 +351,3 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
-

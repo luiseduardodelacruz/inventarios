@@ -18,23 +18,21 @@
     <div class="bg-[#ffe1d2] border border-orange-200 bg-opacity-40 sm:h-screen flex flex-col preview max-w-full ">
         <form id="fichaPantalon">
             <!-- navar -->
-            <nav class="bg-[#ffe1d2] bg-opacity-5 mb-10 mt-5 w-full z-20 top-0 start md:px-8 2xl:px-44 xl:px-24 lg:px-12">
+            <nav class="bg-[#ffe1d2] bg-opacity-5 mb-10 mt-10 w-full z-20 top-0 start md:px-8 2xl:px-44 xl:px-24 lg:px-12 ">
                 <div class="max-w-screen flex flex-wrap items-center justify-stretch md:justify-between mx-auto mt-5 mb-5 p-4 ">
 
-                    <div class="flex items-center justify-center w-full md:w-auto mr-10 sm:mr-[1vh] md:mr-[1vh] 2xl:mr-[70vh] mb-5 mt-5 md:mb-0 md:mt-0 md:h-8 lg:h-12">
-                        <label for="dropzone-imagenE" class="flex flex-col items-center justify-center w-80 md:w-48 h-30 2xl:h-50 md:h-50 border-2 border-orange-300 border-dashed rounded-lg cursor-pointer bg-gray-50   hover:bg-gray-100    relative">
+                    <div class="flex items-center justify-center w-full md:w-auto sm:mr-[1vh] md:mr-[1vh] 2xl:mr-[70vh] mb-5 mt-5 md:mb-0 md:mt-0 md:h-8 lg:h-12">
+                        <label for="dropzone-imagenE" class="flex flex-col items-center justify-center w-80 md:w-48 h-30 2xl:h-50 md:h-50 border-2 border-orange-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 relative overflow-hidden">
                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                <svg class="w-8 h-8 mb-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
                                 </svg>
-                                <p class="mb-2 text-sm text-gray-500 text-center font-normal"><span class="font-semibold text-[#db4900]">Click para subir</span></p>
-                                <p class="mb-2 text-sm text-gray-500 text-center font-normal">o arrastra la imagen</p>
-                                <p class="mb-2 text-[12px] text-gray-500 text-center font-normal">PNG, JPG menor a 10MB</p>
+                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center font-normal"><span class="font-semibold text-[#db4900]">Click para subir</span></p>
+                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center font-normal">o arrastra la imagen</p>
+                                <p class="mb-2 text-[12px] text-gray-500 dark:text-gray-200 text-center font-normal">PNG, JPG menor a 10MB</p>
                             </div>
                             <input id="dropzone-imagenE" name="dropzone-imagenE" type="file" class="hidden" />
-                            <div id="vistaEmpresa" class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none rounded-lg">
-                            </div>
+                            <div id="vistaEmpresa" class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none rounded-lg overflow-auto"></div>
                         </label>
                     </div>
 
@@ -54,7 +52,7 @@
                         </div>
                         <div class="flex flex-col md:flex-row items-center mb-3 md:mb-0 ">
                             <label for="dropdownSearchButton" name="dropdownSearchButton" class="lg:ml-auto mb-1 md:mb-0 mr-10 lg:mr-16 w-20 px-2 text-sm font-medium text-gray-900 ">Tallas:</label>
-                            <button id="dropdownSearchButton" name="dropdownSearchButton" class="flex items-center justify-between border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-60 sm:w-72 md:w-32 sm:w-40 lg:w-[20vh] p-2.5 text-white placeholder-white h-10 bg-[#db4900]" type="button" aria-haspopup="true" aria-expanded="false" required>
+                            <button id="dropdownSearchButton"  class="flex items-center justify-between border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-60 sm:w-72 md:w-32 sm:w-40 lg:w-[20vh] p-2.5 text-white placeholder-white h-10 bg-[#db4900]" type="button" aria-haspopup="true" aria-expanded="false" required>
                                 <span>Tallas</span>
                                 <svg id="dropdownIconClosed" class="w-2.5 h-1.5 ml-2" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -192,20 +190,16 @@
                     <!-- Columna central -->
                     <div class="w-1/3 p-4 flex flex-col items-center w-full md:w-[30vh] lg:w-[45vh] xl:w-[50vh] 2xl:w-[70vh]  ">
                         <div class="flex items-center justify-center w-[45vh] sm:w-[48vh] md:w-full mt-4">
-                            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-orange-300 border-dashed rounded-lg cursor-pointer bg-gray-50   hover:bg-gray-100 relative">
+                            <label for="dropzone-file"  class="flex flex-col items-center justify-center w-full h-64 border-2 border-orange-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 relative overflow-hidden">
                                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <svg class="w-8 h-8 mb-4 text-gray-500" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                    <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
                                     </svg>
-                                    <p class="mb-2 text-sm text-gray-500 text-center font-normal">
-                                        <span class="font-semibold text-[#db4900]">Click para subir</span> o arrastra la imagen
-                                    </p>
-                                    <p class="mb-2 text-[12px] text-gray-500 text-center font-normal">PNG, JPG menor a 10MB</p>
+                                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center font-normal"><span class="font-semibold text-[#db4900]">Click para subir</span> o arrastra la imagen</p>
+                                    <p class="mb-2 text-[12px] text-gray-500 dark:text-gray-200 text-center font-normal">PNG, JPG menor a 10MB</p>
                                 </div>
                                 <input id="dropzone-file" name="dropzone-file" type="file" class="hidden" />
-                                <div id="preview" class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none rounded-lg"></div>
+                                <div id="preview" class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none rounded-lg overflow-auto"></div>
                             </label>
                         </div>
                         <div class="w-full max-w-md p-6 border border-orange-200 rounded-[45px] shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900] mt-10">
@@ -245,8 +239,8 @@
                     </div>
 
                     <!-- Columna derecha -->
-                    <div class="w-full md:w-1/3 p-4 flex flex-col justify-center items-center">
-                        <div class="lg:w-[30vh] 2xl:w-[30vh] max-w-lg p-6 border border-orange-200 rounded-[45px] shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900] overflow-auto h-96" id="imageContainer">
+                    <div class="w-1/3 p-4 flex justify-center flex-col items-center ">
+                    <div class="lg:w-[20vh] md:w-[22vh] xl:w-[30vh] lg:w-[30vh] 2xl:w-[30vh] w-[45vh] max-w-lg p-6 border border-orange-200 rounded-[45px] shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900] overflow-auto h-96" id="imageContainer">
                             <label for="numImagesSelect" name="numImagesSelect" class="block mb-1 text-sm font-medium text-center text-gray-900">Etiquetado</label>
                             <select id="numImagesSelect" name="numImagesSelect" class="w-full py-2 border-gray-300 rounded-3xl shadow-sm focus:ring-[#db4900] focus:border-[#db4900] sm:text-sm bg-white text-gray-900">
                                 <option selected disabled hidden>Selecciona el Número de Etiquetas</option>
