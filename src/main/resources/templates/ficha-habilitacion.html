@@ -9,8 +9,6 @@
     <title>Fichas habilitacion</title>
 </head>
 <body class="bg-cover bg-no-repeat bg-center" style="background-image: url('../img/BackgorundMockup_Rubert\'sDenim.png');">
-<a href="index.html">Regresar</a>
-
 <div class="">
     <div style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
         <div class="w-full max-w-2xl p-6 border-[#db4900] border-opacity-40 rounded-3xl shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900] p-[10vw] m-[10vw]  ">
@@ -40,33 +38,45 @@
                     <div class="flex items-center mb-3">
                         <label for="estilo" class="text-sm font-medium text-white-900 text-white mr-2">Estilo:</label>
                         <input type="text" name="estilo" id="estilo" class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white placeholder-white" th:field="*{estilo}" required>
-                    </div>
+                    </div> 
                     <div class="flex items-center mb-3">
                         <label for="corte" class="text-sm font-medium text-gray-900 text-white mr-2">Corte:</label>
                         <input type="text" name="corte" id="corte" class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white placeholder-white" th:field="*{corte}" required>
                     </div>
                     <div class="flex items-center mb-3">
+                        <label for="tipos" class="text-sm font-medium text-gray-900 text-white mr-2">Tipo de corte: </label>
+                        <select name="tipos" id="tipos" class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white" th:field="*{tipos}" required>
+                            <option value="" selected>Seleccionar tipo de corte</option>
+                            <option th:each="tipos : ${tipos}" th:value="${tipos.guy}" th:text="${tipos.guy}">Tipo</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <label for="total" class="text-sm font-medium text-gray-900 text-white mr-2">Total del corte:</label>
+                        <input type="number" name="total" id="total" class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white placeholder-white" th:field="*{total}" required min="0">
+                    </div>          
+                    <div class="flex items-center mb-3">
                         <label for="cadena" class="text-sm font-medium text-gray-900 text-white mr-2">Cadena:</label>
                         <select name="cadena" id="cadena" class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white" th:field="*{cadena}" required>
-                            <option value="" selected disabled>Seleccionar cadena</option>
-                            <option th:each="cadena : ${cadenas}" th:value="${cadena.id}" th:text="${cadena.name_chain}">Cadena</option>
+                            <option value="" selected>Seleccionar cadena</option>
+                            <option th:each="cadena : ${cadenas}" th:value="${cadena.name_chain}" th:text="${cadena.name_chain}">Cadena</option>
                         </select>
                     </div>
                     <div class="flex items-center mb-3">
                         <label for="departamentos" class="text-sm font-medium text-gray-900 text-white mr-2">Departamento:</label>
                         <select name="departamentos" id="departamentos" class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white" th:field="*{departamentos}" required>
-                            <option value="" selected disabled>Seleccionar departamento</option>
-                            <option th:each="departamento : ${departamentos}" th:value="${departamento.id}" th:text="${departamento.name_departament}">Nombre del Departamento</option>
+                            <option value="" selected>Seleccionar departamento</option>
+                            <option th:each="departamento : ${departamentos}" th:value="${departamento.name_departament}" th:text="${departamento.name_departament}">Nombre del Departamento</option>
                         </select>
                     </div>
                     <div class="flex items-center mb-3">
                         <label for="procesos" class="text-sm font-medium text-gray-900 text-white mr-2">Proceso:</label>
                         <select name="procesos" id="procesos" class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white" th:field="*{procesos}" required>
-                            <option value="" selected disabled>Seleccione el proceso</option>
-                            <option th:each="procesos : ${procesos}" th:value="${procesos.id}" th:text="${procesos.name_process}">Nombre del procesos</option>
+                            <option value="" selected>Seleccione el proceso</option>
+                            <option th:each="procesos : ${procesos}" th:value="${procesos.name_process}" th:text="${procesos.name_process}">Nombre del procesos</option>
                         </select>
                     </div>
                 </div>
+                
     
                 <!-- Tercera fila -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -92,7 +102,7 @@
         </div>
     </div>
 </div>
-
+<script src="../js/validation.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
 </html>
