@@ -4,9 +4,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
+import com.lowagie.text.Image;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfWriter;
 
@@ -14,6 +16,9 @@ import rubertsdenim.inventarios.model.PdfPedido;
 
 @Service
 public class PdfPedidoServicio {
+
+    private static final long MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
+    private static final String[] ALLOWED_CONTENT_TYPES = {"image/jpeg", "image/png"};
 
     public byte[] generarPDF(PdfPedido pedido) throws IOException{
         Document document  = new Document();
@@ -45,10 +50,38 @@ public class PdfPedidoServicio {
             document.add(new Paragraph("Número de Imágenes Seleccionadas: " + pedido.getNumImagesSelect()));
 
             if (pedido.getDropzoneImagenE() != null && !pedido.getDropzoneImagenE().isEmpty()) {
-                document.add(new Paragraph("Imagen Marca: " + pedido.getDropzoneImagenE().getOriginalFilename()));
+                MultipartFile imagenMarca = pedido.getDropzoneImagenE();
+                if (isValidImage(imagenMarca)) {
+                    try {
+                        byte[] imageBytesMarca = imagenMarca.getBytes();
+                        Image imageMarca = Image.getInstance(imageBytesMarca);
+                        imageMarca.scaleToFit(125, 125);
+                        document.add(new Paragraph("Imagen Marca: " + imagenMarca.getOriginalFilename()));
+                        document.add(imageMarca);
+                    } catch (IOException | DocumentException e) {
+                        e.printStackTrace();
+                        document.add(new Paragraph("Error al procesar la imagen de marca: " + e.getMessage()));
+                    }
+                } else {
+                    document.add(new Paragraph("La imagen de marca no es válida."));
+                }
             }
             if (pedido.getDropzoneFile() != null && !pedido.getDropzoneFile().isEmpty()) {
-                document.add(new Paragraph("Archivo Producto: " + pedido.getDropzoneFile().getOriginalFilename()));
+                MultipartFile imagenProducto = pedido.getDropzoneFile();
+                if (isValidImage(imagenProducto)) {
+                    try {
+                        byte[] imageBytesProducto = imagenProducto.getBytes();
+                        Image imageProducto = Image.getInstance(imageBytesProducto);
+                        imageProducto.scaleToFit(250, 250);
+                        document.add(new Paragraph("Imagen Producto: " + imagenProducto.getOriginalFilename()));
+                        document.add(imageProducto);
+                    } catch (IOException | DocumentException e) {
+                        e.printStackTrace();
+                        document.add(new Paragraph("Error al procesar la imagen de producto: " + e.getMessage()));
+                    }
+                } else {
+                    document.add(new Paragraph("La imagen de producto no es válida."));
+                }
             }
 
         } catch (DocumentException e) {
@@ -58,5 +91,19 @@ public class PdfPedidoServicio {
         }
 
         return baos.toByteArray();
+    }
+
+    private boolean isValidImage(MultipartFile file) {
+        if (file.getSize() > MAX_FILE_SIZE) {
+            return false;
+        }
+
+        for (String allowedType : ALLOWED_CONTENT_TYPES) {
+            if (allowedType.equals(file.getContentType())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
