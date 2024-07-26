@@ -5,33 +5,64 @@ const numImagesSelect = document.getElementById('numImagesSelect');
 numImagesSelect.addEventListener('change', function(event) {
     event.preventDefault();
     const numImages = parseInt(event.target.value);
-   
-    container.innerHTML = '';
     
-   
+    container.innerHTML = '';
+
     for (let i = 0; i < numImages; i++) {
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.accept = 'image/*';
-        fileInput.name = 'numImagesSelect';
-        fileInput.classList.add('my-2');
-        fileInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            
-            if (!file.type.startsWith('image/')) {
-                return;
-            }
-          
-            const img = document.createElement('img');
-            img.src = URL.createObjectURL(file);
-            img.classList.add('w-full', 'max-w-xs', 'p-2', 'border', 'border-orange-300', 'rounded-lg', 'shadow-md', 'my-2');
-            
-            container.replaceChild(img, fileInput);
-            container.scrollTop = container.scrollHeight;
-        });
-        container.appendChild(fileInput);
+        createFileInput();
     }
-}); 
+});
+
+function createFileInput() {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    fileInput.name = 'numImagesSelect';
+    fileInput.classList.add('my-2');
+    fileInput.style.display = 'none'; // Oculta el input
+    
+    fileInput.addEventListener('change', handleFileSelect);
+    
+    const fileInputLabel = document.createElement('label');
+    fileInputLabel.classList.add('file-input-label');
+    fileInputLabel.style.cursor = 'pointer'; // Cambia el cursor para indicar que es clickeable
+    fileInputLabel.classList.add('block', 'my-2', 'p-2', 'border', 'border-orange-300', 'rounded-lg', 'shadow-md');
+    fileInputLabel.textContent = 'Haz clic para seleccionar una imagen';
+
+    // Asocia el input con la etiqueta
+    fileInputLabel.appendChild(fileInput);
+
+    container.appendChild(fileInputLabel);
+}
+
+function handleFileSelect(event) {
+    const file = event.target.files[0];
+    
+    if (!file || !file.type.startsWith('image/')) {
+        return;
+    }
+
+    const fileInput = event.target;
+    const fileInputLabel = fileInput.parentElement;
+
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(file);
+    img.classList.add('w-full', 'max-w-xs', 'p-2', 'border', 'border-orange-300', 'rounded-lg', 'shadow-md', 'my-2');
+    
+    fileInputLabel.innerHTML = ''; // Limpia la etiqueta para reemplazar el contenido con la imagen
+    fileInputLabel.appendChild(img);
+    fileInputLabel.style.cursor = 'pointer'; // Asegura que el cursor siga siendo clickeable
+
+    // Reinicia el archivo input al estado original para permitir la selección de nuevas imágenes
+    fileInput.value = ''; // Esto es importante para permitir la selección de la misma imagen de nuevo
+    fileInput.addEventListener('click', () => fileInput.click());
+    
+    fileInputLabel.addEventListener('click', () => fileInput.click());
+}
+
+
+
+
 
 //funcion para obtener url de img carrusel
 function mostrarDatos() {
@@ -251,34 +282,22 @@ const botonLabel = document.getElementById('botonLabel');
 const botonSelectContainer = document.getElementById('botonSelect');
 
 categoriaSelect.addEventListener('change', function() {
-const selectedCategoria = categoriaSelect.value;
+    const selectedCategoria = categoriaSelect.value;
 
-    if (selectedCategoria === 'moda') {
-        // Mostrar el select de Fit para Moda y llenar opciones
-        fitSelect.innerHTML = `
-                <option value="overol">Overol</option>
-                <option value="pesquero">Pesquero</option>
-                <option value="skinny">Skinny</option>
-        `;
-        fitSelectContainer.classList.remove('hidden');
-    } else if (selectedCategoria === 'pantalon') {
-        // Mostrar el select de Fit para Pantalón y llenar opciones
-        fitSelect.innerHTML = `
-        
-                <option value="slim">Slim</option>
-                <option value="jogger">Jogger</option>
-                <option value="skinny">Skinny</option>
-        `;
-        fitSelectContainer.classList.remove('hidden');
-    } else {
-        // Ocultar el select de Fit si no hay selección válida
-        fitSelectContainer.classList.add('hidden');
+    // Elimina el contenedor fitSelect si ya existe
+    const existingFitSelect = document.getElementById('fitSelect');
+    if (existingFitSelect) {
+        existingFitSelect.remove();
     }
-});
 
-categoriaSelect.addEventListener('change', function() {
-const selectedCategoria = categoriaSelect.value;
-    
+    // Crear y agregar el contenedor fitSelect si la categoría es "moda"
+    if (selectedCategoria === 'moda') {
+        createFitSelect();
+    } else {
+        // Ocultar el contenedor de botón si la categoría no es válida
+        botonSelectContainer.classList.add('hidden');
+    }
+
     if (selectedCategoria === 'moda') {
         // Cambiar el título y opciones del select de Botón para Moda
         botonLabel.textContent = 'Botón / Hebilla';
@@ -287,26 +306,50 @@ const selectedCategoria = categoriaSelect.value;
             <option value="hebilla">Hebilla</option>
         `;
         botonSelectContainer.classList.remove('hidden');
-    } else if (selectedCategoria === 'pantalon') {
-        // Restaurar título y opciones originales para Pantalón
+    } else if (selectedCategoria === 'basico' || selectedCategoria === 'bermuda' || selectedCategoria === 'short') {
+        // Restaurar título y opciones originales para otras categorías
         botonLabel.textContent = 'Botón';
         botonSelect.innerHTML = `
             <option value="boton">Botón</option>
         `;
-        botonSelectContainer.classList.remove('hdden');
+        botonSelectContainer.classList.remove('hidden');
     } else {
         // Ocultar el select de Botón si no hay selección válida
         botonSelectContainer.classList.add('hidden');
     }
 });
 
-
-function resetearRemoverCampos(){
-    const campoFit = document.getElementById('fitSelect');
-    if(campoFit !== null){
-        campoFit.classList.add('hidden')
-    }
+function createFitSelect() {
+    // Crear el contenedor fitSelect
+    const fitSelectContainer = document.createElement('div');
+    fitSelectContainer.id = 'fitSelect';
+    fitSelectContainer.classList.add('block', 'mb-1', 'text-sm', 'font-medium', 'text-white-900');
+    
+    const fitLabel = document.createElement('label');
+    fitLabel.htmlFor = 'fit';
+    fitLabel.classList.add('block', 'mb-1', 'text-sm', 'font-medium', 'text-white-900', 'text-white');
+    fitLabel.textContent = 'Fit';
+    
+    const fitSelect = document.createElement('select');
+    fitSelect.id = 'fit';
+    fitSelect.name = 'fit';
+    fitSelect.classList.add('border', 'border-orange-300', 'text-gray-900', 'text-sm', 'rounded-3xl', 'focus:ring-orange-500', 'focus:border-orange-500', 'block', 'w-full', 'p-2.5', 'text-white', 'placeholder-white', 'h-10', 'bg-[#db4900]', 'mb-2');
+    
+    // Agregar opciones para "moda"
+    fitSelect.innerHTML = `
+        <option value="overol">Overol</option>
+        <option value="pesquero">Pesquero</option>
+    `;
+    
+    fitSelectContainer.appendChild(fitLabel);
+    fitSelectContainer.appendChild(fitSelect);
+    
+    // Insertar el contenedor fitSelect justo después del campo de tipo de corte
+    const categoriaDiv = document.querySelector('#categoria').closest('div');
+    categoriaDiv.insertAdjacentElement('afterend', fitSelectContainer);
 }
+
+
 
 
 //mostrar las tallas en cosola
