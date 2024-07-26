@@ -83,6 +83,24 @@ categorias.forEach(item => {
   btn.addEventListener('click', clickBotonFiltrar(item.categoria));
 });
 
+// Funcionalidad Modal Detalles Producto
+const cerrar_detalles_producto = document.getElementById('cerrar_detalles_producto');
+const detalles_producto = document.getElementById('detalles_producto');
+
+function openModalDetails(){
+  detalles_producto.classList.remove('hidden');
+}
+
+cerrar_detalles_producto.addEventListener('click', () => {
+  detalles_producto.classList.add('hidden');
+});
+
+window.addEventListener('click', function(event) {
+  if (event.target == detalles_producto) {
+      detalles_producto.classList.add('hidden');
+  }
+});
+
 // Funcionalidad Modal Agregar Productos
 const cerrar_agregar_producto = document.getElementById('cerrar_agregar_producto');
 const agregar_producto = document.getElementById('agregar_producto');
