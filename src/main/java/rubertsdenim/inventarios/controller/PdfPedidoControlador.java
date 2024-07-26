@@ -9,8 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lowagie.text.DocumentException;
 
@@ -30,13 +30,7 @@ public class PdfPedidoControlador {
     }
 
     @PostMapping("/generar-pdf")
-    public ResponseEntity<byte[]> generarPdf(@RequestParam String departamento, @RequestParam String fecha, @RequestParam String temporada, @RequestParam String tallas) throws DocumentException, IOException {
-        PdfPedido pedido = new PdfPedido();
-        pedido.setDepartamento(departamento);
-        pedido.setFecha(fecha);
-        pedido.setTemporada(temporada);
-        pedido.setTallas(tallas);
-
+    public ResponseEntity<byte[]> generarPdf(@ModelAttribute PdfPedido pedido) throws DocumentException, IOException {
         byte[] pdfBytes = pdfpedidoservicio.generarPDF(pedido);
 
         HttpHeaders headers = new HttpHeaders();

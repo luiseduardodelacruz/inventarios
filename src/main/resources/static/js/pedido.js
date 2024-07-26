@@ -12,7 +12,7 @@ numImagesSelect.addEventListener('change', function(event) {
     for (let i = 0; i < numImages; i++) {
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
-        fileInput.accept = 'image/*';
+        fileInput.accept = 'image/jpeg, image/png';
         fileInput.name = 'numImagesSelect';
         fileInput.classList.add('my-2');
         fileInput.addEventListener('change', function(event) {
@@ -293,7 +293,7 @@ const selectedCategoria = categoriaSelect.value;
         botonSelect.innerHTML = `
             <option value="boton">Botón</option>
         `;
-        botonSelectContainer.classList.remove('hdden');
+        botonSelectContainer.classList.remove('hidden');
     } else {
         // Ocultar el select de Botón si no hay selección válida
         botonSelectContainer.classList.add('hidden');

@@ -16,11 +16,10 @@
 
     <!-- div contenedor -->
     <div class="bg-[#ffe1d2] border border-orange-200 bg-opacity-40 sm:h-screen flex flex-col preview max-w-full ">
-        <form action="/generar-pdf" method="post" id="fichaPantalon" enctype="multipart/form-data" target="_blank">
+        <form th:action="@{/generar-pdf}" th:object="${pedido}" method="post" id="fichaPantalon" enctype="multipart/form-data" target="_blank">
             <!-- navar -->
             <nav class="bg-[#ffe1d2] bg-opacity-5 mb-10 mt-10 w-full z-20 top-0 start md:px-8 2xl:px-44 xl:px-24 lg:px-12 ">
                 <div class="max-w-screen flex flex-wrap items-center justify-stretch md:justify-between mx-auto mt-5 mb-5 p-4 ">
-
                     <div class="flex items-center justify-center w-full md:w-auto sm:mr-[1vh] md:mr-[1vh] 2xl:mr-[70vh] mb-5 mt-5 md:mb-0 md:mt-0 md:h-8 lg:h-12">
                         <label for="dropzone-imagenE" class="flex flex-col items-center justify-center w-80 md:w-48 h-30 2xl:h-50 md:h-50 border-2 border-orange-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 relative overflow-hidden">
                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -31,17 +30,16 @@
                                 <p class="mb-2 text-sm text-gray-500 text-center font-normal">o arrastra la imagen</p>
                                 <p class="mb-2 text-[12px] text-gray-500 text-center font-normal">PNG, JPG menor a 10MB</p>
                             </div>
-                            <input id="dropzone-imagenE" name="dropzone-imagenE" type="file" class="hidden" />
+                            <input id="dropzone-imagenE" name="dropzoneImagenE" type="file" accept="image/jpeg, image/png" class="hidden" />
                             <div id="vistaEmpresa" class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none rounded-lg overflow-auto"></div>
                         </label>
                     </div>
-
                     <div class="grid grid-rows-4 md:grid-rows-2 grid-flow-col gap-4 w-full md:w-auto ">
                         <div class="flex flex-col md:flex-row items-center mb-3 md:mb-0 lg:ml-auto">
                             <div class="flex flex-col md:flex-row items-center mb-3 md:mb-0 lg:ml-auto">
                                 <label for="departamento" class="mb-1 md:mb-0 mr-10 lg:mr-5 w-20 text-sm font-medium text-gray-900  lg:ml-auto">Departamento:</label>
-                                <select id="departamento" name="departamento" class="lg:ml-[4vh] border border-orange-300 text-white-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-60 sm:w-72 md:w-32 sm:w-40 lg:w-[20vh] p-2.5 text-white placeholder-white h-10 bg-[#db4900]">
-                                    <option selected disabled>Selecione una opción</option>
+                                <select id="departamento" th:field="*{departamento}" name="departamento" class="lg:ml-[4vh] border border-orange-300 text-white-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-60 sm:w-72 md:w-32 sm:w-40 lg:w-[20vh] p-2.5 text-white placeholder-white h-10 bg-[#db4900]">
+                                    <option value="" disabled selected>Selecione una opción</option>
                                     <option value="nino">Niño</option>
                                     <option value="nina">Niña</option>
                                     <option value="juvenil">Juvenil</option>
@@ -68,66 +66,84 @@
 
                             <!-- Dropdown Menu -->
                             <div id="dropdownSearch"  class="absolute z-10 hidden bg-opacity-80 bg-[#f2c8ad] border-orange-300 rounded-lg shadow-lg w-40  top-[49%] md:top-[18%] md:ml-[12%] lg:ml-[15%] xl:ml-[12%] 2xl:ml-[8%]">
-
                                 <ul id="dropdownMenu" class="max-h-36 px-3 pb-3 overflow-y-auto text-sm text-gray-700 mt-[5%]" aria-labelledby="dropdownSearchButton">
                                     <!-- Dropdown items -->
-                                    <li name="listasTallas">
+                                    <li>
                                         <div class="flex items-center p-2 rounded hover:bg-orange-100">
-                                            <input id="checkbox-item-1"  type="checkbox" value="9-12" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
-                                            <label for="checkbox-item-1"class="w-full ms-2 text-sm font-medium text-gray-900 rounded">9-12</label>
+                                            <input type="checkbox" id="checkbox-item-1" name="listaTallas" value="9-12" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
+                                            <label for="checkbox-item-1" class="w-full ms-2 text-sm font-medium text-gray-900 rounded">9-12</label>
                                         </div>
+                                    </li>
+                                    <li>
                                         <div class="flex items-center p-2 rounded hover:bg-orange-100">
-                                            <input id="checkbox-item-2"  type="checkbox" value="18M" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
+                                            <input type="checkbox" id="checkbox-item-2" name="listaTallas" value="18M" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
                                             <label for="checkbox-item-2" class="w-full ms-2 text-sm font-medium text-gray-900 rounded">18M</label>
                                         </div>
+                                    </li>
+                                    <li>
                                         <div class="flex items-center p-2 rounded hover:bg-orange-100">
-                                            <input id="checkbox-item-3" type="checkbox" value="2" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
+                                            <input type="checkbox" id="checkbox-item-3" name="listaTallas" value="2" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
                                             <label for="checkbox-item-3" class="w-full ms-2 text-sm font-medium text-gray-900 rounded">2</label>
                                         </div>
+                                    </li>
+                                    <li>
                                         <div class="flex items-center p-2 rounded hover:bg-orange-100">
-                                            <input id="checkbox-item-4" type="checkbox" value="4" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
+                                            <input type="checkbox" id="checkbox-item-4" name="listaTallas" value="4" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
                                             <label for="checkbox-item-4" class="w-full ms-2 text-sm font-medium text-gray-900 rounded">4</label>
                                         </div>
+                                    </li>
+                                    <li>
                                         <div class="flex items-center p-2 rounded hover:bg-orange-100">
-                                            <input id="checkbox-item-5" type="checkbox" value="6" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
+                                            <input type="checkbox" id="checkbox-item-5" name="listaTallas" value="6" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
                                             <label for="checkbox-item-5" class="w-full ms-2 text-sm font-medium text-gray-900 rounded">6</label>
                                         </div>
+                                    </li>
+                                    <li>
                                         <div class="flex items-center p-2 rounded hover:bg-orange-100">
-                                            <input id="checkbox-item-6" type="checkbox" value="8" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
+                                            <input type="checkbox" id="checkbox-item-6" name="listaTallas" value="8" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
                                             <label for="checkbox-item-6" class="w-full ms-2 text-sm font-medium text-gray-900 rounded">8</label>
                                         </div>
+                                    </li>
+                                    <li>
                                         <div class="flex items-center p-2 rounded hover:bg-orange-100">
-                                            <input id="checkbox-item-7" type="checkbox" value="10" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
+                                            <input type="checkbox" id="checkbox-item-7" name="listaTallas" value="10" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
                                             <label for="checkbox-item-7" class="w-full ms-2 text-sm font-medium text-gray-900 rounded">10</label>
                                         </div>
+                                    </li>
+                                    <li>
                                         <div class="flex items-center p-2 rounded hover:bg-orange-100">
-                                            <input id="checkbox-item-8" type="checkbox" value="12" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
+                                            <input type="checkbox" id="checkbox-item-8" name="listaTallas" value="12" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
                                             <label for="checkbox-item-8" class="w-full ms-2 text-sm font-medium text-gray-900 rounded">12</label>
                                         </div>
+                                    </li>
+                                    <li>
                                         <div class="flex items-center p-2 rounded hover:bg-orange-100">
-                                            <input id="checkbox-item-9" type="checkbox" value="14" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
+                                            <input type="checkbox" id="checkbox-item-9" name="listaTallas" value="14" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
                                             <label for="checkbox-item-9" class="w-full ms-2 text-sm font-medium text-gray-900 rounded">14</label>
                                         </div>
+                                    </li>
+                                    <li>
                                         <div class="flex items-center p-2 rounded hover:bg-orange-100">
-                                            <input id="checkbox-item-10" type="checkbox" value="16" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
+                                            <input type="checkbox" id="checkbox-item-10" name="listaTallas" value="16" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
                                             <label for="checkbox-item-10" class="w-full ms-2 text-sm font-medium text-gray-900 rounded">16</label>
                                         </div>
+                                    </li>
+                                    <li>
                                         <div class="flex items-center p-2 rounded hover:bg-orange-100">
-                                            <input id="checkbox-item-11" type="checkbox" value="18" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
+                                            <input type="checkbox" id="checkbox-item-11" name="listaTallas" value="18" class="w-4 h-4 text-orange-600 bg-gray-100 border-orange-300 rounded focus:ring-orange-500 focus:ring-2">
                                             <label for="checkbox-item-11" class="w-full ms-2 text-sm font-medium text-gray-900 rounded">18</label>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-
                         <div class="flex flex-col md:flex-row items-center mb-3 md:mb-0">
                             <label for="fecha" class="mb-1 md:mb-0 mr-5 lg:mr-5 w-20 px-2 text-sm font-medium text-gray-900 ">Fecha:</label>
-                            <input type="date" id="fecha" name="fecha" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-60 sm:w-72 md:w-32 sm:w-40 lg:w-[20vh] p-2.5 text-white placeholder-white h-10 bg-[#db4900]" required>
+                            <input type="date" id="fecha" th:field="*{fecha}" name="fecha" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-60 sm:w-72 md:w-32 sm:w-40 lg:w-[20vh] p-2.5 text-white placeholder-white h-10 bg-[#db4900]" required>
                         </div>
                         <div class="flex flex-col md:flex-row items-center">
                             <label for="temporada" class="mb-1 md:mb-0 mr-5 lg:mr-5 w-20 px-2 text-sm font-medium text-gray-900 ">Temporada:</label>
-                            <input type="text" name="temporada" id="temporada" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-60 sm:w-72 md:w-32 sm:w-40 lg:w-[20vh] p-2.5 text-white placeholder-white h-10 bg-[#db4900]" placeholder="No. Temporada" required />
+                            <input type="text" id="temporada" th:field="*{temporada}" name="temporada" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-60 sm:w-72 md:w-32 sm:w-40 lg:w-[20vh] p-2.5 text-white placeholder-white h-10 bg-[#db4900]" placeholder="No. Temporada" required />
                         </div>
                     </div>
                 </div>
@@ -143,42 +159,39 @@
                             <div class="space-y-4">
                                 <div>
                                     <label for="descripcion" class="block mb-1 text-sm font-medium text-white-900">Descripción</label>
-                                    <input type="text" name="descripcion" id="descripcion" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2" required />
+                                    <input type="text" th:field="*{descripcion}" name="descripcion" id="descripcion" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2" required />
                                 </div>
                                 <div>
                                     <label for="estilos" class="block mb-1 text-sm font-medium text-white-900">Estilos</label>
-                                    <input type="text" name="estilos" id="estilos" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2" required />
+                                    <input type="text" th:field="*{estilos}" name="estilos" id="estilos" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2" required />
                                 </div>
                                 <div>
                                     <div class="block mb-1 text-sm font-medium text-white-900">
                                         <label for="categoria" class="block mb-1 text-sm font-medium text-white-900">Categoría</label>
-                                        <select id="categoria" name="categoria" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2">
-                                            <option selected disabled>Selecione una opción</option>
+                                        <select id="categoria" th:field="*{categoria}" name="categoria" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2">
+                                            <option value="" disabled selected>Selecione una opción</option>
                                             <option value="moda">Moda</option>
                                             <option value="pantalon">Pantalón</option>
                                         </select>
                                     </div>
                                 </div>
-
                                 <div id="fitSelect" class="hidden">
                                     <div class="block mb-1 text-sm font-medium text-white-900">
                                         <label for="fit" class="block mb-1 text-sm font-medium text-white-900 text-white">Fit</label>
-                                        <select id="fit" name="fit" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900] mb-2">
-                                            <option selected disabled>Selecciona un ajuste</option>
+                                        <select id="fit" th:field="*{fit}" name="fit" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900] mb-2">
+                                            <option value="" disabled selected>Selecciona un ajuste</option>
                                         </select>
                                     </div>
                                 </div>
-
-
                                 <div>
                                     <label for="tallas" class="block mb-1 text-sm font-medium text-white-900">Tallas</label>
-                                    <input type="text" name="tallas" id="tallas" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2" required />
+                                    <input type="text" id="tallas" th:field="*{tallas}" name="tallas" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2" required />
                                 </div>
                                 <div>
                                     <div class="block mb-1 text-sm font-medium text-white-900">
                                         <label for="provedor" class="block mb-1 text-sm font-medium text-white-900">Provedor</label>
-                                        <select id="provedor" name="provedor" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2">
-                                            <option selected disabled>Selecione una opción</option>
+                                        <select id="provedor" th:field="*{provedor}" name="provedor" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2">
+                                            <option value="" disabled selected>Selecione una opción</option>
                                             <option value="Ruberts_Denim">Ruberts</option>
                                         </select>
                                     </div>
@@ -198,7 +211,7 @@
                                     <p class="mb-2 text-sm text-gray-500 text-center font-normal"><span class="font-semibold text-[#db4900]">Click para subir</span> o arrastra la imagen</p>
                                     <p class="mb-2 text-[12px] text-gray-500 text-center font-normal">PNG, JPG menor a 10MB</p>
                                 </div>
-                                <input id="dropzone-file" name="dropzone-file" type="file" class="hidden" />
+                                <input id="dropzone-file" name="dropzoneFile" type="file" accept="image/jpeg, image/png" class="hidden" />
                                 <div id="preview" class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none rounded-lg overflow-auto"></div>
                             </label>
                         </div>
@@ -206,13 +219,13 @@
                             <div class="space-y-4">
                                 <div>
                                     <label for="tela" class="block mb-1 text-sm font-medium text-white-900">Tela</label>
-                                    <input type="text" name="tela" id="tela" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2" required />
+                                    <input type="text" id="tela" th:field="*{tela}" name="tela" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2" required />
                                 </div>
                                 <div>
                                     <div class="block mb-1 text-sm font-medium text-white-900">
                                         <label for="lavado_procesado" class="block mb-1 text-sm font-medium text-white-900">Lavado y Procesado:</label>
-                                        <select id="lavado_procesado" name="lavado_procesado" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2">
-                                            <option selected disabled>Selecione una opción</option>
+                                        <select id="lavado_procesado" th:field="*{lavado_procesado}" name="lavado_procesado" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2">
+                                            <option value="" disabled selected>Selecione una opción</option>
                                             <option value="blinch">Blinch</option>
                                             <option value="stone_medio">Stone Medio</option>
                                             <option value="stone_alto">Stone Alto</option>
@@ -224,15 +237,15 @@
                                 <div id="botonSelect">
                                     <div class="block mb-1 text-sm font-medium text-white-900">
                                         <label id="botonLabel" for="botonHebilla" class="block mb-1 text-sm font-medium text-white-900">Botón / Hebilla</label>
-                                        <select id="botonHebilla" name="botonHebilla" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2">
-                                            <option selected disabled>Selecione una opción</option>
+                                        <select id="botonHebilla" th:field="*{botonHebilla}" name="botonHebilla" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2">
+                                            <option value="" disabled selected>Selecione una opción</option>
                                             <option value="boton">Botón</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div>
                                     <label for="hilo" class="block mb-1 text-sm font-medium text-white-900">Hilo</label>
-                                    <input type="text" name="hilo" id="hilo" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2" required />
+                                    <input type="text" id="hilo" th:field="*{hilo}" name="hilo" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2" required />
                                 </div>
                             </div>
                         </div>
@@ -240,10 +253,10 @@
 
                     <!-- Columna derecha -->
                     <div class="w-1/3 p-4 flex justify-center flex-col items-center ">
-                    <div class="lg:w-[20vh] md:w-[22vh] xl:w-[30vh] lg:w-[30vh] 2xl:w-[30vh] w-[45vh] max-w-lg p-6 border border-orange-200 rounded-[45px] shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900] overflow-auto h-96" id="imageContainer">
-                            <label for="numImagesSelect" name="numImagesSelect" class="block mb-1 text-sm font-medium text-center text-gray-900">Etiquetado</label>
-                            <select id="numImagesSelect" name="numImagesSelect" class="w-full py-2 border-gray-300 rounded-3xl shadow-sm focus:ring-[#db4900] focus:border-[#db4900] sm:text-sm bg-white text-gray-900">
-                                <option selected disabled hidden>Selecciona el Número de Etiquetas</option>
+                        <div class="lg:w-[20vh] md:w-[22vh] xl:w-[30vh] lg:w-[30vh] 2xl:w-[30vh] w-[45vh] max-w-lg p-6 border border-orange-200 rounded-[45px] shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900] overflow-auto h-96" id="imageContainer">
+                            <label for="numImagesSelect" class="block mb-1 text-sm font-medium text-center text-gray-900">Etiquetado</label>
+                            <select id="numImagesSelect" th:field="*{numImagesSelect}" name="numImagesSelect" class="w-full py-2 border-gray-300 rounded-3xl shadow-sm focus:ring-[#db4900] focus:border-[#db4900] sm:text-sm bg-white text-gray-900">
+                                <option value="" disabled selected hidden>Selecciona el Número de Etiquetas</option>
                                 <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white"  value="1">1</option>
                                 <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white"  value="2">2</option>
                                 <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white"  value="3">3</option>
@@ -265,7 +278,6 @@
     </div>
 
     <script src="/js/pedido.js"></script>
-    <script src="/js/prueba.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
 
 </body>
