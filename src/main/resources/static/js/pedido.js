@@ -8,30 +8,57 @@ numImagesSelect.addEventListener('change', function(event) {
    
     container.innerHTML = '';
     
-   
     for (let i = 0; i < numImages; i++) {
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.accept = 'image/jpeg, image/png';
-        fileInput.name = 'numImagesSelect';
-        fileInput.classList.add('my-2');
-        fileInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            
-            if (!file.type.startsWith('image/')) {
-                return;
-            }
-          
-            const img = document.createElement('img');
-            img.src = URL.createObjectURL(file);
-            img.classList.add('w-full', 'max-w-xs', 'p-2', 'border', 'border-orange-300', 'rounded-lg', 'shadow-md', 'my-2');
-            
-            container.replaceChild(img, fileInput);
-            container.scrollTop = container.scrollHeight;
-        });
-        container.appendChild(fileInput);
+        createFileInput();
     }
-}); 
+});
+
+function createFileInput() {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/jpeg, image/png';
+    fileInput.name = 'numImagesSelect';
+    fileInput.classList.add('my-2');
+    fileInput.style.display = 'none'; // Oculta el input
+
+    fileInput.addEventListener('change', handleFileSelect);
+
+    const fileInputLabel = document.createElement('label');
+    fileInputLabel.classList.add('file-input-label');
+    fileInputLabel.style.cursor = 'pointer'; // Cambia el cursor para indicar que es clickeable
+    fileInputLabel.classList.add('block', 'my-2', 'p-2', 'border', 'border-orange-300', 'rounded-lg', 'shadow-md');
+    fileInputLabel.textContent = 'Haz clic para seleccionar una imagen';
+
+    // Asocia el input con la etiqueta
+    fileInputLabel.appendChild(fileInput);
+
+    container.appendChild(fileInputLabel);
+}
+
+function handleFileSelect(event) {
+    const file = event.target.files[0];
+
+    if (!file || !file.type.startsWith('image/')) {
+        return;
+    }
+
+    const fileInput = event.target;
+    const fileInputLabel = fileInput.parentElement;
+
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(file);
+    img.classList.add('w-full', 'max-w-xs', 'p-2', 'border', 'border-orange-300', 'rounded-lg', 'shadow-md', 'my-2');
+
+    fileInputLabel.innerHTML = ''; // Limpia la etiqueta para reemplazar el contenido con la imagen
+    fileInputLabel.appendChild(img);
+    fileInputLabel.style.cursor = 'pointer'; // Asegura que el cursor siga siendo clickeable
+
+    // Reinicia el archivo input al estado original para permitir la selección de nuevas imágenes
+    fileInput.value = ''; // Esto es importante para permitir la selección de la misma imagen de nuevo
+    fileInput.addEventListener('click', () => fileInput.click());
+
+    fileInputLabel.addEventListener('click', () => fileInput.click());
+}
 
 //funcion para obtener url de img carrusel
 function mostrarDatos() {
@@ -51,60 +78,6 @@ function mostrarDatos() {
         console.log('No hay imagen seleccionada');
     }
 }
-
-
-/* const container = document.getElementById('imageContainer');
-const numImagesSelect = document.getElementById('numImagesSelect');
-
-numImagesSelect.addEventListener('change', function(event) {
-    event.preventDefault();
-    const numImages = parseInt(event.target.value);
-   
-    container.innerHTML = '';
-    
-    for (let i = 0; i < numImages; i++) {
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.accept = 'image/*';
-        fileInput.name = 'numImagesSelect';
-        fileInput.classList.add('my-2');
-        fileInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            
-            if (!file.type.startsWith('image/')) {
-                return;
-            }
-          
-            const img = document.createElement('img');
-            img.src = URL.createObjectURL(file);
-            img.classList.add('w-full', 'max-w-xs', 'p-2', 'border', 'border-orange-300', 'rounded-lg', 'shadow-md', 'my-2');
-            
-            container.replaceChild(img, fileInput);
-            container.scrollTop = container.scrollHeight;
-        });
-        container.appendChild(fileInput);
-    }
-
-    // Agregar botón de guardar al final del contenedor
-    const guardarButton = document.createElement('button');
-    guardarButton.textContent = 'Guardar';
-    guardarButton.classList.add('my-4', 'py-2', 'px-4', 'bg-blue-500', 'text-white', 'rounded', 'shadow');
-    guardarButton.addEventListener('click', guardarImagenes);
-    container.appendChild(guardarButton);
-});
-
-function guardarImagenes() {
-    // Obtener todas las imágenes dentro del contenedor
-    const imagenes = container.querySelectorAll('img');
-    
-    // Aquí podrías hacer algo con las imágenes, por ejemplo:
-    imagenes.forEach(img => {
-        // Puedes acceder a img.src para obtener la URL de cada imagen
-        // Por ejemplo, enviarlas a un servidor con fetch o almacenarlas localmente
-        console.log(img.src);
-    });
-} */
-
 
 /* mostrar imagenes tanto cental como superio derecha */ 
 document.addEventListener('DOMContentLoaded', function() {
@@ -153,67 +126,6 @@ function mostrarDatos() {
     console.log(datos);
 }
 
-
-
-/* document.addEventListener('DOMContentLoaded', function() {
-    const dropzoneInput = document.getElementById('dropzone-imagenE');
-    const previewContainer = document.getElementById('vistaEmpresa');
-    const dropzoneLabel = document.querySelector('label[for="dropzone-imagenE"]');
-
-    dropzoneInput.addEventListener('change', function() {
-        const file = this.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const imageUrl = event.target.result;
-                const imgElement = new Image();
-                imgElement.src = imageUrl;
-                imgElement.onload = function() {
-                    const imgWidth = this.width;
-                    const imgHeight = this.height;
-
-                    // Ajustar el tamaño del dropzone al tamaño de la imagen
-                    dropzoneLabel.style.width = imgWidth + '10px';
-                    dropzoneLabel.style.height = imgHeight + '10px';
-
-                    // Mostrar la imagen dentro del dropzone
-                    previewContainer.innerHTML = '';
-                    previewContainer.appendChild(imgElement);
-                };
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-}); */
-
-/* js select imagen izquierda */
-
-/* document.addEventListener('DOMContentLoaded', function() {
-    const opcion_seleccionada_categoria_agregar_producto = document.getElementById('opcion_seleccionada_categoria_agregar_producto');
-    const opciones_categoria_agregar_producto = document.getElementById('opciones_categoria_agregar_producto');
-    const valores_categoria_agregar_producto= document.getElementById('valores_categoria_agregar_producto');
-    const selector_categoria_agregar_producto = document.querySelectorAll('#opciones_categoria_agregar_producto div');
-        
-    opcion_seleccionada_categoria_agregar_producto.addEventListener('click', function() {
-      opciones_categoria_agregar_producto.classList.toggle('hidden');
-    });
-        
-    selector_categoria_agregar_producto.forEach(option => {
-      option.addEventListener('click', function() {
-        const value = option.getAttribute('data-value');
-        valores_categoria_agregar_producto.value = value;
-        opcion_seleccionada_categoria_agregar_producto.querySelector('span').textContent = option.textContent;
-        opciones_categoria_agregar_producto.classList.add('hidden');
-      });
-    });
-        
-    document.addEventListener('click', function(event) {
-      if (!opcion_seleccionada_categoria_agregar_producto.contains(event.target) && !opciones_categoria_agregar_producto.contains(event.target)) {
-        opciones_categoria_agregar_producto.classList.add('hidden');
-      }
-    });
-  }); */
-
 //Dom de checklist de tallas
 document.addEventListener('DOMContentLoaded', function () {
 const button = document.getElementById('dropdownSearchButton');
@@ -241,7 +153,6 @@ const iconClosed = document.getElementById('dropdownIconClosed');
     });
 });
 
-
 // Dom de los campos categoria, fit y botones/hebilla
 const categoriaSelect = document.getElementById('categoria');
 const fitSelect = document.getElementById('fit');
@@ -251,35 +162,21 @@ const botonLabel = document.getElementById('botonLabel');
 const botonSelectContainer = document.getElementById('botonSelect');
 
 categoriaSelect.addEventListener('change', function() {
-const selectedCategoria = categoriaSelect.value;
+    const selectedCategoria = categoriaSelect.value;
 
-    if (selectedCategoria === 'moda') {
-        // Mostrar el select de Fit para Moda y llenar opciones
-        fitSelect.innerHTML = `
-                <option value="overol">Overol</option>
-                <option value="pesquero">Pesquero</option>
-                <option value="skinny">Skinny</option>
-        `;
-        fitSelectContainer.classList.remove('hidden');
-    } else if (selectedCategoria === 'pantalon') {
-        // Mostrar el select de Fit para Pantalón y llenar opciones
-        fitSelect.innerHTML = `
-        
-                <option value="slim">Slim</option>
-                <option value="jogger">Jogger</option>
-                <option value="skinny">Skinny</option>
-        `;
-        fitSelectContainer.classList.remove('hidden');
-    } else {
-        // Ocultar el select de Fit si no hay selección válida
-        fitSelectContainer.classList.add('hidden');
+    // Elimina el contenedor fitSelect si ya existe
+    const existingFitSelect = document.getElementById('fitSelect');
+    if (existingFitSelect) {
+        existingFitSelect.remove();
     }
-});
 
-categoriaSelect.addEventListener('change', function() {
-const selectedCategoria = categoriaSelect.value;
-    
+    // Crear y agregar el contenedor fitSelect si la categoría es "moda"
     if (selectedCategoria === 'moda') {
+        createFitSelect();
+    } else {
+        // Ocultar el contenedor de botón si la categoría no es válida
+        botonSelectContainer.classList.add('hidden');
+    } if (selectedCategoria === 'moda') {
         // Cambiar el título y opciones del select de Botón para Moda
         botonLabel.textContent = 'Botón / Hebilla';
         botonSelect.innerHTML = `
@@ -287,8 +184,8 @@ const selectedCategoria = categoriaSelect.value;
             <option value="hebilla">Hebilla</option>
         `;
         botonSelectContainer.classList.remove('hidden');
-    } else if (selectedCategoria === 'pantalon') {
-        // Restaurar título y opciones originales para Pantalón
+    } else if (selectedCategoria === 'basico' || selectedCategoria === 'bermuda' || selectedCategoria === 'short') {
+        // Restaurar título y opciones originales para otras categorías
         botonLabel.textContent = 'Botón';
         botonSelect.innerHTML = `
             <option value="boton">Botón</option>
@@ -300,14 +197,35 @@ const selectedCategoria = categoriaSelect.value;
     }
 });
 
+function createFitSelect() {
+    // Crear el contenedor fitSelect
+    const fitSelectContainer = document.createElement('div');
+    fitSelectContainer.id = 'fitSelect';
+    fitSelectContainer.classList.add('block', 'mb-1', 'text-sm', 'font-medium', 'text-white-900');
 
-function resetearRemoverCampos(){
-    const campoFit = document.getElementById('fitSelect');
-    if(campoFit !== null){
-        campoFit.classList.add('hidden')
-    }
+    const fitLabel = document.createElement('label');
+    fitLabel.htmlFor = 'fit';
+    fitLabel.classList.add('block', 'mb-1', 'text-sm', 'font-medium', 'text-white-900', 'text-white');
+    fitLabel.textContent = 'Fit';
+
+    const fitSelect = document.createElement('select');
+    fitSelect.id = 'fit';
+    fitSelect.name = 'fit';
+    fitSelect.classList.add('border', 'border-orange-300', 'text-gray-900', 'text-sm', 'rounded-3xl', 'focus:ring-orange-500', 'focus:border-orange-500', 'block', 'w-full', 'p-2.5', 'text-white', 'placeholder-white', 'h-10', 'bg-[#db4900]', 'mb-2');
+
+    // Agregar opciones para "moda"
+    fitSelect.innerHTML = `
+        <option value="overol">Overol</option>
+        <option value="pesquero">Pesquero</option>
+    `;
+
+    fitSelectContainer.appendChild(fitLabel);
+    fitSelectContainer.appendChild(fitSelect);
+
+    // Insertar el contenedor fitSelect justo después del campo de tipo de corte
+    const categoriaDiv = document.querySelector('#categoria').closest('div');
+    categoriaDiv.insertAdjacentElement('afterend', fitSelectContainer);
 }
-
 
 //mostrar las tallas en cosola
 document.addEventListener("DOMContentLoaded", function() {
@@ -351,3 +269,82 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+
+// Listener para cambiar el número de inputs de archivo
+numImagesSelect.addEventListener('change', function(event) {
+    event.preventDefault();
+    const numImages = parseInt(event.target.value);
+
+    container.innerHTML = ''; // Limpiar el contenedor antes de agregar nuevos inputs
+
+    for (let i = 0; i < numImages; i++) {
+        createFileInput();
+    }
+});
+
+// Crear un nuevo input de archivo
+function createFileInput() {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/jpeg, image/png';
+    fileInput.classList.add('hidden'); // Ocultar el input
+
+    // Listener para manejar la selección de archivo
+    fileInput.addEventListener('change', handleFileSelect);
+
+    const fileInputLabel = document.createElement('label');
+    fileInputLabel.classList.add('file-input-label');
+    fileInputLabel.style.cursor = 'pointer'; // Indica que es clickeable
+    fileInputLabel.classList.add('block', 'my-2', 'p-2', 'border', 'border-orange-300', 'rounded-lg', 'shadow-md');
+    fileInputLabel.textContent = 'Haz clic para seleccionar una imagen';
+
+    // Asocia el input con la etiqueta
+    fileInputLabel.appendChild(fileInput);
+
+    // Agrega el listener para permitir que el click en la etiqueta active el input
+    fileInputLabel.addEventListener('click', (e) => {
+        e.preventDefault();
+        fileInput.click();
+    });
+
+    container.appendChild(fileInputLabel);
+}
+
+// Manejar la selección de archivo
+function handleFileSelect(event) {
+    const file = event.target.files[0];
+
+    if (!file || !file.type.startsWith('image/')) {
+        return;
+    }
+
+    const fileInput = event.target;
+    const fileInputLabel = fileInput.parentElement;
+
+    // Crear la imagen
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(file);
+    img.classList.add('w-full', 'max-w-xs', 'p-2', 'border', 'border-orange-300', 'rounded-lg', 'shadow-md', 'my-2');
+
+    // Limpia la etiqueta para reemplazar el contenido con la imagen
+    fileInputLabel.innerHTML = '';
+    fileInputLabel.appendChild(img);
+
+    // Asegurarse de que el cursor siga siendo clickeable
+    fileInputLabel.style.cursor = 'pointer';
+
+    // Reestablece el input para permitir la selección de la misma imagen nuevamente
+    fileInput.value = ''; // Importante para permitir seleccionar la misma imagen de nuevo
+
+    // Reconfigura el evento click para permitir cambiar la imagen
+    fileInput.addEventListener('click', (e) => {
+        e.preventDefault();
+        fileInput.click();
+    });
+
+    fileInputLabel.addEventListener('click', (e) => {
+        e.preventDefault();
+        fileInput.click();
+    });
+}
