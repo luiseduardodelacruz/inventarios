@@ -1,5 +1,62 @@
-//carrusel de imagenes del select 
-const container = document.getElementById('imageContainer');
+//carrusel de imagenes del select
+document.getElementById('numImagesSelect').addEventListener('change', function() {
+    const dropzoneContainer = document.getElementById('dropzoneContainer');
+    dropzoneContainer.innerHTML = '';  // Clear previous dropzones
+    const numberOfDropzones = this.value;
+    
+    for (let i = 0; i < numberOfDropzones; i++) {
+        const dropzone = document.createElement('div');
+        dropzone.classList.add('flex', 'items-center', 'justify-center', 'w-[45vh]', 'sm:w-[48vh]', 'md:w-full', 'mt-4');
+        dropzone.innerHTML = `
+            <label for="dropzone-file-${i}" class="flex flex-col items-center justify-center w-full h-64 border-2 border-orange-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 relative overflow-hidden">
+                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                    <svg class="w-8 h-8 mb-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                    </svg>
+                    <p class="mb-2 text-sm text-gray-500 text-center font-normal"><span class="font-semibold text-[#db4900]">Click para subir</span> o arrastra la imagen</p>
+                    <p class="mb-2 text-[12px] text-gray-500 text-center font-normal">PNG, JPG menor a 10MB</p>
+                </div>
+                <input id="dropzone-file-${i}" name="dropzoneFile-${i}" type="file" accept="image/jpeg, image/png" class="hidden dropzone-input" />
+                <div id="preview-${i}" class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none rounded-lg overflow-auto"></div>
+            </label>
+        `;
+        dropzoneContainer.appendChild(dropzone);
+    }
+
+    // Re-bind event listeners for newly created dropzone inputs
+    bindDropzoneEventListeners();
+});
+
+function bindDropzoneEventListeners() {
+    const dropzoneInputs = document.querySelectorAll('.dropzone-input');
+
+    dropzoneInputs.forEach(dropzoneInput => {
+        dropzoneInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const imageUrl = event.target.result;
+                    const imgElement = document.createElement('img');
+                    imgElement.src = imageUrl;
+                    imgElement.style.width = '100%';
+                    imgElement.style.height = '100%';
+                    imgElement.style.objectFit = 'cover';
+                    imgElement.classList.add(dropzoneInput.id); // Asignar clase con el id del input
+                    const previewContainer = document.getElementById(`preview-${dropzoneInput.id.split('-')[2]}`);
+                    previewContainer.innerHTML = ''; 
+                    previewContainer.appendChild(imgElement);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+}
+
+// Initial bind for existing elements
+bindDropzoneEventListeners();
+
+/* const container = document.getElementById('imageContainer');
 const numImagesSelect = document.getElementById('numImagesSelect');
 
 numImagesSelect.addEventListener('change', function(event) {
@@ -77,7 +134,7 @@ function mostrarDatos() {
         // Si no hay imagen seleccionada, mostrar un mensaje en la consola
         console.log('No hay imagen seleccionada');
     }
-}
+} */
 
 /* mostrar imagenes tanto cental como superio derecha */ 
 document.addEventListener('DOMContentLoaded', function() {

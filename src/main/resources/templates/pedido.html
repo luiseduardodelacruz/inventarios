@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="/img/logo-navegador.png" type="Logo para el navegador">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/flowbite@1.3.3/dist/flowbite.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/ficha-hibilitacion.css">
@@ -258,16 +259,20 @@
                         <div class="lg:w-[20vh] md:w-[22vh] xl:w-[30vh] lg:w-[30vh] 2xl:w-[30vh] w-[45vh] max-w-lg p-6 border border-orange-200 rounded-[45px] shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900] overflow-auto h-96" id="imageContainer">
                             <div>
                                 <label for="numImagesSelect" class="block mb-1 text-sm font-medium text-center text-gray-900">Etiquetado</label>
-                                <select id="numImagesSelect" th:field="*{numImagesSelect}" name="numImagesSelect" class="w-full py-2 border-gray-300 rounded-3xl shadow-sm focus:ring-[#db4900] focus:border-[#db4900] sm:text-sm bg-white text-gray-900">
+                                <select id="numImagesSelect" name="numImagesSelect" class="w-full py-2 border-gray-300 rounded-3xl shadow-sm focus:ring-[#db4900] focus:border-[#db4900] sm:text-sm bg-white text-gray-900">
                                     <option value="" disabled selected hidden>Selecciona el Número de Etiquetas</option>
-                                    <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white"  value="1">1</option>
-                                    <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white"  value="2">2</option>
-                                    <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white"  value="3">3</option>
-                                    <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white"  value="4">4</option>
-                                    <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white"  value="5">5</option>
+                                    <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="1">1</option>
+                                    <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="2">2</option>
+                                    <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="3">3</option>
+                                    <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="4">4</option>
+                                    <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="5">5</option>
                                 </select>
                             </div>
+                            <div id="dropzoneContainer" class="mt-4 flex flex-wrap"></div>
                         </div>
+                        
+                        
+
                         <div class="flex justify-center mt-4">
                             <button type="submit" class="w-[40vh] sm:w-[35vh] md:w-[18vh] lg:w-[20vh] xl:w-35 2xl:w-40 py-4 text-white bg-[#db4900] hover:bg-[#ff5500] focus:ring-4 focus:ring-[#e8763d] focus:outline-none rounded-3xl sm:text-sm text-md font-bold">Guardar</button>
                         </div>
