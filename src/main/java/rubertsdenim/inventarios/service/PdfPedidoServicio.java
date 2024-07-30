@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Image;
+import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfWriter;
 
@@ -21,7 +22,7 @@ public class PdfPedidoServicio {
     private static final String[] ALLOWED_CONTENT_TYPES = {"image/jpeg", "image/png"};
 
     public byte[] generarPDF(PdfPedido pedido) throws IOException{
-        Document document  = new Document();
+        Document document  = new Document(PageSize.LETTER.rotate());
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         try{
@@ -39,9 +40,14 @@ public class PdfPedidoServicio {
             
             document.add(new Paragraph("Descripción: " + pedido.getDescripcion()));
             document.add(new Paragraph("Estilos: " + pedido.getEstilos()));
-            document.add(new Paragraph("Categoría: " + pedido.getCategoria()));
-            document.add(new Paragraph("Fit: " + pedido.getFit()));
-            document.add(new Paragraph("Tallas adicionales: " + pedido.getTallas()));
+            document.add(new Paragraph("Tipo de Corte: " + pedido.getCategoria()));
+            
+            String tipoCorte = pedido.getCategoria().equals("moda") ? "Fit: " + pedido.getFit() : "";
+            if (!tipoCorte.isEmpty()) {
+                document.add(new Paragraph(tipoCorte));
+            }
+            
+            document.add(new Paragraph("Talla de la Muestra: " + pedido.getTallas()));
             document.add(new Paragraph("Proveedor: " + pedido.getProvedor()));
             document.add(new Paragraph("Tela: " + pedido.getTela()));
             document.add(new Paragraph("Lavado/Procesado: " + pedido.getLavado_procesado()));

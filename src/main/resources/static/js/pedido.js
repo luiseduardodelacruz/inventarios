@@ -6,9 +6,9 @@ document.getElementById('numImagesSelect').addEventListener('change', function()
     
     for (let i = 0; i < numberOfDropzones; i++) {
         const dropzone = document.createElement('div');
-        dropzone.classList.add('flex', 'items-center', 'justify-center', 'w-[45vh]', 'sm:w-[48vh]', 'md:w-full', 'mt-4');
+        dropzone.classList.add('flex', 'items-center', 'justify-center', 'w-[18vh]', 'h-[18vh]', 'sm:w-[48vh]', 'md:w-full', 'mt-4');
         dropzone.innerHTML = `
-            <label for="dropzone-file-${i}" class="flex flex-col items-center justify-center w-full h-64 border-2 border-orange-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 relative overflow-hidden">
+            <label for="dropzone-file-${i}" class="flex flex-col items-center justify-center w-full h-full h-64 border-2 border-orange-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 relative overflow-hidden">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <svg class="w-8 h-8 mb-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
@@ -55,86 +55,6 @@ function bindDropzoneEventListeners() {
 
 // Initial bind for existing elements
 bindDropzoneEventListeners();
-
-/* const container = document.getElementById('imageContainer');
-const numImagesSelect = document.getElementById('numImagesSelect');
-
-numImagesSelect.addEventListener('change', function(event) {
-    event.preventDefault();
-    const numImages = parseInt(event.target.value);
-   
-    container.innerHTML = '';
-    
-    for (let i = 0; i < numImages; i++) {
-        createFileInput();
-    }
-});
-
-function createFileInput() {
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = 'image/jpeg, image/png';
-    fileInput.name = 'numImagesSelect';
-    fileInput.classList.add('my-2');
-    fileInput.style.display = 'none'; // Oculta el input
-
-    fileInput.addEventListener('change', handleFileSelect);
-
-    const fileInputLabel = document.createElement('label');
-    fileInputLabel.classList.add('file-input-label');
-    fileInputLabel.style.cursor = 'pointer'; // Cambia el cursor para indicar que es clickeable
-    fileInputLabel.classList.add('block', 'my-2', 'p-2', 'border', 'border-orange-300', 'rounded-lg', 'shadow-md');
-    fileInputLabel.textContent = 'Haz clic para seleccionar una imagen';
-
-    // Asocia el input con la etiqueta
-    fileInputLabel.appendChild(fileInput);
-
-    container.appendChild(fileInputLabel);
-}
-
-function handleFileSelect(event) {
-    const file = event.target.files[0];
-
-    if (!file || !file.type.startsWith('image/')) {
-        return;
-    }
-
-    const fileInput = event.target;
-    const fileInputLabel = fileInput.parentElement;
-
-    const img = document.createElement('img');
-    img.src = URL.createObjectURL(file);
-    img.classList.add('w-full', 'max-w-xs', 'p-2', 'border', 'border-orange-300', 'rounded-lg', 'shadow-md', 'my-2');
-
-    fileInputLabel.innerHTML = ''; // Limpia la etiqueta para reemplazar el contenido con la imagen
-    fileInputLabel.appendChild(img);
-    fileInputLabel.style.cursor = 'pointer'; // Asegura que el cursor siga siendo clickeable
-
-    // Reinicia el archivo input al estado original para permitir la selección de nuevas imágenes
-    fileInput.value = ''; // Esto es importante para permitir la selección de la misma imagen de nuevo
-    fileInput.addEventListener('click', () => fileInput.click());
-
-    fileInputLabel.addEventListener('click', () => fileInput.click());
-}
-
-//funcion para obtener url de img carrusel
-function mostrarDatos() {
-    // Buscar el contenedor de imágenes
-    const container = document.getElementById('imageContainer');
-    // Obtener la imagen dentro del contenedor
-    const img = container.querySelector('img');
-    
-    if (img) {
-        // Obtener la URL de la imagen
-        const imageUrl = img.src;
-        
-        // Mostrar la URL de la imagen en la consola
-        console.log('URL de la imagen:', imageUrl);
-    } else {
-        // Si no hay imagen seleccionada, mostrar un mensaje en la consola
-        console.log('No hay imagen seleccionada');
-    }
-} */
 
 /* mostrar imagenes tanto cental como superio derecha */ 
 document.addEventListener('DOMContentLoaded', function() {
@@ -284,56 +204,34 @@ function createFitSelect() {
     categoriaDiv.insertAdjacentElement('afterend', fitSelectContainer);
 }
 
-//mostrar las tallas en cosola
+//Agregar el atributo Name para procesar las Tallas
 document.addEventListener("DOMContentLoaded", function() {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    const checkedCheckboxes = []; // Arreglo para almacenar los checkboxes marcados
+    // Obtenemos el formulario
+    const form = document.querySelector('form');
 
-    checkboxes.forEach(function(checkbox) {
-        checkbox.addEventListener('change', function() {
-            const isChecked = this.checked;
-            const inputValue = this.value; // Obtener el valor del checkbox
-
-            if (isChecked) {
-                // Verificar si el checkbox ya está en el arreglo de checkboxes marcados
-                if (!checkedCheckboxes.includes(inputValue)) {
-                    checkedCheckboxes.push(inputValue); // Agregar el valor al arreglo
-                }
-
-                // Generar un nombre único para el grupo de checkboxes marcados
-                const name = 'checkbox-active-' + inputValue;
-
-                // Obtener todos los checkboxes con el mismo valor y asignarles el mismo nombre
-                const sameValueCheckboxes = document.querySelectorAll('input[type="checkbox"][value="' + inputValue + '"]');
-
-                sameValueCheckboxes.forEach(function(checkbox) {
-                    checkbox.setAttribute('name', name); // Agregar el atributo 'name' al checkbox
-                });
-            } else {
-                // Remover el valor del arreglo de checkboxes marcados
-                const index = checkedCheckboxes.indexOf(inputValue);
-                if (index !== -1) {
-                    checkedCheckboxes.splice(index, 1);
-                }
-
-                // Quitar el atributo 'name' de todos los checkboxes con el mismo valor
-                const sameValueCheckboxes = document.querySelectorAll('input[type="checkbox"][value="' + inputValue + '"]');
-
-                sameValueCheckboxes.forEach(function(checkbox) {
-                    checkbox.removeAttribute('name'); // Quitar el atributo 'name' del checkbox
-                });
+    // Añadimos el listener para el evento 'submit'
+    form.addEventListener('submit', function() {
+        // Obtener todos los checkboxes
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        
+        // Eliminar atributos 'name' existentes
+        checkboxes.forEach(function(checkbox) {
+            checkbox.removeAttribute('name');
+        });
+        
+        // Añadir atributos 'name' solo a los seleccionados
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                checkbox.name = 'listaTallas';
             }
         });
     });
 });
 
-
 // Listener para cambiar el número de inputs de archivo
 numImagesSelect.addEventListener('change', function(event) {
     event.preventDefault();
     const numImages = parseInt(event.target.value);
-
-    container.innerHTML = ''; // Limpiar el contenedor antes de agregar nuevos inputs
 
     for (let i = 0; i < numImages; i++) {
         createFileInput();
@@ -364,8 +262,6 @@ function createFileInput() {
         e.preventDefault();
         fileInput.click();
     });
-
-    container.appendChild(fileInputLabel);
 }
 
 // Manejar la selección de archivo
@@ -404,4 +300,11 @@ function handleFileSelect(event) {
         e.preventDefault();
         fileInput.click();
     });
+}
+
+function resetearRemoverCampos(){
+    const campoFit = document.getElementById('fitSelect');
+    if(campoFit !== null){
+        campoFit.remove();
+    }
 }
