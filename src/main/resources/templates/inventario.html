@@ -140,7 +140,7 @@
                                         <p th:if="${producto.cantidad >= 200}" type="button" class="inline-flex bg-[#0ca64e] fuente_2 text-xs md:text-sm lg:text-sm xl:text-base text-white px-3 py-1 rounded-3xl">En Stock</p>
                                         <p th:if="${producto.cantidad < 200}" type="button" class="inline-flex bg-[#ed2027] fuente_2 text-xs md:text-sm lg:text-sm xl:text-base text-white px-3 py-1 rounded-3xl">Stock Bajo</p>
                                     </div>
-                                    <button onclick="openModalDetails()" type="button" class="absolute inline-flex col-span-2 place-self-center justify-self-end text-white p-1.5 bg-[#ffaf00] hover:bg-[#FFBA20] rounded-xl"><svg class="w-4 h-4 md:w-6 md:h-6 lg:w-6 lg:h-6 xl:w-7 xl:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="white" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-6.5a6.5 6.5 0 1 0 0 13a6.5 6.5 0 0 0 0-13M6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75M8 6a1 1 0 1 1 0-2a1 1 0 0 1 0 2"/></svg></button>
+                                    <button th:attr="onclick=|openModalDetails('${producto.idProducto}')|" type="button" class="absolute inline-flex col-span-2 place-self-center justify-self-end text-white p-1.5 bg-[#ffaf00] hover:bg-[#FFBA20] rounded-xl"><svg class="w-4 h-4 md:w-6 md:h-6 lg:w-6 lg:h-6 xl:w-7 xl:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="white" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-6.5a6.5 6.5 0 1 0 0 13a6.5 6.5 0 0 0 0-13M6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75M8 6a1 1 0 1 1 0-2a1 1 0 0 1 0 2"/></svg></button>
                                 </div>
                                 <p th:text="${producto.nombre}" class="flex justify-center text-center fuente_4 text-base md:text-xl lg:text-xl xl:text-2xl text-white"></p>
                                 <p th:if="${producto.categoria} != 'etiquetas'" class="text-center fuente_2 text-xs md:text-sm lg:text-sm xl:text-base text-white">Color: <span th:text="${producto.color} ? (${producto.color == 'azul_marino' ? 'Azul Marino' : producto.color}) : ''" class="capitalize ml-1 md:ml-3 text-justify fuente_5 text-white"></span></p>
@@ -170,7 +170,15 @@
                           </button>
                       </div>
                       <div>
-                        
+                        <div class="relative flex justify-center mt-4 mb-4">
+                            <div class="flex justify-center w-full h-[18vw] rounded-3xl">
+                                <img class="object-cover rounded-[20px] md:rounded-[25px] lg:rounded-[35px]" id="producto-imagen" alt="Imagen del producto">
+                            </div>
+                        </div>
+                        <p class="text-center fuente_2 text-xs md:text-sm lg:text-sm xl:text-base text-white">Nombre: <span id="producto-nombre" class="capitalize ml-1 md:ml-3 text-justify fuente_5 text-white"></span></p>
+                        <p class="text-center fuente_2 text-xs md:text-sm lg:text-sm xl:text-base text-white">Cantidad: <span id="producto-cantidad" class="capitalize ml-1 md:ml-3 text-justify fuente_5 text-white"></span></p>
+                        <p class="text-center fuente_2 text-xs md:text-sm lg:text-sm xl:text-base text-white">Categoría: <span id="producto-categoria" class="capitalize ml-1 md:ml-3 text-justify fuente_5 text-white"></span></p>
+                        <div id="producto-extra"></div>
                       </div>
                   </div>
               </div>

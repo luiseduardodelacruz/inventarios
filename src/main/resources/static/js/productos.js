@@ -87,8 +87,53 @@ categorias.forEach(item => {
 const cerrar_detalles_producto = document.getElementById('cerrar_detalles_producto');
 const detalles_producto = document.getElementById('detalles_producto');
 
-function openModalDetails(){
-  detalles_producto.classList.remove('hidden');
+function openModalDetails(productId) {
+  // Función auxiliar para construir la información adicional del producto
+  const buildExtraInfo = (data) => {
+    const fields = [
+      { key: 'color', label: 'Color' },
+      { key: 'anchor', label: 'Anchor' },
+      { key: 'longitud', label: 'Longitud' },
+      { key: 'calibre', label: 'Calibre' },
+      { key: 'tapa', label: 'Tapa' },
+      { key: 'tamanio', label: 'Tamaño' },
+      { key: 'tipo', label: 'Tipo' },
+      { key: 'marca', label: 'Marca' },
+      { key: 'talla', label: 'Talla' },
+      { key: 'departamento', label: 'Departamento' },
+      { key: 'proceso', label: 'Proceso' },
+    ];
+    
+    return fields.reduce((info, field) => {
+      if (data[field.key]) {
+        info += `<p class="capitalize text-center fuente_2 text-xs md:text-sm lg:text-sm xl:text-base text-white">${field.label}: <span class="capitalize ml-1 md:ml-3 text-justify fuente_5 text-white">${data[field.key]}</span></p>`;
+      }
+      return info;
+    }, '');
+  };
+
+  // Realiza la solicitud fetch para obtener los detalles del producto
+  fetch(`/inventario/productos/${productId}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('La Respuesta de la Red No fue Correcta: ' + response.statusText);
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Asignar datos básicos al modal
+      document.getElementById('producto-imagen').src = data.imagen || '/img/producto-sin-imagen.png';
+      document.getElementById('producto-nombre').textContent = data.nombre || 'Nombre no disponible';
+      document.getElementById('producto-cantidad').textContent = data.cantidad || 'Cantidad no disponible';
+      document.getElementById('producto-categoria').textContent = data.categoria || 'Categoría no disponible';
+
+      // Asignar datos adicionales al modal
+      document.getElementById('producto-extra').innerHTML = buildExtraInfo(data);
+
+      // Mostrar el modal
+      detalles_producto.classList.remove('hidden');
+    })
+    .catch(error => console.error('Error:', error));
 }
 
 cerrar_detalles_producto.addEventListener('click', () => {
