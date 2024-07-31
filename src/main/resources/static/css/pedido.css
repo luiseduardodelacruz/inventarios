@@ -1,0 +1,7 @@
+/* Estilo para el cursor cuando pasa por encima de las opciones del select */
+
+#numImagesSelect option:hover {
+    background-color: orange; /* Cambia el fondo de la opción a color naranja */
+    color: white; /* Cambia el color del texto a blanco */
+    cursor: pointer; /* Cambia el cursor a una mano cuando pasa sobre las opciones */
+}

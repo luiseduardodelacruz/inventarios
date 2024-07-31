@@ -16,21 +16,21 @@ public class Producto {
     private ObjectId idProducto;
 
     private String nombre;
-    private String categoria;
     private int cantidad;
-    private String color;
     private String imagen;
+    private String categoria;
+    private String color;
+    private String anchor;
+    private String longitud;
+    private String calibre;
+    private String tipo;
+    private String tapa;
+    private String tamanio;
+    private String marca;
+    private String talla;
+    private String departamento;
+    private String proceso;
 
-    public Producto() {
+    public Producto() {   
     }
-
-    public Producto(ObjectId idProducto, String nombre, String categoria, int cantidad, String color, String imagen) {
-        this.idProducto = idProducto;
-        this.nombre = nombre;
-        this.categoria = categoria;
-        this.cantidad = cantidad;
-        this.color = color;
-        this.imagen = imagen;
-    }
-
 }

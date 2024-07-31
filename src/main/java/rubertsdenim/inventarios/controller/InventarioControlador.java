@@ -35,7 +35,7 @@ import rubertsdenim.inventarios.repository.CategoriaRepositorio;
 import rubertsdenim.inventarios.service.ProductoServicio;
 
 @Controller
-public class ControladorInicio {
+public class InventarioControlador {
 
     @Autowired
     private ProductoServicio productoServicio;
@@ -98,7 +98,8 @@ public class ControladorInicio {
         post.setEntity(entity);
     
         HttpResponse response = client.execute(post);
-        
+
+        // Verifica el código de estado de la respuesta
         int statusCode = response.getStatusLine().getStatusCode();
         if (statusCode != 200) {
             throw new RuntimeException("Failed with HTTP error code : " + statusCode);
@@ -147,6 +148,16 @@ public class ControladorInicio {
             productoExistente.setCategoria(producto.getCategoria());
             productoExistente.setCantidad(producto.getCantidad());
             productoExistente.setColor(producto.getColor());
+            productoExistente.setAnchor(producto.getAnchor());
+            productoExistente.setLongitud(producto.getLongitud());
+            productoExistente.setCalibre(producto.getCalibre());
+            productoExistente.setTipo(producto.getTipo());
+            productoExistente.setTapa(producto.getTapa());
+            productoExistente.setTamanio(producto.getTamanio());
+            productoExistente.setMarca(producto.getMarca());
+            productoExistente.setTalla(producto.getTalla());
+            productoExistente.setDepartamento(producto.getDepartamento());
+            productoExistente.setProceso(producto.getProceso());
             if (!imagenArchivo.isEmpty() && formatoImagen(imagenArchivo)) {
                 String imageUrl = subirImagenImgbb(imagenArchivo, producto.getNombre());
                 productoExistente.setImagen(imageUrl);
