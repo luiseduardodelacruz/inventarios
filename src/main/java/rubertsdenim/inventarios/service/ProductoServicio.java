@@ -21,14 +21,16 @@ public class ProductoServicio implements IProductoServicio{
     @Override
     public List<Producto> listarProductos(String palabraClave) {
         if (palabraClave != null && !palabraClave.isEmpty()) {
+            // Normalizar la palabra clave
+            palabraClave = NormalizarTextoServicio.normalizarTexto(palabraClave);
+
             // Convertir palabraClave a int para buscar por cantidad
             try {
                 int cantidad = Integer.parseInt(palabraClave);
                 return productoRepositorio.findByCantidad(cantidad);
             } catch (NumberFormatException e) {
                 // Si no se puede convertir a int, continuar buscando por otros campos
-                String regexPattern = ".*" + palabraClave + ".*";
-                return productoRepositorio.findByNombreRegexOrCategoriaRegexOrColorRegex(regexPattern, regexPattern, regexPattern);
+                return productoRepositorio.findByNombreOrCategoriaOrColorOrMarca(palabraClave);
             }
         } else {
             return listarProductos();
