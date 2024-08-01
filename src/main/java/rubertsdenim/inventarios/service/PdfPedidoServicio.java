@@ -128,7 +128,7 @@ public class PdfPedidoServicio {
             document.add(createStyledParagraph("Tipo de Corte: ", pedido.getCategoria(), boldFont, normalFont));
             document.add(createStyledParagraph("Proveedor: ", pedido.getProvedor(), boldFont, normalFont));
             document.add(createStyledParagraph("Talla de la Muestra: ", pedido.getTallas(), boldFont, normalFont));
-            String tipoCorte = pedido.getCategoria().equals("moda") ? "Fit: " + pedido.getFit() : "";
+            String tipoCorte = pedido.getCategoria().equals("Moda") ? "Fit: " + pedido.getFit() : "";
             if (!tipoCorte.isEmpty()) {
                 String fitLabel = "Fit: ";
                 String fitValue = pedido.getFit();
@@ -166,7 +166,7 @@ public class PdfPedidoServicio {
                     try {
                         byte[] imageBytesProducto = imagenProducto.getBytes();
                         Image imageProducto = Image.getInstance(imageBytesProducto);
-                        imageProducto.scaleToFit(299, 350);
+                        imageProducto.scaleToFit(299, 305);
                         cellProd = new PdfPCell(imageProducto);
                         cellProd.setPadding(5);
                         cellProd.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
