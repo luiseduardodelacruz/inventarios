@@ -23,6 +23,7 @@ public class PdfPedido {
     private String botonHebilla;
     private String hilo;
     private String numImagesSelect;
+    private List<byte[]> imageFiles;
     private MultipartFile dropzoneImagenE;
     private MultipartFile dropzoneFile;
 }

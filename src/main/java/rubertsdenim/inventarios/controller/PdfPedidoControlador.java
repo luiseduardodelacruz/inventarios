@@ -1,6 +1,8 @@
 package rubertsdenim.inventarios.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -17,8 +19,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lowagie.text.DocumentException;
 
+import jakarta.servlet.http.HttpSession;
+
 import rubertsdenim.inventarios.service.PdfPedidoServicio;
 import rubertsdenim.inventarios.model.PdfPedido;
+import rubertsdenim.inventarios.model.User;
 
 @Controller
 public class PdfPedidoControlador {
@@ -27,13 +32,17 @@ public class PdfPedidoControlador {
     private PdfPedidoServicio pdfpedidoservicio;
 
     @GetMapping("/pedido")
-    public String generarPedidoPDF(Model model) {
+    public String generarPedidoPDF(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/inicio-sesion";
+        }
         model.addAttribute("pedido", new PdfPedido());
         return "pedido";
     }
 
     @PostMapping("/generar-pdf")
-    public ResponseEntity<byte[]> generarPdf(@ModelAttribute PdfPedido pedido, @RequestParam(value = "dropzoneImagenE", required = false) MultipartFile imagenMarca, @RequestParam(value = "dropzoneFile", required = false) MultipartFile imagenProducto, RedirectAttributes redirectAttributes) throws DocumentException, IOException {
+    public ResponseEntity<byte[]> generarPdf(@ModelAttribute PdfPedido pedido, @RequestParam(value = "dropzoneImagenE", required = false) MultipartFile imagenMarca, @RequestParam(value = "dropzoneFile", required = false) MultipartFile imagenProducto, @RequestParam("dropzoneFilesEtiquetas") MultipartFile[] files, RedirectAttributes redirectAttributes) throws DocumentException, IOException {
 
         // Verificar imágenes antes de procesar
         if (imagenMarca != null && !isValidImage(imagenMarca)) {
@@ -49,6 +58,13 @@ public class PdfPedidoControlador {
         // Configurar imágenes en el objeto PdfPedido
         pedido.setDropzoneImagenE(imagenMarca);
         pedido.setDropzoneFile(imagenProducto);
+
+        // Procesar las imágenes
+        List<byte[]> imageFiles = new ArrayList<>();
+        for (MultipartFile file : files) {
+            imageFiles.add(file.getBytes());
+        }
+        pedido.setImageFiles(imageFiles);
     
         byte[] pdfBytes = pdfpedidoservicio.generarPDF(pedido);
 

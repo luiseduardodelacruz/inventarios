@@ -16,7 +16,7 @@ document.getElementById('numImagesSelect').addEventListener('change', function()
                     <p class="mb-2 text-sm text-gray-500 text-center font-normal"><span class="font-semibold text-[#db4900]">Click para subir</span> o arrastra la imagen</p>
                     <p class="mb-2 text-[12px] text-gray-500 text-center font-normal">PNG, JPG menor a 10MB</p>
                 </div>
-                <input id="dropzone-file-${i}" name="dropzoneFile-${i}" type="file" accept="image/jpeg, image/png" class="hidden dropzone-input" />
+                <input id="dropzone-file-${i}" name="dropzoneFilesEtiquetas" type="file" accept="image/jpeg, image/png" class="hidden dropzone-input" />
                 <div id="preview-${i}" class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none rounded-lg overflow-auto"></div>
             </label>
         `;
