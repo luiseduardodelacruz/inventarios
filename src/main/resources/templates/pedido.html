@@ -31,7 +31,7 @@
                                 <p class="mb-2 text-sm text-gray-500 text-center font-normal">o arrastra la imagen</p>
                                 <p class="mb-2 text-[12px] text-gray-500 text-center font-normal">PNG, JPG menor a 10MB</p>
                             </div>
-                            <input id="dropzone-imagenE" name="dropzoneImagenE" type="file" accept="image/jpeg, image/png" class="hidden" />
+                            <input id="dropzone-imagenE" name="dropzoneImagenE" type="file" accept="image/jpeg, image/png" class="hidden" required/>
                             <div id="vistaEmpresa" class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none rounded-lg overflow-auto"></div>
                         </label>
                     </div>
@@ -39,13 +39,13 @@
                         <div class="flex flex-col md:flex-row items-center mb-0 md:mb-0 lg:ml-auto">
                             <div class="flex flex-col md:flex-row items-center mb-0 lg:ml-auto">
                                 <label for="departamento" class="mb-1 md:mb-0 mr-10 lg:mr-5 w-20 text-sm font-medium text-gray-900 lg:ml-auto">Departamento:</label>
-                                <select id="departamento" th:field="*{departamento}" name="departamento" class="lg:ml-[4vh] border border-orange-300 text-white-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-60 sm:w-72 md:w-32 sm:w-40 lg:w-[20vh] p-2.5 text-white placeholder-white h-10 bg-[#db4900]">
-                                    <option value="" disabled selected>Selecione una opción</option>
-                                    <option value="nino">Niño</option>
-                                    <option value="nina">Niña</option>
-                                    <option value="juvenil">Juvenil</option>
-                                    <option value="bebos">Bebos</option>
-                                    <option value="bebas">Bebas</option>
+                                <select id="departamento" th:field="*{departamento}" name="departamento" class="lg:ml-[4vh] border border-orange-300 text-white-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-60 sm:w-72 md:w-32 sm:w-40 lg:w-[20vh] p-2.5 text-white placeholder-white h-10 bg-[#db4900]" required>
+                                    <option value="" selected>Selecione una opción</option>
+                                    <option value="Niño">Niño</option>
+                                    <option value="Niña">Niña</option>
+                                    <option value="Juvenil">Juvenil</option>
+                                    <option value="Bebos">Bebos</option>
+                                    <option value="Bebas">Bebas</option>
                                 </select>
                             </div>
                         </div>
@@ -169,20 +169,20 @@
                                 <div>
                                     <div class="block mb-1 text-sm font-medium text-white-900">
                                         <label for="categoria" class="block mb-1 text-sm font-medium text-white-900">Tipo de corte</label>
-                                        <select id="categoria" th:field="*{categoria}" name="categoria" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2">
-                                            <option value="" disabled selected>Selecione una opción</option>
-                                            <option value="moda">Moda</option>
-                                            <option value="basico">Basico</option>
-                                            <option value="short">Short</option>
-                                            <option value="bermuda">Bermuda</option>
+                                        <select id="categoria" th:field="*{categoria}" name="categoria" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2" required>
+                                            <option value="" selected>Selecione una opción</option>
+                                            <option value="Moda">Moda</option>
+                                            <option value="Básico">Básico</option>
+                                            <option value="Shorts">Shorts</option>
+                                            <option value="Bermudas">Bermudas</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="fitSelect" class="hidden">
                                     <div class="block mb-1 text-sm font-medium text-white-900">
                                         <label for="fit" class="block mb-1 text-sm font-medium text-white-900 text-white">Fit</label>
-                                        <select id="fit" th:field="*{fit}" name="fit" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900] mb-2">
-                                            <option value="" disabled selected>Selecciona un ajuste</option>
+                                        <select id="fit" th:field="*{fit}" name="fit" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900] mb-2" required>
+                                            <option value="" selected>Selecciona un Ajuste</option>
                                         </select>
                                     </div>
                                 </div>
@@ -193,9 +193,9 @@
                                 <div>
                                     <div class="block mb-1 text-sm font-medium text-white-900">
                                         <label for="provedor" class="block mb-1 text-sm font-medium text-white-900">Provedor</label>
-                                        <select id="provedor" th:field="*{provedor}" name="provedor" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2">
-                                            <option value="" disabled selected>Selecione una opción</option>
-                                            <option value="Ruberts_Denim">Ruberts</option>
+                                        <select id="provedor" th:field="*{provedor}" name="provedor" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2" required>
+                                            <option value="" selected>Selecione una opción</option>
+                                            <option value="Rubert's Denim">Rubert's Denim</option>
                                         </select>
                                     </div>
                                 </div>
@@ -214,7 +214,7 @@
                                     <p class="mb-2 text-sm text-gray-500 text-center font-normal"><span class="font-semibold text-[#db4900]">Click para subir</span> o arrastra la imagen</p>
                                     <p class="mb-2 text-[12px] text-gray-500 text-center font-normal">PNG, JPG menor a 10MB</p>
                                 </div>
-                                <input id="dropzone-file" name="dropzoneFile" type="file" accept="image/jpeg, image/png" class="hidden" />
+                                <input id="dropzone-file" name="dropzoneFile" type="file" accept="image/jpeg, image/png" class="hidden" required/>
                                 <div id="preview" class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none rounded-lg overflow-auto"></div>
                             </label>
                         </div>
@@ -227,22 +227,22 @@
                                 <div>
                                     <div class="block mb-1 text-sm font-medium text-white-900">
                                         <label for="lavado_procesado" class="block mb-1 text-sm font-medium text-white-900">Lavado y Procesado:</label>
-                                        <select id="lavado_procesado" th:field="*{lavado_procesado}" name="lavado_procesado" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2">
-                                            <option value="" disabled selected>Selecione una opción</option>
-                                            <option value="blinch">Blinch</option>
-                                            <option value="stone_medio">Stone Medio</option>
-                                            <option value="stone_alto">Stone Alto</option>
-                                            <option value="suavisado">Suavisado</option>
-                                            <option value="bebas">Bebas</option>
+                                        <select id="lavado_procesado" th:field="*{lavado_procesado}" name="lavado_procesado" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2" required>
+                                            <option value="" selected>Selecione una opción</option>
+                                            <option value="Blinch">Blinch</option>
+                                            <option value="Stone Medio">Stone Medio</option>
+                                            <option value="Stone Alto">Stone Alto</option>
+                                            <option value="Suavisado">Suavisado</option>
+                                            <option value="Bebas">Bebas</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="botonSelect">
                                     <div class="block mb-1 text-sm font-medium text-white-900">
                                         <label id="botonLabel" for="botonHebilla" class="block mb-1 text-sm font-medium text-white-900">Botón / Hebilla</label>
-                                        <select id="botonHebilla" th:field="*{botonHebilla}" name="botonHebilla" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2">
-                                            <option value="" disabled selected>Selecione una opción</option>
-                                            <option value="boton">Botón</option>
+                                        <select id="botonHebilla" th:field="*{botonHebilla}" name="botonHebilla" class="border border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2" required>
+                                            <option value="" selected>Selecione una opción</option>
+                                            <option value="Botón">Botón</option>
                                         </select>
                                     </div>
                                 </div>
@@ -259,8 +259,8 @@
                         <div class="w-[45vh] sm:w-[41vh] lg:w-[20vh] md:w-[22vh] xl:w-[30vh] 2xl:w-[30vh] max-w-lg p-6 border border-orange-200 rounded-[45px] shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900] overflow-auto h-96" id="imageContainer">
                             <div>
                                 <label for="numImagesSelect" class="block mb-1 text-sm font-medium text-center text-gray-900">Etiquetado</label>
-                                <select id="numImagesSelect" th:field="*{numImagesSelect}" name="numImagesSelect" class="w-full py-2 border-gray-300 rounded-3xl shadow-sm focus:ring-[#db4900] focus:border-[#db4900] sm:text-sm bg-white text-gray-900">
-                                    <option value="" disabled selected>Selecciona el Número de Etiquetas</option>
+                                <select id="numImagesSelect" th:field="*{numImagesSelect}" name="numImagesSelect" class="w-full py-2 border-gray-300 rounded-3xl shadow-sm focus:ring-[#db4900] focus:border-[#db4900] sm:text-sm bg-white text-gray-900" required>
+                                    <option value="" selected>Selecciona el Número de Etiquetas</option>
                                     <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="1">1</option>
                                     <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="2">2</option>
                                     <option class="bg-[#db4900] hover:bg-orange-500 hover:text-white" value="3">3</option>

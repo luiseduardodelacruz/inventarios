@@ -148,24 +148,24 @@ categoriaSelect.addEventListener('change', function() {
     }
     
     // Crear y agregar el contenedor fitSelect si la categoría es "moda"
-    if (selectedCategoria === 'moda') {
+    if (selectedCategoria === 'Moda') {
         createFitSelect();
     } else {
         // Ocultar el contenedor de botón si la categoría no es válida
         botonSelectContainer.classList.add('hidden');
-    } if (selectedCategoria === 'moda') {
+    } if (selectedCategoria === 'Moda') {
         // Cambiar el título y opciones del select de Botón para Moda
         botonLabel.textContent = 'Botón / Hebilla';
         botonSelect.innerHTML = `
-            <option value="boton">Botón</option>
-            <option value="hebilla">Hebilla</option>
+            <option value="Botón">Botón</option>
+            <option value="Hebilla">Hebilla</option>
         `;
         botonSelectContainer.classList.remove('hidden');
-    } else if (selectedCategoria === 'basico' || selectedCategoria === 'bermuda' || selectedCategoria === 'short') {
+    } else if (selectedCategoria === 'Básico' || selectedCategoria === 'Bermudas' || selectedCategoria === 'Shorts') {
         // Restaurar título y opciones originales para otras categorías
         botonLabel.textContent = 'Botón';
         botonSelect.innerHTML = `
-            <option value="boton">Botón</option>
+            <option value="Botón">Botón</option>
         `;
         botonSelectContainer.classList.remove('hidden');
     } else {
@@ -192,8 +192,8 @@ function createFitSelect() {
 
     // Agregar opciones para "moda"
     fitSelect.innerHTML = `
-        <option value="overol">Overol</option>
-        <option value="pesquero">Pesquero</option>
+        <option value="Overol">Overol</option>
+        <option value="Pesquero">Pesquero</option>
     `;
 
     fitSelectContainer.appendChild(fitLabel);
