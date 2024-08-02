@@ -4,6 +4,8 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.Data;
 import lombok.ToString;
 
@@ -15,8 +17,11 @@ public class Producto {
     @Id
     private ObjectId idProducto;
 
-    private String nombre;
+    @Min(value = 0, message = "La Cantidad No Puede ser Negativa")
+    @Max(value = 2140999999, message = "La Cantidad es Demasiado Grande")
     private int cantidad;
+
+    private String nombre;
     private String imagen;
     private String categoria;
     private String color;

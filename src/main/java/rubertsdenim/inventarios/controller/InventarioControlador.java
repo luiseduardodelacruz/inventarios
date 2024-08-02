@@ -77,6 +77,11 @@ public class InventarioControlador {
     
     @PostMapping("/inventario/create")
     public String agregarProducto(@ModelAttribute Producto producto, @RequestParam MultipartFile imagenArchivo) throws IOException {
+        
+        if (producto.getCantidad() < 0) {
+            producto.setCantidad(1);
+        }
+
         if (!imagenArchivo.isEmpty() && formatoImagen(imagenArchivo)) {
             String imageUrl = subirImagenImgbb(imagenArchivo, producto.getNombre());
             producto.setImagen(imageUrl);
@@ -142,6 +147,9 @@ public class InventarioControlador {
 
     @PostMapping("/inventario/update")
     public String actualizarProducto(@ModelAttribute Producto producto, @RequestParam MultipartFile imagenArchivo) throws IOException {
+        if (producto.getCantidad() < 0) {
+            producto.setCantidad(0);
+        }
         Producto productoExistente = productoServicio.buscarProductoPorId(producto.getIdProducto());
         if (productoExistente != null) {
             productoExistente.setNombre(producto.getNombre());

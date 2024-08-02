@@ -3,6 +3,7 @@ package rubertsdenim.inventarios.service;
 import java.text.Normalizer;
 
 public class NormalizarTextoServicio {
+    
     public static String normalizarTexto(String texto) {
         if (texto == null) {
             return null;
@@ -26,12 +27,4 @@ public class NormalizarTextoServicio {
         return texto;
     }
 
-    /* 
-    public static void main(String[] args) {
-        String textoUsuario = "30/4 mm";
-        String textoUsuario2 = "0.80 mm";
-        String textoNormalizado = normalizarTexto(textoUsuario + textoUsuario2);
-        System.out.println(textoNormalizado);
-    }
-    */
 }

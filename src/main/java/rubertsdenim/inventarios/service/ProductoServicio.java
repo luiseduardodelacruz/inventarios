@@ -45,6 +45,13 @@ public class ProductoServicio implements IProductoServicio{
 
     @Override
     public Producto guardarProducto(Producto producto) {
+        // Normalizar campos de texto
+        producto.setNombre(NormalizarTextoServicio.normalizarTexto(producto.getNombre()));
+
+        // Validar y normalizar cantidad
+        int cantidadNormalizada = NormalizarCantidadServicio.normalizarCantidad(producto.getCantidad());
+        producto.setCantidad(cantidadNormalizada);
+
         return this.productoRepositorio.save(producto);
     }
 
