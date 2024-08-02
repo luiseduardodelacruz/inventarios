@@ -14,5 +14,4 @@ public class NormalizarCantidadServicio {
         
         return cantidad;
     }
-    
 }

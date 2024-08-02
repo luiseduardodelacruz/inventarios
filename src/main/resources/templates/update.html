@@ -19,7 +19,7 @@
                     class="fixed inset-0 z-50 transition-transform duration-1000 ease-in-out flex items-center justify-center bg-gray-800 bg-opacity-50">
                     <div class="w-full max-w-[90vw] md:max-w-lg lg:max-w-lg xl:max-w-xl p-4 md:p-5 lg:p-5 xl:p-6 bg-[#faad86] rounded-[45px] shadow-lg">
                         <div class="grid grid-cols-12 start-0 flex items-stretch">
-                            <p class="capitalize text-xl md:text-2xl lg:text-2xl xl:text-3xl fuente_4 text-white col-span-11 text-center place-self-center justify-self-center" th:text="${producto.nombre}">Name Product</p>
+                            <p class="capitalize text-xl md:text-2xl lg:text-2xl xl:text-3xl fuente_4 text-white col-span-11 text-center place-self-center justify-self-center" th:text="${producto.nombre}" data-format="true">Name Product</p>
                             <a href="/inventario" class="justify-self-end">
                                 <button type="button" class="inline-flex col-span-1 place-self-center justify-self-end text-white p-0.5 hover:bg-gray-600 hover:bg-opacity-10 rounded-xl">
                                     <svg class="w-9 h-9 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-12 xl:h-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="9" /><path d="m14 10l-4 4m0-4l4 4" /></g>
@@ -32,7 +32,7 @@
                                 <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
                                     <input type="hidden" th:field="*{idProducto}" />
                                     <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Nombre:</p>
-                                    <input type="text" id="nombre" th:field="*{nombre}" class="capitalize col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-base md:text-base lg:text-base xl:text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-1.5 px-2 md:p-2 md:px-3 lg:p-2 lg:px-3 xl:p-2 xl:px-3" required />
+                                    <input type="text" id="nombre" th:field="*{nombre}" data-format="true" class="capitalize col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-base md:text-base lg:text-base xl:text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-1.5 px-2 md:p-2 md:px-3 lg:p-2 lg:px-3 xl:p-2 xl:px-3" required />
                                 </div>
                             </div>
 
@@ -72,7 +72,7 @@
                                             <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Color:</p>
                                             <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                                 <div id="opcion_seleccionada_color_editar_producto" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                                    <span class="capitalize px-1" th:text="${producto.color} ? (${producto.color == 'azul_marino' ? 'Azul Marino' : producto.color}) : ''">Color Selectd</span>
+                                                    <span class="capitalize px-1" th:text="${producto.color}" data-format="true">Color Selectd</span>
                                                     <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                         <path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5" />
                                                     </svg>
@@ -103,7 +103,7 @@
                                             <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Anchor:</p>
                                             <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                                 <div id="opcion_seleccionada_anchor_editar_producto_elasticos" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                                    <span class="px-1" th:text="${producto.anchor}">Seleccionar:</span>
+                                                    <span class="px-1" th:text="${producto.anchor}" data-format="true">Seleccionar:</span>
                                                     <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
                                                 </div>
                                                 <div id="opciones_anchor_editar_producto_elasticos" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
@@ -125,7 +125,7 @@
                                           <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Color:</p>
                                             <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                                 <div id="opcion_seleccionada_color_editar_producto" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                                    <span class="capitalize px-1" th:text="${producto.color}">Seleccionar:</span>
+                                                    <span class="capitalize px-1" th:text="${producto.color}" data-format="true">Seleccionar:</span>
                                                     <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
                                                 </div>
                                                 <div id="opciones_color_editar_producto" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
@@ -150,7 +150,7 @@
                                             <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Calibre:</p>
                                             <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                                 <div id="opcion_seleccionada_calibre_editar_producto_hilos" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                                    <span class="px-1" th:text="${producto.calibre}">Seleccionar:</span>
+                                                    <span class="px-1" th:text="${producto.calibre}" data-format="true">Seleccionar:</span>
                                                     <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
                                                 </div>
                                                 <div id="opciones_calibre_editar_producto_hilos" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
@@ -195,7 +195,7 @@
                                             <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Color:</p>
                                             <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                                 <div id="opcion_seleccionada_color_editar_producto" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                                    <span class="capitalize px-1" th:text="${producto.color}">Seleccionar:</span>
+                                                    <span class="capitalize px-1" th:text="${producto.color}" data-format="true">Seleccionar:</span>
                                                     <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
                                                 </div>
                                                 <div id="opciones_color_editar_producto" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
@@ -239,7 +239,7 @@
                                             <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Color:</p>
                                             <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                                 <div id="opcion_seleccionada_color_editar_producto" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                                    <span class="capitalize px-1" th:text="${producto.color}">Seleccionar:</span>
+                                                    <span class="capitalize px-1" th:text="${producto.color}" data-format="true">Seleccionar:</span>
                                                     <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
                                                 </div>
                                                 <div id="opciones_color_editar_producto" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
@@ -264,7 +264,7 @@
                                             <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Tamaño:</p>
                                             <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                                 <div id="opcion_seleccionada_tamano_editar_producto_botones" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                                    <span class="capitalize px-1" th:text="${producto.tamanio}">Seleccionar:</span>
+                                                    <span class="capitalize px-1" th:text="${producto.tamanio}" data-format="true">Seleccionar:</span>
                                                     <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
                                                 </div>
                                                 <div id="opciones_tamano_editar_producto_botones" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
@@ -292,7 +292,7 @@
                                             <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Color:</p>
                                             <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                                 <div id="opcion_seleccionada_color_editar_producto" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                                    <span class="capitalize px-1" th:text="${producto.color}">Seleccionar:</span>
+                                                    <span class="capitalize px-1" th:text="${producto.color}" data-format="true">Seleccionar:</span>
                                                     <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
                                                 </div>
                                                 <div id="opciones_color_editar_producto" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
@@ -313,7 +313,7 @@
                                             <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Tamaño:</p>
                                             <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                                 <div id="opcion_seleccionada_tamano_editar_producto_remaches" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                                    <span class="capitalize px-1" th:text="${producto.tamanio}">Seleccionar:</span>
+                                                    <span class="capitalize px-1" th:text="${producto.tamanio}" data-format="true">Seleccionar:</span>
                                                     <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
                                                 </div>
                                                 <div id="opciones_tamano_editar_producto_remaches" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
@@ -335,7 +335,7 @@
                                             <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Color:</p>
                                             <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                                 <div id="opcion_seleccionada_color_editar_producto" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                                    <span class="capitalize px-1" th:text="${producto.color}">Seleccionar:</span>
+                                                    <span class="capitalize px-1" th:text="${producto.color}" data-format="true">Seleccionar:</span>
                                                     <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
                                                 </div>
                                                 <div id="opciones_color_editar_producto" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
@@ -365,7 +365,7 @@
                                             <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Marca:</p>
                                             <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                                 <div id="opcion_seleccionada_marca_editar_producto_etiquetas" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                                    <span class="capitalize px-1" th:text="${producto.marca}">Seleccionar:</span>
+                                                    <span class="capitalize px-1" th:text="${producto.marca}" data-format="true">Seleccionar:</span>
                                                     <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
                                                 </div>
                                                 <div id="opciones_marca_editar_producto_etiquetas" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
@@ -390,7 +390,7 @@
                                             <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Talla:</p>
                                             <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                                 <div id="opcion_seleccionada_talla_editar_producto_etiquetas" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                                    <span class="capitalize px-1" th:text="${producto.talla}">Seleccionar:</span>
+                                                    <span class="capitalize px-1" th:text="${producto.talla}" data-format="true">Seleccionar:</span>
                                                     <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
                                                 </div>
                                                 <div id="opciones_talla_editar_producto_etiquetas" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
@@ -432,7 +432,7 @@
                                                 <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Departamento:</p>
                                                 <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                                     <div id="opcion_seleccionada_departamento_editar_producto_etiquetas" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                                        <span class="capitalize px-1" th:text="${producto.departamento}">Seleccionar:</span>
+                                                        <span class="capitalize px-1" th:text="${producto.departamento}" data-format="true">Seleccionar:</span>
                                                         <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
                                                     </div>
                                                     <div id="opciones_departamento_editar_producto_etiquetas" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
@@ -457,7 +457,7 @@
                                                 <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Proceso:</p>
                                                 <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                                     <div id="opcion_seleccionada_proceso_editar_producto_etiquetas" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                                        <span class="capitalize px-1" th:text="${producto.proceso}">Seleccionar:</span>
+                                                        <span class="capitalize px-1" th:text="${producto.proceso}" data-format="true">Seleccionar:</span>
                                                         <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
                                                     </div>
                                                     <div id="opciones_proceso_editar_producto_etiquetas" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
@@ -482,7 +482,7 @@
                                             <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Color:</p>
                                             <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                                 <div id="opcion_seleccionada_color_editar_producto" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                                    <span class="capitalize px-1" th:text="${producto.color}">Seleccionar:</span>
+                                                    <span class="capitalize px-1" th:text="${producto.color}" data-format="true">Seleccionar:</span>
                                                     <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
                                                 </div>
                                                 <div id="opciones_color_editar_producto" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
@@ -503,7 +503,7 @@
                                             <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Talla:</p>
                                             <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                                 <div id="opcion_seleccionada_talla_editar_producto_cerilleras" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                                    <span class="capitalize px-1" th:text="${producto.talla}">Seleccionar:</span>
+                                                    <span class="capitalize px-1" th:text="${producto.talla}" data-format="true">Seleccionar:</span>
                                                     <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
                                                 </div>
                                                 <div id="opciones_talla_editar_producto_cerilleras" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
@@ -568,7 +568,7 @@
                                             <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Color:</p>
                                             <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                                 <div id="opcion_seleccionada_color_editar_producto" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                                    <span class="capitalize px-1" th:text="${producto.color}">Seleccionar:</span>
+                                                    <span class="capitalize px-1" th:text="${producto.color}" data-format="true">Seleccionar:</span>
                                                     <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
                                                 </div>
                                                 <div id="opciones_color_editar_producto" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
@@ -597,7 +597,7 @@
                                             <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Longitud:</p>
                                             <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                                 <div id="opcion_seleccionada_longitud_editar_producto_cierres" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                                    <span class="px-1" th:text="${producto.longitud}">Seleccionar:</span>
+                                                    <span class="px-1" th:text="${producto.longitud}" data-format="true">Seleccionar:</span>
                                                     <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
                                                 </div>
                                                 <div id="opciones_longitud_editar_producto_cierres" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
@@ -618,7 +618,7 @@
                                             <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Proceso:</p>
                                             <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
                                                 <div id="opcion_seleccionada_proceso_editar_producto_cierres" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-                                                    <span class="capitalize px-1" th:text="${producto.proceso}">Seleccionar:</span>
+                                                    <span class="capitalize px-1" th:text="${producto.proceso}" data-format="true">Seleccionar:</span>
                                                     <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
                                                 </div>
                                                 <div id="opciones_proceso_editar_producto_cierres" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
@@ -652,6 +652,7 @@
         </div>
     </div>
 
+    <script src="/js/formatearTexto.js"></script>
     <script src="/js/imagenPrevia.js"></script>
     <script src="/js/updateProductos.js"></script>
 </body>
