@@ -87,9 +87,32 @@ categorias.forEach(item => {
 const cerrar_detalles_producto = document.getElementById('cerrar_detalles_producto');
 const detalles_producto = document.getElementById('detalles_producto');
 
+// Función para formatear el texto
+function formatearTexto(texto) {
+  // Traducción para valores especiales
+  const TRADUCCIONES_ESPECIALES = {
+    "nino": "Niño",
+    "nina": "Niña",
+  };
+
+  if (!texto) return '';
+
+  // Reemplaza guiones bajos por espacios
+  texto = texto.replace(/_/g, ' ');
+
+  return texto
+      .split(' ') // Divide el texto en palabras
+      .map(palabra => TRADUCCIONES_ESPECIALES[palabra.toLowerCase()] || palabra) // Aplica traducción
+      .join(' '); // Une las palabras en una cadena
+}
+
 function openModalDetails(productId) {
   // Función auxiliar para construir la información adicional del producto
   const buildExtraInfo = (data) => {
+
+    // Campos para los que no se debe aplicar la clase "capitalize"
+    const noCapitalizar = ['anchor', 'longitud', 'calibre'];
+
     const fields = [
       { key: 'color', label: 'Color' },
       { key: 'anchor', label: 'Anchor' },
@@ -106,7 +129,9 @@ function openModalDetails(productId) {
     
     return fields.reduce((info, field) => {
       if (data[field.key]) {
-        info += `<p class="capitalize text-center fuente_2 text-xs md:text-sm lg:text-sm xl:text-base text-white">${field.label}: <span class="capitalize ml-1 md:ml-3 text-justify fuente_5 text-white">${data[field.key]}</span></p>`;
+        const formateado = formatearTexto(data[field.key]);
+        const claseTexto = noCapitalizar.includes(field.key) ? '' : 'capitalize ';
+        info += `<p class="capitalize text-center fuente_2 text-xs md:text-sm lg:text-sm xl:text-base text-white">${field.label}: <span class="${claseTexto}ml-1 md:ml-3 text-justify fuente_5 text-white">${formateado}</span></p>`;
       }
       return info;
     }, '');
@@ -123,7 +148,7 @@ function openModalDetails(productId) {
     .then(data => {
       // Asignar datos básicos al modal
       document.getElementById('producto-imagen').src = data.imagen || '/img/producto-sin-imagen.png';
-      document.getElementById('producto-nombre').textContent = data.nombre || 'Nombre no disponible';
+      document.getElementById('producto-nombre').textContent = formatearTexto(data.nombre) || 'Nombre no disponible';
       document.getElementById('producto-cantidad').textContent = data.cantidad || 'Cantidad no disponible';
       document.getElementById('producto-categoria').textContent = data.categoria || 'Categoría no disponible';
 
