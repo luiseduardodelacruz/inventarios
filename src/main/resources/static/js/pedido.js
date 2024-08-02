@@ -308,3 +308,25 @@ function resetearRemoverCampos(){
         campoFit.remove();
     }
 }
+
+function resetearRemoverCampos() {
+    // Limpiar el contenido del input de archivo
+    const dropzoneFileInputE = document.getElementById('dropzone-imagenE');
+    const vistaEmpresa = document.getElementById('vistaEmpresa');
+    
+    const dropzoneFileInput = document.getElementById('dropzone-file');
+    const preview = document.getElementById('preview');
+
+    const carruselImg = document.getElementById('numImagesSelect');
+    const dropzoneContainer = document.getElementById('dropzoneContainer');
+
+    dropzoneFileInputE.value = ''; // Esto limpia el input de archivo
+    preview.innerHTML = '';
+    dropzoneFileInput.value = ''; // Esto limpia el input de archivo
+    vistaEmpresa.innerHTML = '';
+    carruselImg.value = ''; // Esto limpia el input de archivo
+    dropzoneContainer.innerHTML = ''; // Esto limpia el contenido del preview
+
+    // Puedes agregar más lógica aquí si es necesario
+}
+
