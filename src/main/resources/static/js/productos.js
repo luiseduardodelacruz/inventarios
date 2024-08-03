@@ -131,7 +131,7 @@ function openModalDetails(productId) {
       if (data[field.key]) {
         const formateado = formatearTexto(data[field.key]);
         const claseTexto = noCapitalizar.includes(field.key) ? '' : 'capitalize ';
-        info += `<p class="capitalize text-center fuente_2 text-xs md:text-sm lg:text-sm xl:text-base text-white">${field.label}: <span class="${claseTexto}ml-1 md:ml-3 text-justify fuente_5 text-white">${formateado}</span></p>`;
+        info += `<p class="capitalize fuente_2 text-sm md:text-base lg:text-base xl:text-lg text-white px-5 md:px-10">${field.label}: <span class="${claseTexto}ml-1 md:ml-3 text-justify fuente_5 text-white">${formateado}</span></p>`;
       }
       return info;
     }, '');
