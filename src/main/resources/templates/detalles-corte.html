@@ -28,6 +28,24 @@
                     <!-- Fila 2: Dobleces y Bultos -->
                     <div>
                         <input  type="hidden" id="sumaDobleces" class="text-sm font-medium text-gray-900 text-white ml-[10%]" th:field="*{sumaDobleces}"></input>
+                        <div>
+                            <div class="flex items-center mb-3">
+                                <label for="cantidadDobleces"
+                                    class="text-sm font-medium text-gray-900 text-white mr-2">Cantidad de dobleces:</label>
+                                <select name="cantidadDobleces" id="cantidadDobleces"
+                                    class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white"
+                                    onchange="mostrarListasDobleces()">
+                                    <option value="" selected disabled>Seleccionar Cantidad</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <!-- Puedes añadir más opciones según tus necesidades -->
+                                </select>
+                            </div>
+                            <div id="contenedorDobleces" class="grid grid-cols-1 sm:grid-cols-1 gap-6"></div>
+                        </div>
                         
                     </div>
 
@@ -54,24 +72,7 @@
                             <div id="contenedorBultos" class="grid grid-cols-1 sm:grid-cols-1 gap-6"></div>
                         </div>
                     </div>
-                    <div>
-                        <div class="flex items-center mb-3">
-                            <label for="cantidadDobleces"
-                                class="text-sm font-medium text-gray-900 text-white mr-2">Cantidad de dobleces:</label>
-                            <select name="cantidadDobleces" id="cantidadDobleces"
-                                class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white"
-                                onchange="mostrarListasDobleces()">
-                                <option value="" selected disabled>Seleccionar Cantidad</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <!-- Puedes añadir más opciones según tus necesidades -->
-                            </select>
-                        </div>
-                        <div id="contenedorDobleces" class="grid grid-cols-1 sm:grid-cols-1 gap-6"></div>
-                    </div>
+                    
                 </div>
 
 

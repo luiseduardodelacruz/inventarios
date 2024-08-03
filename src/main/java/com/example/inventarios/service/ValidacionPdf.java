@@ -1,0 +1,19 @@
+package com.example.inventarios.service;
+
+import com.example.inventarios.model.FichaHabilitacion;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class ValidacionPdf {
+    private static final List<String> VALORES_VALIDOS = Arrays.asList("niñas", "niños", "bebas", "bebos");
+
+    public static boolean esValidoParaAjustador(FichaHabilitacion fichaHabilitacion) {
+        String departamento = fichaHabilitacion.getDepartamentos().toLowerCase();
+        return VALORES_VALIDOS.contains(departamento);
+    }
+
+    public static boolean esTipoJogger(FichaHabilitacion fichaHabilitacion) {
+        return "jogger".equalsIgnoreCase(fichaHabilitacion.getTipos());
+    }
+}

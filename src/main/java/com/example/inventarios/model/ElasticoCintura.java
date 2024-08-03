@@ -10,5 +10,5 @@ public class ElasticoCintura {
     private String id;
     private String name_departament;
     private String size;
-    private int size_tall;
+    private double size_tall;
 }

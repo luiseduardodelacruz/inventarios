@@ -18,7 +18,6 @@ public class FichaHabilitacion {
     private String maquilero;
     private Integer sumaDobleces;
     private String tipos; 
-    private double cant_tall;
     private List<String> tallas; // Agregado para tallas
     private List<Integer> dobleces; // Agregado para dobleces
     private List<Double> bultos; // Agregado para bultos

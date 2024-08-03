@@ -3,6 +3,7 @@ package com.example.inventarios.model;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 @Data
 @Document(collection = "Ajustador_Medida")
 public class Ajustador {
@@ -10,5 +11,5 @@ public class Ajustador {
     private String id;
     private String name_departament;
     private String size;
-    private int size_tall;
+    private double size_tall;
 }

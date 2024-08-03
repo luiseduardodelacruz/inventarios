@@ -12,5 +12,5 @@ public class ElasticoPuño {
     private String Id;
     private String name_Departament;
     private String size;
-    private int size_tall;
+    private double size_tall;
 }
