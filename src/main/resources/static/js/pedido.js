@@ -188,7 +188,7 @@ function createFitSelect() {
     const fitSelect = document.createElement('select');
     fitSelect.id = 'fit';
     fitSelect.name = 'fit';
-    fitSelect.classList.add('border', 'border-orange-300', 'text-gray-900', 'text-sm', 'rounded-3xl', 'focus:ring-orange-500', 'focus:border-orange-500', 'block', 'w-full', 'p-2.5', 'text-white', 'placeholder-white', 'h-10', 'bg-[#db4900]', 'mb-2');
+    fitSelect.classList.add('border', 'border-orange-300', 'text-white-900', 'text-sm', 'rounded-3xl', 'focus:ring-orange-500', 'focus:border-orange-500', 'block', 'w-full', 'p-2.5', 'text-white', 'placeholder-white', 'h-10', 'bg-[#db4900]', 'mb-2');
 
     // Agregar opciones para "moda"
     fitSelect.innerHTML = `
