@@ -26,6 +26,11 @@
   font-weight: 300;
 }
 
+.fuente_alerta{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
 }
