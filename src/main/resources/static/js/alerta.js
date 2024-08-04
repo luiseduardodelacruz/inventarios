@@ -49,7 +49,7 @@ function showAlert(message) {
 function fadeOutAlert(alert) {
     const fadeInterval = setInterval(() => {
         if (alert.style.opacity > 0) {
-            alert.style.opacity -= 0.05;
+            alert.style.opacity -= 0.1;
         } else {
             clearInterval(fadeInterval);
             alert.remove();
