@@ -51,9 +51,12 @@
                         </select>
                     </div>
                     <div class="flex items-center mb-3">
-                        <label for="total" class="text-sm font-medium text-gray-900 text-white mr-2">Total del corte:</label>
-                        <input type="number" name="total" id="total" class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white placeholder-white" th:field="*{total}" required min="0">
-                    </div>          
+                        <label for="etapas" class="text-sm font-medium text-gray-900 text-white mr-2">Etapa del corte: </label>
+                        <select name="etapas" id="etapas" class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white" th:field="*{etapas}" required>
+                            <option value="" selected>Seleccionar la etapa del corte</option>
+                            <option th:each="etapas : ${etapas}" th:value="${etapas.etapa}" th:text="${etapas.etapa}">Etapas</option>
+                        </select>
+                    </div>        
                     <div class="flex items-center mb-3">
                         <label for="cadena" class="text-sm font-medium text-gray-900 text-white mr-2">Cadena:</label>
                         <select name="cadena" id="cadena" class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white" th:field="*{cadena}" required>

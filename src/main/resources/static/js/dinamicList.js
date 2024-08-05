@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     var select = document.createElement('select');
                     select.name = 'tallas[]';
                     select.className = 'bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-[40%] p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white';
+                    select.addEventListener('change', actualizarOpciones);
                     
                     var optionDefault = document.createElement('option');
                     optionDefault.value = '';
@@ -81,7 +82,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             input.type = 'number';
             input.name = `dobleces[]`;
             input.className = 'bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white';
-            input.addEventListener('input', validarNumeroNoNegativo);
+            input.addEventListener('input', validarNumeroEnteroNoNegativo);
             input.addEventListener('input', calcularSumaDobleces);
 
             div.appendChild(label);
@@ -122,6 +123,31 @@ document.addEventListener('DOMContentLoaded', (event) => {
             input.value = '';
             alert('El valor no puede ser negativo.');
         }
+    }
+
+    function validarNumeroEnteroNoNegativo(event) {
+        const input = event.target;
+        const valor = input.value;
+        if (!/^\d+$/.test(valor) || parseFloat(valor) < 0) {
+            input.value = '';
+            alert('El valor debe ser un número entero no negativo.');
+        }
+    }
+
+    function actualizarOpciones() {
+        const selects = contenedorListas.querySelectorAll('select');
+        const seleccionados = Array.from(selects).map(select => select.value);
+        
+        selects.forEach(select => {
+            const opciones = select.querySelectorAll('option');
+            opciones.forEach(opcion => {
+                if (opcion.value && seleccionados.includes(opcion.value) && opcion.value !== select.value) {
+                    opcion.disabled = true;
+                } else {
+                    opcion.disabled = false;
+                }
+            });
+        });
     }
 
     function calcularSumaDobleces() {

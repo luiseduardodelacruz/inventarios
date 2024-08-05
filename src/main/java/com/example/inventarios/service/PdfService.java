@@ -73,17 +73,17 @@ public class PdfService {
             table2.setSpacingBefore(0f);
             table2.setSpacingAfter(0f);
 
-            float[] columnWidths2 = new float[] { 2f, 2f, 2f, 2f };
+            float[] columnWidths2 = new float[] { 2f, 2f, 2f, 2f};
             table2.setWidths(columnWidths2);
 
             addCell(table2, "Estilo", true);
             addCell(table2, "Corte", true);
-            addCell(table2, "Total", true);
+            addCell(table2,"Etapa", true);
             addCell(table2, "Tipo de corte", true);
 
             addCell(table2, fichaHabilitacion.getEstilo(), false);
             addCell(table2, fichaHabilitacion.getCorte(), false);
-            addCell(table2, Integer.toString(fichaHabilitacion.getTotal()), false);
+            addCell(table2, fichaHabilitacion.getEtapas(),false);
             addCell(table2, fichaHabilitacion.getTipos(), false);
 
             document.add(table2);
@@ -123,23 +123,37 @@ public class PdfService {
             addCell(secondaryTable, "Total/talla", true);
 
             int maxSize = Math.max(tallas.size(), Math.max(dobleces.size(), bultos.size()));
-
+            int totalSum = 0;
             for (int i = 0; i < maxSize; i++) {
                 addCell(secondaryTable, i < dobleces.size() ? dobleces.get(i).toString() : "", false);
                 addCell(secondaryTable, Integer.toString(sumaDobleces), false);
                 addCell(secondaryTable, i < tallas.size() ? tallas.get(i) : "", false);
                 addCell(secondaryTable, i < bultos.size() ? bultos.get(i).toString() : "", false);
-
+    
                 if (i < bultos.size()) {
                     double multiplicacion = bultos.get(i) * sumaDobleces;
                     long multiplicacionRedondeada = Math.round(multiplicacion);
                     addCell(secondaryTable, Long.toString(multiplicacionRedondeada), false);
+                    totalSum += multiplicacionRedondeada; // Sumar el resultado
                 } else {
                     addCell(secondaryTable, "", false);
                 }
             }
 
             document.add(secondaryTable);
+
+            PdfPTable Totaltable = new PdfPTable(2);
+            Totaltable.setWidthPercentage(100); // Ajustar el porcentaje de ancho según tus necesidades
+            Totaltable.setSpacingBefore(0); // Espacio antes de la tabla
+            Totaltable.setSpacingAfter(0); // Espacio después de la tabla
+    
+            float[] columnWidths6 = new float[] { 2f, 2f };
+            Totaltable.setWidths(columnWidths6);
+    
+            addCell(Totaltable, "Total del corte", true);
+            addCell(Totaltable, Integer.toString(totalSum), false); // Mostrar totalSum
+    
+            document.add(Totaltable);
             document.add(new Paragraph(""));
 
             PdfPTable cantidadDescripcionTable = new PdfPTable(2);
@@ -154,11 +168,11 @@ public class PdfService {
             addCell(cantidadDescripcionTable, "DESCRIPCIÓN", true);
 
             // Fila única para Ajustador
-            addCell(cantidadDescripcionTable, Integer.toString(fichaHabilitacion.getTotal()), false);
+            addCell(cantidadDescripcionTable, Long.toString(totalSum), false);
             addCell(cantidadDescripcionTable, "Ajustador", false);
 
             // Fila única para Etiqueta Vinil
-            addCell(cantidadDescripcionTable, Integer.toString(fichaHabilitacion.getTotal()), false);
+            addCell(cantidadDescripcionTable, Long.toString(totalSum), false);
             addCell(cantidadDescripcionTable, "Etiqueta Vinil", false);
 
             // Filas para cada talla - Etiqueta de Pretina

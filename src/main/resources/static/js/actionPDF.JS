@@ -5,6 +5,13 @@ function handleButtonClick() {
     // Crear un FormData para el formulario
     const formData = new FormData(form);
 
+    // Obtener la fecha actual en formato YYYY-MM-DD
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Mes es 0-indexado
+    const day = String(now.getDate()).padStart(2, '0');
+    const fecha = `${year}-${month}-${day}`;
+
     // Enviar el formulario y obtener el PDF
     fetch(form.action, {
         method: 'POST',
@@ -16,7 +23,8 @@ function handleButtonClick() {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'fichahabilitacion.pdf';
+        // Asignar el nombre del archivo basado en la fecha actual
+        a.download = 'ficha_habilitacion' + fecha + '.pdf';
         a.click();
         window.URL.revokeObjectURL(url);
 

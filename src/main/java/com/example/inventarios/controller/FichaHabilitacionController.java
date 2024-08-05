@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.example.inventarios.model.*;
 import com.example.inventarios.repository.CadenaRepository;
 import com.example.inventarios.repository.DepartamentoRepository;
+import com.example.inventarios.repository.EtapaRepository;
 import com.example.inventarios.repository.FichaRepository;
 import com.example.inventarios.repository.ProcesoRepository;
 import com.example.inventarios.repository.TallasRepository;
@@ -51,6 +52,9 @@ public class FichaHabilitacionController {
     @Autowired
     private TiposRepository tiposRepository;
 
+    @Autowired
+    private EtapaRepository etapaRepository;
+
 
     @Autowired
     private PdfService pdfService;
@@ -62,6 +66,7 @@ public class FichaHabilitacionController {
 
     @GetMapping("/")
     public String mostrarFormulario(Model model) {
+        List<Etapa> etapas = etapaRepository.findAll();
         List<Departamento> departamentos = departamentoRepository.findAll();
         List<Cadena> cadenas = cadenaRepository.findAll();
         List<Procesos> procesos = procesoRepository.findAll();
@@ -71,6 +76,7 @@ public class FichaHabilitacionController {
         model.addAttribute("cadenas", cadenas);
         model.addAttribute("procesos", procesos);
         model.addAttribute("tipos", tipos);
+        model.addAttribute("etapas", etapas);
         model.addAttribute("fichaHabilitacion", new FichaHabilitacion());
         return "ficha-habilitacion";
     }
