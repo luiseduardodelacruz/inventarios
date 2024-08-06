@@ -132,8 +132,7 @@ const iconClosed = document.getElementById('dropdownIconClosed');
 
 // Dom de los campos categoria, fit y botones/hebilla
 const categoriaSelect = document.getElementById('categoria');
-const fitSelect = document.getElementById('fit');
-const fitSelectContainer = document.getElementById('fitSelect');
+const fitSelectContainer = document.getElementById('fitSelectContainer');
 const botonSelect = document.getElementById('botonHebilla');
 const botonLabel = document.getElementById('botonLabel');
 const botonSelectContainer = document.getElementById('botonSelect');
@@ -151,9 +150,10 @@ categoriaSelect.addEventListener('change', function() {
     if (selectedCategoria === 'Moda') {
         createFitSelect();
     } else {
-        // Ocultar el contenedor de botón si la categoría no es válida
         botonSelectContainer.classList.add('hidden');
-    } if (selectedCategoria === 'Moda') {
+    }
+
+    if (selectedCategoria === 'Moda') {
         // Cambiar el título y opciones del select de Botón para Moda
         botonLabel.textContent = 'Botón / Hebilla';
         botonSelect.innerHTML = `
@@ -181,12 +181,12 @@ function createFitSelect() {
     fitSelectContainer.classList.add('block', 'mb-1', 'text-sm', 'font-medium', 'text-white-900');
 
     const fitLabel = document.createElement('label');
-    fitLabel.htmlFor = 'fit';
+    fitLabel.htmlFor = 'fitSelectElement';
     fitLabel.classList.add('block', 'mb-1', 'text-sm', 'font-medium', 'text-white-900', 'text-white');
     fitLabel.textContent = 'Fit';
 
     const fitSelect = document.createElement('select');
-    fitSelect.id = 'fit';
+    fitSelect.id = 'fitSelectElement';
     fitSelect.name = 'fit';
     fitSelect.classList.add('border', 'border-orange-300', 'text-white-900', 'text-sm', 'rounded-3xl', 'focus:ring-orange-500', 'focus:border-orange-500', 'block', 'w-full', 'p-2.5', 'text-white', 'placeholder-white', 'h-10', 'bg-[#db4900]', 'mb-2');
 
@@ -302,12 +302,7 @@ function handleFileSelect(event) {
     });
 }
 
-function resetearRemoverCampos(){
-    const campoFit = document.getElementById('fitSelect');
-    if(campoFit !== null){
-        campoFit.remove();
-    }
-}
+
 
 function resetearRemoverCampos() {
     // Limpiar el contenido del input de archivo
@@ -320,13 +315,27 @@ function resetearRemoverCampos() {
     const carruselImg = document.getElementById('numImagesSelect');
     const dropzoneContainer = document.getElementById('dropzoneContainer');
 
-    dropzoneFileInputE.value = ''; // Esto limpia el input de archivo
-    preview.innerHTML = '';
-    dropzoneFileInput.value = ''; // Esto limpia el input de archivo
-    vistaEmpresa.innerHTML = '';
-    carruselImg.value = ''; // Esto limpia el input de archivo
-    dropzoneContainer.innerHTML = ''; // Esto limpia el contenido del preview
+    const borrarSelect = document.getElementById('fitSelectContainer')
 
-    // Puedes agregar más lógica aquí si es necesario
+
+    dropzoneFileInputE.value = ''; 
+    preview.innerHTML = '';
+    dropzoneFileInput.value = ''; 
+    vistaEmpresa.innerHTML = '';
+    carruselImg.value = ''; 
+    dropzoneContainer.innerHTML = ''; 
+
+    borrarSelect.innerHTML='';
+
+    
 }
 
+function resetearRemoverCampos() {
+    // Obtén el div por su ID
+    var div = document.getElementById('fitSelect');
+    
+    // Elimina el div del DOM
+    if (div) {
+        div.remove();
+    }
+}
