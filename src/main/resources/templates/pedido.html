@@ -7,9 +7,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/flowbite@1.3.3/dist/flowbite.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/ficha-hibilitacion.css">
     <link rel="stylesheet" href="/css/pedido.css">
+    <link rel="stylesheet" href="/css/productos.css">
     <title>Pedido</title>
 </head>
 
@@ -18,11 +20,30 @@
     <!-- div contenedor -->
     <div class="bg-[#ffe1d2] border border-orange-200 bg-opacity-40 sm:h-screen flex flex-col preview max-w-full ">
         <form th:action="@{/generar-pdf}" th:object="${pedido}" method="post" id="fichaPantalon" enctype="multipart/form-data" target="_blank">
+            <!-- navar boton -->
+            <nav>
+                <div class="grid grid-cols-2 content-center bg-[#e2aa80] bg-opacity-45 w-full start-0 px-[10%] md:px-[5%] items-stretch h-[10vh] md:h-[9vw] lg:h-[8vw] xl:h-[7vw] 2xl:h-[6vw] rounded-b-full py-10 md:py-0">
+                    <div class="grid-span-1 self-center justify-self-start">
+                        <a th:href="@{/inventario}">
+                            <button type="button" class="flex items-center justify-center px-[4vw] md:px-[3vw] lg:px-[2.5vw] xl:px-[2vw] text-white bg-[#ff8a00] fuente_1 hover:bg-[#ff9b00] focus:ring-4 focus:outline-none focus:ring-[#ffac00] rounded-3xl text-xs md:text-base lg:text-base xl:text-xl mr-[20%] md:mr-[0%] py-2 md:py-3 text-center">VER INVENTARIO 
+                                <svg xmlns="http://www.w3.org/2000/svg" class="ml-[1.15vw] md:ml-[0.85vw] xl:ml-[0.45vw] h-[19px] w-[19px] md:h-[18px] md:w-[18px] lg:h-[22px] lg:w-[22px]" viewBox="0 0 640 512"><path fill="white" d="M0 488V171.3c0-26.2 15.9-49.7 40.2-59.4L308.1 4.8c7.6-3.1 16.1-3.1 23.8 0L599.8 111.9c24.3 9.7 40.2 33.3 40.2 59.4V488c0 13.3-10.7 24-24 24H568c-13.3 0-24-10.7-24-24V224c0-17.7-14.3-32-32-32H128c-17.7 0-32 14.3-32 32V488c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24zm488 24l-336 0c-13.3 0-24-10.7-24-24V432H512l0 56c0 13.3-10.7 24-24 24zM128 400V336H512v64H128zm0-96V224H512l0 80H128z"/></svg>
+                            </button>
+                        </a>
+                    </div>
+                    <div class="grid-span-1 self-center justify-self-end">
+                        <a th:href="@{/cerrar-sesion}">
+                            <button type="button" class="flex items-center justify-center px-[4vw] md:px-[3vw] lg:px-[2.5vw] xl:px-[2vw] text-white bg-[#db4900] fuente_1 hover:bg-[#ff5500] focus:ring-4 focus:outline-none focus:ring-[#e8763d] rounded-3xl text-xs md:text-base lg:text-base xl:text-xl ml-[15%] md:ml-[0%] py-2 md:py-3 text-center">CERRAR SESIÓN 
+                                <svg xmlns="http://www.w3.org/2000/svg" class="ml-[1.15vw] md:ml-[0.85vw] xl:ml-[0.45vw] h-[18px] w-[18px] md:h-[18px] md:w-[18px] lg:h-[20px] lg:w-[20px]" viewBox="0 0 512 512"><path fill="white" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z"/></svg>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </nav>
             <!-- navar -->
-            <nav class="bg-[#ffe1d2] bg-opacity-5 mb-10 mt-10 w-full z-20 top-0 start md:px-8 2xl:px-44 xl:px-24 lg:px-12 ">
+            <nav class="bg-[#ffe1d2] bg-opacity-5 mb-10 mt-10 w-full z-20 top-0 start md:px-4 2xl:px-44 xl:px-24 lg:px-12 ">
                 <div class="max-w-screen flex flex-wrap items-center justify-stretch md:justify-between mx-auto mt-5 mb-5 p-4 ">
-                    <div class="flex items-center justify-center w-full md:w-auto sm:mr-[1vh] md:mr-[1vh] 2xl:mr-[70vh] mb-5 mt-5 md:mb-0 md:mt-0 md:h-8 lg:h-12">
-                        <label for="dropzone-imagenE" class="flex flex-col items-center justify-center w-80 md:w-48 h-30 2xl:h-50 md:h-50 border-2 border-orange-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 relative overflow-hidden">
+                    <div class="flex items-center justify-center w-full md:w-auto sm:mr-[1vh] md:mr-[1vh]  2xl:mr-auto mb-5 mt-5 md:mb-0 md:mt-0 md:h-8 lg:h-12">
+                        <label for="dropzone-imagenE" class="flex flex-col items-center justify-center w-80 md:w-[22vw] md:ml-2 lg:w-48 xl:w-48 2xl:w-48  h-30 2xl:h-50 md:h-[20vh] border-2 border-orange-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 relative overflow-hidden">
                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
                                 <svg class="w-8 h-8 mb-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
@@ -66,8 +87,8 @@
                             </button>
 
                             <!-- Dropdown Menu -->
-                            <div id="dropdownSearch"  class="absolute z-10 hidden bg-opacity-80 bg-[#f2c8ad] border-orange-300 rounded-lg shadow-lg w-40  top-[49%] md:top-[18%] md:ml-[12%] lg:ml-[15%] xl:ml-[12%] 2xl:ml-[8%]">
-                                <ul id="dropdownMenu" class="max-h-36 px-3 pb-3 overflow-y-auto text-sm text-gray-700 mt-[5%]" aria-labelledby="dropdownSearchButton">
+                            <div id="dropdownSearch"  class="absolute z-10 hidden bg-opacity-80 bg-[#f2c8ad] border-orange-300 rounded-lg shadow-lg w-40  top-[49%] md:top-[18%] md:ml-[12%] lg:ml-[14%] xl:ml-[11%] 2xl:ml-[8%] mt-[8%] sm:mt-[8%] md:mt-[8%] lg:mt-[7%] xl:mt-[6.5%] 2xl:mt-[5.5%]">
+                                <ul id="dropdownMenu" class="max-h-36 px-3 pb-3 overflow-y-auto text-sm text-gray-700 mt-[7%]" aria-labelledby="dropdownSearchButton">
                                     <!-- Dropdown items -->
                                     <li>
                                         <div class="flex items-center p-2 rounded hover:bg-orange-100">
@@ -166,26 +187,18 @@
                                     <label for="estilos" class="block mb-1 text-sm font-medium text-white">Estilos</label>
                                     <input type="text" th:field="*{estilos}" name="estilos" id="estilos" class="border border-orange-300 text-white-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2" required />
                                 </div>
-                                <div>
-                                    <div class="block mb-1 text-sm font-medium text-white">
-                                        <label for="categoria" class="block mb-1 text-sm font-medium text-white-900">Tipo de corte</label>
-                                        <select id="categoria" th:field="*{categoria}" name="categoria" class="border border-orange-300 text-white-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2" required>
-                                            <option value="" selected>Selecione una opción</option>
-                                            <option value="Moda">Moda</option>
-                                            <option value="Básico">Básico</option>
-                                            <option value="Shorts">Shorts</option>
-                                            <option value="Bermudas">Bermudas</option>
-                                        </select>
-                                    </div>
+                                <div class="block mb-1 text-sm font-medium text-white">
+                                    <label for="categoria" class="block mb-1 text-sm font-medium text-white-900">Tipo de corte</label>
+                                    <select id="categoria" name="categoria" class="border border-orange-300 text-white-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2" required>
+                                        <option value="" selected>Seleccione una opción</option>
+                                        <option value="Moda">Moda</option>
+                                        <option value="Básico">Básico</option>
+                                        <option value="Shorts">Shorts</option>
+                                        <option value="Bermudas">Bermudas</option>
+                                    </select>
                                 </div>
-                                <div id="fitSelect" class="hidden">
-                                    <div class="block mb-1 text-sm font-medium text-white-900">
-                                        <label for="fit" class="block mb-1 text-sm font-medium text-white text-white">Fit</label>
-                                        <select id="fit" th:field="*{fit}" name="fit" class="border border-orange-300 text-white-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 white:placeholder-white-400 text-white placeholder-white h-10 bg-[#db4900] mb-2" required>
-                                            <option value="" selected>Selecciona un Ajuste</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                <!-- Contenedor para el campo de fit -->
+                                
                                 <div>
                                     <label for="tallas" class="block mb-1 text-sm font-medium text-white">Talla de la Muestra</label>
                                     <input type="text" id="tallas" th:field="*{tallas}" name="tallas" class="border border-orange-300 text-white-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 text-white placeholder-white h-10 bg-[#db4900] mb-2" required />
@@ -276,6 +289,7 @@
                         <div class="flex justify-center mt-4">
                             <button type="reset" onclick="resetearRemoverCampos()" class="w-[40vh] sm:w-[35vh] md:w-[18vh] lg:w-[20vh] 2xl:w-40 py-4 text-white bg-[#db4900] hover:bg-[#ff5500] focus:ring-4 focus:ring-[#e8763d] focus:outline-none rounded-3xl sm:text-sm text-md font-bold">Borrar</button>
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -284,6 +298,7 @@
 
     <script src="/js/pedido.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
 
 </body>
 </html>
