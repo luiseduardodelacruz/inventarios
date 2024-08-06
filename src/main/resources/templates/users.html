@@ -70,13 +70,11 @@
                             <div class="">
 
                               <div class="grid grid-cols-12 flex items-stretch mb-[0.1vw] h-10 px-[1.15vw]">
-                                <div class="inline-flex col-span-10 place-self-center justify-self-start">
-                                    
-                                </div>
-                                <button type="button" class="absolute inline-flex col-span-2 place-self-center justify-self-end text-white p-1.5 bg-[#ffaf00] hover:bg-[#FFBA20] rounded-xl"><svg class="w-4 h-4 md:w-6 md:h-6 lg:w-6 lg:h-6 xl:w-7 xl:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="white" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-6.5a6.5 6.5 0 1 0 0 13a6.5 6.5 0 0 0 0-13M6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75M8 6a1 1 0 1 1 0-2a1 1 0 0 1 0 2"/></svg></button>
+                                <div class="inline-flex col-span-10 place-self-center justify-self-start"></div>
+                                <button type="button" th:attr="onclick=|openModalDetailsUser('${user.id}')|" class="absolute inline-flex col-span-2 place-self-center justify-self-end text-white p-1.5 bg-[#ffaf00] hover:bg-[#FFBA20] rounded-xl"><svg class="w-4 h-4 md:w-6 md:h-6 lg:w-6 lg:h-6 xl:w-7 xl:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="white" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-6.5a6.5 6.5 0 1 0 0 13a6.5 6.5 0 0 0 0-13M6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75M8 6a1 1 0 1 1 0-2a1 1 0 0 1 0 2"/></svg></button>
                               </div>
 
-                                <p th:text="${user.name}" class="capitalize flex justify-center text-center fuente_4 text-base md:text-xl lg:text-xl xl:text-2xl text-white truncate"></p>   
+                                <p th:text="${user.name}" class="capitalize flex justify-center text-center fuente_4 text-base md:text-xl lg:text-xl xl:text-2xl text-white truncate">Name</p>   
                                 <p class="text-center fuente_2 text-xs md:text-sm lg:text-sm xl:text-base text-white truncate">Email: <span th:text="${user.email}" class="ml-1 md:ml-3 text-justify fuente_5 text-white truncate"></span></p>                          
                                 <p class="text-center fuente_2 text-xs md:text-sm lg:text-sm xl:text-base text-white truncate">Rol: <span th:text="${user.role}" class="capitalize ml-1 md:ml-3 text-justify fuente_5 text-white truncate"></span></p>           
                             </div>
@@ -90,6 +88,31 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Elemento Modal Detalles Usuarios -->
+            <div>
+                <div id="detalles_usuario" class="fixed inset-0 z-50 hidden transition-transform duration-1000 ease-in-out flex items-center justify-center bg-gray-800 bg-opacity-50">
+                    <div class="w-full max-w-[90vw] md:max-w-lg lg:max-w-lg xl:max-w-xl p-4 md:p-5 lg:p-5 xl:p-6 bg-[#faad86] rounded-[45px] shadow-lg">
+                        <div class="grid grid-cols-12 start-0 flex items-stretch">
+                            <p class="text-xl md:text-2xl lg:text-2xl xl:text-3xl fuente_4 text-white col-span-11 text-center place-self-center justify-self-center">Detalles de los Usuarios</p>
+                            <button id="cerrar_detalles_usuario" type="button" class="inline-flex col-span-1 place-self-center justify-self-end text-white p-0.5 hover:bg-gray-600 hover:bg-opacity-10 rounded-xl">
+                                <svg class="w-9 h-9 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-12 xl:h-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m14 10l-4 4m0-4l4 4"/></g></svg>
+                            </button>
+                        </div>
+                        <div class="mb-2.5">
+                          <div class="relative flex justify-center mt-2 mb-2">
+                              <div class="flex justify-center w-full h-[24vw] md:h-[14vw] lg:h-[10vw] xl:h-[8vw] rounded-3xl">
+                                  <img class="object-cover rounded-[20px] md:rounded-[25px] lg:rounded-[35px]" id="usuario-imagen" alt="Imagen del Usuario">
+                              </div>
+                          </div>
+                          <p class="fuente_2 text-sm md:text-base lg:text-base xl:text-lg text-white px-5 md:px-10">Nombre: <span id="usuario-nombre" class="capitalize ml-1 md:ml-3 text-justify fuente_5 text-white break-words"></span></p>
+                          <p class="fuente_2 text-sm md:text-base lg:text-base xl:text-lg text-white px-5 md:px-10">Email: <span id="usuario-email" class="capitalize ml-1 md:ml-3 text-justify fuente_5 text-white break-words"></span></p>
+                          <p class="fuente_2 text-sm md:text-base lg:text-base xl:text-lg text-white px-5 md:px-10">Role: <span id="usuario-rol" class="capitalize ml-1 md:ml-3 text-justify fuente_5 text-white break-words"></span></p>
+                          <p class="fuente_2 text-sm md:text-base lg:text-base xl:text-lg text-white px-5 md:px-10">Contraseña: <span id="usuario-password" class="capitalize ml-1 md:ml-3 text-justify fuente_5 text-white break-words"></span></p>
+                        </div>
+                    </div>
+                </div>
+              </div>
 
             <!-- Elemento Modal Agregar Usuarios -->
             <div>
