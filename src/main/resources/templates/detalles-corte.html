@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/img/logo-navegador.png" type="Logo para el navegador">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/ficha-hibilitacion.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -14,7 +15,7 @@
     <div style="display: flex; justify-content: center; align-items: center; min-height: 100vh;" class="p-5">
         <div class="w-full max-w-2xl p-6 border-[#db4900] border-opacity-40 rounded-3xl shadow  sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900]">
             <form id="formulario2" class="space-y-6" th:action="@{/guardar-ficha-parte2}"
-                th:object="${fichaHabilitacion}" method="post">
+                th:object="${fichaHabilitacion}" method="post" target="_blank">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <!-- Fila 1: Maquilero -->
                     <div class="sm:col-span-2">
@@ -69,10 +70,7 @@
                 <!-- Botones -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 place-items-center mt-4">
                     <button type="reset" id="borrarButton" class="w-60 py-4 text-white bg-[#db4900] hover:bg-[#ff5500] focus:ring-4 focus:ring-[#e8763d] focus:outline-none font-medium rounded-3xl text-sm text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800 bg-[#db4900]">Borrar</button>
-                    <button type="button"
-                        class="w-60 py-4 text-white bg-[#db4900] hover:bg-[#ff5500] focus:ring-4 focus:ring-[#e8763d] focus:outline-none font-medium rounded-3xl text-sm text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800 bg-[#db4900]" onclick="handleButtonClick()">
-                        GENERAR PDF
-                    </button>
+                    <button type="submit" class="w-60 py-4 text-white bg-[#db4900] hover:bg-[#ff5500] focus:ring-4 focus:ring-[#e8763d] focus:outline-none font-medium rounded-3xl text-sm text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800 bg-[#db4900]" onclick="handleButtonClick()">GENERAR PDF</button>
                 </div>
             </form>
         </div>

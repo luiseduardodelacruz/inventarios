@@ -12,16 +12,16 @@ function handleButtonClick() {
     })
     .then(response => response.blob())
     .then(blob => {
-        // Crear un enlace de descarga temporal
+        /* Crear un enlace de descarga temporal
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'fichahabilitacion.pdf';
         a.click();
         window.URL.revokeObjectURL(url);
+        */
 
         // Redirigir a la página de índice después de la descarga
-        window.location.href = '/habilitacion'; // Ajusta la ruta según la ubicación de tu archivo
+        window.location.href = '/habilitacion';
     })
     .catch(error => {
         console.error('Error al generar el PDF:', error);

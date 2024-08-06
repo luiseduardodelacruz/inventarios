@@ -108,7 +108,7 @@ public class FichaHabilitacionController {
     
         // Configurar la respuesta para descargar el archivo PDF
         response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition", "attachment; filename=ficha.pdf");
+        response.setHeader("Content-Disposition", "inline; filename=fichahabilitacion.pdf");
         response.setContentLength(pdfContent.length);
     
         response.getOutputStream().write(pdfContent);
