@@ -30,7 +30,7 @@ function showAlert(message) {
     alertContainer.appendChild(alert);
 
     // Administrar el Tiempo de la Alerta
-    let alertDuration = 15000;
+    let alertDuration = 5000;
     let startTime = Date.now();
 
     const interval = setInterval(() => {
