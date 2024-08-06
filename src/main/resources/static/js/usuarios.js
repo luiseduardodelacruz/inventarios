@@ -2,10 +2,10 @@
 const cerrar_detalles_usuario = document.getElementById('cerrar_detalles_usuario');
 const detalles_usuario = document.getElementById('detalles_usuario');
 
-/*
+
 function openModalDetailsUser(userId) {
   // Realiza la solicitud fetch para obtener los detalles del producto
-  fetch(`/usuarios/${userId}`)
+  fetch(`/usuarios/details/${userId}`)
     .then(response => {
       if (!response.ok) {
         throw new Error('La Respuesta de la Red No fue Correcta: ' + response.statusText);
@@ -18,17 +18,11 @@ function openModalDetailsUser(userId) {
       document.getElementById('usuario-nombre').textContent = data.name || 'Nombre no disponible';
       document.getElementById('usuario-email').textContent = data.email || 'Email no disponible';
       document.getElementById('usuario-rol').textContent = data.role || 'Rol no disponible';
-      document.getElementById('usuario-password').textContent = data.password || 'Password no disponible';
 
       // Mostrar el modal
-      //detalles_usuario.classList.remove('hidden');
+      detalles_usuario.classList.remove('hidden');
     })
     .catch(error => console.error('Error:', error));
-}
-*/
-
-function openModalDetailsUser(userId) {
-  detalles_usuario.classList.remove('hidden');
 }
 
 cerrar_detalles_usuario.addEventListener('click', () => {

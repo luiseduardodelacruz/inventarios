@@ -14,6 +14,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.servlet.http.HttpSession;
@@ -96,6 +98,16 @@ public class UserController {
     private boolean isImageFile(MultipartFile file) {
         String contentType = file.getContentType();
         return contentType != null && (contentType.equals("image/jpeg") || contentType.equals("image/png"));
+    }
+
+    @GetMapping("/usuarios/details/{id}")
+    @ResponseBody
+    public ResponseEntity<User> getUserDetails(@PathVariable("id") String id) {
+        User user = userRepository.findById(id).orElse(null);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(user);
     }
 
     @GetMapping("/usuarios/update/{id}")
