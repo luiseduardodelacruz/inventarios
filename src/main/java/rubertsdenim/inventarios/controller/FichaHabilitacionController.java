@@ -23,6 +23,7 @@ import rubertsdenim.inventarios.repository.TiposRepository;
 import rubertsdenim.inventarios.service.PdfService;
 
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @SessionAttributes("fichaHabilitacion")
@@ -56,7 +57,12 @@ public class FichaHabilitacionController {
     }
 
     @GetMapping("/habilitacion")
-    public String mostrarFormulario(Model model) {
+    public String mostrarFormulario(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/inicio-sesion";
+        }
+
         List<Departamento> departamentos = departamentoRepository.findAll();
         List<Cadena> cadenas = cadenaRepository.findAll();
         List<Procesos> procesos = procesoRepository.findAll();
@@ -77,7 +83,12 @@ public class FichaHabilitacionController {
     }
 
     @GetMapping("/detalles-corte")
-    public String obtenerDatos(Model model) {
+    public String obtenerDatos(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/inicio-sesion";
+        }
+
         List<Tallas> tallas = tallasRepository.findAll();
         model.addAttribute("tallas", tallas);
         return "detalles-corte";
