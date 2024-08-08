@@ -202,7 +202,7 @@ function openModalProductDelete(productId, nombre, imagen) {
     productIdToDelete = productId;
     eliminar_producto.classList.remove('hidden');
     
-    document.getElementById('nombre_producto').textContent = nombre;
+    document.getElementById('nombre_producto').textContent = formatearTexto(nombre);
     // Verificar si la imagen está definida y no es null
     if (imagen && imagen.trim() !== '' && imagen !== 'null') {
         document.getElementById('imagen_producto').src = imagen;
