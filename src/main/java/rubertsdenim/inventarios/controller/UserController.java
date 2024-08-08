@@ -66,8 +66,11 @@ public class UserController {
 
     @PostMapping("/usuarios/create")
     public String registerUser(@ModelAttribute User user, @RequestParam MultipartFile imageFile) throws IOException {
+        user.setName(user.getName().trim());
+        user.setEmail(user.getEmail().toLowerCase().trim());
+        user.setPassword(user.getPassword().trim());
         if (!imageFile.isEmpty() && isImageFile(imageFile)) {
-            String imageUrl = uploadImage(imageFile, user.getName());
+            String imageUrl = uploadImage(imageFile, user.getName().toLowerCase().trim());
             user.setImage(imageUrl);
         }
         user.setRole("USER"); // Establece el rol de usuario
@@ -122,11 +125,11 @@ public class UserController {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            user.setEmail(updatedUser.getEmail());
-            user.setName(updatedUser.getName());
+            user.setEmail(updatedUser.getEmail().toLowerCase().trim());
+            user.setName(updatedUser.getName().trim());
             user.setRole("USER");
             if (!imageFile.isEmpty() && isImageFile(imageFile)) {
-                String imageUrl = uploadImage(imageFile, updatedUser.getName());
+                String imageUrl = uploadImage(imageFile, updatedUser.getName().toLowerCase().trim());
                 user.setImage(imageUrl);
             }
             userRepository.save(user);
