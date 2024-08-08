@@ -9,7 +9,8 @@ function closeModalInventarioAdd(){
     //Lipiar datos campos personalizados
     document.getElementById('nombre').value = '';
     document.getElementById('valores_categoria_agregar_producto').value = '';
-    document.getElementById('mensaje-error').textContent = '';
+    document.getElementById('span_categoria').textContent = 'Seleccionar';
+    document.getElementById('campos_dinamicos_agregar_productos').innerHTML = '';
 
     //Limpiar campo de Imagen y restablecer icono
     document.getElementById('archivo').value = '';
