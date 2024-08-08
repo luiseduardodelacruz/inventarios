@@ -189,6 +189,9 @@ function createFitSelect() {
     fitSelect.id = 'fitSelectElement';
     fitSelect.name = 'fit';
     fitSelect.classList.add('border', 'border-orange-300', 'text-white-900', 'text-sm', 'rounded-3xl', 'focus:ring-orange-500', 'focus:border-orange-500', 'block', 'w-full', 'p-2.5', 'text-white', 'placeholder-white', 'h-10', 'bg-[#db4900]', 'mb-2');
+    
+    // Agregar el atributo th:field
+    fitSelect.setAttribute('th:field', '*{fit}');
 
     // Agregar opciones para "moda"
     fitSelect.innerHTML = `
@@ -203,6 +206,7 @@ function createFitSelect() {
     const categoriaDiv = document.querySelector('#categoria').closest('div');
     categoriaDiv.insertAdjacentElement('afterend', fitSelectContainer);
 }
+
 
 //Agregar el atributo Name para procesar las Tallas
 document.addEventListener("DOMContentLoaded", function() {
