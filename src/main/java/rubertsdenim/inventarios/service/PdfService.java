@@ -7,6 +7,7 @@ import rubertsdenim.inventarios.model.FichaHabilitacion;
 import rubertsdenim.inventarios.repository.AjustadorRepository;
 import rubertsdenim.inventarios.repository.ElasticoCinturaRepository;
 import rubertsdenim.inventarios.repository.ElasticoPunioRepository;
+
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,12 +79,12 @@ public class PdfService {
 
             addCell(table2, "Estilo", true);
             addCell(table2, "Corte", true);
-            addCell(table2, "Total", true);
+            addCell(table2, "Etapa del corte", true);
             addCell(table2, "Tipo de corte", true);
 
             addCell(table2, fichaHabilitacion.getEstilo(), false);
             addCell(table2, fichaHabilitacion.getCorte(), false);
-            addCell(table2, Integer.toString(fichaHabilitacion.getTotal()), false);
+            addCell(table2, fichaHabilitacion.getEtapas(), false);
             addCell(table2, fichaHabilitacion.getTipos(), false);
 
             document.add(table2);
@@ -123,7 +124,7 @@ public class PdfService {
             addCell(secondaryTable, "Total/talla", true);
 
             int maxSize = Math.max(tallas.size(), Math.max(dobleces.size(), bultos.size()));
-
+            int totalSum = 0;
             for (int i = 0; i < maxSize; i++) {
                 addCell(secondaryTable, i < dobleces.size() ? dobleces.get(i).toString() : "", false);
                 addCell(secondaryTable, Integer.toString(sumaDobleces), false);
@@ -134,199 +135,244 @@ public class PdfService {
                     double multiplicacion = bultos.get(i) * sumaDobleces;
                     long multiplicacionRedondeada = Math.round(multiplicacion);
                     addCell(secondaryTable, Long.toString(multiplicacionRedondeada), false);
+                    totalSum += multiplicacionRedondeada; // Guardar el resultado en la variable global
                 } else {
                     addCell(secondaryTable, "", false);
                 }
             }
 
             document.add(secondaryTable);
+
+            // Crear la tabla de resumen con una sola fila
+            PdfPTable Totaltable = new PdfPTable(2);
+            Totaltable.setWidthPercentage(100); // Ajustar el porcentaje de ancho según tus necesidades
+            Totaltable.setSpacingBefore(0f); // Espacio antes de la tabla
+            Totaltable.setSpacingAfter(0f); // Espacio después de la tabla
+
+            float[] columnWidths6 = new float[] { 2f, 2f };
+            Totaltable.setWidths(columnWidths6);
+
+            addCell(Totaltable, "Total del corte", true);
+            addCell(Totaltable, Integer.toString(totalSum), false); // Mostrar totalSum
+
+            document.add(Totaltable);
             document.add(new Paragraph(""));
 
-            PdfPTable cantidadDescripcionTable = new PdfPTable(2);
-            cantidadDescripcionTable.setWidthPercentage(100);
-            cantidadDescripcionTable.setSpacingBefore(0f);
-            cantidadDescripcionTable.setSpacingAfter(0f);
 
-            float[] columnWidths = new float[] { 2f, 4f };
-            cantidadDescripcionTable.setWidths(columnWidths);
+if (ValidacionPdf.esValidoParaEtapas(fichaHabilitacion)) {
+    PdfPTable cantidadDescripcionTable = new PdfPTable(2);
+    cantidadDescripcionTable.setWidthPercentage(100);
+    cantidadDescripcionTable.setSpacingBefore(0f);
+    cantidadDescripcionTable.setSpacingAfter(0f);
 
-            addCell(cantidadDescripcionTable, "Cantidad", true);
-            addCell(cantidadDescripcionTable, "DESCRIPCIÓN", true);
+    float[] columnWidths = new float[]{2f, 4f};
+    cantidadDescripcionTable.setWidths(columnWidths);
 
-            // Fila única para Ajustador
-            addCell(cantidadDescripcionTable, Integer.toString(fichaHabilitacion.getTotal()), false);
-            addCell(cantidadDescripcionTable, "Ajustador", false);
+    addCell(cantidadDescripcionTable, "Cantidad", true);
+    addCell(cantidadDescripcionTable, "DESCRIPCIÓN", true);
 
-            // Fila única para Etiqueta Vinil
-            addCell(cantidadDescripcionTable, Integer.toString(fichaHabilitacion.getTotal()), false);
-            addCell(cantidadDescripcionTable, "Etiqueta Vinil", false);
+    String etapaActual = fichaHabilitacion.getEtapas().toLowerCase();
 
-            // Filas para cada talla - Etiqueta de Pretina
+    switch (etapaActual) {
+        case "preparacion":
+            // Generar la tabla específica para "preparacion"
+            addCell(cantidadDescripcionTable, Integer.toString(totalSum), false);
+            addCell(cantidadDescripcionTable, "Materiales de Preparación", false);
+            break;
+
+        case "terminacion":
+            // Generar la tabla específica para "terminacion"
             for (String talla : tallas) {
                 String cantidad = bultos.size() > 0
                         ? Long.toString(Math.round(bultos.get(tallas.indexOf(talla)) * sumaDobleces))
                         : "";
                 addCell(cantidadDescripcionTable, cantidad, false);
-                addCell(cantidadDescripcionTable, "Etiqueta pretina (" + talla + ")", false);
+                addCell(cantidadDescripcionTable, "Materiales de Terminación (" + talla + ")", false);
             }
+            break;
 
-            // Filas para cada talla - Etiqueta Monarch
-            for (String talla : tallas) {
-                String cantidad = bultos.size() > 0
-                        ? Long.toString(Math.round(bultos.get(tallas.indexOf(talla)) * sumaDobleces))
-                        : "";
-                addCell(cantidadDescripcionTable, cantidad, false);
-                addCell(cantidadDescripcionTable, "Etiqueta Monarch (" + talla + ")", false);
-            }
+        case "empaque":
+            // Generar la tabla específica para "empaque"
+            addCell(cantidadDescripcionTable, Integer.toString(totalSum), false);
+            addCell(cantidadDescripcionTable, "Materiales de Empaque", false);
+            break;
 
-            document.add(cantidadDescripcionTable);
+        default:
+            // Caso para una etapa no prevista (aunque esto no debería ocurrir)
+            break;
+    }
+
+    document.add(cantidadDescripcionTable);
+} else {
+    // Manejar el caso cuando la etapa no es válida
+    // Puedes mostrar un mensaje de error o manejarlo como creas conveniente
+}
+
+            
             document.add(Chunk.NEWLINE);
 
             boolean esValidoParaAjustador = ValidacionPdf.esValidoParaAjustador(fichaHabilitacion);
-boolean esTipoJogger = ValidacionPdf.esTipoJogger(fichaHabilitacion);
+            boolean esTipoJogger = ValidacionPdf.esTipoJogger(fichaHabilitacion);
 
-if (esValidoParaAjustador && !esTipoJogger) {
-    // Caso 1: Válido para ajustador y no tipo jogger
-    PdfPTable tallaDataTable = new PdfPTable(tallas.size() + 1);
-    tallaDataTable.setWidthPercentage(100);
+            if (esValidoParaAjustador && !esTipoJogger) {
+                // Caso 1: Válido para ajustador y no tipo jogger
+                PdfPTable tallaDataTable = new PdfPTable(tallas.size() + 1);
+                tallaDataTable.setWidthPercentage(100);
 
-    float[] columnWidths5 = new float[tallas.size() + 1];
-    for (int i = 0; i < columnWidths5.length; i++) {
-        columnWidths5[i] = 2f; // Ajusta el tamaño de las columnas
-    }
-    tallaDataTable.setWidths(columnWidths5);
+                float[] columnWidths5 = new float[tallas.size() + 1];
+                for (int i = 0; i < columnWidths5.length; i++) {
+                    columnWidths5[i] = 2f; // Ajusta el tamaño de las columnas
+                }
+                tallaDataTable.setWidths(columnWidths5);
 
-    // Encabezados de la tabla
-    addCell(tallaDataTable, "Talla", true);
-    for (String talla : tallas) {
-        addCell(tallaDataTable, talla, true);
-    }
-    addCell(tallaDataTable, "PZS/TALLA", true);
+                // Encabezados de la tabla
+                addCell(tallaDataTable, "Talla", true);
+                for (String talla : tallas) {
+                    addCell(tallaDataTable, talla, true);
+                }
+                addCell(tallaDataTable, "PZS/TALLA", true);
 
-    for (int i = 0; i < tallas.size(); i++) {
-        if (i < bultos.size()) {
-            double multiplicacion = bultos.get(i) * sumaDobleces;
-            long multiplicacionRedondeada = Math.round(multiplicacion);
-            addCell(tallaDataTable, Long.toString(multiplicacionRedondeada), false);
-        } else {
-            addCell(tallaDataTable, "", false);
-        }
-    }
+                for (int i = 0; i < tallas.size(); i++) {
+                    if (i < bultos.size()) {
+                        double multiplicacion = bultos.get(i) * sumaDobleces;
+                        long multiplicacionRedondeada = Math.round(multiplicacion);
+                        addCell(tallaDataTable, Long.toString(multiplicacionRedondeada), false);
+                    } else {
+                        addCell(tallaDataTable, "", false);
+                    }
+                }
 
-    addCell(tallaDataTable, "Medida", true);
-    for (String talla : tallas) {
-        List<Ajustador> ajustadores = ajustadorRepository.findBySize(talla);
-        String medida = ajustadores.isEmpty() ? "" : Double.toString(ajustadores.get(0).getSize_tall());
-        addCell(tallaDataTable, medida, false);
-    }
+                addCell(tallaDataTable, "Medida", true);
+                for (String talla : tallas) {
+                    List<Ajustador> ajustadores = ajustadorRepository.findBySize(talla);
+                    String medida = ajustadores.isEmpty() ? "" : Double.toString(ajustadores.get(0).getSize_tall());
+                    addCell(tallaDataTable, medida, false);
+                }
 
-    addCell(tallaDataTable, "MTRS/TALLA", true);
-    DecimalFormat decimalFormat = new DecimalFormat("#.##"); // Formatear con dos decimales
-    double sumaResultadosMultiplicados = 0;
-    for (int i = 0; i < tallas.size(); i++) {
-        double resultadoMultiplicado = 0;
-        if (i < bultos.size()) {
-            double multiplicacion = bultos.get(i) * sumaDobleces;
-            double medida = ajustadorRepository.findBySize(tallas.get(i)).stream()
-                    .findFirst()
-                    .map(Ajustador::getSize_tall)
-                    .orElse(0.0);
-            resultadoMultiplicado = multiplicacion * medida;
-        }
-        String resultadoMultiplicadoFormateado = decimalFormat.format(resultadoMultiplicado);
-        addCell(tallaDataTable, resultadoMultiplicadoFormateado, false);
+                addCell(tallaDataTable, "MTRS/TALLA", true);
+                DecimalFormat decimalFormat = new DecimalFormat("#.##"); // Formatear con dos decimales
+                double sumaResultadosMultiplicados = 0;
+                for (int i = 0; i < tallas.size(); i++) {
+                    double resultadoMultiplicado = 0;
+                    if (i < bultos.size()) {
+                        double multiplicacion = bultos.get(i) * sumaDobleces;
+                        double medida = ajustadorRepository.findBySize(tallas.get(i)).stream()
+                                .findFirst()
+                                .map(Ajustador::getSize_tall)
+                                .orElse(0.0);
+                        resultadoMultiplicado = multiplicacion * medida;
+                    }
+                    String resultadoMultiplicadoFormateado = decimalFormat.format(resultadoMultiplicado);
+                    addCell(tallaDataTable, resultadoMultiplicadoFormateado, false);
 
-        sumaResultadosMultiplicados += resultadoMultiplicado;
-    }
+                    sumaResultadosMultiplicados += resultadoMultiplicado;
+                }
 
-    document.add(tallaDataTable);
+                document.add(tallaDataTable);
 
-} else if (esTipoJogger) {
-    // Caso 2: Tipo jogger (y puede ser o no válido para ajustador)
-    PdfPTable tallaDataTable = new PdfPTable(tallas.size() + 1);
-    tallaDataTable.setWidthPercentage(100);
+                PdfPTable totalTable = new PdfPTable(2);
+                totalTable.setWidthPercentage(100);
+                totalTable.setSpacingBefore(0f);
+                totalTable.setSpacingAfter(0f);
 
-    float[] columnWidths5 = new float[tallas.size() + 1];
-    for (int i = 0; i < columnWidths5.length; i++) {
-        columnWidths5[i] = 2f; // Ajusta el tamaño de las columnas
-    }
-    tallaDataTable.setWidths(columnWidths5);
+                float[] columnWidths7 = new float[] { 2f, 2f };
+                Totaltable.setWidths(columnWidths7);
 
-    // Encabezados de la tabla
-    addCell(tallaDataTable, "Talla", true);
-    for (String talla : tallas) {
-        addCell(tallaDataTable, talla, true);
-    }
-    addCell(tallaDataTable, "PZS/TALLA", true);
+                // Encabezado de la tabla de total
+                addCell(totalTable, "Total Acumulado", true);
 
-    for (int i = 0; i < tallas.size(); i++) {
-        if (i < bultos.size()) {
-            double multiplicacion = bultos.get(i) * sumaDobleces;
-            long multiplicacionRedondeada = Math.round(multiplicacion);
-            addCell(tallaDataTable, Long.toString(multiplicacionRedondeada), false);
-        } else {
-            addCell(tallaDataTable, "", false);
-        }
-    }
+                // Mostrar el total acumulado en la siguiente celda
+                String sumaTotalFormateada = decimalFormat.format(sumaResultadosMultiplicados);
+                addCell(totalTable, sumaTotalFormateada, false);
 
-    // Fila para Medida Cintura
-    addCell(tallaDataTable, "Medida Cintura", true);
-    for (String talla : tallas) {
-        List<ElasticoCintura> elasticoCinturaList = elasticoCinturaRepository.findBySize(talla);
-        String medidaCintura = elasticoCinturaList.isEmpty() ? ""
-                : new DecimalFormat("#.00").format(elasticoCinturaList.get(0).getSize_tall());
-        addCell(tallaDataTable, medidaCintura, false);
-    }
+                // Añadir la tabla de total al documento
+                document.add(totalTable);
 
-    // Fila para Medida Puño
-    addCell(tallaDataTable, "Medida Puño", true);
-    for (String talla : tallas) {
-        List<ElasticoPunio> elasticoPuñoList = elasticoPuñoRepository.findBySize(talla);
-        String medidaPuño = elasticoPuñoList.isEmpty() ? ""
-                : new DecimalFormat("#.00").format(elasticoPuñoList.get(0).getSize_tall());
-        addCell(tallaDataTable, medidaPuño, false);
-    }
+            } else if (esTipoJogger) {
+                // Caso 2: Tipo jogger (y puede ser o no válido para ajustador)
+                PdfPTable tallaDataTable = new PdfPTable(tallas.size() + 1);
+                tallaDataTable.setWidthPercentage(100);
 
-    // Agregar fila de MTRS/TALLA
-    addCell(tallaDataTable, "MTRS/TALLA", true);
+                float[] columnWidths5 = new float[tallas.size() + 1];
+                for (int i = 0; i < columnWidths5.length; i++) {
+                    columnWidths5[i] = 2f; // Ajusta el tamaño de las columnas
+                }
+                tallaDataTable.setWidths(columnWidths5);
 
-    // Formateo decimal
-    DecimalFormat decimalFormat = new DecimalFormat("#.##");
+                // Encabezados de la tabla
+                addCell(tallaDataTable, "Talla", true);
+                for (String talla : tallas) {
+                    addCell(tallaDataTable, talla, true);
+                }
+                addCell(tallaDataTable, "PZS/TALLA", true);
 
-    // Cálculo de MTRS/TALLA para Medida Cintura
-    for (int i = 0; i < tallas.size(); i++) {
-        double resultadoMultiplicado = 0;
-        if (i < bultos.size()) {
-            double multiplicacion = bultos.get(i) * sumaDobleces;
-            double medidaCintura = elasticoCinturaRepository.findBySize(tallas.get(i)).stream()
-                    .findFirst()
-                    .map(ElasticoCintura::getSize_tall)
-                    .orElse(0.0);
-            resultadoMultiplicado = multiplicacion * medidaCintura;
-        }
-        String resultadoCinturaFormateado = decimalFormat.format(resultadoMultiplicado);
-        addCell(tallaDataTable, resultadoCinturaFormateado, false);
-    }
+                for (int i = 0; i < tallas.size(); i++) {
+                    if (i < bultos.size()) {
+                        double multiplicacion = bultos.get(i) * sumaDobleces;
+                        long multiplicacionRedondeada = Math.round(multiplicacion);
+                        addCell(tallaDataTable, Long.toString(multiplicacionRedondeada), false);
+                    } else {
+                        addCell(tallaDataTable, "", false);
+                    }
+                }
 
-    // Agregar fila de MTRS/TALLA para Medida Puño
-    addCell(tallaDataTable, "MTRS/TALLA PUÑO", true);
+                // Fila para Medida Cintura
+                addCell(tallaDataTable, "Medida Cintura", true);
+                for (String talla : tallas) {
+                    List<ElasticoCintura> elasticoCinturaList = elasticoCinturaRepository.findBySize(talla);
+                    String medidaCintura = elasticoCinturaList.isEmpty() ? ""
+                            : new DecimalFormat("#.00").format(elasticoCinturaList.get(0).getSize_tall());
+                    addCell(tallaDataTable, medidaCintura, false);
+                }
 
-    for (int i = 0; i < tallas.size(); i++) {
-        double resultadoMultiplicado = 0;
-        if (i < bultos.size()) {
-            double multiplicacion = bultos.get(i) * sumaDobleces;
-            double medidaPuño = elasticoPuñoRepository.findBySize(tallas.get(i)).stream()
-                    .findFirst()
-                    .map(ElasticoPunio::getSize_tall)
-                    .orElse(0.0);
-            resultadoMultiplicado = multiplicacion * medidaPuño;
-        }
-        String resultadoPuñoFormateado = decimalFormat.format(resultadoMultiplicado);
-        addCell(tallaDataTable, resultadoPuñoFormateado, false);
-    }
+                // Fila para Medida Puño
+                addCell(tallaDataTable, "Medida Puño", true);
+                for (String talla : tallas) {
+                    List<ElasticoPunio> elasticoPuñoList = elasticoPuñoRepository.findBySize(talla);
+                    String medidaPuño = elasticoPuñoList.isEmpty() ? ""
+                            : new DecimalFormat("#.00").format(elasticoPuñoList.get(0).getSize_tall());
+                    addCell(tallaDataTable, medidaPuño, false);
+                }
 
-    document.add(tallaDataTable);
+                // Agregar fila de MTRS/TALLA
+                addCell(tallaDataTable, "MTRS/TALLA", true);
 
+                // Formateo decimal
+                DecimalFormat decimalFormat = new DecimalFormat("#.##");
+
+                // Cálculo de MTRS/TALLA para Medida Cintura
+                for (int i = 0; i < tallas.size(); i++) {
+                    double resultadoMultiplicado = 0;
+                    if (i < bultos.size()) {
+                        double multiplicacion = bultos.get(i) * sumaDobleces;
+                        double medidaCintura = elasticoCinturaRepository.findBySize(tallas.get(i)).stream()
+                                .findFirst()
+                                .map(ElasticoCintura::getSize_tall)
+                                .orElse(0.0);
+                        resultadoMultiplicado = multiplicacion * medidaCintura;
+                    }
+                    String resultadoCinturaFormateado = decimalFormat.format(resultadoMultiplicado);
+                    addCell(tallaDataTable, resultadoCinturaFormateado, false);
+                }
+
+                // Agregar fila de MTRS/TALLA para Medida Puño
+                addCell(tallaDataTable, "MTRS/TALLA PUÑO", true);
+
+                for (int i = 0; i < tallas.size(); i++) {
+                    double resultadoMultiplicado = 0;
+                    if (i < bultos.size()) {
+                        double multiplicacion = bultos.get(i) * sumaDobleces;
+                        double medidaPuño = elasticoPuñoRepository.findBySize(tallas.get(i)).stream()
+                                .findFirst()
+                                .map(ElasticoPunio::getSize_tall)
+                                .orElse(0.0);
+                        resultadoMultiplicado = multiplicacion * medidaPuño;
+                    }
+                    String resultadoPuñoFormateado = decimalFormat.format(resultadoMultiplicado);
+                    addCell(tallaDataTable, resultadoPuñoFormateado, false);
+                }
+
+                document.add(tallaDataTable);
 
             } else {
                 // Caso 4: No válido para ajustador ni tipo jogger

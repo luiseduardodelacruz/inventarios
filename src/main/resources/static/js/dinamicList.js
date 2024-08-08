@@ -9,12 +9,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     sumaDoblecesDiv.className = 'text-white mt-4';
     contenedorDobleces.parentNode.insertBefore(sumaDoblecesDiv, contenedorDobleces.nextSibling);
 
-    cantidadTallas.addEventListener('change', function() {
+    cantidadTallas.addEventListener('change', function () {
         mostrarListas();
         mostrarListasBultos();
     });
 
-    cantidadDobleces.addEventListener('change', function() {
+    cantidadDobleces.addEventListener('change', function () {
         mostrarListasDobleces(this.value);
     });
 
@@ -29,34 +29,36 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 for (var i = 0; i < cantidad; i++) {
                     var divLista = document.createElement('div');
                     divLista.className = 'flex items-center mb-3';
-                    
+
                     var label = document.createElement('label');
                     label.htmlFor = 'talla' + (i + 1);
                     label.className = 'text-sm font-medium text-gray-900 text-white mr-2';
                     label.innerText = 'Talla ' + (i + 1) + ':';
-                    
+
                     var select = document.createElement('select');
                     select.name = 'tallas[]';
                     select.id = 'talla' + (i + 1);
                     select.className = 'bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-[40%] p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white';
-                    
+                    select.addEventListener('change', actualizarOpciones)
+
+
                     var optionDefault = document.createElement('option');
                     optionDefault.value = '';
                     optionDefault.text = 'Seleccionar Talla';
                     optionDefault.disabled = true;
                     optionDefault.selected = true;
                     select.appendChild(optionDefault);
-                    
+
                     data.forEach(talla => {
                         var option = document.createElement('option');
                         option.value = talla.size;
                         option.text = talla.size;
                         select.appendChild(option);
                     });
-                    
+
                     divLista.appendChild(label);
                     divLista.appendChild(select);
-                    
+
                     contenedorListas.appendChild(divLista);
                 }
 
@@ -84,7 +86,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             input.name = `dobleces[]`;
             input.id = `dobleces${i + 1}`;
             input.className = 'bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white';
-            input.addEventListener('input', validarNumeroNoNegativo);
+            input.addEventListener('input', validarNumeroEnteroNoNegativo);
             input.addEventListener('input', calcularSumaDobleces);
 
             div.appendChild(label);
@@ -93,7 +95,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             contenedorDobleces.appendChild(div);
         }
     }
-    
+
     function mostrarListasBultos(cantidad) {
         contenedorBultos.innerHTML = '';
 
@@ -107,7 +109,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             label.innerText = 'Bulto ' + (i + 1) + ':';
 
             var input = document.createElement('input');
-            input.type = 'number';
+            input.type = 'double';
             input.name = 'bultos[]';
             input.id = 'bulto' + (i + 1);
             input.className = 'bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white';
@@ -119,7 +121,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             contenedorBultos.appendChild(divLista);
         }
     }
-    
+
     function validarNumeroNoNegativo(event) {
         const input = event.target;
         if (parseFloat(input.value) < 0) {
@@ -128,22 +130,48 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
+    function validarNumeroEnteroNoNegativo(event) {
+        const input = event.target;
+        const valor = input.value;
+        if (!/^\d+$/.test(valor) || parseFloat(valor) < 0) {
+            input.value = '';
+            alert('El valor debe ser un número entero no negativo.');
+        }
+    }
+
+    function actualizarOpciones() {
+        const selects = contenedorListas.querySelectorAll('select');
+        const seleccionados = Array.from(selects).map(select => select.value);
+
+        selects.forEach(select => {
+            const opciones = select.querySelectorAll('option');
+            opciones.forEach(opcion => {
+                if (opcion.value && seleccionados.includes(opcion.value) && opcion.value !== select.value) {
+                    opcion.disabled = true;
+                } else {
+                    opcion.disabled = false;
+                }
+            });
+        });
+    }
+
+
     function calcularSumaDobleces() {
         const inputs = contenedorDobleces.querySelectorAll('input[type="number"]');
         let suma = 0;
-    
+
         inputs.forEach(input => {
             const valor = parseFloat(input.value);
             if (!isNaN(valor)) {
                 suma += valor;
             }
         });
-    
+
         sumaDoblecesDiv.textContent = `Suma de Dobleces: ${suma}`;
         document.getElementById('sumaDobleces').value = suma;
     }
 
-    document.getElementById('formulario2').addEventListener('submit', function(event) {
+    document.getElementById('formulario2').addEventListener('submit', function (event) {
         const sumaDobleces = document.getElementById('sumaDobleces').value;
         const inputSumaDobleces = document.createElement('input');
         inputSumaDobleces.type = 'hidden';
@@ -154,10 +182,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     function borrarFormulario() {
         document.getElementById('formulario2').reset();
-        contenedorListas.innerHTML = ''; 
-        contenedorDobleces.innerHTML = ''; 
-        contenedorBultos.innerHTML = ''; 
-        sumaDoblecesDiv.textContent = 'Suma de Dobleces: 0'; 
+        contenedorListas.innerHTML = '';
+        contenedorDobleces.innerHTML = '';
+        contenedorBultos.innerHTML = '';
+        sumaDoblecesDiv.textContent = 'Suma de Dobleces: 0';
     }
 
     document.getElementById('borrarButton').addEventListener('click', borrarFormulario);

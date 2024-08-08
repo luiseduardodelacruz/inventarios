@@ -10,7 +10,7 @@ public class FichaHabilitacion {
     private String fecha;
     private String estilo;
     private String corte;
-    private int total;
+    private String etapas;
     private String cadena;
     private String departamentos;
     private String procesos;

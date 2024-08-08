@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import rubertsdenim.inventarios.model.*;
 import rubertsdenim.inventarios.repository.CadenaRepository;
 import rubertsdenim.inventarios.repository.DepartamentoRepository;
+import rubertsdenim.inventarios.repository.EtapaRepository;
 import rubertsdenim.inventarios.repository.FichaRepository;
 import rubertsdenim.inventarios.repository.ProcesoRepository;
 import rubertsdenim.inventarios.repository.TallasRepository;
@@ -42,11 +43,12 @@ public class FichaHabilitacionController {
 
     @Autowired
     private FichaRepository fichaRepository;
-    
+
     @Autowired
     private TiposRepository tiposRepository;
 
-
+    @Autowired
+    private EtapaRepository etapaRepository;
     @Autowired
     private PdfService pdfService;
 
@@ -61,11 +63,13 @@ public class FichaHabilitacionController {
         List<Cadena> cadenas = cadenaRepository.findAll();
         List<Procesos> procesos = procesoRepository.findAll();
         List<Tipos> tipos = tiposRepository.findAll();
+        List<EtapasProceso> etapas = etapaRepository.findAll();
 
         model.addAttribute("departamentos", departamentos);
         model.addAttribute("cadenas", cadenas);
         model.addAttribute("procesos", procesos);
         model.addAttribute("tipos", tipos);
+        model.addAttribute("etapas", etapas);
         model.addAttribute("fichaHabilitacion", new FichaHabilitacion());
         return "ficha-habilitacion";
     }
@@ -73,7 +77,7 @@ public class FichaHabilitacionController {
     @PostMapping("/guardar-ficha-parte1")
     public String guardarFichaParte1(@ModelAttribute("fichaHabilitacion") FichaHabilitacion fichaHabilitacion) {
         // Aquí la información se guarda temporalmente en la sesión
-        return "redirect:/detalles-corte";  // Redirige al segundo formulario
+        return "redirect:/detalles-corte"; // Redirige al segundo formulario
     }
 
     @GetMapping("/detalles-corte")
@@ -82,7 +86,7 @@ public class FichaHabilitacionController {
         model.addAttribute("tallas", tallas);
         return "detalles-corte";
     }
-    
+
     @PostMapping("/guardar-ficha-parte2")
     @ResponseBody
     public void guardarFichaParte2(
@@ -92,26 +96,26 @@ public class FichaHabilitacionController {
             @RequestParam Integer sumaDobleces,
             @ModelAttribute FichaHabilitacion fichaHabilitacion,
             HttpServletResponse response) throws IOException {
-    
+
         fichaHabilitacion.setTallas(tallas);
         fichaHabilitacion.setDobleces(dobleces);
         fichaHabilitacion.setBultos(bultos);
-    
+
         // Guardar la suma de dobleces en el modelo (si es necesario)
         fichaHabilitacion.setSumaDobleces(sumaDobleces);
-    
+
         // Guardar en la base de datos
         fichaRepository.save(fichaHabilitacion);
-    
+
         // Generar el PDF
         byte[] pdfContent = pdfService.generateFichaHabilitacionPdf(fichaHabilitacion);
-    
+
         // Configurar la respuesta para descargar el archivo PDF
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "inline; filename=fichahabilitacion.pdf");
         response.setContentLength(pdfContent.length);
-    
+
         response.getOutputStream().write(pdfContent);
         response.getOutputStream().flush();
     }
-}    
+}
