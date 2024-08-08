@@ -78,7 +78,7 @@ public class InventarioControlador {
     @PostMapping("/inventario/create")
     public String agregarProducto(@ModelAttribute Producto producto, @RequestParam MultipartFile imagenArchivo) throws IOException {
         
-        if (producto.getCantidad() < 0) {
+        if (producto.getCantidad() <= 0) {
             producto.setCantidad(1);
         }
 
