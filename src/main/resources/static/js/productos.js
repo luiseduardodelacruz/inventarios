@@ -94,6 +94,8 @@ function formatearTexto(texto) {
   const TRADUCCIONES_ESPECIALES = {
     "nino": "Niño",
     "nina": "Niña",
+    "generico": "Genérico",
+    "metalico": "Metálico"
   };
 
   if (!texto) return '';
