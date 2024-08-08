@@ -61,18 +61,29 @@ public class UserController {
     @GetMapping("/usuarios/create")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
-        return "users"; // Nombre de la vista del formulario de registro
+        return "users";
     }
 
     @PostMapping("/usuarios/create")
-    public String registerUser(@ModelAttribute User user, @RequestParam MultipartFile imageFile) throws IOException {
+    public String registerUser(@ModelAttribute User user, @RequestParam MultipartFile imageFile, Model model) throws IOException {
+        user.setName(user.getName().trim());
+        user.setEmail(user.getEmail().toLowerCase().trim());
+        user.setPassword(user.getPassword().trim());
+
+        User existingUser = userRepository.findByEmail(user.getEmail());
+        if (existingUser != null) {
+            model.addAttribute("error", "El correo electrónico ya está registrado.");
+        }
+
         if (!imageFile.isEmpty() && isImageFile(imageFile)) {
-            String imageUrl = uploadImage(imageFile, user.getName());
+            String imageUrl = uploadImage(imageFile, user.getName().toLowerCase().trim());
             user.setImage(imageUrl);
         }
+
         user.setRole("USER"); // Establece el rol de usuario
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword())); // Encripta la contraseña
         userRepository.save(user);
+        
         return "redirect:/usuarios"; // Redirige a la página de usuarios después de un registro exitoso
     }
 
@@ -122,11 +133,11 @@ public class UserController {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            user.setEmail(updatedUser.getEmail());
-            user.setName(updatedUser.getName());
+            user.setEmail(updatedUser.getEmail().toLowerCase().trim());
+            user.setName(updatedUser.getName().trim());
             user.setRole("USER");
             if (!imageFile.isEmpty() && isImageFile(imageFile)) {
-                String imageUrl = uploadImage(imageFile, updatedUser.getName());
+                String imageUrl = uploadImage(imageFile, updatedUser.getName().toLowerCase().trim());
                 user.setImage(imageUrl);
             }
             userRepository.save(user);

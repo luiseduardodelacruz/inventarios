@@ -62,7 +62,6 @@ function closeModalUsuarioAdd(){
     document.getElementById('name').value = '';
     document.getElementById('email').value = '';
     document.getElementById('password').value = '';
-    document.getElementById('mensaje-error').textContent = '';
 
     // Limpiar campo de Imagen y restablecer icono
     document.getElementById('archivo').value = '';

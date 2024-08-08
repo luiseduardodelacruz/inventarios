@@ -47,6 +47,8 @@ public class ProductoServicio implements IProductoServicio{
     public Producto guardarProducto(Producto producto) {
         // Normalizar campos de texto
         producto.setNombre(NormalizarTextoServicio.normalizarTexto(producto.getNombre()));
+        producto.setColor(NormalizarTextoServicio.normalizarTexto(producto.getColor()));
+        producto.setTipo(NormalizarTextoServicio.normalizarTexto(producto.getTipo()));
 
         // Validar y normalizar cantidad
         int cantidadNormalizada = NormalizarCantidadServicio.normalizarCantidad(producto.getCantidad());

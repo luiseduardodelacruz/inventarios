@@ -32,8 +32,9 @@ const categorias = [
   { id: 'btn_remaches', categoria: 'remaches' },
   { id: 'btn_ajustador', categoria: 'ajustador' },
   { id: 'btn_etiquetas', categoria: 'etiquetas' },
-  { id: 'btn_serilleras', categoria: 'serilleras' },
-  { id: 'btn_cierres', categoria: 'cierres' }
+  { id: 'btn_cerilleras', categoria: 'cerilleras' },
+  { id: 'btn_cierres', categoria: 'cierres' },
+  { id: 'btn_hebillas', categoria: 'hebillas' }
 ];
 
 function removerClasesBackground() {
@@ -93,6 +94,8 @@ function formatearTexto(texto) {
   const TRADUCCIONES_ESPECIALES = {
     "nino": "Niño",
     "nina": "Niña",
+    "generico": "Genérico",
+    "metalico": "Metálico"
   };
 
   if (!texto) return '';
@@ -199,7 +202,7 @@ function openModalProductDelete(productId, nombre, imagen) {
     productIdToDelete = productId;
     eliminar_producto.classList.remove('hidden');
     
-    document.getElementById('nombre_producto').textContent = nombre;
+    document.getElementById('nombre_producto').textContent = formatearTexto(nombre);
     // Verificar si la imagen está definida y no es null
     if (imagen && imagen.trim() !== '' && imagen !== 'null') {
         document.getElementById('imagen_producto').src = imagen;
