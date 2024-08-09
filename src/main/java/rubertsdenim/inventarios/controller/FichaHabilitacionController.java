@@ -58,8 +58,8 @@ public class FichaHabilitacionController {
 
     @GetMapping("/habilitacion")
     public String mostrarFormulario(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
+        User userAuth = (User) session.getAttribute("user");
+        if (userAuth == null) {
             return "redirect:/inicio-sesion";
         }
 
@@ -73,6 +73,7 @@ public class FichaHabilitacionController {
         model.addAttribute("tipos", tipos);
         model.addAttribute("etapas", etapas);
         model.addAttribute("fichaHabilitacion", new FichaHabilitacion());
+        model.addAttribute("usuario", userAuth);
         return "ficha-habilitacion";
     }
 

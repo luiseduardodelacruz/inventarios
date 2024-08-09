@@ -43,9 +43,9 @@ function bindDropzoneEventListeners() {
                     imgElement.style.height = '100%';
                     imgElement.style.objectFit = 'cover';
                     imgElement.classList.add(dropzoneInput.id); // Asignar clase con el id del input
-                    const previewContainer = document.getElementById(`preview-${dropzoneInput.id.split('-')[2]}`);
-                    previewContainer.innerHTML = ''; 
-                    previewContainer.appendChild(imgElement);
+                    const previewContainer1 = document.getElementById(`preview-${dropzoneInput.id.split('-')[2]}`);
+                    previewContainer1.innerHTML = ''; 
+                    previewContainer1.appendChild(imgElement);
                 };
                 reader.readAsDataURL(file);
             }
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const dropzoneInputs = document.querySelectorAll('#dropzone-file, #dropzone-imagenE');
 
     dropzoneInputs.forEach(dropzoneInput => {
-        const previewContainer = dropzoneInput.id === 'dropzone-file' ? document.getElementById('preview') : document.getElementById('vistaEmpresa');
+        const previewContainer1 = dropzoneInput.id === 'dropzone-file' ? document.getElementById('preview') : document.getElementById('vistaEmpresa');
 
         dropzoneInput.addEventListener('change', function() {
             const file = this.files[0];
@@ -75,8 +75,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     imgElement.style.height = '100%';
                     imgElement.style.objectFit = 'cover';
                     imgElement.classList.add(dropzoneInput.id); // Asignar clase con el id del input
-                    previewContainer.innerHTML = ''; 
-                    previewContainer.appendChild(imgElement);
+                    previewContainer1.innerHTML = ''; 
+                    previewContainer1.appendChild(imgElement);
                 };
                 reader.readAsDataURL(file);
             }
@@ -89,8 +89,8 @@ function mostrarDatos() {
     const dropzoneInputs = document.querySelectorAll('#dropzone-file, #dropzone-imagenE');
 
     dropzoneInputs.forEach(dropzoneInput => {
-        const previewContainer = dropzoneInput.id === 'dropzone-file' ? document.getElementById('preview') : document.getElementById('vistaEmpresa');
-        const imgElement = previewContainer.querySelector('img');
+        const previewContainer1 = dropzoneInput.id === 'dropzone-file' ? document.getElementById('preview') : document.getElementById('vistaEmpresa');
+        const imgElement = previewContainer1.querySelector('img');
         if (imgElement) {
             const imageUrl = imgElement.src;
             const imageClass = imgElement.className;

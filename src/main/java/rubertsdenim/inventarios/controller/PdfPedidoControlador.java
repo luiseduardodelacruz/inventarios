@@ -33,11 +33,12 @@ public class PdfPedidoControlador {
 
     @GetMapping("/pedido")
     public String generarPedidoPDF(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
+        User userAuth = (User) session.getAttribute("user");
+        if (userAuth == null) {
             return "redirect:/inicio-sesion";
         }
         model.addAttribute("pedido", new PdfPedido());
+        model.addAttribute("usuario", userAuth);
         return "pedido";
     }
 
