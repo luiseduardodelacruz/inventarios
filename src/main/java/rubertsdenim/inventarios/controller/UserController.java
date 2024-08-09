@@ -141,18 +141,29 @@ public class UserController {
     }
 
     @PostMapping("/usuarios/update/{id}") 
-    public String updateUser(@PathVariable String id, @ModelAttribute User updatedUser, @RequestParam("imageFile") MultipartFile imageFile) throws IOException  {
+    public String updateUser(@PathVariable String id, @ModelAttribute User updatedUser, @RequestParam("imageFile") MultipartFile imageFile, Model model) throws IOException  {
         Optional<User> optionalUser = userRepository.findById(id);
+        
         if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            user.setEmail(updatedUser.getEmail().toLowerCase().trim());
-            user.setName(updatedUser.getName().trim());
-            user.setRole("USER");
+            User existingUser = optionalUser.get();
+
+            // Verificar si el nuevo email ya está en uso por otro usuario
+            if (!existingUser.getEmail().equalsIgnoreCase(updatedUser.getEmail()) && userService.isEmailTaken(updatedUser.getEmail())) {
+                model.addAttribute("user", updatedUser);
+                model.addAttribute("error", "Este correo electrónico ya está en uso, intente con uno diferente.");
+                return "update-user";
+            }
+
+            // Actualizar los detalles del usuario
+            existingUser.setEmail(updatedUser.getEmail().toLowerCase().trim());
+            existingUser.setName(updatedUser.getName().trim());
+            existingUser.setRole("USER");
+
             if (!imageFile.isEmpty() && isImageFile(imageFile)) {
                 String imageUrl = uploadImage(imageFile, updatedUser.getName().toLowerCase().trim());
-                user.setImage(imageUrl);
+                existingUser.setImage(imageUrl);
             }
-            userRepository.save(user);
+            userRepository.save(existingUser);
         }
         return "redirect:/usuarios"; // Redirigir a la página de lista de usuarios después de actualizar
     }
