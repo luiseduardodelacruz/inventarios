@@ -12,7 +12,7 @@ public class UserService {
     private UserRepository userRepository;
 
     public boolean isEmailTaken(String email) {
-        return userRepository.findByEmail(email) != null;
+        return userRepository.findByEmail(email) != null; //.isPresent();
     }
 
     public String getUserRole(String email ) {

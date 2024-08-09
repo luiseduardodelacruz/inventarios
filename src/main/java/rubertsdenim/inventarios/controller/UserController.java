@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,11 +48,11 @@ public class UserController {
 
     @GetMapping("/usuarios")
     public String viewUsers(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
+        User userAuth = (User) session.getAttribute("user");
+        if (userAuth == null) {
             return "redirect:/inicio-sesion";
         }
-        if (!"ADMIN".equals(user.getRole())){
+        if (!"ADMIN".equals(userAuth.getRole())){
             return "redirect:/inventario";
         }
 
@@ -63,7 +64,15 @@ public class UserController {
     }
     
     @GetMapping("/usuarios/create")
-    public String showRegistrationForm(Model model) {
+    public String showRegistrationForm(Model model, HttpSession session) {
+        User userAuth = (User) session.getAttribute("user");
+        if (userAuth == null) {
+            return "redirect:/inicio-sesion";
+        }
+        if (!"ADMIN".equals(userAuth.getRole())){
+            return "redirect:/inventario";
+        }
+
         model.addAttribute("user", new User());
         return "users";
     }
@@ -125,7 +134,15 @@ public class UserController {
 
     @GetMapping("/usuarios/details/{id}")
     @ResponseBody
-    public ResponseEntity<User> getUserDetails(@PathVariable("id") String id) {
+    public ResponseEntity<?> getUserDetails(@PathVariable("id") String id, HttpSession session) {
+        User userAuth = (User) session.getAttribute("user");
+        if (userAuth == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario no autenticado");
+        }
+        if (!"ADMIN".equals(userAuth.getRole())){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acceso denegado");
+        }
+
         User user = userRepository.findById(id).orElse(null);
         if (user == null) {
             return ResponseEntity.notFound().build();
@@ -134,7 +151,15 @@ public class UserController {
     }
 
     @GetMapping("/usuarios/update/{id}")
-    public String showUpdateForm(@PathVariable String id, Model model) {
+    public String showUpdateForm(@PathVariable String id, Model model, HttpSession session) {
+        User userAuth = (User) session.getAttribute("user");
+        if (userAuth == null) {
+            return "redirect:/inicio-sesion";
+        }
+        if (!"ADMIN".equals(userAuth.getRole())){
+            return "redirect:/inventario";
+        }
+        
         User user = userRepository.findById(id).orElse(null);
         model.addAttribute("user", user);
         return "update-user"; // Vista para el formulario de actualización
@@ -169,7 +194,15 @@ public class UserController {
     }
 
     @GetMapping("/usuarios/delete/{id}")
-    public String showDeleteConfirmation(@PathVariable String id, Model model) {
+    public String showDeleteConfirmation(@PathVariable String id, Model model, HttpSession session) {
+        User userAuth = (User) session.getAttribute("user");
+        if (userAuth == null) {
+            return "redirect:/inicio-sesion";
+        }
+        if (!"ADMIN".equals(userAuth.getRole())){
+            return "redirect:/inventario";
+        }
+
         User user = userRepository.findById(id).orElse(null);
         if (user != null) {
             userRepository.deleteById(id);
