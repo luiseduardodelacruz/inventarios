@@ -153,63 +153,9 @@ public class PdfService {
             Totaltable.setWidths(columnWidths6);
 
             addCell(Totaltable, "Total del corte", true);
-            addCell(Totaltable, Integer.toString(totalSum), false); // Mostrar totalSum
+            addCell(Totaltable, Double.toString(totalSum), false); // Mostrar totalSum
 
             document.add(Totaltable);
-            document.add(new Paragraph(""));
-
-
-if (ValidacionPdf.esValidoParaEtapas(fichaHabilitacion)) {
-    PdfPTable cantidadDescripcionTable = new PdfPTable(2);
-    cantidadDescripcionTable.setWidthPercentage(100);
-    cantidadDescripcionTable.setSpacingBefore(0f);
-    cantidadDescripcionTable.setSpacingAfter(0f);
-
-    float[] columnWidths = new float[]{2f, 4f};
-    cantidadDescripcionTable.setWidths(columnWidths);
-
-    addCell(cantidadDescripcionTable, "Cantidad", true);
-    addCell(cantidadDescripcionTable, "DESCRIPCIÓN", true);
-
-    String etapaActual = fichaHabilitacion.getEtapas().toLowerCase();
-
-    switch (etapaActual) {
-        case "preparacion":
-            // Generar la tabla específica para "preparacion"
-            addCell(cantidadDescripcionTable, Integer.toString(totalSum), false);
-            addCell(cantidadDescripcionTable, "Materiales de Preparación", false);
-            break;
-
-        case "terminacion":
-            // Generar la tabla específica para "terminacion"
-            for (String talla : tallas) {
-                String cantidad = bultos.size() > 0
-                        ? Long.toString(Math.round(bultos.get(tallas.indexOf(talla)) * sumaDobleces))
-                        : "";
-                addCell(cantidadDescripcionTable, cantidad, false);
-                addCell(cantidadDescripcionTable, "Materiales de Terminación (" + talla + ")", false);
-            }
-            break;
-
-        case "empaque":
-            // Generar la tabla específica para "empaque"
-            addCell(cantidadDescripcionTable, Integer.toString(totalSum), false);
-            addCell(cantidadDescripcionTable, "Materiales de Empaque", false);
-            break;
-
-        default:
-            // Caso para una etapa no prevista (aunque esto no debería ocurrir)
-            break;
-    }
-
-    document.add(cantidadDescripcionTable);
-} else {
-    // Manejar el caso cuando la etapa no es válida
-    // Puedes mostrar un mensaje de error o manejarlo como creas conveniente
-}
-
-            
-            document.add(Chunk.NEWLINE);
 
             boolean esValidoParaAjustador = ValidacionPdf.esValidoParaAjustador(fichaHabilitacion);
             boolean esTipoJogger = ValidacionPdf.esTipoJogger(fichaHabilitacion);
@@ -289,6 +235,10 @@ if (ValidacionPdf.esValidoParaEtapas(fichaHabilitacion)) {
                 document.add(totalTable);
 
             } else if (esTipoJogger) {
+
+                double totalAcumuladoCintura = 0;
+                double totalAcumuladoTobillo = 0;
+
                 // Caso 2: Tipo jogger (y puede ser o no válido para ajustador)
                 PdfPTable tallaDataTable = new PdfPTable(tallas.size() + 1);
                 tallaDataTable.setWidthPercentage(100);
@@ -334,13 +284,9 @@ if (ValidacionPdf.esValidoParaEtapas(fichaHabilitacion)) {
                     addCell(tallaDataTable, medidaPuño, false);
                 }
 
-                // Agregar fila de MTRS/TALLA
-                addCell(tallaDataTable, "MTRS/TALLA", true);
-
-                // Formateo decimal
+                // Agregar fila de MTRS/TALLA para Medida Cintura
+                addCell(tallaDataTable, "MTRS/Cintura", true);
                 DecimalFormat decimalFormat = new DecimalFormat("#.##");
-
-                // Cálculo de MTRS/TALLA para Medida Cintura
                 for (int i = 0; i < tallas.size(); i++) {
                     double resultadoMultiplicado = 0;
                     if (i < bultos.size()) {
@@ -350,34 +296,80 @@ if (ValidacionPdf.esValidoParaEtapas(fichaHabilitacion)) {
                                 .map(ElasticoCintura::getSize_tall)
                                 .orElse(0.0);
                         resultadoMultiplicado = multiplicacion * medidaCintura;
+                        // Acumular el total para Cintura
+                        totalAcumuladoCintura += resultadoMultiplicado;
                     }
                     String resultadoCinturaFormateado = decimalFormat.format(resultadoMultiplicado);
                     addCell(tallaDataTable, resultadoCinturaFormateado, false);
                 }
 
-                // Agregar fila de MTRS/TALLA para Medida Puño
-                addCell(tallaDataTable, "MTRS/TALLA PUÑO", true);
+                // Agregar fila de MTRS/TALLA para Medida Tobillo
+                addCell(tallaDataTable, "MTRS/Tobillo", true);
 
                 for (int i = 0; i < tallas.size(); i++) {
                     double resultadoMultiplicado = 0;
                     if (i < bultos.size()) {
                         double multiplicacion = bultos.get(i) * sumaDobleces;
-                        double medidaPuño = elasticoPuñoRepository.findBySize(tallas.get(i)).stream()
+                        double medidaTobillo = elasticoPuñoRepository.findBySize(tallas.get(i)).stream()
                                 .findFirst()
                                 .map(ElasticoPunio::getSize_tall)
                                 .orElse(0.0);
-                        resultadoMultiplicado = multiplicacion * medidaPuño;
+                        resultadoMultiplicado = multiplicacion * medidaTobillo;
+                        // Acumular el total para Tobillo
+                        totalAcumuladoTobillo += resultadoMultiplicado;
                     }
-                    String resultadoPuñoFormateado = decimalFormat.format(resultadoMultiplicado);
-                    addCell(tallaDataTable, resultadoPuñoFormateado, false);
+                    String resultadoTobilloFormateado = decimalFormat.format(resultadoMultiplicado);
+                    addCell(tallaDataTable, resultadoTobilloFormateado, false);
                 }
 
+                // Añadir la tabla de tallas al documento
                 document.add(tallaDataTable);
+
+                // Crear la tabla para el total acumulado de Cintura
+                PdfPTable totalCinturaTable = new PdfPTable(2);
+                totalCinturaTable.setWidthPercentage(100);
+                totalCinturaTable.setSpacingBefore(0f);
+                totalCinturaTable.setSpacingAfter(0f);
+
+                float[] columnWidths9 = new float[] { 2f, 2f };
+                totalCinturaTable.setWidths(columnWidths9);
+
+                // Encabezado de la tabla de total
+                addCell(totalCinturaTable, "Total Acumulado Cintura", true);
+
+                // Mostrar el total acumulado en la siguiente celda
+                String sumaTotalCinturaFormateada = decimalFormat.format(totalAcumuladoCintura);
+                addCell(totalCinturaTable, sumaTotalCinturaFormateada, false);
+
+                // Añadir la tabla de total acumulado de Cintura al documento
+                document.add(totalCinturaTable);
+
+                // Crear la tabla para el total acumulado de Tobillo
+                PdfPTable totalTobilloTable = new PdfPTable(2);
+                totalTobilloTable.setWidthPercentage(100);
+                totalTobilloTable.setSpacingBefore(0f);
+                totalTobilloTable.setSpacingAfter(0f);
+
+                float[] columnWidths10 = new float[] { 2f, 2f };
+                totalTobilloTable.setWidths(columnWidths10);
+
+                // Encabezado de la tabla de total
+                addCell(totalTobilloTable, "Total Acumulado Tobillo", true);
+
+                // Mostrar el total acumulado en la siguiente celda
+                String sumaTotalTobilloFormateada = decimalFormat.format(totalAcumuladoTobillo);
+                addCell(totalTobilloTable, sumaTotalTobilloFormateada, false);
+
+                // Añadir la tabla de total acumulado de Tobillo al documento
+                document.add(totalTobilloTable);
 
             } else {
                 // Caso 4: No válido para ajustador ni tipo jogger
                 // No generar ninguna tabla
             }
+
+            ListaDinamica.generarTablaPorEtapa(document, fichaHabilitacion, tallas, bultos, totalSum, totalSum,
+                    totalSum);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -387,6 +379,7 @@ if (ValidacionPdf.esValidoParaEtapas(fichaHabilitacion)) {
 
         return baos.toByteArray();
     }
+
 
     private void addCell(PdfPTable table, String text, boolean isHeader) {
         PdfPCell cell = new PdfPCell(new Phrase(text, FontFactory.getFont(FontFactory.HELVETICA, isHeader ? 12 : 10)));

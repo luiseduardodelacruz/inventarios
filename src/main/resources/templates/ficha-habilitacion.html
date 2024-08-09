@@ -73,13 +73,15 @@
                             </select>
                         </div>
                         <div class="flex items-center mb-3">
-                            <label for="etapas" class="text-sm font-medium text-gray-900 text-white mr-2">Etapas de corte:
+                            <label for="etapas" class="text-sm font-medium text-gray-900 text-white mr-2">Etapas de
+                                corte:
                             </label>
                             <select name="etapas" id="etapas"
                                 class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white"
                                 th:field="*{etapas}" required>
                                 <option value="" selected>Seleccionar tipo de corte</option>
-                                <option th:each="etapas : ${etapas}" th:value="${etapas.etapa}" th:text="${etapas.etapa}">Etapas del corte
+                                <option th:each="etapas : ${etapas}" th:value="${etapas.etapa}"
+                                    th:text="${etapas.etapa}">Etapas del corte
                                 </option>
                             </select>
                         </div>
@@ -106,17 +108,7 @@
                                     th:text="${departamento.name_departament}">Nombre del Departamento</option>
                             </select>
                         </div>
-                        <div class="flex items-center mb-3">
-                            <label for="procesos"
-                                class="text-sm font-medium text-gray-900 text-white mr-2">Proceso:</label>
-                            <select name="procesos" id="procesos"
-                                class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white"
-                                th:field="*{procesos}" required>
-                                <option value="" selected>Seleccione el proceso</option>
-                                <option th:each="procesos : ${procesos}" th:value="${procesos.name_process}"
-                                    th:text="${procesos.name_process}">Nombre del procesos</option>
-                            </select>
-                        </div>
+
                     </div>
 
 
@@ -129,6 +121,26 @@
                                 class="bg-[#db4900] border border-orange-300 text-white-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-orange-400 text-white"
                                 th:field="*{fechaEntrega}" required>
                         </div>
+                        <div class="flex items-center mb-3">
+                            <label for="procesos"
+                                class="text-sm font-medium text-gray-900 text-white mr-2">Proceso:</label>
+                            <select name="procesos" id="procesos"
+                                class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white"
+                                th:field="*{procesos}" required onchange="actualizarColores()">
+                                <option value="" selected>Seleccione el proceso</option>
+                                <option value="blench">Blench</option>
+                                <option value="stone medio">Stone Medio</option>
+                                <option value="stone alto">Stone Alto</option>
+                                <option value="destroyer">Destroyer</option>
+                                <option value="teñido">Teñido</option>
+                                <option value="suavizado">Suavizado</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Contenedor para colores -->
+                        <div id="contenedorColores" class="grid grid-cols-1 sm:grid-cols-1 gap-6"></div>
+                        
+
                     </div>
 
                     <!-- Botones -->
@@ -149,6 +161,7 @@
         </div>
     </div>
     <script src="/js/validation.js"></script>
+    <script src="/js/dinamic.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
 
