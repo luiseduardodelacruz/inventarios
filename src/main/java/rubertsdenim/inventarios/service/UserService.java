@@ -11,6 +11,10 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    public boolean isEmailTaken(String email) {
+        return userRepository.findByEmail(email) != null;
+    }
+
     public String getUserRole(String email ) {
         User user = userRepository.findByEmail(email);
 

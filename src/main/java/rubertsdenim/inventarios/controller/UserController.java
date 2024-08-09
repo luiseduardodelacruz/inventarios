@@ -2,6 +2,7 @@ package rubertsdenim.inventarios.controller;
 
 import rubertsdenim.inventarios.model.User;
 import rubertsdenim.inventarios.repository.UserRepository;
+import rubertsdenim.inventarios.service.UserService;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -38,6 +39,9 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserService userService;
+
     @Value("${imgbb.ApiKey}")
     private String imgbbApiKey;
 
@@ -70,21 +74,29 @@ public class UserController {
         user.setEmail(user.getEmail().toLowerCase().trim());
         user.setPassword(user.getPassword().trim());
 
-        User existingUser = userRepository.findByEmail(user.getEmail());
-        if (existingUser != null) {
-            model.addAttribute("error", "El correo electrónico ya está registrado.");
+        // Verificar si el email ya está en uso
+        if (userService.isEmailTaken(user.getEmail())) {
+
+            // Obtiene la lista actual de usuarios para mantener la vista actual
+            List<User> users = userRepository.findByRoleNot("ADMIN");
+
+            model.addAttribute("users", users);
+            model.addAttribute("user", user);
+            model.addAttribute("error", "Este correo electrónico ya está en uso, intente con uno diferente.");
+            
+            return "users";
         }
 
         if (!imageFile.isEmpty() && isImageFile(imageFile)) {
             String imageUrl = uploadImage(imageFile, user.getName().toLowerCase().trim());
             user.setImage(imageUrl);
         }
-
+    
         user.setRole("USER"); // Establece el rol de usuario
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword())); // Encripta la contraseña
         userRepository.save(user);
-        
-        return "redirect:/usuarios"; // Redirige a la página de usuarios después de un registro exitoso
+    
+        return "redirect:/usuarios";
     }
 
     private String uploadImage(MultipartFile image, String nameUser) throws IOException {

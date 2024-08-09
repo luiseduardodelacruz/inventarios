@@ -109,7 +109,20 @@
                         </div>
                     </div>
                 </div>
-              </div>
+            </div>
+
+            <!-- Mostrar mensajes de error si existen -->
+            <div th:if="${error != null}"></div>
+
+            <!-- Contenedor para Alertas -->
+            <div id="alertContainer" class="fixed max-h-[84%] md:max-h-[76%] lg:max-h-[84%] xl:max-h-[82%] w-6/12 md:w-5/12 lg:w-4/12 xl:w-3/12 top-[8%] md:top-[12%] lg:top-[8%] xl:top-[9%] right-2 md:right-4 space-y-4 z-10 overflow-hidden">
+                <div class="alert flex flex-col w-full bg-[#e8763d] text-white rounded-xl shadow-xl" style="opacity: 1;">
+                    <span th:text="${error}" class="px-4 py-4 md:px-5 md:py-6 fuente_alerta text-sm md:text-lg lg:text-lg">Este es un mensaje de alerta</span>
+                    <div class="w-full bg-white rounded-b-xl h-2 overflow-hidden">
+                        <div class="progress-bar bg-[#db4900] rounded-bl-xl h-full" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Elemento Modal Agregar Usuarios -->
             <div>
@@ -196,6 +209,7 @@
         </div>
     </div>
 
+    <script src="/js/alertaUser.js" defer></script>
     <script src="/js/usuarios.js"></script>
     <script src="/js/imagenPrevia.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
