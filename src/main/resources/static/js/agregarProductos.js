@@ -361,11 +361,13 @@ const valor = selectCategoria.value;
             <div id="opciones_marca_agregar_producto_etiquetas" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="cuidado_con_el_perro">Cuidado con el Perro</div>
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="optima">Optima</div>
+              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="garcía">García</div>
             </div>
             <select id="valores_marca_agregar_producto_etiquetas" th:field="*{marca}" name="marca" class="hidden" required>
               <option value="" selected>Seleccionar:</option>
               <option value="cuidado_con_el_perro">Cuidado con el Perro</option>
               <option value="optima">Optima</option>
+              <option value="garcía">García</option>
             </select>
           </div>
         </div>
