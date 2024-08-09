@@ -24,7 +24,7 @@ import rubertsdenim.inventarios.model.PdfPedido;
 @Service
 public class PdfPedidoServicio {
     
-    private static final long MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
+    private static final long MAX_FILE_SIZE = 1 * 1024 * 1024; // 1 MB
     private static final String[] ALLOWED_CONTENT_TYPES = {"image/jpeg", "image/png"};
 
     public byte[] generarPDF(PdfPedido pedido) throws IOException{
@@ -89,14 +89,14 @@ public class PdfPedidoServicio {
 
             // Celdas de la primera fila
             Phrase phraseDpto = new Phrase("Departamento: ", boldFont);
-            phraseDpto.add(new Phrase(pedido.getDepartamento(), normalFont));
+            phraseDpto.add(new Phrase(pedido.getDepartamento().trim(), normalFont));
             PdfPCell cellDpto = new PdfPCell(phraseDpto);
             cellDpto.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
             cellDpto.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
             table.addCell(cellDpto);
 
             Phrase phraseFecha = new Phrase("Fecha: ", boldFont);
-            phraseFecha.add(new Phrase(pedido.getFecha(), normalFont));
+            phraseFecha.add(new Phrase(pedido.getFecha().trim(), normalFont));
             PdfPCell cellFecha = new PdfPCell(phraseFecha);
             cellFecha.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
             cellFecha.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
@@ -114,7 +114,7 @@ public class PdfPedidoServicio {
             table.addCell(cellTalla);
 
             Phrase phraseTemporada = new Phrase("Temporada: ", boldFont);
-            phraseTemporada.add(new Phrase(pedido.getTemporada(), normalFont));
+            phraseTemporada.add(new Phrase(pedido.getTemporada().trim(), normalFont));
             PdfPCell cellTemporada = new PdfPCell(phraseTemporada);
             cellTemporada.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
             cellTemporada.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
@@ -124,14 +124,14 @@ public class PdfPedidoServicio {
             document.add(table);
 
             document.add(new Paragraph(" "));
-            document.add(createStyledParagraph("Estilos: ", pedido.getEstilos(), boldFont, normalFont));
-            document.add(createStyledParagraph("Tipo de Corte: ", pedido.getCategoria(), boldFont, normalFont));
-            document.add(createStyledParagraph("Proveedor: ", pedido.getProvedor(), boldFont, normalFont));
-            document.add(createStyledParagraph("Talla de la Muestra: ", pedido.getTallas(), boldFont, normalFont));
-            String tipoCorte = pedido.getCategoria().equals("Moda") ? "Fit: " + pedido.getFit() : "";
+            document.add(createStyledParagraph("Estilos: ", pedido.getEstilos().trim(), boldFont, normalFont));
+            document.add(createStyledParagraph("Tipo de Corte: ", pedido.getCategoria().trim(), boldFont, normalFont));
+            document.add(createStyledParagraph("Proveedor: ", pedido.getProvedor().trim(), boldFont, normalFont));
+            document.add(createStyledParagraph("Talla de la Muestra: ", pedido.getTallas().trim(), boldFont, normalFont));
+            String tipoCorte = pedido.getCategoria().equals("Moda") ? "Fit: " + pedido.getFit().trim() : "";
             if (!tipoCorte.isEmpty()) {
                 String fitLabel = "Fit: ";
-                String fitValue = pedido.getFit();
+                String fitValue = pedido.getFit().trim();
                 
                 Paragraph fitParagraph = createStyledParagraph(fitLabel, fitValue, boldFont, normalFont);
                 document.add(fitParagraph);
@@ -154,7 +154,7 @@ public class PdfPedidoServicio {
 
             // Celdas para la Fila 1
             Phrase phraseDescripcion = new Phrase("Descripción: ", boldFont);
-            phraseDescripcion.add(new Phrase(pedido.getDescripcion(), normalFont));
+            phraseDescripcion.add(new Phrase(pedido.getDescripcion().trim(), normalFont));
             PdfPCell cellDescript = new PdfPCell(phraseDescripcion);
             cellDescript.setRowspan(2);
             tabla2.addCell(cellDescript);
@@ -185,7 +185,7 @@ public class PdfPedidoServicio {
             tabla2.addCell(cellProd);
 
             Phrase phraseCantidadEtiquetas = new Phrase("Cantidad de Etiquetas: ", boldFont);
-            phraseCantidadEtiquetas.add(new Phrase(String.valueOf(pedido.getNumImagesSelect()), normalFont));
+            phraseCantidadEtiquetas.add(new Phrase(String.valueOf(pedido.getNumImagesSelect().trim()), normalFont));
             PdfPCell cellCantEtiquetas = new PdfPCell(phraseCantidadEtiquetas);
             cellCantEtiquetas.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
             cellCantEtiquetas.setColspan(2);
@@ -220,14 +220,14 @@ public class PdfPedidoServicio {
 
             // Celdas para la Fila 3
             Phrase phrase = new Phrase("Tela: ", boldFont);
-            phrase.add(new Phrase(pedido.getTela(), normalFont));
+            phrase.add(new Phrase(pedido.getTela().trim(), normalFont));
             PdfPCell cellTela = new PdfPCell(phrase);
             cellTela.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
             tabla2.addCell(cellTela);
             
             // Celdas para la Fila 4
             Phrase phraseLavadoProceso = new Phrase("Lavado/Procesado: ", boldFont);
-            phraseLavadoProceso.add(new Phrase(pedido.getLavado_procesado(), normalFont));
+            phraseLavadoProceso.add(new Phrase(pedido.getLavado_procesado().trim(), normalFont));
             PdfPCell cellLavadoProceso = new PdfPCell(phraseLavadoProceso);
             cellLavadoProceso.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
             tabla2.addCell(cellLavadoProceso);
@@ -260,14 +260,14 @@ public class PdfPedidoServicio {
 
             // Celdas para la Fila 5
             Phrase phraseBotonHeb = new Phrase("Botón/Hebilla: ", boldFont);
-            phraseBotonHeb.add(new Phrase(pedido.getBotonHebilla(), normalFont));
+            phraseBotonHeb.add(new Phrase(pedido.getBotonHebilla().trim(), normalFont));
             PdfPCell cellBotonHeb = new PdfPCell(phraseBotonHeb);
             cellBotonHeb.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
             tabla2.addCell(cellBotonHeb);
 
             // Celdas para la Fila 6
             Phrase phraseHilo = new Phrase("Hilo: ", boldFont);
-            phraseHilo.add(new Phrase(pedido.getHilo(), normalFont));
+            phraseHilo.add(new Phrase(pedido.getHilo().trim(), normalFont));
             PdfPCell cellHilo = new PdfPCell(phraseHilo);
             cellHilo.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
             tabla2.addCell(cellHilo);
@@ -316,7 +316,6 @@ public class PdfPedidoServicio {
                 return true;
             }
         }
-
         return false;
     }
 

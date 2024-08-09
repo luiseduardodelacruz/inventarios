@@ -2,6 +2,7 @@ package rubertsdenim.inventarios.controller;
 
 import rubertsdenim.inventarios.model.User;
 import rubertsdenim.inventarios.repository.UserRepository;
+import rubertsdenim.inventarios.service.UserService;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -15,6 +16,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,16 +40,19 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserService userService;
+
     @Value("${imgbb.ApiKey}")
     private String imgbbApiKey;
 
     @GetMapping("/usuarios")
     public String viewUsers(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
+        User userAuth = (User) session.getAttribute("user");
+        if (userAuth == null) {
             return "redirect:/inicio-sesion";
         }
-        if (!"ADMIN".equals(user.getRole())){
+        if (!"ADMIN".equals(userAuth.getRole())){
             return "redirect:/inventario";
         }
 
@@ -59,7 +64,15 @@ public class UserController {
     }
     
     @GetMapping("/usuarios/create")
-    public String showRegistrationForm(Model model) {
+    public String showRegistrationForm(Model model, HttpSession session) {
+        User userAuth = (User) session.getAttribute("user");
+        if (userAuth == null) {
+            return "redirect:/inicio-sesion";
+        }
+        if (!"ADMIN".equals(userAuth.getRole())){
+            return "redirect:/inventario";
+        }
+
         model.addAttribute("user", new User());
         return "users";
     }
@@ -70,21 +83,29 @@ public class UserController {
         user.setEmail(user.getEmail().toLowerCase().trim());
         user.setPassword(user.getPassword().trim());
 
-        User existingUser = userRepository.findByEmail(user.getEmail());
-        if (existingUser != null) {
-            model.addAttribute("error", "El correo electrónico ya está registrado.");
+        // Verificar si el email ya está en uso
+        if (userService.isEmailTaken(user.getEmail())) {
+
+            // Obtiene la lista actual de usuarios para mantener la vista actual
+            List<User> users = userRepository.findByRoleNot("ADMIN");
+
+            model.addAttribute("users", users);
+            model.addAttribute("user", user);
+            model.addAttribute("error", "Este correo electrónico ya está en uso, intente con uno diferente.");
+            
+            return "users";
         }
 
         if (!imageFile.isEmpty() && isImageFile(imageFile)) {
             String imageUrl = uploadImage(imageFile, user.getName().toLowerCase().trim());
             user.setImage(imageUrl);
         }
-
+    
         user.setRole("USER"); // Establece el rol de usuario
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword())); // Encripta la contraseña
         userRepository.save(user);
-        
-        return "redirect:/usuarios"; // Redirige a la página de usuarios después de un registro exitoso
+    
+        return "redirect:/usuarios";
     }
 
     private String uploadImage(MultipartFile image, String nameUser) throws IOException {
@@ -113,7 +134,15 @@ public class UserController {
 
     @GetMapping("/usuarios/details/{id}")
     @ResponseBody
-    public ResponseEntity<User> getUserDetails(@PathVariable("id") String id) {
+    public ResponseEntity<?> getUserDetails(@PathVariable("id") String id, HttpSession session) {
+        User userAuth = (User) session.getAttribute("user");
+        if (userAuth == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario no autenticado");
+        }
+        if (!"ADMIN".equals(userAuth.getRole())){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acceso denegado");
+        }
+
         User user = userRepository.findById(id).orElse(null);
         if (user == null) {
             return ResponseEntity.notFound().build();
@@ -122,31 +151,58 @@ public class UserController {
     }
 
     @GetMapping("/usuarios/update/{id}")
-    public String showUpdateForm(@PathVariable String id, Model model) {
+    public String showUpdateForm(@PathVariable String id, Model model, HttpSession session) {
+        User userAuth = (User) session.getAttribute("user");
+        if (userAuth == null) {
+            return "redirect:/inicio-sesion";
+        }
+        if (!"ADMIN".equals(userAuth.getRole())){
+            return "redirect:/inventario";
+        }
+        
         User user = userRepository.findById(id).orElse(null);
         model.addAttribute("user", user);
         return "update-user"; // Vista para el formulario de actualización
     }
 
     @PostMapping("/usuarios/update/{id}") 
-    public String updateUser(@PathVariable String id, @ModelAttribute User updatedUser, @RequestParam("imageFile") MultipartFile imageFile) throws IOException  {
+    public String updateUser(@PathVariable String id, @ModelAttribute User updatedUser, @RequestParam("imageFile") MultipartFile imageFile, Model model) throws IOException  {
         Optional<User> optionalUser = userRepository.findById(id);
+        
         if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            user.setEmail(updatedUser.getEmail().toLowerCase().trim());
-            user.setName(updatedUser.getName().trim());
-            user.setRole("USER");
+            User existingUser = optionalUser.get();
+
+            // Verificar si el nuevo email ya está en uso por otro usuario
+            if (!existingUser.getEmail().equalsIgnoreCase(updatedUser.getEmail()) && userService.isEmailTaken(updatedUser.getEmail())) {
+                model.addAttribute("user", updatedUser);
+                model.addAttribute("error", "Este correo electrónico ya está en uso, intente con uno diferente.");
+                return "update-user";
+            }
+
+            // Actualizar los detalles del usuario
+            existingUser.setEmail(updatedUser.getEmail().toLowerCase().trim());
+            existingUser.setName(updatedUser.getName().trim());
+            existingUser.setRole("USER");
+
             if (!imageFile.isEmpty() && isImageFile(imageFile)) {
                 String imageUrl = uploadImage(imageFile, updatedUser.getName().toLowerCase().trim());
-                user.setImage(imageUrl);
+                existingUser.setImage(imageUrl);
             }
-            userRepository.save(user);
+            userRepository.save(existingUser);
         }
         return "redirect:/usuarios"; // Redirigir a la página de lista de usuarios después de actualizar
     }
 
     @GetMapping("/usuarios/delete/{id}")
-    public String showDeleteConfirmation(@PathVariable String id, Model model) {
+    public String showDeleteConfirmation(@PathVariable String id, Model model, HttpSession session) {
+        User userAuth = (User) session.getAttribute("user");
+        if (userAuth == null) {
+            return "redirect:/inicio-sesion";
+        }
+        if (!"ADMIN".equals(userAuth.getRole())){
+            return "redirect:/inventario";
+        }
+
         User user = userRepository.findById(id).orElse(null);
         if (user != null) {
             userRepository.deleteById(id);

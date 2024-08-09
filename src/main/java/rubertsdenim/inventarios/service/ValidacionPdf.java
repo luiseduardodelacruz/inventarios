@@ -5,6 +5,7 @@ import rubertsdenim.inventarios.model.*;
 import java.util.Arrays;
 import java.util.List;
 
+
 public class ValidacionPdf {
     private static final List<String> VALORES_VALIDOS = Arrays.asList("niñas", "niños", "bebas", "bebos");
 

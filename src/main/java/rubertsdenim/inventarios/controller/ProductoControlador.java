@@ -8,6 +8,7 @@ import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.servlet.http.HttpSession;
 import rubertsdenim.inventarios.exception.RecursoNoEncontrado;
 import rubertsdenim.inventarios.model.Producto;
+import rubertsdenim.inventarios.model.User;
 import rubertsdenim.inventarios.service.ProductoServicio;
 
 @RestController
@@ -33,11 +36,18 @@ public class ProductoControlador {
     private ProductoServicio productoServicio;
 
     @GetMapping("/productos")
-    public List<Producto> obteneProductos(@RequestParam(required = false) String palabraClave){
+    public ResponseEntity<?> obteneProductos(@RequestParam(required = false) String palabraClave, HttpSession session){
+        User userAuth = (User) session.getAttribute("user");
+        if (userAuth == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario no autenticado");
+        }
+
+        // Si el usuario está autenticado, obtén la lista de productos
         List<Producto> productos = this.productoServicio.listarProductos(palabraClave);
+
         logger.info("Productos Obtenidos: ");
         productos.forEach((producto -> logger.info(producto.toString())));
-        return productos;
+        return ResponseEntity.ok(productos);
     }
     
     @PostMapping("/productos")
@@ -47,7 +57,12 @@ public class ProductoControlador {
     }
     
     @GetMapping("/productos/{id}")
-    public ResponseEntity<Producto> obtenerProductoPorId(@PathVariable ObjectId id){
+    public ResponseEntity<?> obtenerProductoPorId(@PathVariable ObjectId id, HttpSession session){
+        User userAuth = (User) session.getAttribute("user");
+        if (userAuth == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario no autenticado");
+        }
+
         Producto producto = this.productoServicio.buscarProductoPorId(id);
         
         if(producto != null)

@@ -48,8 +48,8 @@ public class InventarioControlador {
 
     @GetMapping("/inventario")
     public String verInventario(Model model, HttpSession session, @RequestParam(name = "palabraClave", required = false) String palabraClave){
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
+        User userAuth = (User) session.getAttribute("user");
+        if (userAuth == null) {
             return "redirect:/inicio-sesion";
         }
 
@@ -65,12 +65,20 @@ public class InventarioControlador {
         model.addAttribute("categorias", categorias);
         model.addAttribute("productos", productos);
         model.addAttribute("producto", new Producto());
-        model.addAttribute("usuario", user);
+        model.addAttribute("usuario", userAuth);
         return "inventario";
     }
 
     @GetMapping("/inventario/create")
-    public String agregarInventario(Model model) {
+    public String agregarInventario(Model model, HttpSession session) {
+        User userAuth = (User) session.getAttribute("user");
+        if (userAuth == null) {
+            return "redirect:/inicio-sesion";
+        }
+        if (!"ADMIN".equals(userAuth.getRole())){
+            return "redirect:/inventario";
+        }
+
         model.addAttribute("producto", new Producto());
         return "inventario";
     }
@@ -133,7 +141,15 @@ public class InventarioControlador {
     }
 
     @GetMapping("/inventario/update/{id}")
-    public String editarProducto(@PathVariable ObjectId id, Model model) {
+    public String editarProducto(@PathVariable ObjectId id, Model model, HttpSession session) {
+        User userAuth = (User) session.getAttribute("user");
+        if (userAuth == null) {
+            return "redirect:/inicio-sesion";
+        }
+        if (!"ADMIN".equals(userAuth.getRole())){
+            return "redirect:/inventario";
+        }
+
         List<Categoria> categorias = categoriaRepositorio.findAll();
         Producto producto = productoServicio.buscarProductoPorId(id);
         if (producto != null) {
@@ -176,7 +192,15 @@ public class InventarioControlador {
     }
 
     @GetMapping("/inventario/delete/{id}")
-    public String eliminarProducto(@PathVariable ObjectId id) {
+    public String eliminarProducto(@PathVariable ObjectId id, HttpSession session) {
+        User userAuth = (User) session.getAttribute("user");
+        if (userAuth == null) {
+            return "redirect:/inicio-sesion";
+        }
+        if (!"ADMIN".equals(userAuth.getRole())){
+            return "redirect:/inventario";
+        }
+
         Producto producto = productoServicio.buscarProductoPorId(id);
         if (producto != null) {
             productoServicio.eliminarProductoPorId(id);

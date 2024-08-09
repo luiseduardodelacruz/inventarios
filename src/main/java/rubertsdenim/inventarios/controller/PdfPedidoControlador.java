@@ -79,8 +79,8 @@ public class PdfPedidoControlador {
     }
 
     private boolean isValidImage(MultipartFile file) {
-        // Verificar el tamaño del archivo (máximo 5 MB)
-        if (file.getSize() > 5 * 1024 * 1024) {
+        // Verificar el tamaño del archivo (máximo 1 MB)
+        if (file.getSize() > 1 * 1024 * 1024) {
             return false;
         }
 

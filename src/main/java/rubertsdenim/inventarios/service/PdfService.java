@@ -154,6 +154,7 @@ public class PdfService {
 
             addCell(Totaltable, "Total del corte", true);
             addCell(Totaltable, Double.toString(totalSum), false); // Mostrar totalSum
+            addCell(Totaltable, Double.toString(totalSum), false); // Mostrar totalSum
 
             document.add(Totaltable);
 
