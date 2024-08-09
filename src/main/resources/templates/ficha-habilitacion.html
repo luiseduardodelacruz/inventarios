@@ -13,7 +13,8 @@
 
 <body>
     <div class="bg-[#ffe1d2]">
-        <div style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
+        <div class="flex justify-center items-center min-h-screen">
+
             <div class=" max-w-3xl lg:max-w-4xl p-6 border-[#db4900] border-opacity-40 rounded-3xl shadow sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900] p-[10vw] m-[10vw]">
                 <form id="formulario" class="space-y-6" th:action="@{/guardar-ficha-parte1}"
                     th:object="${fichaHabilitacion}" method="post">
@@ -32,10 +33,10 @@
                         </div>
 
                         <div class="flex items-center mb-3 sm:mb-0">
-                            <label for="fecha" class="text-sm sm:text-base font-bold w-[94%] sm:w-[60%]   text-white-900 text-white">Fecha
+                            <label for="fecha" class="text-sm sm:text-base font-bold w-[94%] sm:w-[60%] text-white-900 text-white">Fecha
                                 actual:</label>
                             <input type="date" id="fecha" name="fecha"
-                            class="bg-[#db4900] border border-orange-300 text-white-900 text-xs sm:text-sm font-bold  rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full sm:w-full sm:ml-[4%] sm:text-sm md:text-xs sm:text-sm p-2.5 dark:bg-orange-600 border-orange-500 placeholder-orange-400 text-white"
+                            class="bg-[#db4900] border border-orange-300 text-white-900 text-xs sm:text-sm font-bold  rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full lg:w-[79%] sm:w-full sm:ml-[4%] sm:text-sm md:text-xs sm:text-sm p-2.5 dark:bg-orange-600 border-orange-500 placeholder-orange-400 text-white"
                                 th:field="*{fecha}" required>
                         </div>
                     </div>
@@ -52,7 +53,7 @@
                         <div class="flex items-center mb-3">
                             <label for="corte" class="text-sm sm:text-base font-bold w-[95%] sm:w-[60%] text-gray-900 text-white">Corte:</label>
                             <input type="text" name="corte" id="corte"
-                                class="bg-[#db4900] border-orange-300 text-gray-900 text-xs sm:text-sm font-bold  rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full sm:w-full sm:ml-[4%] sm:text-sm md:text-xs sm:text-sm p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white placeholder-white"
+                                class="bg-[#db4900] border-orange-300 text-gray-900 text-xs sm:text-sm font-bold  rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full sm:w-full lg:w-[78%] sm:ml-[4%] sm:text-sm md:text-xs sm:text-sm p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white placeholder-white"
                                 th:field="*{corte}" required>
                         </div>
                         <div class="flex items-center mb-3">
@@ -71,7 +72,7 @@
                                 corte:
                             </label>
                             <select name="etapas" id="etapas"
-                                class="bg-[#db4900] border-orange-300 text-gray-900 text-xs sm:text-sm font-bold  rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full sm:w-full sm:ml-[4%] sm:text-sm md:text-xs sm:text-sm p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white placeholder-white"
+                                class="bg-[#db4900] border-orange-300 text-gray-900 text-xs sm:text-sm font-bold  rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full lg:w-[75%] sm:w-full sm:ml-[4%] sm:text-sm md:text-xs sm:text-sm p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white placeholder-white"
                                 th:field="*{etapas}" required>
                                 <option value="" selected>Seleccionar tipo de corte</option>
                                 <option th:each="etapas : ${etapas}" th:value="${etapas.etapa}"
@@ -94,7 +95,7 @@
                             <label for="departamentos"
                                 class="text-sm sm:text-base font-bold w-[100%] sm:w-[60%]  text-gray-900 text-white mr-2">Departamento:</label>
                             <select name="departamentos" id="departamentos"
-                                class="bg-[#db4900] border-orange-300 text-gray-900 text-xs sm:text-sm font-bold  rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full sm:w-full sm:ml-[4%] sm:text-sm md:text-xs sm:text-sm p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white"
+                                class="bg-[#db4900] border-orange-300 text-gray-900 text-xs sm:text-sm font-bold  rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full sm:w-full lg:w-[78%] sm:ml-[4%] sm:text-sm md:text-xs sm:text-sm p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white"
                                 th:field="*{departamentos}" required>
                                 <option value="" selected>Seleccionar departamento</option>
                                 <option th:each="departamento : ${departamentos}"
@@ -119,7 +120,7 @@
                             <label for="procesos"
                                 class="text-sm sm:text-base font-bold w-[100%] sm:w-[60%]  text-gray-900 text-white mr-2">Proceso:</label>
                             <select name="procesos" id="procesos"
-                                class="bg-[#db4900] border-orange-300 text-gray-900 text-xs sm:text-sm font-bold  rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full sm:w-full sm:ml-[4%] sm:text-sm md:text-xs sm:text-sm p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white"
+                                class="bg-[#db4900] border-orange-300 text-gray-900 text-xs sm:text-sm font-bold  rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full lg:w-[79%] sm:w-full sm:ml-[4%] sm:text-sm md:text-xs sm:text-sm p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white"
                                 th:field="*{procesos}" required onchange="actualizarColores()">
                                 <option value="" selected>Seleccione el proceso</option>
                                 <option value="blench">Blench</option>
