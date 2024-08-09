@@ -20,5 +20,6 @@ public class FichaHabilitacion {
     private String tipos; 
     private List<String> tallas; // Agregado para tallas
     private List<Integer> dobleces; // Agregado para dobleces
-    private List<Double> bultos; // Agregado para bultos
+    private List<Double> bultos;
+    private String color; // Agregado para bultos
 }

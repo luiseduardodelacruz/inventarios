@@ -18,7 +18,6 @@ import rubertsdenim.inventarios.repository.CadenaRepository;
 import rubertsdenim.inventarios.repository.DepartamentoRepository;
 import rubertsdenim.inventarios.repository.EtapaRepository;
 import rubertsdenim.inventarios.repository.FichaRepository;
-import rubertsdenim.inventarios.repository.ProcesoRepository;
 import rubertsdenim.inventarios.repository.TallasRepository;
 import rubertsdenim.inventarios.repository.TiposRepository;
 import rubertsdenim.inventarios.service.PdfService;
@@ -36,8 +35,7 @@ public class FichaHabilitacionController {
     @Autowired
     private CadenaRepository cadenaRepository;
 
-    @Autowired
-    private ProcesoRepository procesoRepository;
+
 
     @Autowired
     private TallasRepository tallasRepository;
@@ -67,13 +65,11 @@ public class FichaHabilitacionController {
 
         List<Departamento> departamentos = departamentoRepository.findAll();
         List<Cadena> cadenas = cadenaRepository.findAll();
-        List<Procesos> procesos = procesoRepository.findAll();
         List<Tipos> tipos = tiposRepository.findAll();
         List<EtapasProceso> etapas = etapaRepository.findAll();
 
         model.addAttribute("departamentos", departamentos);
         model.addAttribute("cadenas", cadenas);
-        model.addAttribute("procesos", procesos);
         model.addAttribute("tipos", tipos);
         model.addAttribute("etapas", etapas);
         model.addAttribute("fichaHabilitacion", new FichaHabilitacion());

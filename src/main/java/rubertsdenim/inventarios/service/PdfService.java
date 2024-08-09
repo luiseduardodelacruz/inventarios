@@ -153,62 +153,86 @@ public class PdfService {
             Totaltable.setWidths(columnWidths6);
 
             addCell(Totaltable, "Total del corte", true);
-            addCell(Totaltable, Integer.toString(totalSum), false); // Mostrar totalSum
+            addCell(Totaltable, Double.toString(totalSum), false); // Mostrar totalSum
 
             document.add(Totaltable);
             document.add(new Paragraph(""));
 
+            PdfPTable tallaCierreDataTable = new PdfPTable(tallas.size() + 1);
+            tallaCierreDataTable.setWidthPercentage(100);
+            Totaltable.setSpacingBefore(0f); // Espacio antes de la tabla
+            Totaltable.setSpacingAfter(0f);
 
-if (ValidacionPdf.esValidoParaEtapas(fichaHabilitacion)) {
-    PdfPTable cantidadDescripcionTable = new PdfPTable(2);
-    cantidadDescripcionTable.setWidthPercentage(100);
-    cantidadDescripcionTable.setSpacingBefore(0f);
-    cantidadDescripcionTable.setSpacingAfter(0f);
+            float[] columnWidths8 = new float[tallas.size() + 1];
+            for (int i = 0; i < columnWidths8.length; i++) {
+                columnWidths8[i] = 2f; // Ajusta el tamaño de las columnas
+            }
+            tallaCierreDataTable.setWidths(columnWidths8);
 
-    float[] columnWidths = new float[]{2f, 4f};
-    cantidadDescripcionTable.setWidths(columnWidths);
+            // Encabezados de la tabla
+            addCell(tallaCierreDataTable, "Talla", true);
+            for (String talla : tallas) {
+                addCell(tallaCierreDataTable, talla, true);
+            }
+            addCell(tallaCierreDataTable, "PZS/TALLA", true);
 
-    addCell(cantidadDescripcionTable, "Cantidad", true);
-    addCell(cantidadDescripcionTable, "DESCRIPCIÓN", true);
+            // Fila con la multiplicación de bultos por sumaDobleces
+            for (int i = 0; i < tallas.size(); i++) {
+                if (i < bultos.size()) {
+                    double multiplicacion = bultos.get(i) * sumaDobleces;
+                    long multiplicacionRedondeada = Math.round(multiplicacion);
+                    addCell(tallaCierreDataTable, Long.toString(multiplicacionRedondeada), false);
+                } else {
+                    addCell(tallaCierreDataTable, "", false);
+                }
+            }
 
-    String etapaActual = fichaHabilitacion.getEtapas().toLowerCase();
+            // Agregar la tabla al documento
+            document.add(tallaCierreDataTable);
 
-    switch (etapaActual) {
-        case "preparacion":
-            // Generar la tabla específica para "preparacion"
-            addCell(cantidadDescripcionTable, Integer.toString(totalSum), false);
-            addCell(cantidadDescripcionTable, "Materiales de Preparación", false);
-            break;
+            PdfPTable cantidadDescripcionTable = new PdfPTable(2);
+            cantidadDescripcionTable.setWidthPercentage(100);
+            cantidadDescripcionTable.setSpacingBefore(0f);
+            cantidadDescripcionTable.setSpacingAfter(0f);
 
-        case "terminacion":
-            // Generar la tabla específica para "terminacion"
+            float[] columnWidths = new float[] { 2f, 4f };
+            cantidadDescripcionTable.setWidths(columnWidths);
+
+            addCell(cantidadDescripcionTable, "Cantidad", true);
+            addCell(cantidadDescripcionTable, "DESCRIPCIÓN", true);
+
             for (String talla : tallas) {
                 String cantidad = bultos.size() > 0
                         ? Long.toString(Math.round(bultos.get(tallas.indexOf(talla)) * sumaDobleces))
                         : "";
                 addCell(cantidadDescripcionTable, cantidad, false);
-                addCell(cantidadDescripcionTable, "Materiales de Terminación (" + talla + ")", false);
+                addCell(cantidadDescripcionTable, "Etiqueta Monarch (" + talla + ")", false);
             }
-            break;
 
-        case "empaque":
-            // Generar la tabla específica para "empaque"
-            addCell(cantidadDescripcionTable, Integer.toString(totalSum), false);
-            addCell(cantidadDescripcionTable, "Materiales de Empaque", false);
-            break;
+            // Fila única para Etiqueta Vinil
+            addCell(cantidadDescripcionTable, Long.toString(totalSum), false);
+            addCell(cantidadDescripcionTable, "Etiqueta Vinil", false);
 
-        default:
-            // Caso para una etapa no prevista (aunque esto no debería ocurrir)
-            break;
-    }
+            // Filas para cada talla - Etiqueta de Pretina
+            for (String talla : tallas) {
+                String cantidad = bultos.size() > 0
+                        ? Long.toString(Math.round(bultos.get(tallas.indexOf(talla)) * sumaDobleces))
+                        : "";
+                addCell(cantidadDescripcionTable, cantidad, false);
+                addCell(cantidadDescripcionTable, "Etiqueta pretina (" + talla + ")", false);
+            }
 
-    document.add(cantidadDescripcionTable);
-} else {
-    // Manejar el caso cuando la etapa no es válida
-    // Puedes mostrar un mensaje de error o manejarlo como creas conveniente
-}
+            // Filas para cada talla - Etiqueta Monarch
+            for (String talla : tallas) {
+                String cantidad = bultos.size() > 0
+                        ? Long.toString(Math.round(bultos.get(tallas.indexOf(talla)) * sumaDobleces))
+                        : "";
+                addCell(cantidadDescripcionTable, cantidad, false);
+                addCell(cantidadDescripcionTable, "Etiqueta Monarch (" + talla + ")", false);
+            }
 
-            
+            document.add(cantidadDescripcionTable);
+
             document.add(Chunk.NEWLINE);
 
             boolean esValidoParaAjustador = ValidacionPdf.esValidoParaAjustador(fichaHabilitacion);
