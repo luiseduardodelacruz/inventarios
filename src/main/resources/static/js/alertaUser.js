@@ -37,7 +37,7 @@ function fadeOutAlert(alert) {
     const fadeInterval = setInterval(() => {
         let opacity = parseFloat(alert.style.opacity);
         if (opacity > 0) {
-            opacity -= 0.05; // Ajusta la velocidad de desvanecimiento
+            opacity -= 0.1; // Ajusta la velocidad de desvanecimiento
             alert.style.opacity = opacity;
         } else {
             clearInterval(fadeInterval);
