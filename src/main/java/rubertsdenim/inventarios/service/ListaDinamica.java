@@ -12,7 +12,7 @@ public class ListaDinamica {
     // Método para generar la tabla según la etapa
     public static void generarTablaPorEtapa(Document document, FichaHabilitacion fichaHabilitacion,
             List<String> tallas, List<Double> bultos, double sumaDobleces,
-            double sumaResultadosMultiplicados, long totalSum) throws Exception {
+            double sumaResultadosMultiplicados, int totalSum) throws Exception {
 
         String etapa = fichaHabilitacion.getEtapas().toLowerCase();
         String cadenaString = fichaHabilitacion.getCadena();
@@ -29,35 +29,8 @@ public class ListaDinamica {
     }
 
     public static  void generarTablaPreparacion(Document document, List<String> tallas, List<Double> bultos,
-            double sumaDobleces, long totalSum, String cadenaString) throws Exception {
-        PdfPTable tallaCierreDataTable = new PdfPTable(tallas.size() + 1);
-        tallaCierreDataTable.setWidthPercentage(100);
-        tallaCierreDataTable.setSpacingBefore(0f);
-        tallaCierreDataTable.setSpacingAfter(0f);
+            double sumaDobleces, int totalSum, String cadenaString) throws Exception {
 
-        float[] columnWidths8 = new float[tallas.size() + 1];
-        for (int i = 0; i < columnWidths8.length; i++) {
-            columnWidths8[i] = 2f;
-        }
-        tallaCierreDataTable.setWidths(columnWidths8);
-
-        addCell(tallaCierreDataTable, "Talla", true);
-        for (String talla : tallas) {
-            addCell(tallaCierreDataTable, talla, true);
-        }
-        addCell(tallaCierreDataTable, "PZS/TALLA", true);
-
-        for (int i = 0; i < tallas.size(); i++) {
-            if (i < bultos.size()) {
-                double multiplicacion = bultos.get(i) * sumaDobleces;
-                long multiplicacionRedondeada = Math.round(multiplicacion);
-                addCell(tallaCierreDataTable, Long.toString(multiplicacionRedondeada), false);
-            } else {
-                addCell(tallaCierreDataTable, "", false);
-            }
-        }
-
-        document.add(tallaCierreDataTable);
 
         PdfPTable cantidadDescripcionTable = new PdfPTable(2);
         cantidadDescripcionTable.setWidthPercentage(100);
@@ -78,7 +51,7 @@ public class ListaDinamica {
             addCell(cantidadDescripcionTable, "Etiqueta Monarch (" + talla + ")", false);
         }
 
-        addCell(cantidadDescripcionTable, Long.toString(totalSum), false);
+        addCell(cantidadDescripcionTable, Double.toString(totalSum), false);
         addCell(cantidadDescripcionTable, "Etiqueta Vinil de(" + cadenaString + ")", false);
 
         for (String talla : tallas) {
@@ -100,7 +73,7 @@ public class ListaDinamica {
         document.add(cantidadDescripcionTable);
     }
 
-    public static void generarTablaTerminacion(Document document, long totalSum,
+    public static void generarTablaTerminacion(Document document, int totalSum,
             double sumaResultadosMultiplicados, String cadenaString) throws Exception {
         PdfPTable cantidadDescripcionTable = new PdfPTable(2);
         cantidadDescripcionTable.setWidthPercentage(100);
@@ -113,13 +86,13 @@ public class ListaDinamica {
         addCell(cantidadDescripcionTable, "Cantidad", true);
         addCell(cantidadDescripcionTable, "DESCRIPCIÓN", true);
 
-        addCell(cantidadDescripcionTable, Long.toString(totalSum), false);
+        addCell(cantidadDescripcionTable, Double.toString(totalSum), false);
         addCell(cantidadDescripcionTable, "Boton de pasta", false);
 
-        addCell(cantidadDescripcionTable, Long.toString(totalSum), false);
+        addCell(cantidadDescripcionTable, Double.toString(totalSum), false);
         addCell(cantidadDescripcionTable, "Boton Metalico", false);
 
-        addCell(cantidadDescripcionTable, Long.toString(totalSum), false);
+        addCell(cantidadDescripcionTable, Double.toString(totalSum), false);
         addCell(cantidadDescripcionTable, "Etiqueta Vinil (" + cadenaString + ")", false);
 
         addCell(cantidadDescripcionTable, Double.toString(sumaResultadosMultiplicados), false);
@@ -131,7 +104,7 @@ public class ListaDinamica {
         document.add(cantidadDescripcionTable);
     }
 
-    public static void generarTablaEmpaque(Document document, long totalSum) throws Exception {
+    public static void generarTablaEmpaque(Document document, int totalSum) throws Exception {
         PdfPTable cantidadDescripcionTable = new PdfPTable(2);
         cantidadDescripcionTable.setWidthPercentage(100);
         cantidadDescripcionTable.setSpacingBefore(0f);
@@ -143,13 +116,13 @@ public class ListaDinamica {
         addCell(cantidadDescripcionTable, "Cantidad", true);
         addCell(cantidadDescripcionTable, "DESCRIPCIÓN", true);
 
-        addCell(cantidadDescripcionTable, Long.toString(totalSum), false);
+        addCell(cantidadDescripcionTable, Double.toString(totalSum), false);
         addCell(cantidadDescripcionTable, "Colgante (nombre del fit)", false);
 
-        addCell(cantidadDescripcionTable, Long.toString(totalSum), false);
+        addCell(cantidadDescripcionTable, Double.toString(totalSum), false);
         addCell(cantidadDescripcionTable, "Sticker", false);
 
-        addCell(cantidadDescripcionTable, Long.toString(totalSum), false);
+        addCell(cantidadDescripcionTable, Double.toString(totalSum), false);
         addCell(cantidadDescripcionTable, "Albanene", false);
 
         addCell(cantidadDescripcionTable, "", false);
