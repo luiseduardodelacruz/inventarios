@@ -28,17 +28,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
             .then(data => {
                 for (var i = 0; i < cantidad; i++) {
                     var divLista = document.createElement('div');
-                    divLista.className = 'flex items-center mb-3';
+                    divLista.className = 'flex items-center mt-3';
 
                     var label = document.createElement('label');
                     label.htmlFor = 'talla' + (i + 1);
-                    label.className = 'text-sm font-medium text-gray-900 text-white mr-2';
+                    label.className = 'text-sm font-medium text-gray-900 text-white mr-2 w-[62%]';
                     label.innerText = 'Talla ' + (i + 1) + ':';
 
                     var select = document.createElement('select');
                     select.name = 'tallas[]';
                     select.id = 'talla' + (i + 1);
-                    select.className = 'bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-[40%] p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white';
+                    select.className = 'bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white';
                     select.addEventListener('change', actualizarOpciones)
 
 
@@ -74,11 +74,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         for (let i = 0; i < cantidad; i++) {
             const div = document.createElement('div');
-            div.className = 'flex items-center mb-3';
+            div.className = 'flex items-center mt-3';
 
             const label = document.createElement('label');
             label.htmlFor = `dobleces${i + 1}`;
-            label.className = 'text-sm font-medium text-gray-900 text-white mr-2';
+            label.className = 'text-sm font-medium text-gray-900 text-white mr-2 w-[50%]';
             label.textContent = `Dobleces ${i + 1}:`;
 
             const input = document.createElement('input');
@@ -101,11 +101,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         for (var i = 0; i < cantidad; i++) {
             var divLista = document.createElement('div');
-            divLista.className = 'flex items-center mb-3';
+            divLista.className = 'flex items-center mt-3';
 
             var label = document.createElement('label');
             label.htmlFor = 'bulto' + (i + 1);
-            label.className = 'text-sm font-medium text-gray-900 text-white mr-2';
+            label.className = 'text-sm font-medium text-gray-900 text-white mr-2 w-[58%]';
             label.innerText = 'Bulto ' + (i + 1) + ':';
 
             var input = document.createElement('input');
