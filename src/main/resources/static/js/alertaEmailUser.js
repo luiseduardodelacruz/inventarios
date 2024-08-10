@@ -1,11 +1,11 @@
 // Función para mostrar alertas
 function showAlert() {
     // Selecciona el contenedor de la alerta
-    const alertContainer = document.querySelector('#alertContainer');
+    const alertContainer = document.querySelector('#alertEmailUser');
     const agregarUsuario = document.querySelector('#agregar_usuario');
 
     // Selecciona la alerta y la barra de progreso
-    if(alertContainer.querySelector('.alert') != null){
+    if(alertContainer != null){
         const alert = alertContainer.querySelector('.alert');
         const progressBar = alert.querySelector('.progress-bar');
         
