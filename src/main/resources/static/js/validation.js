@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const estiloInput = document.getElementById('estilo');
     const corteInput = document.getElementById('corte');
     const totalInput = document.getElementById('total');
-    const maquileroInput = document.getElementById('maquilero');
 
     // Función para eliminar espacios en blanco al principio y al final
     function trimSpaces(inputElement) {
@@ -18,10 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (corteInput) {
         trimSpaces(corteInput);
-    }
-
-    if (maquileroInput) {
-        trimSpaces(maquileroInput);
     }
 
     // Validación para asegurar que el valor del campo total no sea negativo
