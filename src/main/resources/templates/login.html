@@ -29,11 +29,18 @@
                     <div class="p-[10%] pt-[25%] sm:pt-[20%] h-full w-full">
                         <div class="mb-6">
                             <label for="email" class="fuente_1 block mb-2 ml-1 text-base sm:text-xl text-white">Correo Electrónico</label>
-                            <input type="email" id="email" name="email" class="fuente_3 bg-[#db4900] border border-[#db4900] text-white text-base sm:text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-2 sm:p-3" required />
+                            <input type="email" id="email" name="email" class="fuente_3 bg-[#db4900] border border-[#db4900] text-white text-base sm:text-lg rounded-3xl focus:ring-transparent focus:border-[#db4900] block w-full p-2 sm:p-3" required />
                         </div>
                         <div class="mb-14">
                             <label for="password" class="fuente_1 block mb-2 ml-1 text-base sm:text-xl text-white">Contraseña</label>
-                            <input type="password" id="password" name="password" class="fuente_3 bg-[#db4900] border border-[#db4900] text-white text-base sm:text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-2 sm:p-3" required />
+                            <div class="flex">
+                              <input type="password" id="password" name="password" class="fuente_3 rounded-none rounded-s-3xl bg-[#db4900] border border-[#db4900] text-white focus:ring-transparent focus:border-[#db4900] block text-base sm:text-lg w-[65%] w-full py-3 pl-3 pr-1 md:w-full lg:w-full placeholder-white see-hidden-password" required>
+                              <button type="button" id="togglePasswordButton" class="inline-flex items-center pl-1 pr-3 text-white bg-[#db4900] hover:bg-[#ff5500] border border-e-0 border-[#db4900] rounded-e-3xl focus:ring-[#db4900] focus:border-[#db4900]">                             
+                                  <svg id="Icon" class="w-6 h-6 md:w-7 md:h-7 lg:w-7 lg:h-7 xl:w-8 xl:h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path fill="white" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/>
+                                  </svg>
+                              </button>
+                          </div>
                         </div>
 
                         <!-- Alerta User o Password Incorrecto -->
@@ -68,6 +75,7 @@
         </div>
     </footer>
     
+    <script src="/js/contrasena.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
 </html>
