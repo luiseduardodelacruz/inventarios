@@ -20,7 +20,11 @@ public class UserLoginController {
     private UserRepository userRepository;
 
     @GetMapping("/inicio-sesion")
-    public String showLoginForm(Model model) {
+    public String showLoginForm(Model model, HttpSession session) {
+        User userAuth = (User) session.getAttribute("user");
+        if (userAuth != null) {
+            return "redirect:/inventario";
+        }
         model.addAttribute("user", new User());
         return "login";
     }

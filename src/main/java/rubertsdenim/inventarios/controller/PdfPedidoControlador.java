@@ -22,6 +22,8 @@ import com.lowagie.text.DocumentException;
 import jakarta.servlet.http.HttpSession;
 
 import rubertsdenim.inventarios.service.PdfPedidoServicio;
+import rubertsdenim.inventarios.exception.ImagenNoValida;
+import rubertsdenim.inventarios.exception.RecursoNoEncontrado;
 import rubertsdenim.inventarios.model.PdfPedido;
 import rubertsdenim.inventarios.model.User;
 
@@ -47,13 +49,11 @@ public class PdfPedidoControlador {
 
         // Verificar imágenes antes de procesar
         if (imagenMarca != null && !isValidImage(imagenMarca)) {
-            redirectAttributes.addFlashAttribute("error", "La imagen de marca no es válida.");
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            throw new ImagenNoValida("La imagen cargada en el campo Marca no es válida. Asegúrate de que la imagen sea de máximo 1 MB y esté en formato JPG, JPEG, PNG o GIF. Ajusta la imagen y vuelve a intentarlo.");
         }
 
         if (imagenProducto != null && !isValidImage(imagenProducto)) {
-            redirectAttributes.addFlashAttribute("error", "La imagen de producto no es válida.");
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            throw new ImagenNoValida("La imagen cargada en el campo Producto no es válida. Asegúrate de que la imagen sea de máximo 1 MB y esté en formato JPG, JPEG, PNG o GIF. Ajusta la imagen y vuelve a intentarlo.");
         }
 
         // Configurar imágenes en el objeto PdfPedido
@@ -63,11 +63,20 @@ public class PdfPedidoControlador {
         // Procesar las imágenes
         List<byte[]> imageFiles = new ArrayList<>();
         for (MultipartFile file : files) {
-            imageFiles.add(file.getBytes());
+            if (file != null && isValidImage(file)) {
+                imageFiles.add(file.getBytes());
+            } else {
+                throw new ImagenNoValida("Una o más imágenes en el campo de Etiquetas no cumplen con los requisitos. Asegúrate de que cada imagen sea de máximo 1 MB y esté en formato JPG, JPEG, PNG o GIF. Ajusta las imágenes y vuelve a intentarlo.");
+            }
         }
         pedido.setImageFiles(imageFiles);
     
-        byte[] pdfBytes = pdfpedidoservicio.generarPDF(pedido);
+        byte[] pdfBytes;
+        try {
+            pdfBytes = pdfpedidoservicio.generarPDF(pedido);
+        } catch (Exception e) {
+            throw new RecursoNoEncontrado("Ocurrió un problema al crear el archivo PDF: " + e.getMessage() + ". Por favor, asegúrese de que todos los campos estén completos y en el formato correcto.");
+        }
 
         HttpHeaders headers = new HttpHeaders();
         /* Descargar el archivo PDF Directamente
