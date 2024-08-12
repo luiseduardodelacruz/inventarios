@@ -83,6 +83,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
             const input = document.createElement('input');
             input.type = 'number';
+            input.min = 0;
+            input.max = 2140999999;
             input.name = `dobleces[]`;
             input.id = `dobleces${i + 1}`;
             input.className = 'bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white';
