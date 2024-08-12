@@ -34,7 +34,8 @@ const categorias = [
   { id: 'btn_etiquetas', categoria: 'etiquetas' },
   { id: 'btn_cerilleras', categoria: 'cerilleras' },
   { id: 'btn_cierres', categoria: 'cierres' },
-  { id: 'btn_hebillas', categoria: 'hebillas' }
+  { id: 'btn_hebillas', categoria: 'hebillas' },
+  { id: 'btn_empaque', categoria: 'empaque'}
 ];
 
 function removerClasesBackground() {
