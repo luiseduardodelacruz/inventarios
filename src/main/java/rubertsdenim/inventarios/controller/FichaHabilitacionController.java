@@ -35,8 +35,6 @@ public class FichaHabilitacionController {
     @Autowired
     private CadenaRepository cadenaRepository;
 
-
-
     @Autowired
     private TallasRepository tallasRepository;
 

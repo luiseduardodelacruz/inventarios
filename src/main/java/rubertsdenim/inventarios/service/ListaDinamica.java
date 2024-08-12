@@ -29,7 +29,7 @@ public class ListaDinamica {
     }
 
     public static  void generarTablaPreparacion(Document document, List<String> tallas, List<Double> bultos,
-            double sumaDobleces, int totalSum, String cadenaString) throws Exception {
+        double sumaDobleces, int totalSum, String cadenaString) throws Exception {
 
 
         PdfPTable cantidadDescripcionTable = new PdfPTable(2);
@@ -59,7 +59,7 @@ public class ListaDinamica {
                     ? Long.toString(Math.round(bultos.get(tallas.indexOf(talla)) * sumaDobleces))
                     : "";
             addCell(cantidadDescripcionTable, cantidad, false);
-            addCell(cantidadDescripcionTable, "Etiqueta pretina (" + talla + ") de (" + cadenaString + ")", false);
+            addCell(cantidadDescripcionTable, "Etiqueta Pretina (" + talla + ") de (" + cadenaString + ")", false);
         }
 
         for (String talla : tallas) {
@@ -87,7 +87,7 @@ public class ListaDinamica {
         addCell(cantidadDescripcionTable, "DESCRIPCIÓN", true);
 
         addCell(cantidadDescripcionTable, Double.toString(totalSum), false);
-        addCell(cantidadDescripcionTable, "Boton de pasta", false);
+        addCell(cantidadDescripcionTable, "Boton de Pasta", false);
 
         addCell(cantidadDescripcionTable, Double.toString(totalSum), false);
         addCell(cantidadDescripcionTable, "Boton Metalico", false);
@@ -117,7 +117,7 @@ public class ListaDinamica {
         addCell(cantidadDescripcionTable, "DESCRIPCIÓN", true);
 
         addCell(cantidadDescripcionTable, Double.toString(totalSum), false);
-        addCell(cantidadDescripcionTable, "Colgante (nombre del fit)", false);
+        addCell(cantidadDescripcionTable, "Colgante (Nombre del fit)", false);
 
         addCell(cantidadDescripcionTable, Double.toString(totalSum), false);
         addCell(cantidadDescripcionTable, "Sticker", false);
