@@ -318,6 +318,8 @@ document.addEventListener('DOMContentLoaded', function() {
       selectLongitudAgregarProductosCierres();
       selectColorAgregarProductosCierres();
       selectProcesoAgregarProductosCierres();
+    } else if (categoria == 'empaque'){
+      selectTipoAgregarProductosEmpaque();
     }
   });
 
@@ -938,6 +940,33 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(event) {
       if (!opcion_seleccionada_proceso_agregar_producto_cierres.contains(event.target) && !opciones_proceso_agregar_producto_cierres.contains(event.target)) {
         opciones_proceso_agregar_producto_cierres.classList.add('hidden');
+      }
+    });
+  }
+
+  // Funcionalidad Select Tipo Agregar Productos Empaque
+  function selectTipoAgregarProductosEmpaque() {
+    const opcion_seleccionada_tipo_agregar_producto_empaque = document.getElementById('opcion_seleccionada_tipo_agregar_producto_empaque');
+    const opciones_tipo_agregar_producto_empaque = document.getElementById('opciones_tipo_agregar_producto_empaque');
+    const valores_tipo_agregar_producto_empaque = document.getElementById('valores_tipo_agregar_producto_empaque');
+    const selector_tipo_agregar_producto_empaque = document.querySelectorAll('#opciones_tipo_agregar_producto_empaque div');
+
+    opcion_seleccionada_tipo_agregar_producto_empaque.addEventListener('click', function() {
+      opciones_tipo_agregar_producto_empaque.classList.toggle('hidden');
+    });
+
+    selector_tipo_agregar_producto_empaque.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = option.getAttribute('data-value');
+        valores_tipo_agregar_producto_empaque.value = value;
+        opcion_seleccionada_tipo_agregar_producto_empaque.querySelector('span').textContent = option.textContent;
+        opciones_tipo_agregar_producto_empaque.classList.add('hidden');
+      });
+    });
+
+    document.addEventListener('click', function(event) {
+      if (!opcion_seleccionada_tipo_agregar_producto_empaque.contains(event.target) && !opciones_tipo_agregar_producto_empaque.contains(event.target)) {
+        opciones_tipo_agregar_producto_empaque.classList.add('hidden');
       }
     });
   }

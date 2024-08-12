@@ -615,13 +615,41 @@ const valor = selectCategoria.value;
       <div class="px-4 md:px-12 flex justify-center">
         <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
           <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Color:</p>
-          <input type="text" value="Metálico" th:field="*{color}" name="color" readonly class="col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-base md:text-base lg:text-base xl:text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-1.5 px-2 md:p-2 md:px-3 lg:p-2 lg:px-3 xl:p-2 xl:px-3" required />
+          <input type="text" value="Metálico" th:field="*{color}" name="color" readonly class="col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-base md:text-base lg:text-base xl:text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] w-full p-1.5 px-2 md:p-2 md:px-3 lg:p-2 lg:px-3 xl:p-2 xl:px-3" required />
         </div>
       </div>
     `;
 
     // Lanza un evento global para indicar que se han generado elementos
     const eventoCamposGenerados = new CustomEvent('elementosGenerados', { detail: { categoria: 'hebillas' } });
+    document.dispatchEvent(eventoCamposGenerados);
+
+  } else if (valor === 'empaque') {
+    contenedor.innerHTML = `
+      <div class="px-4 md:px-12 flex justify-center">
+        <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
+          <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Tipo:</p>
+          <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
+            <div id="opcion_seleccionada_tipo_agregar_producto_empaque" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
+              <span class="px-1">Seleccionar:</span>
+              <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
+            </div>
+            <div id="opciones_tipo_agregar_producto_empaque" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
+              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="bolsa">Bolsa</div>
+              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="caja">Caja</div>
+            </div>
+            <select id="valores_tipo_agregar_producto_empaque" onchange="tallaDinamica()" th:field="*{tipo}" name="tipo" class="hidden" required>
+              <option value="" selected>Seleccionar:</option>
+              <option value="bolsa">Bolsa</option>
+              <option value="caja">Caja</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Lanza un evento global para indicar que se han generado elementos
+    const eventoCamposGenerados = new CustomEvent('elementosGenerados', { detail: { categoria: 'empaque' } });
     document.dispatchEvent(eventoCamposGenerados);
   }
 }
@@ -808,24 +836,48 @@ function tallaDinamica() {
           <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Proceso:</p>
           <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full">
             <div id="opcion_seleccionada_proceso_agregar_producto_etiquetas" class="bg-[#db4900] text-white border border-[#da6930] focus:ring-[#da6930] focus:border-[#da6930] font-medium rounded-3xl text-sm md:text-base lg:text-base xl:text-lg fuente_2 w-full p-1.5 md:p-1.5 lg:p-1.5 xl:p-2 text-left cursor-pointer flex justify-between items-center">
-              <span class="px-1">Seleccionar:</span>
+              <span id="span_categoria_proceso_etiquetas" class="px-1">Seleccionar:</span>
               <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg>
             </div>
             <div id="opciones_proceso_agregar_producto_etiquetas" class="absolute hidden bg-[#db4900] border border-[#da6930] w-full text-sm md:text-base lg:text-base xl:text-base fuente_2 mt-1 z-10 max-h-48 overflow-y-auto">
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="blich">Blich</div>
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="stone_medio">Stone Medio</div>
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="stone_alto">Stone Alto</div>
+              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="suavizado">Suavizado</div>
+              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="tenido">Teñido</div>
+              <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="destroyer">Destroyer</div>
             </div>
-            <select id="valores_proceso_agregar_producto_etiquetas" th:field="*{proceso}" name="proceso" class="hidden" required>
+            <select id="valores_proceso_agregar_producto_etiquetas" onchange="tonalidadDinamica()" th:field="*{proceso}" name="proceso" class="hidden" required>
               <option value="" selected>Seleccionar:</option>
               <option value="blich">Blich</option>
               <option value="stone_medio">Stone Medio</option>
               <option value="stone_alto">Stone Alto</option>
+              <option value="suavizado">Suavizado</option>
+              <option value="tenido">Teñido</option>
+              <option value="destroyer">Destroyer</option>
             </select>
           </div>
         </div>
       </div>
+
+      <div id="campos_dinamicos_tonalidad_etiquetas"></div>
     `;
+
+    const opcionesCategoriaProcesoEtiquetas = document.getElementById('opciones_proceso_agregar_producto_etiquetas');
+    const spanCategoriaProcesoEtiquetas = document.getElementById('span_categoria_proceso_etiquetas');
+    const selectCategoriaProcesoEtiquetas = document.getElementById('valores_proceso_agregar_producto_etiquetas');
+
+    // Funcionalidad para detectar el onchange proceso de etiquetas
+    opcionesCategoriaProcesoEtiquetas.addEventListener('click', function(event) {
+      const target = event.target;
+      if (target.hasAttribute('data-value')) {
+        const valueProcesoEtiquetas = target.getAttribute('data-value');
+        const textProcesoEtiquetas = target.textContent.trim();
+        spanCategoriaProcesoEtiquetas.textContent = textProcesoEtiquetas;
+        selectCategoriaProcesoEtiquetas.value = valueProcesoEtiquetas;
+        selectCategoriaProcesoEtiquetas.dispatchEvent(new Event('change')); 
+      }
+    });
 
     // Lanza un evento global para indicar que se han generado elementos
     const eventoCamposGenerados = new CustomEvent('elementosGenerados', { detail: { categoria: 'etiquetasTallaDinamicoOpcion2' } });
@@ -833,5 +885,44 @@ function tallaDinamica() {
 
   } else {
     contenedorTallaDinamico.innerHTML = ``;
+  }
+}
+
+// Campos Dinamicos Tonalidad Etiquetas
+function tonalidadDinamica() {
+  const contenedorTonalidadDinamico = document.getElementById('campos_dinamicos_tonalidad_etiquetas');
+  const selectTonalidadEtiquetas = document.getElementById('valores_proceso_agregar_producto_etiquetas');
+  const valorTonalidadEtiquetas = selectTonalidadEtiquetas.value;
+
+  if (valorTonalidadEtiquetas === 'blich' || valorTonalidadEtiquetas === 'suavizado' || valorTonalidadEtiquetas === 'destroyer') {
+    contenedorTonalidadDinamico.innerHTML = `
+      <div class="px-4 md:px-12 flex justify-center">
+        <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
+          <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Tonalidad:</p>
+          <input type="text" value="clara" th:field="*{color}" name="color" readonly class="capitalize col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-base md:text-base lg:text-base xl:text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-1.5 px-2 md:p-2 md:px-3 lg:p-2 lg:px-3 xl:p-2 xl:px-3" required />
+        </div>
+      </div>
+    `;
+
+    // Lanza un evento global para indicar que se han generado elementos
+    const eventoCamposGenerados = new CustomEvent('elementosGenerados', { detail: { categoria: 'etiquetasTonalidadDinamicoOpcion1' } });
+    document.dispatchEvent(eventoCamposGenerados);
+
+  } else if (valorTonalidadEtiquetas === 'stone_medio' || valorTonalidadEtiquetas === 'stone_alto' || valorTonalidadEtiquetas === 'tenido') {
+    contenedorTonalidadDinamico.innerHTML = `
+      <div class="px-4 md:px-12 flex justify-center">
+        <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
+          <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Tonalidad:</p>
+          <input type="text" value="oscura" th:field="*{color}" name="color" readonly class="capitalize col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-base md:text-base lg:text-base xl:text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-1.5 px-2 md:p-2 md:px-3 lg:p-2 lg:px-3 xl:p-2 xl:px-3" required />
+        </div>
+      </div>
+    `;
+
+    // Lanza un evento global para indicar que se han generado elementos
+    const eventoCamposGenerados = new CustomEvent('elementosGenerados', { detail: { categoria: 'etiquetasTonalidadDinamicoOpcion2' } });
+    document.dispatchEvent(eventoCamposGenerados);
+
+  } else {
+    contenedorTonalidadDinamico.innerHTML = ``;
   }
 }
