@@ -11,44 +11,45 @@
 </head>
 
 <body class="bg-[#ffe1d2]">
-    <div style="display: flex; justify-content: center; align-items: center; min-height: 100vh;" class="p-5">
+    <div class="flex justify-center items-center min-h-screen p-5">
         <div class="w-full max-w-2xl p-6 border-[#db4900] border-opacity-40 rounded-3xl shadow  sm:p-6 md:p-8 bg-opacity-40 bg-[#db4900]">
             <form id="formulario2" class="space-y-6" th:action="@{/guardar-ficha-parte2}"
                 th:object="${fichaHabilitacion}" method="post" target="_blank">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                
                     <!-- Fila 1: Maquilero -->
-                    <div class="sm:col-span-2">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-5">
+                        <div class="flex items-center mb-3  ">
+                            <img class="h-auto w-auto rounded-lg" src="/img/logo.png" alt="image description">
+                        </div>
                         <div class="flex items-center mb-3">
-                            <label for="maquilero" class="text-sm font-medium text-white-900 text-white mr-2">Maquilero:</label>
+                            <label for="maquilero" class="text-sm font-medium text-white-900 text-white w-[39.5%] sm:w-[61%]">Maquilero:</label>
                             <input type="text" name="maquilero" id="maquilero" class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5  border-orange-500 placeholder-white-400 text-white placeholder-white" th:field="*{maquilero}" required>
                         </div>
                     </div>
                     <!-- Fila 2: Dobleces y Bultos -->
-                    <div>
-                        <input type="hidden" id="sumaDobleces" class="text-sm font-medium text-gray-900 text-white ml-[10%]" th:field="*{sumaDobleces}"></input>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
-                            <div class="flex items-center mb-3">
-                                <label for="cantidadDobleces"
-                                    class="text-sm font-medium text-gray-900 text-white mr-2">Cantidad de dobleces:</label>
-                                <select name="cantidadDobleces" id="cantidadDobleces" class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5  border-orange-500 placeholder-white-400 text-white">
-                                    <option value="" selected>Seleccionar Cantidad</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <!-- Puedes añadir más opciones según tus necesidades -->
-                                </select>
-                            </div>
-                            <div id="contenedorDobleces" class="grid grid-cols-1 sm:grid-cols-1 gap-6"></div>
+                            <input type="hidden" id="sumaDobleces" class="text-sm font-medium text-gray-900 text-white ml-[10%]" th:field="*{sumaDobleces}"></input>
+                            
+                                <div class="flex items-center mb-3">
+                                    <label for="cantidadDobleces"
+                                        class="text-sm font-medium text-gray-900 text-white mr-2 w-[38%] sm:w-auto">Cantidad de dobleces:</label>
+                                    <select name="cantidadDobleces" id="cantidadDobleces" class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5  border-orange-500 placeholder-white-400 text-white">
+                                        <option value="" selected>Seleccionar Cantidad</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <!-- Puedes añadir más opciones según tus necesidades -->
+                                    </select>
+                                </div>
+                            
                         </div>
-                    </div>
 
-                    <!-- Fila 3: Cantidad de Tallas y Cantidad de dobleces -->
-                    <div>
                         <div class="flex items-center mb-3">
                             <label for="cantidadTallas"
-                                class="text-sm font-medium text-gray-900 text-white mr-2">Cantidad de Tallas:</label>
+                                class="text-sm font-medium text-gray-900 text-white mr-2 w-[30%] sm:w-auto">Cantidad de Tallas:</label>
                             <select name="cantidadTallas" id="cantidadTallas" class="bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-[80%] p-2.5  border-orange-500 placeholder-white-400 text-white">
                                 <option value="" selected>Seleccionar Cantidad</option>
                                 <option value="1">1</option>
@@ -59,12 +60,19 @@
                                 <!-- Puedes añadir más opciones según tus necesidades -->
                             </select>
                         </div>
+                    </div>
+
+                    <!-- Fila 3: Cantidad de Tallas y Cantidad de dobleces -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <div id="contenedorDobleces" class="grid grid-cols-1 sm:grid-cols-1 gap-6"></div>
+                        </div>
                         <div>
                             <div id="contenedorListas" class="grid grid-cols-1 sm:grid-cols-1 gap-6 mb-3"></div>
                             <div id="contenedorBultos" class="grid grid-cols-1 sm:grid-cols-1 gap-6 mb-3"></div>
                         </div>
                     </div>
-                </div>
+                
 
                 <!-- Botones -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 place-items-center mt-4">

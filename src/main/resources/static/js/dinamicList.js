@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
                     var label = document.createElement('label');
                     label.htmlFor = 'talla' + (i + 1);
-                    label.className = 'text-sm font-medium text-gray-900 text-white mr-2 w-[62%]';
+                    label.className = 'text-sm font-medium text-gray-900 text-white mr-2 w-[38%] sm:w-[62%]';
                     label.innerText = 'Talla ' + (i + 1) + ':';
 
                     var select = document.createElement('select');
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
             const label = document.createElement('label');
             label.htmlFor = `dobleces${i + 1}`;
-            label.className = 'text-sm font-medium text-gray-900 text-white mr-2 w-[50%]';
+            label.className = 'text-sm font-medium text-gray-900 text-white mr-2 w-[37%] sm:w-[50%]';
             label.textContent = `Dobleces ${i + 1}:`;
 
             const input = document.createElement('input');
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
             var label = document.createElement('label');
             label.htmlFor = 'bulto' + (i + 1);
-            label.className = 'text-sm font-medium text-gray-900 text-white mr-2 w-[58%]';
+            label.className = 'text-sm font-medium text-gray-900 text-white mr-2 w-[37%] sm:w-[58%]';
             label.innerText = 'Bulto ' + (i + 1) + ':';
 
             var input = document.createElement('input');
