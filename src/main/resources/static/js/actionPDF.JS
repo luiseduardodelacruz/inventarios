@@ -20,8 +20,8 @@ function handleButtonClick() {
         window.URL.revokeObjectURL(url);
         */
 
-        // Redirigir a la página de índice después de la descarga
-        window.location.href = '/habilitacion';
+        /* Redirigir a la página de índice después de la descarga
+        window.location.href = '/habilitacion';*/
     })
     .catch(error => {
         console.error('Error al generar el PDF:', error);

@@ -79,8 +79,8 @@ public class PdfService {
 
             addCell(table2, "Estilo", true);
             addCell(table2, "Corte", true);
-            addCell(table2, "Etapa del corte", true);
-            addCell(table2, "Tipo de corte", true);
+            addCell(table2, "Etapa del Corte", true);
+            addCell(table2, "Tipo de Corte", true);
 
             addCell(table2, fichaHabilitacion.getEstilo(), false);
             addCell(table2, fichaHabilitacion.getCorte(), false);
@@ -121,7 +121,7 @@ public class PdfService {
             addCell(secondaryTable, "Suma Dobleces", true);
             addCell(secondaryTable, "Tallas", true);
             addCell(secondaryTable, "Bultos", true);
-            addCell(secondaryTable, "Total/talla", true);
+            addCell(secondaryTable, "Total/Talla", true);
 
             int maxSize = Math.max(tallas.size(), Math.max(dobleces.size(), bultos.size()));
             int totalSum = 0;
@@ -152,7 +152,7 @@ public class PdfService {
             float[] columnWidths6 = new float[] { 2f, 2f };
             Totaltable.setWidths(columnWidths6);
 
-            addCell(Totaltable, "Total del corte", true);
+            addCell(Totaltable, "Total del Corte", true);
             addCell(Totaltable, Double.toString(totalSum), false); // Mostrar totalSum
             addCell(Totaltable, Double.toString(totalSum), false); // Mostrar totalSum
 
