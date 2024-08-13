@@ -638,7 +638,7 @@ const valor = selectCategoria.value;
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="bolsa">Bolsa</div>
               <div class="px-4 py-2 text-white hover:bg-[#da6930] cursor-pointer" data-value="caja">Caja</div>
             </div>
-            <select id="valores_tipo_agregar_producto_empaque" onchange="tallaDinamica()" th:field="*{tipo}" name="tipo" class="hidden" required>
+            <select id="valores_tipo_agregar_producto_empaque" th:field="*{tipo}" name="tipo" class="hidden" required>
               <option value="" selected>Seleccionar:</option>
               <option value="bolsa">Bolsa</option>
               <option value="caja">Caja</option>
