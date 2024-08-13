@@ -167,7 +167,14 @@
                             <div class="px-4 md:px-12 flex justify-center">
                                 <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
                                     <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Contraseña:</p>
-                                    <input type="password" id="password" th:field="*{password}" class="col-span-7 place-self-center justify-self-start fuente_3 bg-[#db4900] border border-[#db4900] text-white text-base md:text-base lg:text-base xl:text-lg rounded-3xl focus:ring-[#db4900] focus:border-[#db4900] block w-full p-1.5 px-2 md:p-2 md:px-3 lg:p-2 lg:px-3 xl:p-2 xl:px-3" required />
+                                    <div class="flex col-span-7 place-self-center justify-self-start">
+                                        <input type="password" id="password" th:field="*{password}" class="fuente_3 rounded-none rounded-s-3xl bg-[#db4900] border border-[#db4900] text-white focus:ring-transparent focus:border-[#db4900] block text-base md:text-base lg:text-base xl:text-lg rounded-3xl w-[65%] w-full py-2 pl-3 pr-1 md:w-full lg:w-full placeholder-white see-hidden-password " required>
+                                        <button type="button" id="togglePasswordButton" class="inline-flex items-center pl-1 pr-3 text-white bg-[#db4900] hover:bg-[#ff5500] border border-e-0 border-[#db4900] rounded-e-3xl focus:ring-transparent focus:border-[#db4900]">                             
+                                            <svg id="Icon" class="w-6 h-6 md:w-7 md:h-7 lg:w-7 lg:h-7 xl:w-8 xl:h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                              <path fill="white" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/>
+                                            </svg>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
             
@@ -175,7 +182,7 @@
                                 <div class="grid grid-cols-12 start-0 flex items-stretch mt-4 md:mt-4 lg:mt-4 xl:mt-5 px-4 w-full">
                                     <p class="col-span-5 text-center fuente_2 text-lg md:text-xl lg:text-xl xl:text-2xl text-white pr-6 place-self-center justify-self-end">Imagen:</p>
                                     <div class="relative col-span-7 place-self-center justify-self-start fuente_3 w-full bg-[#db4900] border border-[#da6930] rounded-3xl focus:ring-transparent focus:border-transparent flex py-1 md:py-1.5 lg:py-1.5 xl:py-2 px-2 md:px-2 lg:px-2 xl:px-3">
-                                        <div id="imagen-previa" class="w-7 h-7 flex-shrink-0 overflow-hidden rounded-md">
+                                        <div id="imagen-previa" class="mt-1 md:mt-0 w-6 h-6 md:w-7 md:h-7 flex-shrink-0 overflow-hidden rounded-md">
                                             <svg class="w-6 h-6 md:w-7 md:h-7 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><g fill="none">
                                                 <path fill="white" d="M44 24C44 22.8954 43.1046 22 42 22C40.8954 22 40 22.8954 40 24H44ZM24 8C25.1046 8 26 7.10457 26 6C26 4.89543 25.1046 4 24 4V8ZM39 40H9V44H39V40ZM8 39V9H4V39H8ZM40 24V39H44V24H40ZM9 8H24V4H9V8ZM9 40C8.44772 40 8 39.5523 8 39H4C4 41.7614 6.23857 44 9 44V40ZM39 44C41.7614 44 44 41.7614 44 39H40C40 39.5523 39.5523 40 39 40V44ZM8 9C8 8.44772 8.44771 8 9 8V4C6.23858 4 4 6.23857 4 9H8Z"/><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M6 35L16.6931 25.198C17.4389 24.5143 18.5779 24.4953 19.3461 25.1538L32 36"/><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M28 31L32.7735 26.2265C33.4772 25.5228 34.5914 25.4436 35.3877 26.0408L42 31"/><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M37 18L37 6"/>
                                                 <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M32 11L37 6L42 11"/></g>
@@ -226,6 +233,7 @@
         </div>
     </div>
 
+    <script src="/js/contrasena.js"></script>
     <script src="/js/alertaEmailUser.js"></script>
     <script src="/js/usuarios.js"></script>
     <script src="/js/imagenPrevia.js"></script>

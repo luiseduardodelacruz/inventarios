@@ -34,3 +34,9 @@
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
 }
+
+@layer utilities {
+  .see-hidden-password::-ms-reveal {
+    display: none;
+  }
+}
