@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     select.name = 'tallas[]';
                     select.id = 'talla' + (i + 1);
                     select.className = 'bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white';
+                    select.required = true;
                     select.addEventListener('change', actualizarOpciones)
 
 
@@ -88,6 +89,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             input.name = `dobleces[]`;
             input.id = `dobleces${i + 1}`;
             input.className = 'bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white';
+            input.required = true;
             input.addEventListener('input', validarNumeroEnteroNoNegativo);
             input.addEventListener('input', calcularSumaDobleces);
 
@@ -116,6 +118,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             input.name = 'bultos[]';
             input.id = 'bulto' + (i + 1);
             input.className = 'bg-[#db4900] border-orange-300 text-gray-900 text-sm rounded-3xl focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-orange-600 border-orange-500 placeholder-white-400 text-white';
+            input.required = true;
             input.addEventListener('input', validarNumeroNoNegativo);
 
             divLista.appendChild(label);
