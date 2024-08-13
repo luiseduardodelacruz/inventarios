@@ -71,6 +71,11 @@ document.addEventListener('DOMContentLoaded', function () {
             idSeleccionado: 'opcion_seleccionada_proceso_editar_producto_cierres',
             idOpciones: 'opciones_proceso_editar_producto_cierres',
             idValores: 'valores_proceso_editar_producto_cierres'
+        },
+        {
+            idSeleccionado: 'opcion_seleccionada_tipo_agregar_producto_empaque',
+            idOpciones: 'opciones_tipo_agregar_producto_empaque',
+            idValores: 'valores_tipo_agregar_producto_empaque'
         }
     ];
 
