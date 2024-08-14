@@ -50,3 +50,20 @@ function mostrarColor(color) {
     var contenedorColores = document.getElementById('contenedorColores');
     contenedorColores.innerHTML = `<p class="text-white">Color seleccionado: ${color}</p>`;
 }
+
+function capitalizarPrimeraLetra() {
+    // Obtener todos los elementos select
+    const selects = document.querySelectorAll('select');
+    
+    // Iterar sobre cada select
+    selects.forEach(select => {
+        // Iterar sobre cada opción del select
+        Array.from(select.options).forEach(option => {
+            // Convertir la primera letra a mayúsculas y el resto a minúsculas
+            option.text = option.text.charAt(0).toUpperCase() + option.text.slice(1).toLowerCase();
+        });
+    });
+}
+
+// Llamar a la función para capitalizar la primera letra de las opciones al cargar la página
+window.onload = capitalizarPrimeraLetra;
